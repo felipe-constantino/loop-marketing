@@ -1,4 +1,4 @@
-# Loop Marketing v1.1 — Sistema de Decisao para CRM/Lifecycle
+# Loop Marketing v1.2 — Sistema de Decisao para CRM/Lifecycle
 
 Sistema de decisao estruturada para CRM e lifecycle marketing, baseado na metodologia **Loop Marketing da HubSpot** (loop continuo Express → Tailor → Amplify → Evolve). Produz decisoes operacionais com thresholds, verificacoes e handoffs — nao listas de sugestoes.
 
@@ -206,6 +206,16 @@ loop-marketing-v1.1/
 ```
 
 ---
+
+## Mudancas da v1.2
+
+Patch nascido de testes com 3 clientes (NuvemFit, Avanti, Eduzz), o ultimo rodado por outro agente (Codex/Sonnet 4.6):
+
+- **Estado de teste/decisao com enum controlado** (`proposto | aprovado | instrumentado | em execucao | concluido`) + regra dura: status so avanca com evidencia real. Reiniciar o loop NAO avanca status (corrige "estado fabricado").
+- **Fronteira de escopo no handoff:** todo handoff carrega o campo `Fronteira de escopo (o proximo NAO decide)`, para sobreviver mesmo quando os agentes rodam em contextos isolados.
+- **Gate obrigatorio de fecho de ciclo** (Loop Planning + CLAUDE.md): checa estado nao-fabricado, fonte/hipotese em todo claim factual, e reversao de invasao de escopo.
+- **Regra anti-colapso de ambiguidade** no Orientar: "elegivel para X" nao vira "sem X ativo"; a ambiguidade fica marcada ate o dado confirmar.
+- **Pre-requisitos fora do loop:** o Loop Planning declara explicitamente trabalho de RevOps/engenharia de dados como pre-requisito, em vez de empurrar para dentro de um pilar.
 
 ## Mudancas da v1.1
 

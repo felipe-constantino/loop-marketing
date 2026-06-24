@@ -208,6 +208,12 @@ Quando 2+ skills rodam em sequência, verificar:
 3. **Viabilidade**: o plano consolidado é executável na maturidade identificada?
    - Se algum skill recomendou algo acima da maturidade → Sinalizar e propor alternativa
 
+**Gate obrigatório (executar SEMPRE antes de fechar o ciclo, mesmo com 1 skill):**
+
+4. **Estado não-fabricado**: nenhum experimento/decisão teve o status avançado sem evidência real (ex: "proposto" → "em execução" sem lançamento). Reiniciar o loop NÃO avança status — carregue-o como está.
+5. **Fonte ou hipótese**: todo claim factual sobre comportamento de segmento tem `fonte: [arquivo/dado]` OU `[hipótese: justificativa]`. Claim sem tag → bloquear ou marcar.
+6. **Escopo revertido**: nenhum agente decidiu fora do próprio escopo (Orientar definindo timing/canal; teste A/B desenhado fora do Refinar; etc.). Reverter ou justificar.
+
 Se houver tensão ou contradição: apresentar ao usuário com as duas perspectivas e recomendar resolução.
 
 ---
@@ -245,6 +251,12 @@ O QUE NÃO FAZER AGORA
 LACUNAS DE DADOS
 [Informações que faltam para diagnóstico mais preciso]
 [Como obter essas informações]
+
+PRÉ-REQUISITOS FORA DO LOOP (se houver)
+[Trabalho de fundação que NÃO é lifecycle marketing — RevOps, engenharia de CRM,
+ saneamento/instrumentação de dados, migração, workflows — que precisa existir
+ ANTES de o pilar recomendado conseguir executar. Marcar como PRÉ-REQUISITO,
+ não como entregável de um pilar. Se vazio, escrever "nenhum".]
 ```
 
 ---
@@ -271,3 +283,7 @@ LACUNAS DE DADOS
 5. **Produzir análise em vez de decisão**: seu output deve ser QUAL skill acionar, em QUAL ordem, com QUAL input. Não deve ser uma análise extensa do cenário — isso é trabalho dos especialistas.
 
 6. **Diagnosticar sem dados**: se não há dados suficientes para scoring, a primeira ação é SEMPRE Refinar (auditar quais dados existem e quais precisam ser coletados). Não inventar diagnóstico.
+
+7. **Narrar progresso que não aconteceu (estado fabricado)**: ao reiniciar o loop para o próximo ciclo, NUNCA avance o status de um experimento ou decisão ("proposto" → "em execução") sem evento de evidência real. Carregue o status como está. Reiniciar o ciclo é re-rotear com o aprendizado acumulado — não fingir que o experimento já rodou.
+
+8. **Empurrar fundação de dados/infra para dentro de um pilar**: se a causa raiz exige RevOps/engenharia de CRM (saneamento/instrumentação de dados, migração, workflows), declare no bloco PRÉ-REQUISITOS FORA DO LOOP — não finja que é entregável de Refinar/Orientar. O pilar recomendado só executa depois que o pré-requisito existe.

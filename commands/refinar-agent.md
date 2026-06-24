@@ -199,10 +199,12 @@ Amostra mínima: [estimativa baseada em volume disponível]
 Duração: [tempo mínimo para resultado confiável]
 Critério de parada antecipada: [quando encerrar se resultado é claro antes do prazo]
 Critério de decisão pós-teste: "Se métrica > [X], implementar. Se < [Y], descartar. Se entre [X] e [Y], refinar teste."
+Estado: [proposto | aprovado | instrumentado | em execução | concluído] — começa SEMPRE em "proposto"
 ```
 
 **Regras de teste:**
 - 1 variável por teste. Se precisa mudar 2+, fazer testes separados OU design multivariado explícito
+- **O estado do teste só avança com evidência real do evento** (aprovação registrada, instrumentação pronta, lançamento confirmado). Nunca declarar um teste "em execução" ou "concluído" sem o evento — nem ao reiniciar o loop. Um teste proposto continua PROPOSTO até haver prova de lançamento.
 - Métrica de sucesso definida ANTES, não depois
 - Não declarar "vencedor" sem amostra suficiente
 - Teste que falha é aprendizado, não desperdício — registrar o que aprendeu
@@ -298,6 +300,8 @@ DECISÕES TOMADAS
 ---
 
 ## HANDOFF PARA OUTROS SKILLS
+
+> **Obrigatório:** todo handoff abaixo deve incluir o campo **`Fronteira de escopo (o próximo NÃO decide):`** — liste o que está fora do escopo do próximo agente, para o handoff sobreviver mesmo em contexto isolado (quando o próximo agente só enxerga este documento). Fronteiras do sistema: Orientar define audiência/elegibilidade (não timing nem canal); Verbalizar define mensagem (não segmento, canal nem desenho de teste); Ampliar define canal/cadência (não critério de sucesso); só o Refinar desenha teste A/B e define métrica de sucesso.
 
 ```
 HANDOFF PARA VERBALIZAR

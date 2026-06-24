@@ -88,7 +88,7 @@ Formato:
   - Métrica de sucesso: [KPI + meta numérica]
   - Prazo: [duração]
   - Critério de decisão: [se >X implementar, se <Y descartar]
-  - Status: [aguardando | em andamento | concluído]
+  - Status: [proposto | aprovado | instrumentado | em execução | concluído]  ← começa em "proposto"; só avança com evidência real (não narrar progresso que não aconteceu)
 
 ---
 

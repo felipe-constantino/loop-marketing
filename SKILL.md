@@ -3,7 +3,7 @@ name: Loop Marketing
 description: "Sistema de decisao para CRM e lifecycle marketing baseado na metodologia Loop Marketing (HubSpot). 6 comandos + biblioteca tatica de 100 prompts. Use quando o usuario descrever problemas de segmentacao, lifecycle, churn, mensagem, proposta de valor, canais, distribuicao, performance de campanha, testes, ou qualquer cenario de CRM/lifecycle. Inclui: /loop-planning-agent (orquestrador), /orientar-agent (segmentacao e lifecycle), /verbalizar-agent (mensagem e proposta de valor), /ampliar-agent (canais e distribuicao), /refinar-agent (diagnostico e testes), /projeto-template (contexto de projeto)."
 ---
 
-# Loop Marketing v1.1 — Sistema de Decisao para CRM/Lifecycle
+# Loop Marketing v1.2 — Sistema de Decisao para CRM/Lifecycle
 
 Sistema de decisao estruturada para operacoes de CRM e lifecycle marketing, baseado na metodologia Loop Marketing da HubSpot (loop continuo Express → Tailor → Amplify → Evolve, em vez de funil linear).
 

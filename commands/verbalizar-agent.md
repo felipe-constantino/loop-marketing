@@ -203,6 +203,8 @@ DECISÕES TOMADAS
 
 ### Handoff para outros skills
 
+> **Obrigatório:** todo handoff abaixo deve incluir o campo **`Fronteira de escopo (o próximo NÃO decide):`** — liste o que está fora do escopo do próximo agente, para o handoff sobreviver mesmo em contexto isolado (quando o próximo agente só enxerga este documento). Fronteiras do sistema: Orientar define audiência/elegibilidade (não timing nem canal); Verbalizar define mensagem (não segmento, canal nem desenho de teste); Ampliar define canal/cadência (não critério de sucesso); só o Refinar desenha teste A/B e define métrica de sucesso.
+
 Se o próximo skill é **Orientar**:
 ```
 HANDOFF PARA ORIENTAR

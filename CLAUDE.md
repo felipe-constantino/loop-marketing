@@ -55,6 +55,11 @@ Quando 2 ou mais skills rodarem no mesmo ciclo, o loop-planning-agent (ou o anal
 
 Se houver tensão: apresentar ao usuário com as duas perspectivas e recomendar resolução. Conflitos implícitos não são aceitáveis.
 
+**Gate obrigatório de fecho de ciclo** (vale mesmo com 1 skill rodando): antes de encerrar, verificar e CORRIGIR:
+1. **Estado não-fabricado**: nenhum experimento/decisão teve o status avançado sem evidência real (ex: "proposto" → "em execução" sem lançamento de fato). Reverter o status para o real. Reiniciar o loop NÃO avança status.
+2. **Fonte ou hipótese**: todo claim factual sobre comportamento de segmento carrega `fonte: [arquivo/dado]` OU `[hipótese: justificativa]`. Claim sem tag é bloqueado ou marcado.
+3. **Escopo revertido**: nenhum agente decidiu fora do próprio escopo (ex: Orientar definindo timing/canal; alguém desenhando teste A/B fora do Refinar). Reverter ou justificar explicitamente.
+
 ---
 
 ## Idioma

@@ -247,6 +247,8 @@ DECISÕES TOMADAS (resumo)
 
 ### Handoff para outros skills
 
+> **Obrigatório:** todo handoff abaixo deve incluir o campo **`Fronteira de escopo (o próximo NÃO decide):`** — liste o que está fora do escopo do próximo agente, para o handoff sobreviver mesmo em contexto isolado (quando o próximo agente só enxerga este documento). Fronteiras do sistema: Orientar define audiência/elegibilidade (não timing nem canal); Verbalizar define mensagem (não segmento, canal nem desenho de teste); Ampliar define canal/cadência (não critério de sucesso); só o Refinar desenha teste A/B e define métrica de sucesso.
+
 Se o próximo skill é **Verbalizar**:
 ```
 HANDOFF PARA VERBALIZAR
@@ -314,3 +316,5 @@ Estes não são avisos — são passos de verificação embutidos no seu racioc�
 5. **Regra de elegibilidade sem exclusão**: ao definir quem recebe uma ação, sempre defina quem NÃO recebe. Se "todos que estão no estágio X" é a resposta, questione: "Mesmo quem está em processo de cancelamento? Mesmo quem tem ticket aberto? Mesmo quem recebeu outra comunicação hoje?"
 
 6. **Confundir frequência com relevância**: enviar mais não é personalizar mais. Se a recomendação para um segmento com baixa conversão é "aumentar frequência", questione se o problema é frequência ou relevância.
+
+7. **Colapsar ambiguidade na hipótese mais simples**: não trate "elegível para X" como "não tem X ativo", nem qualquer estado ambíguo como se fosse o caso mais conveniente. Se a fonte diz "C2 elegível para RVP" e falta o dado de ferramenta ativa, o segmento permanece **ambíguo** (marcar ❌) — não vire "C2 sem RVP ativo". Colapsar prematuro contamina a base do experimento. Mantenha a ambiguidade explícita até o dado confirmar.
