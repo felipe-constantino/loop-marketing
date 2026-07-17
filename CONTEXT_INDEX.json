@@ -1,0 +1,52 @@
+{
+  "append_only_logs": {
+    "DECISIONS.jsonl": {
+      "line_count": 9,
+      "line_sha256": [
+        "e61645b87c8be685a5b0c53d79a078987a23d648b6f7ee60f0744df2b8baef64",
+        "c63831cd1ed08d1a11a7228d8db23a0f264fc6f01e64d23d42e3781758a30299",
+        "7e17c0c1e4693707e8052715e67fcd3f5c74b16ae07bc30867c86c0d9416f9ae",
+        "92260ee66603c874ce4132688896db259de28645d87b25c74c54ace55bf914d8",
+        "cffa7d3fae3dc2c63f23fdaf289c2805d9ddee355cdfac534b4b1eb2dacca737",
+        "344ce744cce326333dd850291bf82d7b260978273197eb66c7ac85f8910e054f",
+        "b304d4e8939cf96543bb5ee9612eeb1edfecbbebb5a5b4b2b3859b8c8ba0a3b2",
+        "0ccd06b4400fdf138192d75d0d50fbc20cda4677c24fdaa8eace8643543ab73a",
+        "a236cd537891da3b1dd7db1e6dc05f0340fa2cafcb55794eb8b9ebab4524b0a7"
+      ]
+    },
+    "WORKLOG.jsonl": {
+      "line_count": 5,
+      "line_sha256": [
+        "d43c99bcc06fb21db6bf4ac23fa2071d1cece39cf34647199f5aec9bba392186",
+        "b5021205359cb2929d0ed3730f7302958c6f29d11053099b16e4a65cdca2493f",
+        "1c6f88306d5b021873f46911c65ecc35ae0aaa2161fca92279c2a39207500a93",
+        "6ebb41f701a8be4b90db8a2a8cc027a7f343f7bb9ee48250a54935204533812d",
+        "dabb01b5088e647a75a885b7dd5dee474c974885da319c9b4da9ab0ae22a3983"
+      ]
+    }
+  },
+  "checkpoint_id": "CP-0003",
+  "core_files": [
+    {
+      "path": "PROJECT.json",
+      "sha256": "dc867da234edd986f524d0ece3ca16b770184a5d234142dd61b1b8b8d4b6113b"
+    },
+    {
+      "path": "CHECKPOINT.md",
+      "sha256": "6d487edcf37171830bef12a4c0bebae22b4c3a1c2daed2e39f970a9eadc790be"
+    },
+    {
+      "path": "CONTEXT_PROTOCOL.md",
+      "sha256": "59c5cbb70016421bc77e41aef298dc22f11165691b048fd636bd9fbc1fe07e3f"
+    },
+    {
+      "path": "SOURCE_INDEX.json",
+      "sha256": "df19efc763d9e3db5647d88a0c923274cee31e7692c97f158fb54dff0cd3614a"
+    },
+    {
+      "path": "scripts/context_guard.py",
+      "sha256": "8b12cc2ab68c4b0880aa6f0b3848f06445ef786beec6646c62b43b436eee8030"
+    }
+  ],
+  "schema_version": "1.0"
+}

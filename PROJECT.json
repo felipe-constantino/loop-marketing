@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "project_id": "loop-marketing-v2",
+  "created_at": "2026-07-17",
+  "checkpoint_id": "CP-0003",
+  "status": "context_ready_pending_user_authorization",
+  "objective": "Evoluir o Loop Marketing para uma nova versao executavel, testavel, segura e auditavel, preservando integralmente a biblioteca tatica canonica.",
+  "source": {
+    "repo": "/Users/enorm/Documents/Claude/loop-marketing",
+    "branch_at_baseline": "main",
+    "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "clean_at_baseline": true,
+    "file_count_at_baseline": 117,
+    "canonical_prompt_count": 100,
+    "baseline_library_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "baseline_library_hash_algorithm": "sha256 of sorted relative_path + NUL + sha256(file) records joined by newline"
+  },
+  "control_workspace": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+  "constraints": [
+    "Preservar os 100 prompts canonicos; nao excluir nem sobrescrever silenciosamente nenhum deles.",
+    "Nao iniciar a implementacao da nova versao antes de nova confirmacao explicita do usuario.",
+    "Manter fatos, hipoteses, decisoes e acoes como categorias distintas.",
+    "Manter leitura externa como padrao e exigir autorizacao para mutacoes fora do repositorio.",
+    "Nao armazenar credenciais, tokens ou PII nos artefatos de controle.",
+    "Usar o agente principal como arquiteto e integrador; subagentes recebem escopo e arquivos nao sobrepostos.",
+    "Atualizar o checkpoint e o snapshot de fontes apos cada unidade material de trabalho.",
+    "Nao depender do historico da conversa para retomar o projeto."
+  ],
+  "execution_model": {
+    "lead": "root",
+    "max_parallel_subagents": 3,
+    "subagent_rule": "Delegar somente tarefas independentes, com contrato, entradas, saidas, arquivos sob responsabilidade e criterio de aceite explicitos.",
+    "integration_rule": "Somente o agente principal altera o checkpoint canonico, integra entregas e declara um gate concluido.",
+    "waves": [
+      "Arquitetura e especificacao canonica",
+      "Catalogo da biblioteca, schemas e plano de avaliacoes",
+      "Estado, migracao e orquestrador",
+      "Seguranca, testes ponta a ponta e red team",
+      "Release candidate, compatibilidade e documentacao essencial"
+    ]
+  },
+  "phases": [
+    {"id": "P0", "name": "Continuidade de contexto", "status": "completed"},
+    {
+      "id": "P1",
+      "name": "Auditoria e baseline",
+      "status": "pending",
+      "mode": "read_only",
+      "deliverables": [
+        "artifacts/P1/audit.json",
+        "artifacts/P1/architecture-map.md",
+        "artifacts/P1/risk-register.json"
+      ],
+      "exit_criteria": [
+        "Todos os 117 arquivos do baseline foram classificados por funcao.",
+        "Contradicoes, duplicidades, riscos de seguranca e drift de versao foram registrados com evidencia de arquivo e linha.",
+        "Os 100 prompts canonicos permanecem com o hash agregado ancorado.",
+        "Nenhum arquivo do repositorio-fonte foi alterado durante P1.",
+        "O agente principal revisou e integrou os artefatos de auditoria."
+      ]
+    },
+    {"id": "P2", "name": "Especificacao canonica", "status": "pending"},
+    {"id": "P3", "name": "Preservacao e catalogacao da biblioteca", "status": "pending"},
+    {"id": "P4", "name": "Contratos, estado e migracao", "status": "pending"},
+    {"id": "P5", "name": "Orquestrador e adaptadores", "status": "pending"},
+    {"id": "P6", "name": "Seguranca e autorizacao", "status": "pending"},
+    {"id": "P7", "name": "Avaliacoes, observabilidade e red team", "status": "pending"},
+    {"id": "P8", "name": "Empacotamento e release", "status": "pending"}
+  ],
+  "acceptance_criteria": [
+    "Os 100 prompts originais permanecem presentes, identificaveis e rastreaveis.",
+    "Um agente novo consegue retomar o projeto lendo apenas o protocolo, o projeto, o checkpoint e os logs indicados.",
+    "Nenhuma transicao de experimento e aceita sem evidencia valida.",
+    "Nenhum output factual e aceito sem fonte ou marcacao explicita de hipotese.",
+    "Nenhuma invasao de escopo e aceita pelo validador.",
+    "Projetos antigos podem ser migrados sem perda de historico.",
+    "Acoes externas de escrita exigem autorizacao explicita.",
+    "A suite de regressao, seguranca e cadeia passa integralmente."
+  ]
+}
