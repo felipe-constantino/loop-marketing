@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0007",
-  "status": "p2_specification_in_progress",
+  "checkpoint_id": "CP-0008",
+  "status": "p3_catalog_in_progress",
   "authorization": {
     "implementation_start_received": true,
     "received_at": "2026-07-17",
@@ -73,7 +73,7 @@
     {
       "id": "P2",
       "name": "Especificacao canonica",
-      "status": "in_progress",
+      "status": "completed",
       "deliverables": [
         "artifacts/P2/canonical-spec.md",
         "artifacts/P2/role-matrix.json",
@@ -88,7 +88,24 @@
         "Todos os artefatos passam validacao cruzada e nenhuma alteracao foi feita nos 100 prompts canonicos."
       ]
     },
-    {"id": "P3", "name": "Preservacao e catalogacao da biblioteca", "status": "pending"},
+    {
+      "id": "P3",
+      "name": "Preservacao e catalogacao da biblioteca",
+      "status": "in_progress",
+      "deliverables": [
+        "artifacts/P3/catalog-schema.json",
+        "artifacts/P3/tactic-catalog.json",
+        "artifacts/P3/relationship-map.json",
+        "artifacts/P3/preservation-report.json"
+      ],
+      "exit_criteria": [
+        "O catalogo contem exatamente uma entrada para cada um dos 100 prompts canonicos e reproduz paths, hashes e distribuicao por pilar do baseline.",
+        "Cada tatica possui ID estavel, funcao, necessidades, inputs, output, maturidade minima justificada, pre-requisitos e contraindicacoes suficientes para o roteador.",
+        "Dependencias, complementaridades, sobreposicoes, aliases e colisoes vivem em metadados externos e nunca removem ou fundem um prompt.",
+        "Qualidade editorial, traducao e proveniencia sao flags auditaveis; nenhuma heuristica e apresentada como erro comprovado.",
+        "Schemas e validadores rejeitam catalogo incompleto, referencia inexistente, relacao invalida ou drift da biblioteca, mantendo a fonte inalterada."
+      ]
+    },
     {"id": "P4", "name": "Contratos, estado e migracao", "status": "pending"},
     {"id": "P5", "name": "Orquestrador e adaptadores", "status": "pending"},
     {"id": "P6", "name": "Seguranca e autorizacao", "status": "pending"},

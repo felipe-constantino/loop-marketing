@@ -1,10 +1,10 @@
-# Checkpoint CP-0007
+# Checkpoint CP-0008
 
 Atualizado em: 2026-07-17
 
 ## Objetivo
 
-Executar P2 como especificação canônica da v2, usando o baseline auditado e sem alterar ainda a skill nem a biblioteca tática.
+Executar P3 como catalogação não destrutiva dos 100 prompts, usando a especificação P2 e sem alterar ainda a skill ou a biblioteca canônica.
 
 ## Estado atual
 
@@ -14,7 +14,7 @@ Executar P2 como especificação canônica da v2, usando o baseline auditado e s
 - Worktree no baseline: limpo
 - Biblioteca canônica: 100 prompts
 - Autorização do usuário: recebida em 2026-07-17 (`pode iniciar`)
-- Implementação v2: P1 concluída; P2 iniciada em modo de especificação
+- Implementação v2: P1 e P2 concluídas; P3 iniciada em modo de catálogo sidecar
 - Validação determinística: aprovada, sem erros
 - Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
 - Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
@@ -27,7 +27,11 @@ Executar P2 como especificação canônica da v2, usando o baseline auditado e s
 - Achados P1: 34 achados brutos consolidados em 19 riscos priorizados
 - Critérios de saída P1: 5/5 comprovados por validação determinística
 - Fonte após P1: limpa e no commit de baseline
-- Gate atual: `G3 — concluir e validar a especificação canônica P2`
+- P2: quatro artefatos oficiais + manifesto de integração concluídos
+- P2: dois gates independentes aprovaram; último gate com zero achados bloqueantes e não bloqueantes
+- Contrato P2: cinco papéis, um owner por decisão, 22 campos de handoff e 30 códigos de rejeição
+- Compatibilidade P2: comandos curtos canônicos, aliases v1.x e estado único em `.loop-marketing/`
+- Gate atual: `G4 — concluir e validar o catálogo canônico P3`
 
 ## Decisões vigentes
 
@@ -39,6 +43,8 @@ Executar P2 como especificação canônica da v2, usando o baseline auditado e s
 - P1 permaneceu read-only e foi concluída antes de abrir a especificação da v2.
 - Fixar contratos e fronteiras canônicas antes de implementar runtime, estado ou segurança.
 - Tratar aliases e metadados como camadas sobre a biblioteca; não fundir ou remover prompts canônicos.
+- Usar zero táticas quando não houver match seguro; uma por padrão e no máximo duas por `route_node_id`.
+- Tratar maturidade ausente como `unknown`, nunca como `nascente` por fallback.
 
 ## Artefatos de continuidade
 
@@ -69,11 +75,28 @@ P1 foi concluída em modo read-only. Os 117 arquivos estão classificados; os ac
 - Definir aliases e migração compatível para o produto anterior.
 - Não implementar sobre uma decisão ambígua e não alterar os 100 prompts durante a especificação.
 
+## Resultado de P2
+
+- `artifacts/P2/canonical-spec.md`: definição, camadas, invariantes e fluxo canônicos.
+- `artifacts/P2/role-matrix.json`: owners, fronteiras, escalonamentos e handoff único.
+- `artifacts/P2/routing-contract.json`: roteamento, maturidade, táticas, thresholds, estados e rejeições.
+- `artifacts/P2/compatibility-policy.md`: comandos, aliases, namespace, migração e rollback.
+- `artifacts/P2/integration-manifest.json`: hashes dos artefatos, workstreams e scripts.
+- `artifacts/P2/workstreams/final-cross-audit.json` e `final-gate.json`: gates independentes aprovados.
+
+## Contrato de P3
+
+- Criar uma entrada sidecar para cada prompt, sem editar o arquivo canônico.
+- Fixar IDs, tags funcionais, inputs, outputs, maturidade, pré-requisitos e contraindicações.
+- Modelar dependência, complemento, sobreposição, alias e colisão como relações auditáveis.
+- Registrar risco editorial/tradução como flag de revisão, não como prova automática de erro.
+- Provar 100/100 paths e hashes antes de fechar a fase.
+
 ## Próxima ação única
 
-Produzir, integrar e validar os quatro entregáveis canônicos de P2.
+Definir o schema P3, revisar os quatro pilares em arquivos não sobrepostos e integrar o catálogo 100/100.
 
-## Proibido durante P2
+## Proibido durante P3
 
 - Alterar arquivos em `/Users/enorm/Documents/Claude/loop-marketing`.
 - Reescrever, remover ou reduzir a biblioteca tática.

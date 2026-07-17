@@ -1,7 +1,7 @@
 {
   "append_only_logs": {
     "DECISIONS.jsonl": {
-      "line_count": 13,
+      "line_count": 16,
       "line_sha256": [
         "e61645b87c8be685a5b0c53d79a078987a23d648b6f7ee60f0744df2b8baef64",
         "c63831cd1ed08d1a11a7228d8db23a0f264fc6f01e64d23d42e3781758a30299",
@@ -15,11 +15,14 @@
         "81f7f39cd9e39fe98ccd4ef03d0bf03ea68f00a04841c5d13555629e0cc43690",
         "1068c3585721cb925690c05bebc58bcf5ae9106df397330470899c0205b7970d",
         "d4d9b6be5c57dccb2c3b6ad6a28a50abf421d7515a8c06ab29e4cdadc1f75bd3",
-        "05f3e173d783226b051b467434e2feddde2087b1bca1dbca44a86b2c75c3f10f"
+        "05f3e173d783226b051b467434e2feddde2087b1bca1dbca44a86b2c75c3f10f",
+        "562c9f4af6fe3b07cb4d5b6a655ca98c4b96797ebc2054657e4fa064f073647b",
+        "c04c5d9dfb25e7dfa1f3728d82f6193adf17e07378d08bca742ecb1dac751b1b",
+        "46cea78f6238edba08150fc5a3582e087670bf5293e6d5800fd4294ee150303f"
       ]
     },
     "WORKLOG.jsonl": {
-      "line_count": 13,
+      "line_count": 17,
       "line_sha256": [
         "d43c99bcc06fb21db6bf4ac23fa2071d1cece39cf34647199f5aec9bba392186",
         "b5021205359cb2929d0ed3730f7302958c6f29d11053099b16e4a65cdca2493f",
@@ -33,19 +36,23 @@
         "e93e39fcf9e9655d956858d76c23f0a290cd387bd0a4ccdea486cce6c9b74edb",
         "e58bbf5aed7e43a17761237f44c7897721c4c1809271437b2cbf299ca977fe72",
         "65a2f514b722892aea6f8520c5653a6967389fd9ad72740e21d2dcfa5d310651",
-        "d80d764361dd68cb3177ae9758b8a40ae8e16c759044b757ebd5a718a43eba46"
+        "d80d764361dd68cb3177ae9758b8a40ae8e16c759044b757ebd5a718a43eba46",
+        "0cfad97e39ecce3176996c36406271d4944e9cd6e6e6c6ca8afc69f64d0bb9a8",
+        "1f104f6ad2e641c1ba3765603f1a69e129e293ce3868fb5ec6156fc43776daed",
+        "4943c4c70c85caa328270777f0ca0ee651aeb1da1909923d4473c136f8a39b3b",
+        "2aab7a24860e8cbccd98c1ca66579b5d95238c8364be2c5af6d21807cba7894d"
       ]
     }
   },
-  "checkpoint_id": "CP-0007",
+  "checkpoint_id": "CP-0008",
   "core_files": [
     {
       "path": "PROJECT.json",
-      "sha256": "66981f3495551323e66317bd361c052a714528f86d072d4ec48a3c13537f5212"
+      "sha256": "8cb8b7b00e2084a3466a43fc0682b346d8977626f0efda5ea1d22228b485994e"
     },
     {
       "path": "CHECKPOINT.md",
-      "sha256": "89eeb967a780987db35da799353189141875f110d4b54361ad1fa5e8abdd5c4d"
+      "sha256": "59746f6eee98dda6be96e4d0d30de7cefa183df1522b59772d64e10c59077a6e"
     },
     {
       "path": "CONTEXT_PROTOCOL.md",

@@ -1,0 +1,508 @@
+{
+  "schema_version": "1.0",
+  "audit_id": "P2-FINAL-CROSS-AUDIT",
+  "phase": "P2",
+  "status": "completed",
+  "audited_at": "2026-07-17T19:16:55-03:00",
+  "audit_mode": "independent_cold_read_only_bounded_retest",
+  "verdict": "PASS",
+  "verdict_basis": "Os tres bloqueadores e os dois drifts do parecer interino foram corrigidos nos artefatos oficiais e cobertos pelo validador atual. Os cinco criterios de saida P2 passam, o manifesto ancora a versao auditada, os 100 hashes foram reproduzidos diretamente no repositorio-fonte e a fonte permanece limpa no commit de baseline.",
+  "blocking_findings": [],
+  "nonblocking_findings": [],
+  "audit_scope": {
+    "read_only_source_repo": "/Users/enorm/Documents/Claude/loop-marketing",
+    "control_workspace": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+    "official_artifacts": [
+      "artifacts/P2/canonical-spec.md",
+      "artifacts/P2/role-matrix.json",
+      "artifacts/P2/routing-contract.json",
+      "artifacts/P2/compatibility-policy.md"
+    ],
+    "freshness_anchor": "artifacts/P2/integration-manifest.json",
+    "validator": "scripts/p2_validate.py",
+    "authorized_write": "artifacts/P2/workstreams/final-cross-audit.json",
+    "prompt_review_method": "hash_replay_only"
+  },
+  "prior_finding_retest": [
+    {
+      "prior_id": "P2-XA-B001",
+      "topic": "missing maturity data",
+      "result": "resolved",
+      "blocking": false,
+      "evidence": [
+        {
+          "path": "artifacts/P2/canonical-spec.md",
+          "line_start": 142,
+          "line_end": 144,
+          "observation": "unknown is canonical and missing required dimensions cannot be coerced to nascente"
+        },
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/canonical_enums/maturity/4",
+          "observed": "unknown"
+        },
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/decision_rules/maturity_gating/decision_table/3/classification",
+          "observed": "unknown"
+        },
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/decision_rules/maturity_gating/decision_table/4/when",
+          "observed": "all required_classification_dimensions are evidenced and none of rows 1 through 3 match"
+        }
+      ]
+    },
+    {
+      "prior_id": "P2-XA-B002",
+      "topic": "tactic cardinality unit",
+      "result": "resolved",
+      "blocking": false,
+      "evidence": [
+        {
+          "path": "artifacts/P2/canonical-spec.md",
+          "line_start": 118,
+          "line_end": 120,
+          "observation": "one primary tactic and a hard maximum of two are defined per route_node_id"
+        },
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/decision_rules/tactic_selection/selection_unit",
+          "observed": "One specialist route node identified by route_node_id. A repeated specialist in the same loop cycle is a new node with its own declared objective and dependencies."
+        },
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/decision_rules/tactic_selection/cardinality_rules/3/when",
+          "observed": "more than two tactics are requested for one specialist route_node"
+        }
+      ]
+    },
+    {
+      "prior_id": "P2-XA-B003",
+      "topic": "negative or unsupported benchmark domain",
+      "result": "resolved",
+      "blocking": false,
+      "evidence": [
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/decision_rules/refinar_benchmark_intervals/normalization/requirements/4",
+          "observed": "the ratio classifier accepts only a non-negative metric domain"
+        },
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/decision_rules/refinar_benchmark_intervals/normalization/requirements/7",
+          "observed": "a negative value or an unsupported zero denominator requires a predeclared metric-specific transformation or direct threshold; without it classify TESTAR and do not calculate performance_index"
+        },
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/decision_rules/refinar_benchmark_intervals/classification_precedence/0/when_any/5",
+          "observed": "unsupported ratio-domain inputs deterministically classify TESTAR"
+        }
+      ]
+    },
+    {
+      "prior_id": "P2-XA-N001",
+      "topic": "UQ-002 remained unresolved after lead resolution",
+      "result": "resolved",
+      "blocking": false,
+      "evidence": [
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/resolved_questions/0/id",
+          "observed": "UQ-002"
+        },
+        {
+          "path": "artifacts/P2/routing-contract.json",
+          "json_pointer": "/unresolved_questions",
+          "observed_ids": [
+            "UQ-001",
+            "UQ-003",
+            "UQ-004",
+            "UQ-005"
+          ]
+        }
+      ]
+    },
+    {
+      "prior_id": "P2-XA-N002",
+      "topic": "Ampliar channel classification versus Refinar performance classification",
+      "result": "resolved",
+      "blocking": false,
+      "evidence": [
+        {
+          "path": "artifacts/P2/canonical-spec.md",
+          "line_start": 109,
+          "line_end": 110,
+          "observation": "Ampliar owns operational channel role and fit; Refinar owns performance action classification"
+        },
+        {
+          "path": "artifacts/P2/role-matrix.json",
+          "json_pointer": "/roles/3/outputs/1",
+          "observed": "channel_role_and_feasibility_classification_with_evidence"
+        },
+        {
+          "path": "artifacts/P2/role-matrix.json",
+          "json_pointer": "/roles/3/semantic_boundaries/performance_action_classification",
+          "observed": "Pertence exclusivamente a Refinar."
+        }
+      ]
+    }
+  ],
+  "exit_criteria_assessment": [
+    {
+      "criterion": "Existe uma terminologia e uma versao canonica unicas, independentes do host.",
+      "result": "pass",
+      "basis": [
+        "Produto e contratos usam 2.0.0.",
+        "Os papeis canonicos sao loop_planning, verbalizar, orientar, ampliar e refinar em role-matrix e routing-contract.",
+        "O unico namespace mutavel e host-neutral e .loop-marketing/."
+      ]
+    },
+    {
+      "criterion": "Planner e quatro pilares possuem owner, entradas, saidas, nao-objetivos e fronteiras sem sobreposicao decisoria.",
+      "result": "pass",
+      "basis": [
+        "A matriz possui cinco papeis com purpose, owns, required_inputs, outputs, does_not_own, escalacoes e handoff.",
+        "Os seis dominios de decision_ownership possuem exatamente um owner valido.",
+        "Nao ha item de owns exatamente duplicado entre papeis.",
+        "Timing de elegibilidade pertence a Orientar; timing operacional, frequencia e cadencia pertencem a Ampliar.",
+        "Classificacao operacional de canal de Ampliar esta separada da classificacao de performance de Refinar."
+      ]
+    },
+    {
+      "criterion": "Roteamento, ordem, paralelismo, handoff, thresholds e conflitos possuem regras completas e deterministicas.",
+      "result": "pass",
+      "basis": [
+        "Bottleneck selection possui precedencia total e somente loop_planning pode aceitar ou substituir o gargalo.",
+        "Sequencia e paralelismo exigem snapshot imutavel, write sets nao sobrepostos e integracao serial por loop_planning.",
+        "O handoff possui 22 campos unicos e obrigatorios; o mesmo conjunto aparece nos cinco papeis e no routing-contract.",
+        "Selecao tatica cobre 0, 1, 2 e reject por route_node_id.",
+        "O dominio de performance aceito e nao negativo: 0.00-0.50, 0.50-0.60, 0.60-1.00 e acima de 1.00 estao cobertos; inputs invalidos ou negativos vao para TESTAR.",
+        "A maturidade diferencia unknown de nascente e bloqueia tatica quando o agregado e unknown.",
+        "O enum de experimento e proposed, approved, instrumented, running, completed, cancelled e invalidated; todas as transicoes possuem evidencia obrigatoria."
+      ]
+    },
+    {
+      "criterion": "Compatibilidade com projetos e comandos anteriores possui politica explicita de aliases e migracao.",
+      "result": "pass",
+      "basis": [
+        "Seis command_id possuem invocacao canonica e alias legado exato.",
+        "Os cinco contratos de comando dos papeis coincidem com o manifesto de compatibilidade.",
+        "Discovery legado e read-only, migracao e copy-and-verify, conflitos bloqueiam, rollback preserva a origem e aliases usam o mesmo estado canonico."
+      ]
+    },
+    {
+      "criterion": "Todos os artefatos passam validacao cruzada e nenhuma alteracao foi feita nos 100 prompts canonicos.",
+      "result": "pass",
+      "basis": [
+        "p2_validate workstreams e final retornaram valid sem erros.",
+        "integration-manifest ancora os quatro oficiais, tres workstreams e dois scripts por hash atual.",
+        "Reproducao direta no repositorio-fonte encontrou 100 paths unicos, zero divergencias individuais e o agregado esperado.",
+        "A fonte permanece limpa no commit e branch de baseline com 117 arquivos rastreados."
+      ]
+    }
+  ],
+  "contract_checks": {
+    "decision_ownership": {
+      "result": "pass",
+      "owner_domain_count": 6,
+      "all_owners_are_canonical_roles": true,
+      "duplicate_exact_owns": []
+    },
+    "role_and_routing_vocabulary": {
+      "result": "pass",
+      "role_matrix": [
+        "loop_planning",
+        "verbalizar",
+        "orientar",
+        "ampliar",
+        "refinar"
+      ],
+      "routing_contract": [
+        "loop_planning",
+        "verbalizar",
+        "orientar",
+        "ampliar",
+        "refinar"
+      ]
+    },
+    "timing_boundary": {
+      "result": "pass",
+      "orientar": "lifecycle entry/exit events, semantic eligibility windows, inclusion, exclusion and suppression",
+      "ampliar": "operational send timing, wait/retry/fallback, frequency, global contact pressure and cross-channel cadence"
+    },
+    "handoff": {
+      "result": "pass",
+      "canonical_field_count": 22,
+      "unique_field_count": 22,
+      "all_required": true,
+      "all_five_roles_exact_match": true,
+      "routing_exact_match": true,
+      "includes": [
+        "contract_version",
+        "input_refs",
+        "tactic_refs",
+        "scope_boundary_next_does_not_decide",
+        "cross_validation_required"
+      ]
+    },
+    "tactic_cardinality": {
+      "result": "pass",
+      "selection_unit": "route_node_id",
+      "outcomes": [
+        "0",
+        "1",
+        "2",
+        "reject"
+      ]
+    },
+    "threshold_coverage": {
+      "result": "pass",
+      "invalid_or_unsupported_domain": "TESTAR",
+      "intervals": [
+        "0.00 <= performance_index < 0.50: PARAR when all stop conditions hold, otherwise OTIMIZAR",
+        "0.50 <= performance_index < 0.60: OTIMIZAR",
+        "0.60 <= performance_index <= 1.00: OTIMIZAR",
+        "performance_index > 1.00: ESCALAR when trend and cost conditions hold, otherwise OTIMIZAR"
+      ],
+      "gap_count": 0
+    },
+    "experiment_state_machine": {
+      "result": "pass",
+      "states": [
+        "proposed",
+        "approved",
+        "instrumented",
+        "running",
+        "completed",
+        "cancelled",
+        "invalidated"
+      ],
+      "normal_path": "proposed -> approved -> instrumented -> running -> completed",
+      "cancelled_from": [
+        "proposed",
+        "approved",
+        "instrumented",
+        "running"
+      ],
+      "invalidated_from": [
+        "instrumented",
+        "running",
+        "completed"
+      ],
+      "all_transitions_have_required_evidence": true
+    },
+    "commands_and_aliases": {
+      "result": "pass",
+      "commands": [
+        {
+          "command_id": "loop.planning",
+          "canonical": "/loop-planning",
+          "legacy_alias": "/loop-planning-agent"
+        },
+        {
+          "command_id": "loop.verbalizar",
+          "canonical": "/verbalizar",
+          "legacy_alias": "/verbalizar-agent"
+        },
+        {
+          "command_id": "loop.orientar",
+          "canonical": "/orientar",
+          "legacy_alias": "/orientar-agent"
+        },
+        {
+          "command_id": "loop.ampliar",
+          "canonical": "/ampliar",
+          "legacy_alias": "/ampliar-agent"
+        },
+        {
+          "command_id": "loop.refinar",
+          "canonical": "/refinar",
+          "legacy_alias": "/refinar-agent"
+        },
+        {
+          "command_id": "loop.projeto",
+          "canonical": "/projeto",
+          "legacy_alias": "/projeto-template"
+        }
+      ]
+    },
+    "state_namespace_and_layout": {
+      "result": "pass",
+      "canonical_root": ".loop-marketing/",
+      "state_root": ".loop-marketing/state/",
+      "projects_root": ".loop-marketing/state/projects/<project_id>/",
+      "active_project_pointer": ".loop-marketing/state/active-project.json",
+      "legacy_namespaces_are_read_only_import_sources": true
+    }
+  },
+  "unresolved_items_assessment": [
+    {
+      "id": "UQ-001",
+      "owner_phase": "P3",
+      "result": "nonblocking",
+      "safe_default": "select no tactic with incomplete metadata and run the pillar base method"
+    },
+    {
+      "id": "UQ-003",
+      "owner_phase": "P7",
+      "result": "nonblocking",
+      "safe_default": "require a predeclared method and classify TESTAR when sufficiency cannot be proven"
+    },
+    {
+      "id": "UQ-004",
+      "owner_phase": "P7",
+      "result": "nonblocking",
+      "safe_default": "apply conservative gates and record every maturity block for evaluation"
+    },
+    {
+      "id": "UQ-005",
+      "owner_phase": "P4",
+      "result": "nonblocking",
+      "safe_default": "stage parallel outputs and permit one loop_planning compare-and-swap integration against an unchanged revision"
+    },
+    {
+      "id": "COMP-UQ001",
+      "owner_phase": "P4",
+      "result": "nonblocking",
+      "safe_constraint": "exact schema fields remain deferred while namespace, provenance, transaction, security, status and rollback are fixed"
+    },
+    {
+      "id": "COMP-UQ002",
+      "owner_phase": "P8",
+      "result": "nonblocking",
+      "safe_constraint": "host packaging remains deferred while command_id, canonical invocation, aliases and behavioral equivalence are fixed"
+    }
+  ],
+  "official_hashes": {
+    "artifacts/P2/canonical-spec.md": "d78ff1ce52fdfa882dae52058e1d894f93d63e18ccc747f0afcd8388b7b08371",
+    "artifacts/P2/role-matrix.json": "ea027c0e09196c61df645fed41b9268deece6059d646601efb1be3785ced17fd",
+    "artifacts/P2/routing-contract.json": "cbc3de9af7e526e32ec172dbf2a8f7c016e484c20e8d3a443c7128121e794bf8",
+    "artifacts/P2/compatibility-policy.md": "7b09538ef50328179328575f3c0b1c94f1e7dea4ce2e0b7123146d040f2820c0",
+    "scripts/p2_validate.py": "573f32bbb55680911b7fa39c881cf87d1ac08b0be1eaaec363201402f7816aad",
+    "artifacts/P2/integration-manifest.json": "0788fde4452ef1f19bf0653466b8a05c2ad9c50d77a6c39470f329bfe78841d7"
+  },
+  "official_vs_workstream_hashes": [
+    {
+      "official": "artifacts/P2/role-matrix.json",
+      "workstream": "artifacts/P2/workstreams/role-authority.json",
+      "declared": "90e4e2e5de71569e59714e2eeeaf0cde04603d1f916e2dddcdfe1486b9cd0788",
+      "observed": "90e4e2e5de71569e59714e2eeeaf0cde04603d1f916e2dddcdfe1486b9cd0788",
+      "match": true
+    },
+    {
+      "official": "artifacts/P2/routing-contract.json",
+      "workstream": "artifacts/P2/workstreams/routing-rules.json",
+      "declared": "b0381ef0d1522cf9780fab4a538e8385e3a8acb21dc276e4c505e1e95ec14168",
+      "observed": "b0381ef0d1522cf9780fab4a538e8385e3a8acb21dc276e4c505e1e95ec14168",
+      "match": true
+    },
+    {
+      "official": "artifacts/P2/role-matrix.json",
+      "workstream": "artifacts/P2/workstreams/compatibility.json",
+      "declared": "f82b1d8bb08f9ec8f1104b4b0466becd3dc7777a5eab98777b8e05efe3bfb360",
+      "observed": "f82b1d8bb08f9ec8f1104b4b0466becd3dc7777a5eab98777b8e05efe3bfb360",
+      "match": true
+    }
+  ],
+  "prompt_hash_replay": {
+    "source_index_count": 100,
+    "unique_path_count": 100,
+    "individual_hash_mismatch_count": 0,
+    "observed_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "expected_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "aggregate_match": true,
+    "compatibility_manifest_entry_count": 100,
+    "compatibility_manifest_matches_source_index": true
+  },
+  "validator_blind_spots": [
+    {
+      "id": "P2-XA-V001",
+      "severity": "nonblocking_for_current_snapshot",
+      "evidence": "scripts/p2_validate.py:94-95 and 127-128 prefer a same-path control-workspace file over the configured source repo.",
+      "compensating_check": "The audit replayed every prompt hash directly under /Users/enorm/Documents/Claude/loop-marketing and found zero mismatches."
+    },
+    {
+      "id": "P2-XA-V002",
+      "severity": "nonblocking_for_current_snapshot",
+      "evidence": "scripts/p2_validate.py:265-270 validates Markdown headings, while later checks use selected token presence rather than a complete Markdown semantic model.",
+      "compensating_check": "The bounded independent checklist compared the five prior semantic findings and all five exit criteria directly against the current official text and JSON contracts."
+    },
+    {
+      "id": "P2-XA-V003",
+      "severity": "nonblocking_for_current_snapshot",
+      "evidence": "scripts/p2_validate.py:319-330 checks role command IDs and canonical invocations but not exact alias-list equality.",
+      "compensating_check": "The audit compared every role command contract to compatibility command_id, canonical_invocation and backward_compatible_aliases; no differences were found."
+    }
+  ],
+  "validation_commands": [
+    {
+      "command": "python3 scripts/p2_validate.py workstreams",
+      "exit_code": 0,
+      "result": {
+        "status": "valid",
+        "stage": "workstreams",
+        "errors": []
+      }
+    },
+    {
+      "command": "python3 scripts/p2_validate.py final",
+      "exit_code": 0,
+      "result": {
+        "status": "valid",
+        "stage": "final",
+        "errors": []
+      }
+    },
+    {
+      "command": "python3 scripts/context_guard.py validate",
+      "exit_code": 0,
+      "result": {
+        "status": "valid",
+        "checkpoint_id": "CP-0007",
+        "canonical_prompt_count": 100,
+        "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "source_worktree_clean": true,
+        "errors": []
+      }
+    },
+    {
+      "command": "independent direct SOURCE_INDEX replay against project.source.repo",
+      "exit_code": 0,
+      "result": {
+        "prompt_count": 100,
+        "individual_mismatches": 0,
+        "aggregate_match": true
+      }
+    },
+    {
+      "command": "shasum -a 256 official artifacts, validator and integration manifest",
+      "exit_code": 0,
+      "result": "all observed hashes match integration-manifest.json and the official_hashes section of this audit"
+    },
+    {
+      "command": "python3 -m json.tool artifacts/P2/workstreams/final-cross-audit.json",
+      "expected_exit_code": 0,
+      "result": "valid JSON"
+    }
+  ],
+  "source_cleanliness": {
+    "repo": "/Users/enorm/Documents/Claude/loop-marketing",
+    "branch": "main",
+    "head": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "expected_head": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "head_matches_baseline": true,
+    "git_status_porcelain": "",
+    "clean": true,
+    "tracked_file_count": 117,
+    "expected_tracked_file_count": 117,
+    "source_files_written_by_this_audit": []
+  },
+  "write_scope": {
+    "files_written": [
+      "artifacts/P2/workstreams/final-cross-audit.json"
+    ],
+    "official_artifacts_modified": [],
+    "source_repo_modified": false
+  }
+}
