@@ -2,8 +2,13 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0005",
-  "status": "context_ready_pending_user_authorization",
+  "checkpoint_id": "CP-0006",
+  "status": "p1_audit_in_progress",
+  "authorization": {
+    "implementation_start_received": true,
+    "received_at": "2026-07-17",
+    "user_phrase": "pode iniciar"
+  },
   "objective": "Evoluir o Loop Marketing para uma nova versao executavel, testavel, segura e auditavel, preservando integralmente a biblioteca tatica canonica.",
   "source": {
     "repo": "/Users/enorm/Documents/Claude/loop-marketing",
@@ -50,7 +55,7 @@
     {
       "id": "P1",
       "name": "Auditoria e baseline",
-      "status": "pending",
+      "status": "in_progress",
       "mode": "read_only",
       "deliverables": [
         "artifacts/P1/audit.json",

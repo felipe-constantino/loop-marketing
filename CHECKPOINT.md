@@ -1,10 +1,10 @@
-# Checkpoint CP-0005
+# Checkpoint CP-0006
 
 Atualizado em: 2026-07-17
 
 ## Objetivo
 
-Preservar continuidade durável enquanto a implementação da nova versão do Loop Marketing aguarda autorização.
+Executar P1 como auditoria read-only completa do baseline antes de qualquer alteração na skill.
 
 ## Estado atual
 
@@ -13,7 +13,8 @@ Preservar continuidade durável enquanto a implementação da nova versão do Lo
 - Commit de baseline: `3cbf0cf84a038f2cd570883b70988889f037c28e`
 - Worktree no baseline: limpo
 - Biblioteca canônica: 100 prompts
-- Implementação v2: **não iniciada**
+- Autorização do usuário: recebida em 2026-07-17 (`pode iniciar`)
+- Implementação v2: P1 iniciada em modo read-only
 - Validação determinística: aprovada, sem erros
 - Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
 - Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
@@ -22,7 +23,7 @@ Preservar continuidade durável enquanto a implementação da nova versão do Lo
 - Validação dos logs: estrutura, campos, sequência, status, evidência e prefixo append-only
 - Bundle de recuperação: `/Users/enorm/Documents/Claude/loop-marketing-v2-control-backup.bundle`
 - Remoto: não configurado; requer autorização explícita
-- Gate atual: `G1 — aguardar autorização do usuário para iniciar a implementação`
+- Gate atual: `G2 — concluir e integrar a auditoria P1`
 
 ## Decisões vigentes
 
@@ -31,7 +32,7 @@ Preservar continuidade durável enquanto a implementação da nova versão do Lo
 - Usar o agente principal como arquiteto e integrador.
 - Executar subagentes em ondas, com arquivos e contratos não sobrepostos.
 - Controlar fatos, decisões, estado e evidências em artefatos persistentes.
-- Não iniciar mudanças na skill antes da confirmação do usuário.
+- Não alterar a skill durante P1; primeiro concluir o baseline auditável.
 
 ## Artefatos de continuidade
 
@@ -60,11 +61,11 @@ P1 é uma auditoria read-only. Ela termina apenas quando os 117 arquivos do base
 
 ## Próxima ação única
 
-Após autorização explícita do usuário, iniciar P1 — auditoria e baseline — sem alterar a biblioteca canônica.
+Executar as três frentes de auditoria, integrar os entregáveis de P1 e verificar os cinco critérios de saída.
 
-## Proibido até nova autorização
+## Proibido durante P1
 
 - Alterar arquivos em `/Users/enorm/Documents/Claude/loop-marketing`.
 - Reescrever, remover ou reduzir a biblioteca tática.
-- Iniciar agentes de implementação.
+- Permitir que subagentes alterem o repositório-fonte ou o checkpoint canônico.
 - Executar migrações ou integrações externas.
