@@ -1,4 +1,4 @@
-# Checkpoint CP-0003
+# Checkpoint CP-0004
 
 Atualizado em: 2026-07-17
 
@@ -18,6 +18,8 @@ Preservar continuidade durável enquanto a implementação da nova versão do Lo
 - Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
 - Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
 - Histórico dos arquivos de controle: ancorado em Git local, sem reescrita
+- Commit inicial da âncora de controle: `ad3e04c61c89cc08a77089714f96d99fb15bbbfc`
+- Validação dos logs: estrutura, campos, sequência, status, evidência e prefixo append-only
 - Gate atual: `G1 — aguardar autorização do usuário para iniciar a implementação`
 
 ## Decisões vigentes

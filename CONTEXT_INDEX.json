@@ -15,25 +15,27 @@
       ]
     },
     "WORKLOG.jsonl": {
-      "line_count": 5,
+      "line_count": 7,
       "line_sha256": [
         "d43c99bcc06fb21db6bf4ac23fa2071d1cece39cf34647199f5aec9bba392186",
         "b5021205359cb2929d0ed3730f7302958c6f29d11053099b16e4a65cdca2493f",
         "1c6f88306d5b021873f46911c65ecc35ae0aaa2161fca92279c2a39207500a93",
         "6ebb41f701a8be4b90db8a2a8cc027a7f343f7bb9ee48250a54935204533812d",
-        "dabb01b5088e647a75a885b7dd5dee474c974885da319c9b4da9ab0ae22a3983"
+        "dabb01b5088e647a75a885b7dd5dee474c974885da319c9b4da9ab0ae22a3983",
+        "1f4b4ea40cb303927aca41ed9e2e87b6e7b01d27f9487958a0e262f6016b2785",
+        "bfd1fdb0f53c46b0fedb505cee2b2ad9ba66a045066bd34d62bb329a007bc413"
       ]
     }
   },
-  "checkpoint_id": "CP-0003",
+  "checkpoint_id": "CP-0004",
   "core_files": [
     {
       "path": "PROJECT.json",
-      "sha256": "dc867da234edd986f524d0ece3ca16b770184a5d234142dd61b1b8b8d4b6113b"
+      "sha256": "673b9bdd76cad52b9b30a147000b94de0e4da2dd1cf0b73e1731f3311a92d445"
     },
     {
       "path": "CHECKPOINT.md",
-      "sha256": "6d487edcf37171830bef12a4c0bebae22b4c3a1c2daed2e39f970a9eadc790be"
+      "sha256": "62dd6c7f534b1ccd40b890a7deb18b5608d037637111d574299708169e3f66a8"
     },
     {
       "path": "CONTEXT_PROTOCOL.md",
