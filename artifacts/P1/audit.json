@@ -1,0 +1,185 @@
+{
+  "baseline": {
+    "branch": "main",
+    "canonical_library_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "canonical_prompt_count": 100,
+    "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "repo": "/Users/enorm/Documents/Claude/loop-marketing",
+    "source_worktree_clean": true,
+    "tracked_file_count": 117
+  },
+  "exit_criteria_evidence": {
+    "117_files_classified": {
+      "evidence": "artifacts/P1/inventory.json",
+      "status": "proven"
+    },
+    "canonical_hash_preserved": {
+      "evidence": "baseline.canonical_library_aggregate_sha256",
+      "status": "proven"
+    },
+    "lead_integration": {
+      "evidence": [
+        "artifacts/P1/audit.json",
+        "artifacts/P1/architecture-map.md",
+        "artifacts/P1/risk-register.json"
+      ],
+      "status": "proven"
+    },
+    "risks_and_drift_with_evidence": {
+      "evidence": [
+        "artifacts/P1/workstreams/architecture.json",
+        "artifacts/P1/workstreams/library.json",
+        "artifacts/P1/workstreams/security-runtime.json",
+        "artifacts/P1/risk-register.json"
+      ],
+      "status": "proven"
+    },
+    "source_unchanged_during_P1": {
+      "evidence": {
+        "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "worktree_clean": true
+      },
+      "status": "proven"
+    }
+  },
+  "file_classification": {
+    "all_tracked_files_classified": true,
+    "artifact": "artifacts/P1/inventory.json",
+    "canonical_hashes_match": true,
+    "sha256": "e4a98a6aa66825d794dbf62b2f58f82e33124172beb7edfd10808817fc6170d6",
+    "summary": {
+      "by_category": {
+        "agent_command": 5,
+        "canonical_tactical_prompt": 100,
+        "product_documentation": 3,
+        "project_memory_template": 1,
+        "repository_config": 1,
+        "runtime_instruction": 3,
+        "tactical_index": 4
+      },
+      "by_pillar_including_indexes": {
+        "Ampliar": 26,
+        "Orientar": 26,
+        "Refinar": 26,
+        "Verbalizar": 26
+      }
+    }
+  },
+  "findings_summary": {
+    "by_category": {
+      "architectural_strength": 1,
+      "claude-codex-compatibility": 1,
+      "command_naming": 1,
+      "concurrency_and_state": 1,
+      "credentials-and-authorization": 1,
+      "cross_pillar_boundary": 1,
+      "decision_thresholds": 1,
+      "evidence_contract": 1,
+      "executability-and-enforcement": 1,
+      "external-mutations": 1,
+      "external_access_and_secrets": 1,
+      "handoff_contract": 1,
+      "integrity": 1,
+      "maturity_gating": 2,
+      "orchestrator_authority": 1,
+      "overlap_and_alias_routing": 1,
+      "packaging-and-installation": 1,
+      "path-safety": 1,
+      "privacy-and-pii": 1,
+      "progressive_disclosure": 1,
+      "prompt-injection": 1,
+      "role_boundary": 1,
+      "routing_contract": 1,
+      "schema_versioning": 1,
+      "scope-contract-drift": 1,
+      "secret-and-state-exposure": 1,
+      "state-integrity-and-concurrency": 1,
+      "state-schema-drift": 1,
+      "state_contract": 1,
+      "state_namespace": 1,
+      "testability": 1,
+      "translation_quality": 1,
+      "version_drift": 1
+    },
+    "by_severity": {
+      "critical": 1,
+      "high": 15,
+      "info": 4,
+      "low": 1,
+      "medium": 13
+    },
+    "note": "Raw findings intentionally retain overlap; risk-register.json consolidates equivalent risks.",
+    "raw_finding_count": 34
+  },
+  "mode": "read_only",
+  "phase": "P1",
+  "schema_version": "1.0",
+  "status": "completed_with_findings",
+  "strengths_observed": [
+    "Progressive disclosure through pillar indexes and selective tactical loading.",
+    "Explicit maturity gating concept and confidence-oriented decisions.",
+    "Controlled experiment states with a stated evidence requirement.",
+    "Cross-pillar validation and explicit scope-boundary intent.",
+    "Complete canonical library: 100 unique prompt paths with matching hashes."
+  ],
+  "workstreams": {
+    "architecture": {
+      "artifact": "artifacts/P1/workstreams/architecture.json",
+      "finding_count": 15,
+      "finding_ids": [
+        "ARCH-001",
+        "ARCH-002",
+        "ARCH-003",
+        "ARCH-004",
+        "ARCH-005",
+        "ARCH-006",
+        "ARCH-007",
+        "ARCH-008",
+        "ARCH-009",
+        "ARCH-010",
+        "ARCH-011",
+        "ARCH-012",
+        "ARCH-013",
+        "ARCH-014",
+        "ARCH-015"
+      ],
+      "sha256": "9cca0c2b835297c22e962ff8dc8b03ae784f5105f5afc68181d5425d610ee35b",
+      "status": "completed_with_findings"
+    },
+    "library": {
+      "artifact": "artifacts/P1/workstreams/library.json",
+      "finding_count": 6,
+      "finding_ids": [
+        "LIB-F001",
+        "LIB-F002",
+        "LIB-F003",
+        "LIB-F004",
+        "LIB-F005",
+        "LIB-F006"
+      ],
+      "sha256": "079fb8ba905bc2954986624c4878c27ab66c37996a72983e3e9a2120ab5bf008",
+      "status": "completed_read_only"
+    },
+    "security-runtime": {
+      "artifact": "artifacts/P1/workstreams/security-runtime.json",
+      "finding_count": 13,
+      "finding_ids": [
+        "SR-001",
+        "SR-002",
+        "SR-003",
+        "SR-004",
+        "SR-005",
+        "SR-006",
+        "SR-007",
+        "SR-008",
+        "SR-009",
+        "SR-010",
+        "SR-011",
+        "SR-012",
+        "SR-013"
+      ],
+      "sha256": "e348277693b7d0b7e8a7bba4e73ebb9ab2184dc28063541e9fd7f6a2722d3084",
+      "status": "completed_with_critical_and_high_risks"
+    }
+  }
+}

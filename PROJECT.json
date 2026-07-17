@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0006",
-  "status": "p1_audit_in_progress",
+  "checkpoint_id": "CP-0007",
+  "status": "p2_specification_in_progress",
   "authorization": {
     "implementation_start_received": true,
     "received_at": "2026-07-17",
@@ -29,7 +29,7 @@
   },
   "constraints": [
     "Preservar os 100 prompts canonicos; nao excluir nem sobrescrever silenciosamente nenhum deles.",
-    "Nao iniciar a implementacao da nova versao antes de nova confirmacao explicita do usuario.",
+    "A implementacao da nova versao foi autorizada em 2026-07-17 pela mensagem 'pode iniciar'.",
     "Manter fatos, hipoteses, decisoes e acoes como categorias distintas.",
     "Manter leitura externa como padrao e exigir autorizacao para mutacoes fora do repositorio.",
     "Nao armazenar credenciais, tokens ou PII nos artefatos de controle.",
@@ -55,7 +55,7 @@
     {
       "id": "P1",
       "name": "Auditoria e baseline",
-      "status": "in_progress",
+      "status": "completed",
       "mode": "read_only",
       "deliverables": [
         "artifacts/P1/audit.json",
@@ -70,7 +70,24 @@
         "O agente principal revisou e integrou os artefatos de auditoria."
       ]
     },
-    {"id": "P2", "name": "Especificacao canonica", "status": "pending"},
+    {
+      "id": "P2",
+      "name": "Especificacao canonica",
+      "status": "in_progress",
+      "deliverables": [
+        "artifacts/P2/canonical-spec.md",
+        "artifacts/P2/role-matrix.json",
+        "artifacts/P2/routing-contract.json",
+        "artifacts/P2/compatibility-policy.md"
+      ],
+      "exit_criteria": [
+        "Existe uma terminologia e uma versao canonica unicas, independentes do host.",
+        "Planner e quatro pilares possuem owner, entradas, saidas, nao-objetivos e fronteiras sem sobreposicao decisoria.",
+        "Roteamento, ordem, paralelismo, handoff, thresholds e conflitos possuem regras completas e deterministicas.",
+        "Compatibilidade com projetos e comandos anteriores possui politica explicita de aliases e migracao.",
+        "Todos os artefatos passam validacao cruzada e nenhuma alteracao foi feita nos 100 prompts canonicos."
+      ]
+    },
     {"id": "P3", "name": "Preservacao e catalogacao da biblioteca", "status": "pending"},
     {"id": "P4", "name": "Contratos, estado e migracao", "status": "pending"},
     {"id": "P5", "name": "Orquestrador e adaptadores", "status": "pending"},
