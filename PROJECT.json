@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0004",
+  "checkpoint_id": "CP-0005",
   "status": "context_ready_pending_user_authorization",
   "objective": "Evoluir o Loop Marketing para uma nova versao executavel, testavel, segura e auditavel, preservando integralmente a biblioteca tatica canonica.",
   "source": {
@@ -16,6 +16,12 @@
     "baseline_library_hash_algorithm": "sha256 of sorted relative_path + NUL + sha256(file) records joined by newline"
   },
   "control_workspace": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+  "recovery": {
+    "local_git": "/Users/enorm/Documents/Claude/loop-marketing-v2-control/.git",
+    "offline_bundle": "/Users/enorm/Documents/Claude/loop-marketing-v2-control-backup.bundle",
+    "remote": null,
+    "remote_policy": "Nao configurar ou enviar sem autorizacao explicita do usuario."
+  },
   "constraints": [
     "Preservar os 100 prompts canonicos; nao excluir nem sobrescrever silenciosamente nenhum deles.",
     "Nao iniciar a implementacao da nova versao antes de nova confirmacao explicita do usuario.",

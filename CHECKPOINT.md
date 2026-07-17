@@ -1,4 +1,4 @@
-# Checkpoint CP-0004
+# Checkpoint CP-0005
 
 Atualizado em: 2026-07-17
 
@@ -20,6 +20,8 @@ Preservar continuidade durável enquanto a implementação da nova versão do Lo
 - Histórico dos arquivos de controle: ancorado em Git local, sem reescrita
 - Commit inicial da âncora de controle: `ad3e04c61c89cc08a77089714f96d99fb15bbbfc`
 - Validação dos logs: estrutura, campos, sequência, status, evidência e prefixo append-only
+- Bundle de recuperação: `/Users/enorm/Documents/Claude/loop-marketing-v2-control-backup.bundle`
+- Remoto: não configurado; requer autorização explícita
 - Gate atual: `G1 — aguardar autorização do usuário para iniciar a implementação`
 
 ## Decisões vigentes

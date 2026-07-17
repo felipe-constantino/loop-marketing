@@ -61,6 +61,8 @@ python3 scripts/context_guard.py validate
 
 Após `validate`, registrar o checkpoint no Git local desta pasta de controle. Não usar amend, rebase ou qualquer reescrita de histórico. O histórico Git é a âncora recuperável dos arquivos centrais; `CONTEXT_INDEX.json` protege continuidade entre checkpoints.
 
+Após o commit, atualizar e verificar `/Users/enorm/Documents/Claude/loop-marketing-v2-control-backup.bundle`. O bundle é uma segunda cópia local recuperável. Não configurar remoto nem fazer push sem autorização explícita do usuário.
+
 ## Gate de autorização atual
 
 A implementação da nova versão está bloqueada até o usuário confirmar explicitamente o início após a entrega desta camada de continuidade.

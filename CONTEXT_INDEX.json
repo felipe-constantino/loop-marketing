@@ -1,7 +1,7 @@
 {
   "append_only_logs": {
     "DECISIONS.jsonl": {
-      "line_count": 9,
+      "line_count": 10,
       "line_sha256": [
         "e61645b87c8be685a5b0c53d79a078987a23d648b6f7ee60f0744df2b8baef64",
         "c63831cd1ed08d1a11a7228d8db23a0f264fc6f01e64d23d42e3781758a30299",
@@ -11,11 +11,12 @@
         "344ce744cce326333dd850291bf82d7b260978273197eb66c7ac85f8910e054f",
         "b304d4e8939cf96543bb5ee9612eeb1edfecbbebb5a5b4b2b3859b8c8ba0a3b2",
         "0ccd06b4400fdf138192d75d0d50fbc20cda4677c24fdaa8eace8643543ab73a",
-        "a236cd537891da3b1dd7db1e6dc05f0340fa2cafcb55794eb8b9ebab4524b0a7"
+        "a236cd537891da3b1dd7db1e6dc05f0340fa2cafcb55794eb8b9ebab4524b0a7",
+        "81f7f39cd9e39fe98ccd4ef03d0bf03ea68f00a04841c5d13555629e0cc43690"
       ]
     },
     "WORKLOG.jsonl": {
-      "line_count": 7,
+      "line_count": 9,
       "line_sha256": [
         "d43c99bcc06fb21db6bf4ac23fa2071d1cece39cf34647199f5aec9bba392186",
         "b5021205359cb2929d0ed3730f7302958c6f29d11053099b16e4a65cdca2493f",
@@ -23,23 +24,25 @@
         "6ebb41f701a8be4b90db8a2a8cc027a7f343f7bb9ee48250a54935204533812d",
         "dabb01b5088e647a75a885b7dd5dee474c974885da319c9b4da9ab0ae22a3983",
         "1f4b4ea40cb303927aca41ed9e2e87b6e7b01d27f9487958a0e262f6016b2785",
-        "bfd1fdb0f53c46b0fedb505cee2b2ad9ba66a045066bd34d62bb329a007bc413"
+        "bfd1fdb0f53c46b0fedb505cee2b2ad9ba66a045066bd34d62bb329a007bc413",
+        "874d95965a1bb76e422c4ef7203b5f30c85af6e0ea00db7b1d0aff2f0d119d4e",
+        "a444ea1b70452018431556dc5b9b0eead8ca8598f41d6d83a8e30f7d39b30e8f"
       ]
     }
   },
-  "checkpoint_id": "CP-0004",
+  "checkpoint_id": "CP-0005",
   "core_files": [
     {
       "path": "PROJECT.json",
-      "sha256": "673b9bdd76cad52b9b30a147000b94de0e4da2dd1cf0b73e1731f3311a92d445"
+      "sha256": "7f3511e9c2c1589a56ed0f0a4ff07ce099edb40996000389b6c095ea84b7b749"
     },
     {
       "path": "CHECKPOINT.md",
-      "sha256": "62dd6c7f534b1ccd40b890a7deb18b5608d037637111d574299708169e3f66a8"
+      "sha256": "806d2569bd53092f66ff52febc3cc7d0c819aedf1b81d6ffe0aac6ebf5eae5c4"
     },
     {
       "path": "CONTEXT_PROTOCOL.md",
-      "sha256": "59c5cbb70016421bc77e41aef298dc22f11165691b048fd636bd9fbc1fe07e3f"
+      "sha256": "017b653df1bcb3e798e010f40218a9df35fbdde4179044623dea7f3f4c85885d"
     },
     {
       "path": "SOURCE_INDEX.json",
