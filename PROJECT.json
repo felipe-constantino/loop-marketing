@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0010",
-  "status": "p3_relation_review_in_progress",
+  "checkpoint_id": "CP-0011",
+  "status": "p4_contracts_in_progress",
   "authorization": {
     "implementation_start_received": true,
     "received_at": "2026-07-17",
@@ -91,7 +91,7 @@
     {
       "id": "P3",
       "name": "Preservacao e catalogacao da biblioteca",
-      "status": "in_progress",
+      "status": "completed",
       "deliverables": [
         "artifacts/P3/catalog-schema.json",
         "artifacts/P3/tactic-catalog.json",
@@ -106,7 +106,25 @@
         "Schemas e validadores rejeitam catalogo incompleto, referencia inexistente, relacao invalida ou drift da biblioteca, mantendo a fonte inalterada."
       ]
     },
-    {"id": "P4", "name": "Contratos, estado e migracao", "status": "pending"},
+    {
+      "id": "P4",
+      "name": "Contratos, estado e migracao",
+      "status": "in_progress",
+      "deliverables": [
+        "artifacts/P4/state-schema.json",
+        "artifacts/P4/event-schema.json",
+        "artifacts/P4/handoff-schema.json",
+        "artifacts/P4/migration-contract.md",
+        "artifacts/P4/compatibility-fixtures.json"
+      ],
+      "exit_criteria": [
+        "Estado canonico versionado usa .loop-marketing/, state_revision e escrita atomica com concorrencia otimista.",
+        "Eventos sao append-only, idempotentes, rastreaveis e validam evidencias e transicoes de experimento.",
+        "Handoffs materializam exatamente os 22 campos P2 e rejeitam owner, escopo ou revisao divergentes.",
+        "Migracao v1.x possui dry-run, backup, rollback, aliases e preservacao de historico sem mutacao silenciosa.",
+        "Schemas, fixtures e validadores passam gates positivos e negativos sem alterar a fonte canonica."
+      ]
+    },
     {"id": "P5", "name": "Orquestrador e adaptadores", "status": "pending"},
     {"id": "P6", "name": "Seguranca e autorizacao", "status": "pending"},
     {"id": "P7", "name": "Avaliacoes, observabilidade e red team", "status": "pending"},

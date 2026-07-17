@@ -25,6 +25,7 @@ COPY_PATHS = (
     Path("SOURCE_INDEX.json"),
     Path("artifacts/P3/catalog-schema.json"),
     *(Path(f"artifacts/P3/workstreams/{name}.json") for name in WORKSTREAM_NAMES),
+    Path("artifacts/P3/workstreams/relation-review.json"),
     Path("scripts/p3_validate.py"),
 )
 
@@ -35,6 +36,7 @@ class Case:
     name: str
     expected_errors: tuple[str, ...]
     mutate: Callable[[Path], None]
+    stage: str = "workstreams"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -83,8 +85,8 @@ def create_sandbox(
     return root
 
 
-def run_validator(root: Path) -> dict[str, Any]:
-    command = [sys.executable, str(root / "scripts/p3_validate.py"), "workstreams"]
+def run_validator(root: Path, stage: str = "workstreams") -> dict[str, Any]:
+    command = [sys.executable, str(root / "scripts/p3_validate.py"), stage]
     completed = subprocess.run(
         command,
         cwd=root,
@@ -239,6 +241,59 @@ def mutate_refinar_weak_fallback(root: Path) -> None:
     write_json(path, data)
 
 
+def relation_review_path(root: Path) -> Path:
+    return root / "artifacts/P3/workstreams/relation-review.json"
+
+
+def mutate_relation_missing_decision(root: Path) -> None:
+    path = relation_review_path(root)
+    data = load_json(path)
+    data["decisions"].pop()
+    write_json(path, data)
+
+
+def mutate_relation_nondeterministic_id(root: Path) -> None:
+    path = relation_review_path(root)
+    data = load_json(path)
+    relation = data["relations"][0]
+    old_id = relation["relation_id"]
+    new_id = "rel-alternative-to-000000000000"
+    relation["relation_id"] = new_id
+    for decision in data["decisions"]:
+        decision["output_relation_ids"] = [
+            new_id if relation_id == old_id else relation_id
+            for relation_id in decision["output_relation_ids"]
+        ]
+    data["relations"] = sorted(data["relations"], key=lambda item: item["relation_id"])
+    write_json(path, data)
+
+
+def mutate_relation_status_mismatch(root: Path) -> None:
+    path = relation_review_path(root)
+    data = load_json(path)
+    relation_id = data["relations"][0]["relation_id"]
+    data["relations"][0]["review_status"] = "proposed"
+    if not any(
+        decision.get("decision") == "confirm"
+        and relation_id in decision.get("output_relation_ids", [])
+        for decision in data["decisions"]
+    ):
+        raise ValueError("relation status fixture has no confirming decision")
+    write_json(path, data)
+
+
+def mutate_relation_accepted_without_output(root: Path) -> None:
+    path = relation_review_path(root)
+    data = load_json(path)
+    decision = next(
+        item
+        for item in data["decisions"]
+        if item.get("decision") == "confirm" and item.get("output_relation_ids")
+    )
+    decision["output_relation_ids"] = []
+    write_json(path, data)
+
+
 CASES = (
     Case(
         "NEG-001",
@@ -315,6 +370,34 @@ CASES = (
         ("constrained Refinar fallback misses do not load",),
         mutate_refinar_weak_fallback,
     ),
+    Case(
+        "NEG-013",
+        "relation review omits one of the 106 input decisions",
+        ("relation review replay mismatch",),
+        mutate_relation_missing_decision,
+        "relations",
+    ),
+    Case(
+        "NEG-014",
+        "relation review uses a non-deterministic relation ID",
+        ("relation review has non-deterministic relation_id",),
+        mutate_relation_nondeterministic_id,
+        "relations",
+    ),
+    Case(
+        "NEG-015",
+        "confirm decision emits a proposed relation",
+        ("outcome differs from output relation status",),
+        mutate_relation_status_mismatch,
+        "relations",
+    ),
+    Case(
+        "NEG-016",
+        "accepted relation input emits no output relation",
+        ("accepts input without a relation",),
+        mutate_relation_accepted_without_output,
+        "relations",
+    ),
 )
 
 
@@ -330,21 +413,22 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="p3-regression-") as temporary:
         temporary_root = Path(temporary)
         baseline_root = create_sandbox(temporary_root, "baseline")
-        baseline_result = run_validator(baseline_root)
+        baseline_workstreams = run_validator(baseline_root, "workstreams")
+        baseline_relations = run_validator(baseline_root, "relations")
         baseline_ok = (
-            baseline_result["returncode"] == 0
-            and baseline_result["status"] == "valid"
-            and baseline_result["stage"] == "workstreams"
-            and not baseline_result["errors"]
+            baseline_workstreams["returncode"] == 0
+            and baseline_workstreams["status"] == "valid"
+            and baseline_workstreams["stage"] == "workstreams"
+            and not baseline_workstreams["errors"]
+            and baseline_relations["returncode"] == 0
+            and baseline_relations["status"] == "valid"
+            and baseline_relations["stage"] == "relations"
+            and not baseline_relations["errors"]
         )
         baseline_detail = {
             "status": "passed" if baseline_ok else "failed",
-            "validator_returncode": baseline_result["returncode"],
-            "validator_status": baseline_result["status"],
-            "validator_stage": baseline_result["stage"],
-            "observed_errors": baseline_result["errors"],
-            "validator_stderr": baseline_result["stderr"],
-            "validator_parse_error": baseline_result["parse_error"],
+            "workstreams": baseline_workstreams,
+            "relations": baseline_relations,
         }
         if baseline_ok:
             for case in CASES:
@@ -354,7 +438,7 @@ def main() -> int:
                 mutation_error: str | None = None
                 try:
                     case.mutate(case_root)
-                    result = run_validator(case_root)
+                    result = run_validator(case_root, case.stage)
                 except (KeyError, ValueError, OSError, TypeError) as exc:
                     mutation_error = f"{type(exc).__name__}: {exc}"
                     result = {

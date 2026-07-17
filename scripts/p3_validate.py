@@ -1318,7 +1318,10 @@ def validate_finals(
     ):
         errors.append("preservation report source integrity fields are invalid")
     validation = report.get("validation", {})
-    for field in ("schema", "workstreams", "relation_review", "integration_invariants"):
+    for field in (
+        "schema", "workstreams", "semantic_catalog_audit", "negative_regression",
+        "relation_review", "integration_invariants",
+    ):
         if validation.get(field) != "passed":
             errors.append(f"preservation report validation status is not passed for {field}")
 

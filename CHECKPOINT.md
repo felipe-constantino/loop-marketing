@@ -1,10 +1,10 @@
-# Checkpoint CP-0010
+# Checkpoint CP-0011
 
 Atualizado em: 2026-07-17
 
 ## Objetivo
 
-Concluir P3 pela revisão independente das 106 hipóteses relacionais e integração dos artefatos oficiais, sem alterar ainda a skill ou a biblioteca canônica.
+Executar P4 para definir contratos versionados de estado, eventos, handoffs e migração, usando P2 e o catálogo P3 selado.
 
 ## Estado atual
 
@@ -14,7 +14,7 @@ Concluir P3 pela revisão independente das 106 hipóteses relacionais e integra�
 - Worktree no baseline: limpo
 - Biblioteca canônica: 100 prompts
 - Autorização do usuário: recebida em 2026-07-17 (`pode iniciar`)
-- Implementação v2: P1 e P2 concluídas; quatro workstreams de catálogo P3 concluídos
+- Implementação v2: P1, P2 e P3 concluídas; P4 iniciada em modo de contratos sidecar
 - Validação determinística: aprovada, sem erros
 - Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
 - Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
@@ -37,13 +37,15 @@ Concluir P3 pela revisão independente das 106 hipóteses relacionais e integra�
 - Políticas de execução: 100/100 válidas, com 323 conflitos de linha e 278 handoffs
 - Modos: 3 canonical_safe, 91 sidecar_constrained e 6 base_method_only
 - Seleção: 3 allowed, 91 planner_review_required e 6 forbidden
-- Relações candidatas: 78 intrapilar + 28 cross-pillar em replay independente
+- Relações: 106/106 hipóteses reproduzidas; 91 confirmadas e 12 rejeitadas após consolidação
 - Metadados: 55 táticas em desenvolvimento, 37 maduras, 5 nascentes e 3 avançadas
 - Qualidade: 38 entradas precisam de revisão editorial; flags não alteram o canônico
 - Proveniência: individual_source_verified=false e redistribution_review=not_reviewed em 100/100
 - Red-team semântico: primeiro gate FAIL, segundo gate FAIL e reteste final PASS com histórico preservado
-- Regressão negativa: baseline PASS e 12/12 mutações inseguras corretamente rejeitadas
-- Gate atual: `G4 — concluir replay relacional, integrar e selar P3`
+- Regressão negativa: baselines PASS e 16/16 mutações inseguras corretamente rejeitadas
+- Artefatos oficiais P3: catálogo 100, mapa 91 relações, relatório de preservação e manifesto selado
+- Gate final P3: validator PASS, auditoria PASS, regressão 16/16 e selo verificável
+- Gate atual: `G5 — concluir contratos e migração P4`
 
 ## Decisões vigentes
 
@@ -117,16 +119,35 @@ P1 foi concluída em modo read-only. Os 117 arquivos estão classificados; os ac
 - `artifacts/P3/workstreams/refinar.json`: 25/25 entradas e 20 relações internas.
 - `scripts/p3_validate.py`: valida schema, cada pilar, cobertura agregada, replay relacional e artefatos finais.
 - `scripts/p3_integrate.py`: integração determinística preparada; só executa após workstreams e relações válidos.
-- `scripts/p3_regression.py`: 12 casos negativos em sandbox temporário, todos aprovados.
+- `scripts/p3_regression.py`: 16 casos negativos em sandbox temporário, todos aprovados.
 - `scripts/p3_seal.py`: selo e verificação do conjunto de evidências após os gates finais.
 - `artifacts/P3/workstreams/catalog-cross-audit-3pillars.json`: gate inicial FAIL, preservado.
 - `artifacts/P3/workstreams/catalog-final-audit.json`: reteste final PASS, blockers=0 e FAIL anterior preservado.
 - Gate agregado atual: `python3 scripts/p3_validate.py workstreams` aprovado com zero erros.
 - Fonte canônica: limpa e ancorada no baseline após as quatro revisões.
 
+## Resultado final de P3
+
+- `artifacts/P3/tactic-catalog.json`: 100 táticas, paths/hashes e políticas de execução.
+- `artifacts/P3/relationship-map.json`: 91 relações confirmadas; zero propostas normativas.
+- `artifacts/P3/preservation-report.json`: cobertura, qualidade, proveniência e integridade comprovadas.
+- `artifacts/P3/workstreams/relation-review.json`: replay de 106/106 inputs, 94 confirm e 12 reject.
+- `artifacts/P3/integration-manifest.json`: 15 arquivos de evidência selados e verificados.
+- `python3 scripts/p3_validate.py final`: PASS.
+- `python3 scripts/p3_regression.py`: PASS, 16/16 casos negativos.
+- `python3 scripts/p3_seal.py verify`: PASS.
+
+## Contrato de P4
+
+- Definir state schema, event ledger e atomicidade sem implementar ainda adaptadores de host.
+- Materializar o handoff P2 de 22 campos e validar owner, revisão e scope boundary.
+- Tornar transições de experimento evidence-gated e imutáveis no histórico.
+- Definir migração v1.x com dry-run, backup, rollback e aliases completos.
+- Manter `/Users/enorm/Documents/Claude/loop-marketing` read-only durante P4.
+
 ## Próxima ação única
 
-Concluir `relation-review.json`, integrar catálogo/mapa/relatório e executar validator, regressão, auditoria e selo P3.
+Executar três workstreams P4 não sobrepostos, integrar schemas/contrato/fixtures e rodar red-team de migração e concorrência.
 
 ## Proibido durante P3
 

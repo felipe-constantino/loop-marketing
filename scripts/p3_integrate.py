@@ -229,6 +229,8 @@ def build_artifacts() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
         "validation": {
             "schema": "passed",
             "workstreams": "passed",
+            "semantic_catalog_audit": "passed",
+            "negative_regression": "passed",
             "relation_review": "passed",
             "integration_invariants": "passed",
             "final_validator_command": "python3 scripts/p3_validate.py final",
