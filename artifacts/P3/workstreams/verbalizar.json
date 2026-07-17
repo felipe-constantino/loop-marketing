@@ -1,0 +1,981 @@
+{
+  "workstream": "pillar_catalog_verbalizar",
+  "status": "completed",
+  "pillar": "Verbalizar",
+  "methodology_stage": "Express",
+  "baseline": {
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  },
+  "entries": [
+    {
+      "tactic_id": "lm.verbalizar.analisador-de-diferenciacao-de-marcas",
+      "canonical_path": "biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+      "canonical_sha256": "7818ba7124e11ec18dcb881252d90e10fd1aa63aaf56cc38f6396124e72e7c8e",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Analisador de diferenciação de marcas",
+      "summary": "Extrai diferenciais comprováveis de histórias de sucesso, depoimentos e ganhos/perdas e os converte em opções de posicionamento e mensagens de prova.",
+      "aliases": ["análise de diferenciação de marca"],
+      "job_tags": ["analyze", "identify", "synthesize"],
+      "object_tags": ["brand", "competitor", "customer-voice", "positioning", "value-proposition"],
+      "need_tags": ["analyze:brand", "identify:positioning", "synthesize:value-proposition"],
+      "input_requirements": [
+        {"input_id": "customer-success-evidence", "description": "Histórias de sucesso, depoimentos e resultados verificáveis do cliente.", "required": true, "evidence_types": ["first_party_document", "interview_or_transcript"], "sensitivity": "customer_level_pii"},
+        {"input_id": "competitive-context", "description": "Concorrentes e alternativas contra os quais a diferenciação será avaliada.", "required": true, "evidence_types": ["market_source", "user_brief"], "sensitivity": "public"},
+        {"input_id": "win-loss-evidence", "description": "Evidência agregada de motivos de ganho e perda.", "required": false, "evidence_types": ["crm_aggregate", "analytics"], "sensitivity": "customer_aggregate"}
+      ],
+      "output_contract": {"output_type": "analysis", "description": "Análise de valor exclusivo com opções de posicionamento, provas, riscos e recomendação prioritária.", "required_sections": ["unique-value-analysis", "positioning-options", "proof-elements", "priority-recommendation", "risks"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "A tática exige corpus de múltiplos clientes, resultados verificáveis e comparação competitiva; uma empresa sem essa base não consegue distinguir evidência de benefício genérico.",
+      "prerequisites": [
+        {"prerequisite_id": "customer-evidence-available", "description": "Há evidência utilizável de clientes e resultados, com proveniência.", "required": true},
+        {"prerequisite_id": "target-context-supplied", "description": "O segmento e contexto de uso da mensagem já foram fornecidos ou estão marcados como hipótese.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "Não existem resultados ou histórias verificáveis.", "reason": "A tática induziria diferenciais e provas não sustentados.", "fallback": "Usar o método-base de Verbalizar para registrar lacunas e solicitar evidência antes de formular claims."}
+      ],
+      "use_when": ["A mensagem falhou no teste de diferenciação e há evidência de clientes para localizar valor exclusivo."],
+      "do_not_use_when": ["O objetivo é apenas mapear a voz dos concorrentes ou quando faltam provas de resultados próprios."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "medium", "flags": ["pii_sensitive", "terminology_inconsistent"], "assessment_note": "Revisão integral encontrou numeração inconsistente e uma instrução ambígua sobre resultados fornecidos pela Web; o núcleo de diferenciação permanece utilizável com validação de evidência e controles para dados identificáveis de clientes."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 45, "review_notes": "Fonte completa revisada; inputs, cinco padrões de análise e formato de saída foram classificados manualmente."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.analisador-de-padroes-de-sucesso-do-cliente",
+      "canonical_path": "biblioteca/Verbalizar/analisador-de-padroes-de-sucesso-do-cliente.md",
+      "canonical_sha256": "2250184819e963511bdd3309ba6127de4e715966394c29d4e96acae57a71c48b",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Analisador de Padrões de Sucesso do Cliente",
+      "summary": "Identifica padrões de clientes bem-sucedidos e os converte em linguagem, prova e recomendações de mensagem, mantendo segmentação, onboarding e intervenção fora da autoridade de Verbalizar.",
+      "aliases": ["análise de padrões de sucesso do cliente"],
+      "job_tags": ["analyze", "identify", "synthesize"],
+      "object_tags": ["customer-data", "customer-value", "onboarding", "renewal-expansion", "social-proof"],
+      "need_tags": ["analyze:customer-data", "identify:customer-value", "synthesize:social-proof"],
+      "input_requirements": [
+        {"input_id": "success-cohort", "description": "Coorte de sucesso definida com métricas de uso, resultado, retenção ou expansão.", "required": true, "evidence_types": ["crm_aggregate", "analytics"], "sensitivity": "customer_aggregate"},
+        {"input_id": "customer-interactions", "description": "Evidência de onboarding, suporte e feedback dos clientes da coorte.", "required": true, "evidence_types": ["crm_record", "interview_or_transcript"], "sensitivity": "customer_level_pii"},
+        {"input_id": "success-definition", "description": "Definição operacional de sucesso e período comparável.", "required": true, "evidence_types": ["prior_decision", "user_brief"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "analysis", "description": "Análise de padrões de sucesso e suas implicações para mensagem e prova social.", "required_sections": ["cohort-definition", "success-patterns", "message-implications", "proof-opportunities", "data-gaps"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "O método pede coorte definida, dados longitudinais de uso, retenção, expansão, onboarding e suporte; sem mensuração consolidada, correlação seria apresentada como padrão confiável.",
+      "prerequisites": [
+        {"prerequisite_id": "success-cohort-defined", "description": "A coorte e suas métricas de sucesso foram definidas antes da análise.", "required": true},
+        {"prerequisite_id": "message-scope-enforced", "description": "A saída será reenquadrada como insight de mensagem; decisões de segmento e lifecycle serão encaminhadas a Orientar.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A análise pretende criar elegibilidade, health score, onboarding ou intervenção de suporte.", "reason": "Essas decisões excedem a autoridade de Verbalizar.", "fallback": "Emitir insights de mensagem e encaminhar as decisões estruturais ao owner correspondente."}
+      ],
+      "use_when": ["Há dados comparáveis de clientes bem-sucedidos e o objetivo é extrair padrões que fortaleçam mensagem e prova."],
+      "do_not_use_when": ["A coorte não está definida ou o objetivo principal é segmentação, lifecycle ou operação de sucesso do cliente."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["pii_sensitive", "terminology_inconsistent", "unidiomatic_translation"], "assessment_note": "O prompt mistura message insight com decisões de segmentação, onboarding, suporte e scoring e usa tradução irregular; o catálogo restringe a saída à autoridade de mensagem."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 145, "review_notes": "Fonte completa revisada; dados longitudinais, perfil de sucesso, recomendações e métricas foram separados por owner."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.analise-de-interruptores-do-setor",
+      "canonical_path": "biblioteca/Verbalizar/analise-de-interruptores-do-setor.md",
+      "canonical_sha256": "af1fde3073921f4d1348ff1f8b50825d72f42c2f124985f98cbc434684a35227",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Análise de interruptores do setor",
+      "summary": "Avalia práticas do setor e frustrações do cliente para formular uma tese de disrupção responsável, posicionamento diferenciado e estrutura de mensagem com riscos explícitos.",
+      "aliases": ["análise de disrupção do setor"],
+      "job_tags": ["analyze", "identify", "plan"],
+      "object_tags": ["category", "competitor", "customer-voice", "positioning"],
+      "need_tags": ["analyze:category", "identify:positioning", "plan:positioning"],
+      "input_requirements": [
+        {"input_id": "industry-practices", "description": "Práticas vigentes, restrições regulatórias e tentativas anteriores de mudança.", "required": true, "evidence_types": ["market_source", "technical_capability"], "sensitivity": "public"},
+        {"input_id": "customer-frustrations", "description": "Necessidades não atendidas e frustrações com proveniência.", "required": true, "evidence_types": ["interview_or_transcript", "market_source"], "sensitivity": "customer_level_pii"},
+        {"input_id": "company-capabilities", "description": "Capacidades, limites e tolerância a risco reais da empresa.", "required": true, "evidence_types": ["user_brief", "technical_capability"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "strategy", "description": "Tese de disrupção e estrutura de posicionamento/mensagem, sem autorizar implementação externa.", "required_sections": ["industry-analysis", "customer-frustrations", "disruption-options", "positioning-thesis", "message-framework", "risks"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "A recomendação depende de pesquisa setorial, conformidade, capacidade operacional, prova de conceito e avaliação de risco; uma base apenas aspiracional tornaria a tese imprudente.",
+      "prerequisites": [
+        {"prerequisite_id": "regulatory-context-known", "description": "Restrições regulatórias e de conformidade relevantes foram identificadas.", "required": true},
+        {"prerequisite_id": "disruption-proof-available", "description": "Existe evidência de capacidade ou prova de conceito para qualquer claim disruptivo.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A tese exige prometer capacidade não comprovada ou executar mudança operacional.", "reason": "A tática só pode produzir posicionamento e mensagem baseados em evidência.", "fallback": "Classificar a tese como hipótese, solicitar validação e encaminhar implementação ao owner e gate de autorização apropriados."}
+      ],
+      "use_when": ["A diferenciação desejada é contrariar uma prática setorial comprovadamente ruim para o cliente."],
+      "do_not_use_when": ["Não há evidência das práticas, das frustrações ou da capacidade de oferecer alternativa responsável."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["mixed_language", "pii_sensitive", "unidiomatic_translation", "unverified_external_claim"], "assessment_note": "Há termos literais e trechos em inglês, dados de cliente potencialmente identificáveis e pedidos de previsões de mercado; todas as afirmações externas precisam de fonte e as fases operacionais ficam fora do output de Verbalizar."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 217, "review_notes": "Fonte completa revisada; análise, tese, mensagem, implementação, risco e medição foram delimitados semanticamente."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.analise-de-voz-competitiva",
+      "canonical_path": "biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+      "canonical_sha256": "d1f1600f041687b1553a4c8642f90ac442e1bdafe194a2ff157f37fbb1c74e80",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Análise de voz competitiva",
+      "summary": "Compara voz, tom, vocabulário, mensagem e prova de concorrentes para localizar espaço de voz autêntico e criar diretrizes diferenciadas.",
+      "aliases": ["análise competitiva de tom de voz"],
+      "job_tags": ["analyze", "classify", "design"],
+      "object_tags": ["brand", "competitor", "message", "voice-tone"],
+      "need_tags": ["analyze:competitor", "classify:voice-tone", "design:voice-tone"],
+      "input_requirements": [
+        {"input_id": "competitor-communications", "description": "Amostra comparável de comunicação de concorrentes e referências de origem.", "required": true, "evidence_types": ["market_source"], "sensitivity": "public"},
+        {"input_id": "brand-foundation", "description": "Valores, posicionamento, personalidade e voz atual da marca.", "required": true, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "audience-context", "description": "Público e contexto de lifecycle já definidos ou explicitamente assumidos.", "required": true, "evidence_types": ["prior_decision", "user_brief"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "analysis", "description": "Mapa de voz competitiva, lacunas de comunicação e guia de voz diferenciado.", "required_sections": ["competitive-voice-map", "voice-clusters", "communication-gaps", "recommended-voice", "usage-guidelines"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "É necessário comparar corpus de vários concorrentes com uma fundação de marca minimamente estável; sem ambos, diferenciação de voz seria apenas preferência estética.",
+      "prerequisites": [
+        {"prerequisite_id": "comparable-competitor-sample", "description": "Amostras cobrem tipos de comunicação e períodos comparáveis.", "required": true},
+        {"prerequisite_id": "brand-values-established", "description": "Valores e posicionamento próprios existem para testar autenticidade.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "Só há nomes de concorrentes, sem comunicação observável.", "reason": "O modelo poderia inventar voz e lacunas competitivas.", "fallback": "Solicitar fontes ou usar apenas o método-base para registrar perguntas de pesquisa."}
+      ],
+      "use_when": ["É preciso diferenciar a voz da marca a partir de comunicação competitiva observável."],
+      "do_not_use_when": ["O objetivo é provar diferenciais de resultado próprios ou definir segmentos e canais."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["mixed_language", "unidiomatic_translation"], "assessment_note": "O texto contém clusters e headings parcialmente em inglês, traduções literais e aspas finais órfãs; a sequência analítica e o output de voz continuam identificáveis."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 182, "review_notes": "Fonte completa revisada, incluindo análise individual, clusters, lacunas, estratégia, validação e roadmap."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.arquiteto-de-historias-de-marcas",
+      "canonical_path": "biblioteca/Verbalizar/arquiteto-de-historias-de-marcas.md",
+      "canonical_sha256": "9f65a87f8b92badcfd2184b05f14d78b6d1fbfcf6ef33686ecdd66a0229a9b05",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Arquiteto de Histórias de marcas",
+      "summary": "Transforma história, propósito, diferenciais e provas da empresa em uma narrativa de marca modular, autêntica e adaptável a públicos já definidos.",
+      "aliases": ["arquiteto de narrativa de marca"],
+      "job_tags": ["design", "generate", "synthesize"],
+      "object_tags": ["brand", "content", "customer-value", "message"],
+      "need_tags": ["design:message", "generate:content", "synthesize:brand"],
+      "input_requirements": [
+        {"input_id": "company-history", "description": "História de fundação, marcos, pivôs e visão futura com fontes internas.", "required": true, "evidence_types": ["first_party_document", "user_brief"], "sensitivity": "internal"},
+        {"input_id": "customer-impact-proof", "description": "Histórias e resultados de clientes que sustentam a transformação narrada.", "required": true, "evidence_types": ["first_party_document", "interview_or_transcript"], "sensitivity": "customer_level_pii"},
+        {"input_id": "brand-positioning", "description": "Posicionamento, valor exclusivo e público já delimitado.", "required": true, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "message_system", "description": "Sistema narrativo de marca com elementos, versões, adaptações e requisitos de prova.", "required_sections": ["narrative-foundation", "full-story", "short-versions", "audience-adaptations", "proof-requirements", "usage-guidelines"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "A tática depende de história documentada, posicionamento, prova de impacto e controle de consistência entre versões; uma narrativa nascente sem esses elementos tenderia a fabricar marcos ou transformação.",
+      "prerequisites": [
+        {"prerequisite_id": "historical-facts-verified", "description": "Marcos, datas e histórias usadas na narrativa têm fonte identificável.", "required": true},
+        {"prerequisite_id": "audience-supplied", "description": "Os públicos das adaptações são fornecidos por Orientar ou marcados como hipótese.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A história exige fatos, resultados ou citações não verificados.", "reason": "Uma narrativa persuasiva não pode converter hipótese em claim factual.", "fallback": "Produzir estrutura com lacunas explícitas e solicitar validação antes da publicação."}
+      ],
+      "use_when": ["A marca precisa consolidar uma história de origem, transformação e futuro em versões reutilizáveis."],
+      "do_not_use_when": ["O problema é apenas proposta de valor, personalidade ou distribuição de conteúdo."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["mixed_language", "pii_sensitive", "unidiomatic_translation"], "assessment_note": "Há headings e expressões literais parcialmente em inglês, aspas finais órfãs e insumos narrativos potencialmente identificáveis; o arco e as exigências de verdade e prova são semanticamente claros."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 161, "review_notes": "Fonte completa revisada, incluindo fundação narrativa, quatro comprimentos, aplicações, autenticidade e evolução."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.auditoria-e-estrategia-de-conteudo",
+      "canonical_path": "biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+      "canonical_sha256": "76fe5b6f5556383fb31aa9cdd882f646312077802f2cf9f060a17d7b18c17b59",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Auditoria e estratégia de conteúdo",
+      "summary": "Audita uma biblioteca de conteúdo contra marca, mensagem e necessidades de jornada fornecidas, classificando manter, atualizar, retirar e preencher lacunas.",
+      "aliases": ["auditoria de alinhamento de conteúdo"],
+      "job_tags": ["audit", "classify", "plan", "prioritize"],
+      "object_tags": ["brand", "content", "customer-journey", "message"],
+      "need_tags": ["audit:content", "classify:content", "prioritize:content", "plan:message"],
+      "input_requirements": [
+        {"input_id": "content-inventory", "description": "Inventário identificável de ativos de conteúdo e seu estado atual.", "required": true, "evidence_types": ["first_party_document", "channel_inventory"], "sensitivity": "internal"},
+        {"input_id": "brand-message-contract", "description": "Posicionamento, proposta de valor, voz e mensagens aceitas.", "required": true, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "content-performance", "description": "Desempenho comparável por ativo, quando disponível.", "required": false, "evidence_types": ["analytics"], "sensitivity": "customer_aggregate"},
+        {"input_id": "journey-needs", "description": "Estágios e necessidades de jornada fornecidos por Orientar.", "required": true, "evidence_types": ["prior_decision", "user_brief"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "audit", "description": "Auditoria de conteúdo orientada por mensagem com classificação, lacunas e prioridades de atualização.", "required_sections": ["inventory-summary", "alignment-classification", "message-gaps", "update-priorities", "retirement-candidates", "measurement-gaps"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "É necessária uma biblioteca existente, contrato de marca/mensagem, necessidades de jornada e ao menos metadados por ativo; sem isso não há objeto auditável nem critério estável de classificação.",
+      "prerequisites": [
+        {"prerequisite_id": "content-inventory-normalized", "description": "Cada ativo tem identificador, tipo e referência de origem.", "required": true},
+        {"prerequisite_id": "message-contract-current", "description": "O contrato de marca e mensagem usado como critério está vigente.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A solicitação exige excluir, redirecionar, distribuir ou publicar conteúdo.", "reason": "A tática produz recomendações; não autoriza mutação externa nem decide canal/cadência.", "fallback": "Entregar inventário e recomendações, então encaminhar execução e distribuição aos owners apropriados com autorização."}
+      ],
+      "use_when": ["Existe biblioteca de conteúdo e é preciso avaliar alinhamento com marca, mensagem e jornada já definida."],
+      "do_not_use_when": ["Não há inventário ou o objetivo é gerar um único conceito novo sem auditar o acervo."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "needs_editorial_review", "translation_risk": "high", "flags": ["ambiguous_instruction", "mixed_language", "unidiomatic_translation"], "assessment_note": "As linhas 36 e 68 misturam idiomas e as linhas 147-156 e 169 contêm seções truncadas ou marcadores órfãos; o catálogo não trata esses defeitos como alteração autorizada da fonte."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 195, "review_notes": "Fonte completa revisada; foram identificadas seções quebradas no bloco de desempenho, sem inferir correção editorial."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.buyer-persona-validador",
+      "canonical_path": "biblioteca/Verbalizar/buyer-persona-validador.md",
+      "canonical_sha256": "95f7ff363cdd37e5aa84686fe9a6dfa754e22a6495015b09e20716f7546eceee",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Buyer persona Validador",
+      "summary": "Compara personas existentes com dados reais para corrigir pressupostos e extrair necessidades, objeções, linguagem e provas relevantes à mensagem; alterações de segmentação exigem validação de Orientar.",
+      "aliases": ["validador de buyer persona"],
+      "job_tags": ["analyze", "validate"],
+      "object_tags": ["customer-data", "customer-voice", "message", "persona-icp"],
+      "need_tags": ["validate:persona-icp", "analyze:customer-data", "analyze:customer-voice"],
+      "input_requirements": [
+        {"input_id": "existing-personas", "description": "Personas atuais e suas hipóteses explícitas.", "required": true, "evidence_types": ["first_party_document", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "customer-validation-data", "description": "Dados reais de cliente, pesquisa, comportamento, vendas e suporte.", "required": true, "evidence_types": ["crm_record", "crm_aggregate", "analytics", "interview_or_transcript"], "sensitivity": "customer_level_pii"},
+        {"input_id": "market-change-context", "description": "Mudanças de oferta e mercado desde a criação das personas.", "required": false, "evidence_types": ["market_source", "user_brief"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "analysis", "description": "Validação de persona focada em implicações de mensagem, com discrepâncias, evidências e encaminhamentos de segmentação.", "required_sections": ["accuracy-assessment", "evidence-gaps", "message-needs", "objections-and-proof", "orientar-handoff"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "A comparação exige personas existentes e dados reais multicanal; sem esses dois lados, a atividade seria criação especulativa, não validação.",
+      "prerequisites": [
+        {"prerequisite_id": "persona-baseline-exists", "description": "Existe uma persona documentada a ser validada.", "required": true},
+        {"prerequisite_id": "customer-data-provenance", "description": "As amostras reais possuem origem, período e escopo identificáveis.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "O resultado pretendido é criar ou aceitar segmentos, elegibilidade ou targeting operacional.", "reason": "Essas decisões pertencem a Orientar, apesar de o prompt de origem abrangê-las.", "fallback": "Produzir somente implicações de mensagem e um handoff de evidências para Orientar."}
+      ],
+      "use_when": ["Já existe persona e há dados reais suficientes para testar suas afirmações e implicações de mensagem."],
+      "do_not_use_when": ["Não existe persona de referência ou a decisão necessária é de segmentação e elegibilidade."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["pii_sensitive", "terminology_inconsistent", "unidiomatic_translation"], "assessment_note": "A tradução alterna pessoa, persona e equipe compradora, e o prompt atravessa targeting e campanha; a saída catalogada é limitada à mensagem e ao handoff."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 131, "review_notes": "Fonte completa revisada; validação, atualização de persona, targeting e mensagem foram separados por autoridade."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "canonical_path": "biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+      "canonical_sha256": "c00d4b6ded5608e1408f5a10454718ac35c637bde10e94908329c6360946148e",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Construtor de Hierarquia de Mensagens",
+      "summary": "Organiza mensagem central, mensagens de suporte, provas, adaptações por público fornecido, CTA e regras de uso em um sistema de mensagem consistente.",
+      "aliases": ["construtor de arquitetura de mensagens"],
+      "job_tags": ["design", "generate", "synthesize"],
+      "object_tags": ["message", "objection", "social-proof", "value-proposition", "voice-tone"],
+      "need_tags": ["design:message", "synthesize:value-proposition", "generate:objection"],
+      "input_requirements": [
+        {"input_id": "brand-foundation", "description": "Posicionamento, proposta de valor, propósito e diferenciais aceitos.", "required": true, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "audience-and-stage", "description": "Públicos e estágios fornecidos por Orientar.", "required": true, "evidence_types": ["prior_decision"], "sensitivity": "internal"},
+        {"input_id": "proof-assets", "description": "Dados, casos, depoimentos e provas comparativas verificáveis.", "required": true, "evidence_types": ["first_party_document", "analytics", "market_source"], "sensitivity": "customer_aggregate"}
+      ],
+      "output_contract": {"output_type": "message_system", "description": "Hierarquia de mensagem com núcleo, suporte, provas, adaptações, CTA e governança de consistência.", "required_sections": ["primary-message", "supporting-messages", "proof-map", "audience-adaptations", "cta-guidance", "usage-rules"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Uma hierarquia multínivel exige posicionamento estável, públicos definidos e inventário de prova; sem essa fundação, os níveis e adaptações seriam genéricos ou conflitantes.",
+      "prerequisites": [
+        {"prerequisite_id": "value-proposition-accepted", "description": "A proposta de valor central foi aceita ou marcada como hipótese em validação.", "required": true},
+        {"prerequisite_id": "audiences-owned-by-orientar", "description": "Verbalizar recebe públicos; não os cria ou altera ao adaptar mensagem.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "Públicos, proposta de valor ou provas essenciais estão ausentes.", "reason": "A hierarquia não teria base para priorização nem especificidade.", "fallback": "Executar primeiro o owner ou a tática que fornece a fundação ausente e manter lacunas explícitas."}
+      ],
+      "use_when": ["A proposta de valor existe e precisa ser desdobrada em mensagens de suporte, provas e adaptações controladas."],
+      "do_not_use_when": ["O objetivo é definir o segmento, escolher canal, frequência ou desenhar experimento formal."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["mixed_language", "unidiomatic_translation"], "assessment_note": "Há headings como Business Foundation, Tone approach e Landings page e várias construções literais; a hierarquia e seus blocos continuam semanticamente recuperáveis."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 196, "review_notes": "Fonte completa revisada; mensagens, prova, audiência, canais, medição e governança foram classificados por owner."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.criador-de-perfil-de-personalidade-da-marca",
+      "canonical_path": "biblioteca/Verbalizar/criador-de-perfil-de-personalidade-da-marca.md",
+      "canonical_sha256": "4335945b84a642d26dc8cd7fd4a233c15c119419c4cebd80270d71f569616b89",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Criador de perfil de personalidade da marca",
+      "summary": "Deriva traços, valores, estilo de relacionamento, voz, limites e exemplos de expressão a partir da comunicação real da marca.",
+      "aliases": ["perfil de personalidade de marca"],
+      "job_tags": ["analyze", "design"],
+      "object_tags": ["brand", "customer-voice", "message", "voice-tone"],
+      "need_tags": ["analyze:brand", "design:voice-tone", "design:message"],
+      "input_requirements": [
+        {"input_id": "brand-communication-sample", "description": "Amostra de site, email, social, vendas, suporte e comunicação interna.", "required": true, "evidence_types": ["brand_asset", "first_party_document", "interview_or_transcript"], "sensitivity": "customer_level_pii"},
+        {"input_id": "brand-context", "description": "Cultura, aspiração, setor e público já definido.", "required": true, "evidence_types": ["brand_asset", "user_brief", "prior_decision"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "framework", "description": "Perfil de personalidade e expressão verbal da marca com exemplos e lista de consistência.", "required_sections": ["current-patterns", "personality-traits", "voice-style", "values-and-beliefs", "situational-behavior", "expression-guidelines"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "nascente",
+      "maturity_rationale": "O método pode funcionar qualitativamente com uma amostra pequena de comunicação real e contexto de marca, sem depender de automação, mensuração avançada ou múltiplos sistemas.",
+      "prerequisites": [
+        {"prerequisite_id": "authentic-communication-exists", "description": "Há exemplos reais suficientes para separar padrão observado de aspiração.", "required": true},
+        {"prerequisite_id": "sensitive-content-redacted", "description": "Conversas de suporte e vendas são minimizadas ou redigidas antes do uso.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "Só existem adjetivos aspiracionais, sem comunicação real.", "reason": "O prompt pede padrões autênticos, não uma personalidade inventada.", "fallback": "Tratar traços como hipótese e coletar exemplos antes de publicar diretrizes."}
+      ],
+      "use_when": ["É preciso transformar padrões reais de comunicação em personalidade e voz consistentes."],
+      "do_not_use_when": ["A necessidade é escolher um arquétipo formal, reposicionar a categoria ou definir canais."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "medium", "flags": ["pii_sensitive", "unidiomatic_translation"], "assessment_note": "A fonte é semanticamente completa, mas usa construções literais e solicita conversas potencialmente sensíveis; minimização e revisão humana são necessárias."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 98, "review_notes": "Fonte completa revisada; análise, perfil, situações, exemplos e implementação foram verificados manualmente."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.decodificador-de-idioma-do-cliente",
+      "canonical_path": "biblioteca/Verbalizar/decodificador-de-idioma-do-cliente.md",
+      "canonical_sha256": "f78cdbb6d9480328ac8d1d6946c0b7d2f7a862b5e1aa9f96b30ce94317c6f1da",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Decodificador de Idioma do Cliente",
+      "summary": "Extrai vocabulário, emoções, descritores de valor, problema, processo e comparação de um corpus de feedback para criar guia de voz baseado no cliente.",
+      "aliases": ["decodificador de linguagem do cliente"],
+      "job_tags": ["analyze", "synthesize"],
+      "object_tags": ["customer-voice", "message", "voice-tone"],
+      "need_tags": ["analyze:customer-voice", "synthesize:voice-tone", "synthesize:message"],
+      "input_requirements": [
+        {"input_id": "customer-language-corpus", "description": "Avaliações, depoimentos, pesquisas, suporte e vendas com citações rastreáveis.", "required": true, "evidence_types": ["interview_or_transcript", "crm_record", "market_source"], "sensitivity": "customer_level_pii"},
+        {"input_id": "brand-context", "description": "Setor, público fornecido e voz atual para contextualizar padrões.", "required": true, "evidence_types": ["brand_asset", "prior_decision", "user_brief"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "analysis", "description": "Análise de linguagem e guia de voz com vocabulário preferido, evitado, evidências e exemplos.", "required_sections": ["language-patterns", "value-language", "problem-language", "voice-attributes", "preferred-vocabulary", "usage-examples"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "A própria fonte solicita dezenas de avaliações e múltiplas origens; um corpus mínimo e diversificado é necessário para chamar recorrência de padrão, embora não exija automação avançada.",
+      "prerequisites": [
+        {"prerequisite_id": "corpus-provenance-preserved", "description": "Cada citação mantém referência à origem sem expor PII desnecessária.", "required": true},
+        {"prerequisite_id": "corpus-not-positive-only", "description": "A amostra não é apresentada como representativa quando contém apenas interações positivas.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "O corpus é insuficiente, não rastreável ou enviesado e a saída seria tratada como voz validada.", "reason": "Frequência e autenticidade não podem ser comprovadas.", "fallback": "Produzir hipóteses de linguagem com confiança baixa e solicitar amostra adicional."}
+      ],
+      "use_when": ["Há corpus de feedback e é preciso transformar linguagem real em vocabulário e voz de marca."],
+      "do_not_use_when": ["Há apenas uma conversa ou quando o objetivo é uma síntese ampla de necessidades e fatores de decisão."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "medium", "flags": ["pii_sensitive", "unidiomatic_translation"], "assessment_note": "O método é semanticamente coerente, mas contém frases traduzidas literalmente e solicita material que pode conter PII; a proveniência deve ser preservada de forma minimizada."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 77, "review_notes": "Fonte completa revisada; corpus, categorias linguísticas, guia de voz e exemplos foram mapeados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.definidor-de-categoria-de-mercado",
+      "canonical_path": "biblioteca/Verbalizar/definidor-de-categoria-de-mercado.md",
+      "canonical_sha256": "5c934184c4889946d0c24bdd5fa451deee598acaf79ae983579a5a1de5bc82cb",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Definidor de Categoria de Mercado",
+      "summary": "Compara categorias existentes e alternativas para formular uma definição de categoria, posição de liderança, proposta de valor e narrativa educacional baseada em evidência.",
+      "aliases": ["definidor de categoria"],
+      "job_tags": ["analyze", "model", "plan"],
+      "object_tags": ["category", "competitor", "customer-value", "positioning"],
+      "need_tags": ["analyze:category", "model:positioning", "plan:category"],
+      "input_requirements": [
+        {"input_id": "market-category-evidence", "description": "Definição atual, tamanho, crescimento, atores e limites da categoria com fontes.", "required": true, "evidence_types": ["market_source"], "sensitivity": "public"},
+        {"input_id": "company-capabilities", "description": "Capacidades, resultados e visão que sustentariam a liderança proposta.", "required": true, "evidence_types": ["first_party_document", "technical_capability", "analytics"], "sensitivity": "internal"},
+        {"input_id": "customer-job-evidence", "description": "Trabalho do cliente, necessidades não atendidas e evolução observável.", "required": true, "evidence_types": ["interview_or_transcript", "market_source"], "sensitivity": "customer_level_pii"}
+      ],
+      "output_contract": {"output_type": "strategy", "description": "Estratégia de definição e mensagem de categoria com opções, recomendação, prova e riscos.", "required_sections": ["current-category-analysis", "category-options", "recommended-definition", "value-proposition", "education-message", "risks-and-proof"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Definir ou criar categoria exige pesquisa de mercado comparável, tamanho e crescimento, alternativas, capacidade própria e educação do mercado; isso supera uma operação nascente baseada apenas em briefing.",
+      "prerequisites": [
+        {"prerequisite_id": "market-sources-cited", "description": "Dimensão, crescimento e cenário competitivo têm fontes comparáveis.", "required": true},
+        {"prerequisite_id": "leadership-claims-provable", "description": "Claims de liderança e capacidade possuem evidência própria.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A recomendação depende de mercado, adoção ou liderança não verificados.", "reason": "O prompt inclui previsões e métricas que não podem ser inventadas.", "fallback": "Manter opções como hipóteses e solicitar pesquisa antes de aceitar a categoria ou seus claims."}
+      ],
+      "use_when": ["A principal ambiguidade de mensagem é em qual categoria a marca compete e há evidência para comparar opções."],
+      "do_not_use_when": ["A categoria já é aceita e a necessidade é apenas proposta de valor, voz ou conceito de campanha."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "needs_editorial_review", "translation_risk": "high", "flags": ["ambiguous_instruction", "mixed_language", "pii_sensitive", "unidiomatic_translation", "unverified_external_claim"], "assessment_note": "Há uso recorrente de lead em inglês, frases literais, dados de cliente potencialmente identificáveis e um marcador truncado nas linhas 162-163; toda estimativa e claim de mercado requer fonte externa verificável."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 164, "review_notes": "Fonte completa revisada; opções, liderança, educação, implementação e mensuração foram avaliadas, incluindo o bloco final truncado."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.desenvolvedor-de-estrategia-sazonal",
+      "canonical_path": "biblioteca/Verbalizar/desenvolvedor-de-estrategia-sazonal.md",
+      "canonical_sha256": "20674c413d3fd56fc2d4694171b6e9bc8cc77c6faff448fc2d108cb5305ab920",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Desenvolvedor de estratégia sazonal",
+      "summary": "Cria temas e eixos de mensagem sazonais para doze meses a partir de marca, ciclos observados e contexto cultural, deixando canal, frequência e execução para Ampliar.",
+      "aliases": ["planejador de mensagem sazonal"],
+      "job_tags": ["design", "plan"],
+      "object_tags": ["brand", "campaign", "content", "customer-journey", "message"],
+      "need_tags": ["plan:campaign", "design:message", "plan:content"],
+      "input_requirements": [
+        {"input_id": "brand-message-foundation", "description": "Posicionamento, personalidade, valores e mensagens aceitas.", "required": true, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "seasonal-patterns", "description": "Padrões de compra, setor, orçamento, cultura e engajamento com período e mercado definidos.", "required": true, "evidence_types": ["analytics", "market_source", "crm_aggregate"], "sensitivity": "customer_aggregate"},
+        {"input_id": "journey-context", "description": "Estágios e prioridades de jornada fornecidos por Orientar.", "required": true, "evidence_types": ["prior_decision"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "strategy", "description": "Estratégia anual de temas e mensagens sazonais com contexto, autenticidade e handoff de distribuição.", "required_sections": ["seasonal-evidence", "quarterly-themes", "monthly-message-focus", "brand-guardrails", "content-directions", "ampliar-handoff"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Uma estratégia de doze meses requer histórico sazonal, ciclos de negócio, marca estável, jornada definida e capacidade de planejamento; sem dados comparáveis, calendário viraria lista genérica de feriados.",
+      "prerequisites": [
+        {"prerequisite_id": "seasonality-evidenced", "description": "Sazonalidade foi observada no mercado ou nos dados próprios, não presumida.", "required": true},
+        {"prerequisite_id": "distribution-owner-handoff", "description": "Canal, calendário operacional, frequência e orçamento serão decididos por Ampliar.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "O objetivo exige escolher canais, frequência, orçamento ou datas operacionais de envio.", "reason": "Essas decisões pertencem a Ampliar e não podem ser aceitas como output de Verbalizar.", "fallback": "Entregar temas e restrições de mensagem e emitir handoff para Ampliar."}
+      ],
+      "use_when": ["Há evidência de ciclos sazonais e é preciso criar um eixo anual de mensagem coerente com a marca."],
+      "do_not_use_when": ["A sazonalidade é apenas presumida ou a decisão principal é de canal, cadência e alocação."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["terminology_inconsistent", "unidiomatic_translation"], "assessment_note": "O prompt mistura Q e T para trimestres, contém construções literais e um heading incompleto na linha 164; os blocos de canal e recursos exigem handoff."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 197, "review_notes": "Fonte completa revisada; calendário, temas, canais, medição e coordenação foram separados por owner."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.esclarecimento-de-objetivo-e-missao",
+      "canonical_path": "biblioteca/Verbalizar/esclarecimento-de-objetivo-e-missao.md",
+      "canonical_sha256": "42ed31881eb8dd7462929a1b2877e0f8d17dccbfd83de0e54a365062ec3e2d06",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Esclarecimento de objetivo e missão",
+      "summary": "Extrai propósito, missão e crenças de suporte da história, impacto real e valores demonstrados pela empresa para orientar mensagens de marca.",
+      "aliases": ["clarificador de propósito e missão"],
+      "job_tags": ["design", "synthesize"],
+      "object_tags": ["brand", "customer-value", "positioning"],
+      "need_tags": ["synthesize:brand", "design:positioning", "synthesize:customer-value"],
+      "input_requirements": [
+        {"input_id": "company-history-and-impact", "description": "História de criação, marcos, impacto no cliente e motivações da equipe.", "required": true, "evidence_types": ["first_party_document", "user_brief", "interview_or_transcript"], "sensitivity": "internal"},
+        {"input_id": "company-context", "description": "Setor, ofertas, clientes e tempo de atividade.", "required": true, "evidence_types": ["user_brief", "brand_asset"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "framework", "description": "Fundação de propósito com análise, opções de declaração, crenças e implicações de mensagem.", "required_sections": ["purpose-analysis", "purpose-options", "supporting-beliefs", "evidence-map", "message-implications"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "nascente",
+      "maturity_rationale": "A atividade pode ser conduzida qualitativamente a partir da história e do impacto documentados, sem depender de automação ou mensuração avançada, desde que aspiração e fato permaneçam distintos.",
+      "prerequisites": [
+        {"prerequisite_id": "purpose-evidence-available", "description": "Há exemplos de ações ou impacto que sustentem o propósito proposto.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A empresa busca apenas uma frase aspiracional sem evidência de comportamento ou impacto.", "reason": "O próprio método exige propósito extraído da história real.", "fallback": "Produzir perguntas e hipóteses, sem aceitar uma declaração final como fato."}
+      ],
+      "use_when": ["A falta de clareza de propósito ou missão está contaminando posicionamento e mensagem."],
+      "do_not_use_when": ["Missão e propósito já estão aceitos e a necessidade é hierarquia, voz ou distribuição."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "medium", "flags": ["unidiomatic_translation"], "assessment_note": "A estrutura é completa, mas há traduções literais como Mergulho Profundo Por Que e Alterar Criamos; os conceitos de propósito, crença e evidência são recuperáveis."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 71, "review_notes": "Fonte completa revisada; história, cinco eixos, opções, crenças e ativação foram classificados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "canonical_path": "biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+      "canonical_sha256": "76efba501dc90bfe2b8f64c8d066c4c86c4b1d49c6d71eb096795db8b977dfbb",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Gerador de Conceito de Campanha",
+      "summary": "Gera e prioriza conceitos criativos de campanha coerentes com posicionamento, mensagem, público fornecido e oportunidade de mercado, sem decidir canal ou experimento.",
+      "aliases": ["gerador de conceito criativo de campanha"],
+      "job_tags": ["design", "generate", "prioritize"],
+      "object_tags": ["brand", "campaign", "content", "message"],
+      "need_tags": ["generate:campaign", "design:message", "prioritize:campaign"],
+      "input_requirements": [
+        {"input_id": "brand-message-foundation", "description": "Posicionamento, personalidade, voz e mensagens principais já definidos.", "required": true, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "audience-need", "description": "Segmento e necessidade do cliente fornecidos por Orientar.", "required": true, "evidence_types": ["prior_decision", "user_brief"], "sensitivity": "internal"},
+        {"input_id": "campaign-context", "description": "Objetivo de negócio, restrições, concorrência e oportunidade observável.", "required": true, "evidence_types": ["user_brief", "market_source", "technical_capability"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "campaign_system", "description": "Portfólio priorizado de conceitos de campanha com mensagem, narrativa, CTA, prova, riscos e requisitos de handoff.", "required_sections": ["campaign-brief", "concept-options", "message-and-cta", "proof-needs", "comparison-matrix", "priority-recommendation", "handoff-requirements"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "A geração responsável de 5 a 7 conceitos requer fundação de marca, audiência, objetivo, restrições e capacidade declarada; não depende de maturidade avançada, mas vai além de um briefing nascente incompleto.",
+      "prerequisites": [
+        {"prerequisite_id": "message-hierarchy-available", "description": "Há mensagem central e guardrails suficientes para avaliar consistência criativa.", "required": true},
+        {"prerequisite_id": "campaign-scope-separated", "description": "Conceito e mensagem são separados de canal, cadência, orçamento e experimento formal.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A solicitação pretende aceitar canais, cronograma operacional, mídia paga ou métricas experimentais.", "reason": "Esses blocos do prompt atravessam a autoridade de Ampliar e Refinar.", "fallback": "Entregar conceitos, mensagem e restrições; emitir handoffs para decisão de distribuição e medição."}
+      ],
+      "use_when": ["A mensagem e audiência estão definidas e é preciso criar alternativas de conceito criativo para uma campanha."],
+      "do_not_use_when": ["Faltam fundação de marca e público ou quando a necessidade principal é plano de canal e execução."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["mixed_language", "unidiomatic_translation"], "assessment_note": "O texto mistura Business Foundation e Hero com traduções literais e abrange canal, cronograma e métricas; o catálogo limita o output ao conceito e mensagem."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 145, "review_notes": "Fonte completa revisada; sete conceitos, comparação, integração e calendário foram delimitados por owner."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.gerador-de-tema-de-conteudo",
+      "canonical_path": "biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+      "canonical_sha256": "e14009f0530bc7fe87e933082e9709c226e0ba59ab567bc62701153bb05fc030",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Gerador de Tema de Conteúdo",
+      "summary": "Deriva temas editoriais de posicionamento, proposta de valor, voz e necessidades de jornada fornecidas, com mensagem, prova e CTA por tema.",
+      "aliases": ["gerador de pilares de conteúdo"],
+      "job_tags": ["design", "generate", "plan"],
+      "object_tags": ["brand", "content", "customer-journey", "message"],
+      "need_tags": ["generate:content", "design:message", "plan:content"],
+      "input_requirements": [
+        {"input_id": "brand-message-foundation", "description": "Posicionamento, voz, proposta de valor e propósito aceitos.", "required": true, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "audience-journey-needs", "description": "Segmentos, estágios e necessidades fornecidos por Orientar.", "required": true, "evidence_types": ["prior_decision"], "sensitivity": "internal"},
+        {"input_id": "content-context", "description": "Capacidade de produção, conteúdo atual e contexto competitivo.", "required": false, "evidence_types": ["channel_inventory", "technical_capability", "market_source"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "strategy", "description": "Sistema de temas de conteúdo com mensagem, prova, CTA, ideias e limites de uso.", "required_sections": ["content-mission", "theme-system", "message-by-theme", "proof-and-cta", "content-ideas", "handoff-constraints"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Temas coesos exigem uma hierarquia de mensagem e mapa de necessidades por jornada já definidos; capacidade e desempenho ajudam, mas não são necessários para produzir o sistema editorial inicial.",
+      "prerequisites": [
+        {"prerequisite_id": "message-hierarchy-current", "description": "A hierarquia de mensagem é a fonte de verdade para os temas.", "required": true},
+        {"prerequisite_id": "journey-needs-owned", "description": "Verbalizar consome estágios e necessidades sem redefini-los.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A decisão pedida é frequência, calendário, canal, orçamento ou otimização por performance.", "reason": "Esses elementos do prompt pertencem a Ampliar ou Refinar.", "fallback": "Entregar temas, mensagens e requisitos e encaminhar distribuição e medição."}
+      ],
+      "use_when": ["A marca precisa de 5 a 7 eixos editoriais derivados de mensagem e jornada já definidas."],
+      "do_not_use_when": ["O objetivo é auditar o acervo existente ou criar um conceito único de campanha."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "medium", "flags": ["unidiomatic_translation"], "assessment_note": "A estrutura é completa, mas contém traduções literais de jornada, construção de marca e dimensionamento; canal, frequência e métricas precisam de handoff."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 112, "review_notes": "Fonte completa revisada; temas, jornada, canais, frequência, medição e escala foram separados por autoridade."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.identificador-do-arquetipo-da-marca",
+      "canonical_path": "biblioteca/Verbalizar/identificador-do-arquetipo-da-marca.md",
+      "canonical_sha256": "9715aa7f709a7133627a000587fba22dc4f377f2248d40a72bc294d41515ec58",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Identificador do arquétipo da marca",
+      "summary": "Compara expressão atual, percepção e aspiração da marca com doze arquétipos para recomendar uma âncora primária e limites de voz, mensagem e personalidade.",
+      "aliases": ["identificador de arquétipo de marca"],
+      "job_tags": ["analyze", "classify", "design"],
+      "object_tags": ["brand", "positioning", "voice-tone"],
+      "need_tags": ["analyze:brand", "classify:brand", "design:voice-tone"],
+      "input_requirements": [
+        {"input_id": "current-brand-expression", "description": "Mensagem, visual, tom e interações atuais da marca.", "required": true, "evidence_types": ["brand_asset", "first_party_document"], "sensitivity": "internal"},
+        {"input_id": "customer-brand-perception", "description": "Comentários, associações e respostas emocionais de clientes.", "required": true, "evidence_types": ["interview_or_transcript", "crm_aggregate"], "sensitivity": "customer_level_pii"},
+        {"input_id": "brand-aspiration", "description": "Valores, missão, percepção desejada e relacionamento pretendido.", "required": true, "evidence_types": ["brand_asset", "user_brief"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "framework", "description": "Avaliação arquetípica e diretrizes verbais de implementação com evidência e limites.", "required_sections": ["archetype-assessment", "primary-archetype", "secondary-influence", "voice-expression", "message-guardrails", "validation-gaps"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Uma escolha arquetípica defensável requer expressão atual, percepção externa e aspiração documentadas; sem essas três fontes, o resultado seria preferência estética sem validação.",
+      "prerequisites": [
+        {"prerequisite_id": "archetype-reference-reviewed", "description": "As definições dos arquétipos na fonte são revisadas editorialmente antes de uso decisório.", "required": true},
+        {"prerequisite_id": "brand-evidence-triangulated", "description": "A recomendação compara expressão, percepção e aspiração, sem depender de uma fonte única.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "As definições de arquétipo da fonte são usadas literalmente sem revisão.", "reason": "A enumeração contém rótulos mistraduzidos e mistura de idiomas que pode alterar a classificação.", "fallback": "Usar perfil de personalidade sem arquétipo ou obter referência editorial validada antes da seleção."}
+      ],
+      "use_when": ["Existe evidência de marca suficiente e um arquétipo ajudará a ancorar voz e personalidade."],
+      "do_not_use_when": ["A marca ainda não tem expressão observável ou precisa apenas de um perfil de personalidade não arquetípico."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "needs_editorial_review", "translation_risk": "high", "flags": ["mixed_language", "pii_sensitive", "terminology_inconsistent", "unidiomatic_translation"], "assessment_note": "A lista contém The Everyman/Regular Guy, traduz Ruler como Régua e alterna Sage e Archetype; entrevistas potencialmente identificáveis e a referência exigem controles e revisão antes de classificar."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 199, "review_notes": "Fonte completa revisada, incluindo os doze rótulos, scoring, expressão verbal/visual e implementação."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.localizador-de-lacunas-do-concorrente",
+      "canonical_path": "biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+      "canonical_sha256": "c841a794f1e7cc0ee790a9438b64c6bb356091c66dcb3bfa9db543675635845a",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Localizador de lacunas do concorrente",
+      "summary": "Mapeia temas, provas, tons e necessidades ausentes na mensagem competitiva para formular oportunidades de posicionamento específicas e defensáveis.",
+      "aliases": ["localizador de lacunas competitivas"],
+      "job_tags": ["analyze", "identify", "prioritize"],
+      "object_tags": ["competitor", "message", "positioning"],
+      "need_tags": ["analyze:competitor", "identify:positioning", "prioritize:message"],
+      "input_requirements": [
+        {"input_id": "competitor-message-set", "description": "Mensagens e provas observáveis de 5 a 7 concorrentes, com referências.", "required": true, "evidence_types": ["market_source"], "sensitivity": "public"},
+        {"input_id": "company-positioning-context", "description": "Posicionamento atual, capacidades e público fornecido.", "required": true, "evidence_types": ["brand_asset", "user_brief", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "customer-need-evidence", "description": "Evidência de necessidades que sustentam qualquer lacuna proposta.", "required": true, "evidence_types": ["interview_or_transcript", "market_source"], "sensitivity": "customer_level_pii"}
+      ],
+      "output_contract": {"output_type": "analysis", "description": "Mapa de lacunas competitivas e oportunidades priorizadas de posicionamento e prova.", "required_sections": ["common-themes", "message-gaps", "proof-gaps", "positioning-opportunities", "priority-recommendation", "risks"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "A tática depende de amostra competitiva, capacidades próprias e evidência de cliente para provar que uma ausência é oportunidade real, não apenas silêncio circunstancial.",
+      "prerequisites": [
+        {"prerequisite_id": "competitor-sources-current", "description": "As mensagens comparadas têm origem e período conhecidos.", "required": true},
+        {"prerequisite_id": "gap-customer-relevance-proven", "description": "Cada lacuna priorizada se conecta a necessidade observada do cliente.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A ausência de mensagem do concorrente é tratada automaticamente como mercado disponível.", "reason": "Silêncio competitivo não prova demanda, capacidade ou defensibilidade.", "fallback": "Registrar como hipótese e solicitar evidência de cliente e capacidade antes do posicionamento."}
+      ],
+      "use_when": ["É preciso encontrar espaço de posicionamento a partir de mensagens competitivas e necessidades observadas."],
+      "do_not_use_when": ["O objetivo é analisar apenas voz/tom ou provar diferenciais a partir de resultados próprios."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "medium", "flags": ["mixed_language", "pii_sensitive", "unidiomatic_translation"], "assessment_note": "Há o heading Oportunidade Gap, construções literais e insumos competitivos potencialmente identificáveis, mas inputs, dimensões de análise e recomendações permanecem claros."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 59, "review_notes": "Fonte completa revisada; mensagens, lacunas de problema, segmento, posicionamento e recomendações foram classificados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.mapeador-da-jornada-do-cliente",
+      "canonical_path": "biblioteca/Verbalizar/mapeador-da-jornada-do-cliente.md",
+      "canonical_sha256": "2222dde62185d4a963c0abeddbcfe4a4cf9c54f004e513889c40d4c3b7781504",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Mapeador da jornada do cliente",
+      "summary": "Mapeia emoções, perguntas, linguagem, objeções e necessidades de mensagem ao longo de estágios fornecidos, sem aceitar lifecycle ou elegibilidade como decisão de Verbalizar.",
+      "aliases": ["mapeador de linguagem por jornada"],
+      "job_tags": ["analyze", "map"],
+      "object_tags": ["customer-journey", "customer-voice", "message", "touchpoint"],
+      "need_tags": ["map:customer-journey", "analyze:customer-voice", "map:message"],
+      "input_requirements": [
+        {"input_id": "journey-stage-contract", "description": "Estágios e eventos de lifecycle fornecidos por Orientar.", "required": true, "evidence_types": ["prior_decision"], "sensitivity": "internal"},
+        {"input_id": "journey-evidence", "description": "Entrevistas, analytics, vendas, suporte e pesquisas associados aos estágios.", "required": true, "evidence_types": ["interview_or_transcript", "analytics", "crm_record"], "sensitivity": "customer_level_pii"},
+        {"input_id": "product-and-sales-context", "description": "Oferta, processo de vendas e contexto de compra.", "required": true, "evidence_types": ["user_brief", "first_party_document"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "journey_map", "description": "Mapa de necessidades e mensagens por estágio fornecido, com evidência e lacunas para handoff.", "required_sections": ["stage-contract", "questions-and-emotions", "message-needs", "objections", "proof-needs", "owner-handoffs"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "O método pede múltiplas fontes comportamentais e qualitativas ligadas a uma jornada já definida; sem estágio e evidência, a sequência e seus insights seriam inventados.",
+      "prerequisites": [
+        {"prerequisite_id": "orientar-stage-map-available", "description": "Orientar forneceu ou validou os estágios; Verbalizar não os redefine.", "required": true},
+        {"prerequisite_id": "journey-evidence-linked", "description": "Observações e citações podem ser associadas ao estágio ou marcadas como lacuna.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A tarefa é criar estágios, critérios de progressão, elegibilidade, duração operacional ou touchpoint cadence.", "reason": "Essas decisões pertencem a Orientar ou Ampliar.", "fallback": "Produzir somente necessidades de mensagem e emitir handoff para os owners estruturais."}
+      ],
+      "use_when": ["Os estágios já existem e é preciso entender perguntas, emoções e mensagens em cada um."],
+      "do_not_use_when": ["A jornada ainda precisa ser definida como lifecycle ou não há evidência associável aos estágios."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "needs_editorial_review", "translation_risk": "high", "flags": ["ambiguous_instruction", "pii_sensitive", "unidiomatic_translation"], "assessment_note": "A linha 148 termina em uma instrução incompleta e há traduções literais; o prompt também tenta decidir estágios e duração, que são removidos do output catalogado por limite de autoridade."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 195, "review_notes": "Fonte completa revisada; sete estágios, perguntas, emoções, touchpoints, métricas e a linha truncada foram avaliados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.otimizador-de-proposta-de-valor",
+      "canonical_path": "biblioteca/Verbalizar/otimizador-de-proposta-de-valor.md",
+      "canonical_sha256": "08b698eb9eb37f6ed30385c9935bebf944c406cb9ebab3628f16af1801fe5e05",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Otimizador de proposta de valor",
+      "summary": "Avalia relevância, diferenciação, prova, clareza e motivação de ação para criar opções e uma arquitetura otimizada de proposta de valor.",
+      "aliases": ["otimizador de value proposition"],
+      "job_tags": ["analyze", "generate", "optimize"],
+      "object_tags": ["competitor", "customer-voice", "positioning", "value-proposition"],
+      "need_tags": ["analyze:value-proposition", "optimize:positioning", "generate:value-proposition"],
+      "input_requirements": [
+        {"input_id": "current-value-proposition", "description": "Proposta de valor, mensagens e posicionamento atuais.", "required": false, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "customer-value-evidence", "description": "Jobs, fatores de decisão, resultados e linguagem do cliente.", "required": true, "evidence_types": ["interview_or_transcript", "crm_aggregate", "analytics"], "sensitivity": "customer_level_pii"},
+        {"input_id": "competitive-alternatives", "description": "Propostas de valor e alternativas comparáveis.", "required": true, "evidence_types": ["market_source"], "sensitivity": "public"},
+        {"input_id": "proof-assets", "description": "Provas quantitativas, qualitativas e comparativas disponíveis.", "required": true, "evidence_types": ["first_party_document", "analytics", "market_source"], "sensitivity": "customer_aggregate"}
+      ],
+      "output_contract": {"output_type": "optimization_plan", "description": "Diagnóstico e arquitetura de proposta de valor com opções, recomendação e mapa de prova.", "required_sections": ["current-assessment", "customer-value-drivers", "competitive-differentiation", "value-proposition-options", "recommended-architecture", "proof-map", "test-opportunities"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "O método requer evidência de cliente, alternativas e provas para comparar opções; ainda pode operar sem experimentação avançada, desde que oportunidades de teste não sejam tratadas como resultados.",
+      "prerequisites": [
+        {"prerequisite_id": "customer-job-evidenced", "description": "Jobs e geradores de valor têm fonte, não são apenas suposição interna.", "required": true},
+        {"prerequisite_id": "claims-provable", "description": "Cada claim recomendado possui prova ou lacuna explícita.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A saída precisa escolher segmento, canal ou aceitar eficácia por métricas ainda não testadas.", "reason": "Verbalizar decide a proposta, não audiência, distribuição nem classificação de performance.", "fallback": "Entregar a arquitetura e oportunidades de teste, com handoff a Orientar, Ampliar ou Refinar."}
+      ],
+      "use_when": ["É preciso criar ou refinar a proposta de valor central com evidência de cliente, prova e diferenciação."],
+      "do_not_use_when": ["Faltam evidências de valor e alternativas ou quando a necessidade é apenas organizar uma proposta já aceita em hierarquia."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["mixed_language", "pii_sensitive", "unidiomatic_translation"], "assessment_note": "A fonte alterna value prop, homepage e Landings page com português, usa construções literais e admite insumos identificáveis; o núcleo de proposta, prova e diferenciação é consistente."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 209, "review_notes": "Fonte completa revisada; diagnóstico, jobs, concorrência, opções, canais, testes e roadmap foram delimitados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.perfil-do-cliente-ideal",
+      "canonical_path": "biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+      "canonical_sha256": "811d802018adaeca8346d9955ac89706a9278d0a04c1fcedbd056d0ec86b8de6",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Perfil do cliente ideal",
+      "summary": "Analisa dados de clientes para produzir um rascunho de ICP e suas implicações de linguagem, objeção, prova e proposta de valor, exigindo validação de Orientar para decisões de segmentação.",
+      "aliases": ["construtor de ICP"],
+      "job_tags": ["analyze", "model", "segment"],
+      "object_tags": ["customer-data", "message", "persona-icp", "segmentation"],
+      "need_tags": ["analyze:customer-data", "model:persona-icp", "segment:segmentation"],
+      "input_requirements": [
+        {"input_id": "customer-records", "description": "Dados demográficos, firmográficos, valor, comportamento e sucesso com período e amostra.", "required": true, "evidence_types": ["crm_record", "crm_aggregate", "analytics"], "sensitivity": "customer_level_pii"},
+        {"input_id": "customer-research", "description": "Pesquisas, vendas e histórias de sucesso que explicam necessidades e linguagem.", "required": true, "evidence_types": ["interview_or_transcript", "first_party_document"], "sensitivity": "customer_level_pii"},
+        {"input_id": "business-context", "description": "Oferta, setor, modelo e mercados atendidos.", "required": true, "evidence_types": ["user_brief", "first_party_document"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "segmentation_model", "description": "Rascunho evidenciado de ICP com implicações de mensagem e handoff obrigatório para Orientar.", "required_sections": ["data-summary", "candidate-profiles", "message-needs", "objections-and-proof", "confidence-and-gaps", "orientar-validation-handoff"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "A criação baseada em dados exige registros comparáveis, valor e sucesso observados e pesquisa qualitativa; sem isso, o ICP seria apenas descrição aspiracional.",
+      "prerequisites": [
+        {"prerequisite_id": "customer-data-minimized", "description": "PII é minimizada e a análise usa agregados sempre que possível.", "required": true},
+        {"prerequisite_id": "orientar-validation-required", "description": "O rascunho não se torna segmento, elegibilidade ou targeting aceito sem Orientar.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "O output será usado diretamente para inclusão, exclusão, scoring, canal ou frequência.", "reason": "O prompt atravessa autoridades de Orientar e Ampliar e contém blocos truncados.", "fallback": "Usar apenas os insights de mensagem e encaminhar o rascunho para validação estrutural."}
+      ],
+      "use_when": ["O ICP está ausente ou genérico e há dados reais suficientes para criar hipóteses de perfil e mensagem."],
+      "do_not_use_when": ["A decisão imediata é elegibilidade/segmentação operacional ou os dados não sustentam clusters."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "needs_editorial_review", "translation_risk": "high", "flags": ["ambiguous_instruction", "pii_sensitive", "unidiomatic_translation"], "assessment_note": "A tarefa da linha 9 é incompleta e as linhas 77-97 contêm vários blocos truncados; o prompt também invade segmentação, canal e qualificação."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 98, "review_notes": "Fonte completa revisada; foram registrados os blocos truncados e a fronteira entre mensagem e decisão de segmento."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.planejador-de-ativacao-de-marcas",
+      "canonical_path": "biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md",
+      "canonical_sha256": "92c9805ef3b5500ed7bed657b3d0a18c9e6f896bd36082b6662a2379a89e6db9",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Planejador de Ativação de marcas",
+      "summary": "Estrutura narrativa, mensagens, guardrails e comunicação de lançamento ou rebranding, produzindo requisitos para execução, canal e medição por outros owners.",
+      "aliases": ["planejador de comunicação de ativação de marca"],
+      "job_tags": ["coordinate", "plan"],
+      "object_tags": ["brand", "campaign", "content", "message", "touchpoint"],
+      "need_tags": ["plan:brand", "coordinate:message", "plan:campaign"],
+      "input_requirements": [
+        {"input_id": "activation-change-contract", "description": "Tipo, escopo, motivo, identidade anterior e nova identidade aprovada.", "required": true, "evidence_types": ["brand_asset", "prior_decision", "user_brief"], "sensitivity": "internal"},
+        {"input_id": "stakeholder-context", "description": "Grupos internos, clientes, parceiros e preocupações conhecidas.", "required": true, "evidence_types": ["first_party_document", "crm_aggregate"], "sensitivity": "customer_aggregate"},
+        {"input_id": "capability-and-risk-context", "description": "Capacidade, prazo, orçamento e tolerância a risco declarados.", "required": true, "evidence_types": ["technical_capability", "user_brief"], "sensitivity": "confidential"}
+      ],
+      "output_contract": {"output_type": "strategy", "description": "Estratégia de comunicação de ativação com narrativa, mensagens, stakeholders, riscos e handoffs operacionais.", "required_sections": ["activation-narrative", "stakeholder-messages", "brand-guardrails", "launch-content", "risk-communications", "owner-handoffs"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Lançamento ou rebranding envolve identidade aprovada, múltiplos stakeholders, ativos, risco, orçamento e capacidade de coordenação; sem governança e fundação estáveis, a ativação pode fragmentar a marca.",
+      "prerequisites": [
+        {"prerequisite_id": "new-brand-contract-approved", "description": "A identidade, posicionamento, mensagem e valor novos estão aprovados antes do plano de ativação.", "required": true},
+        {"prerequisite_id": "external-execution-gated", "description": "O plano não autoriza lançamento, publicação ou mutação externa.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A tarefa exige cronograma operacional, seleção de canais, orçamento, lançamento real ou interpretação de performance.", "reason": "Essas decisões e ações excedem Verbalizar.", "fallback": "Entregar mensagem, conteúdo e restrições; encaminhar execução a Ampliar, Refinar e operador autorizado."}
+      ],
+      "use_when": ["Uma identidade nova ou refinada já foi aprovada e precisa de narrativa e sistema de comunicação para ativação."],
+      "do_not_use_when": ["A marca nova ainda não está definida ou o pedido é executar o lançamento e escolher a distribuição."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "needs_editorial_review", "translation_risk": "high", "flags": ["ambiguous_instruction", "mixed_language", "unidiomatic_translation"], "assessment_note": "A linha 69 é truncada, a linha 143 contém marcador órfão e há trechos como PR strategy; o prompt abrange operações e canais que exigem handoff."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 279, "review_notes": "Fonte completa revisada; fundação, lançamento, canais, stakeholders, riscos, métricas e linhas truncadas foram avaliados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.posicionador-de-lideranca-de-pensamento",
+      "canonical_path": "biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+      "canonical_sha256": "4cf90136d087759b4cbfc25a90c5ab9c876ed0effe25c4c298b027c0720510a6",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Posicionador de liderança de pensamento",
+      "summary": "Define áreas de autoridade, pontos de vista, prova e mensagens de thought leadership, deixando plataforma, calendário de distribuição e performance para handoff.",
+      "aliases": ["estrategista de thought leadership"],
+      "job_tags": ["design", "plan"],
+      "object_tags": ["brand", "content", "positioning", "thought-leadership"],
+      "need_tags": ["design:thought-leadership", "plan:content", "design:positioning"],
+      "input_requirements": [
+        {"input_id": "expertise-proof", "description": "Experiência, metodologias, resultados, pesquisa e reconhecimento verificáveis.", "required": true, "evidence_types": ["first_party_document", "market_source", "analytics"], "sensitivity": "internal"},
+        {"input_id": "market-topic-context", "description": "Desafios, tendências, líderes atuais e lacunas com fontes.", "required": true, "evidence_types": ["market_source"], "sensitivity": "public"},
+        {"input_id": "audience-information-needs", "description": "Necessidades de informação do público fornecidas por pesquisa ou Orientar.", "required": true, "evidence_types": ["interview_or_transcript", "prior_decision"], "sensitivity": "customer_level_pii"}
+      ],
+      "output_contract": {"output_type": "strategy", "description": "Estratégia de posicionamento de autoridade com tópicos, pontos de vista, prova e direções de conteúdo.", "required_sections": ["authority-areas", "distinct-points-of-view", "proof-base", "topic-system", "message-guidelines", "distribution-handoff"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Liderança de pensamento responsável depende de expertise comprovada, insights próprios, prova, pesquisa de mercado e capacidade editorial sustentada; sem isso, claims de autoridade seriam vazios.",
+      "prerequisites": [
+        {"prerequisite_id": "authority-claims-evidenced", "description": "Cada área de autoridade possui experiência ou evidência verificável.", "required": true},
+        {"prerequisite_id": "platform-decisions-deferred", "description": "Canais, frequência e calendário são encaminhados a Ampliar.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "A marca quer reivindicar autoridade sem expertise, pesquisa ou prova suficiente.", "reason": "O posicionamento produziria claim factual não verificável.", "fallback": "Produzir um plano de construção de prova e limitar a mensagem a experiência demonstrada."}
+      ],
+      "use_when": ["Há expertise real e é preciso definir território, ponto de vista e sistema de mensagem de autoridade."],
+      "do_not_use_when": ["A necessidade principal é selecionar plataformas, cadência, mídia ou medir resultados já executados."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["mixed_language", "pii_sensitive", "unidiomatic_translation", "unverified_external_claim"], "assessment_note": "Há uso frequente de lead, construções literais, entrevistas potencialmente identificáveis e sugestões de mercado/plataforma que exigem fontes; o catálogo preserva apenas posicionamento e mensagem."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 222, "review_notes": "Fonte completa revisada; autoridade, tópicos, plataformas, calendário, audiência, métricas e roadmap foram delimitados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.posicionamento-da-parceria",
+      "canonical_path": "biblioteca/Verbalizar/posicionamento-da-parceria.md",
+      "canonical_sha256": "448b34e68c76692ada81c51422ba52ae4702454fc78e28463b2e22c4cb2541a0",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Posicionamento da parceria",
+      "summary": "Define proposta de valor conjunta, hierarquia de mensagem, voz, prova e guardrails de co-branding para parcerias, sem aceitar governança jurídica ou distribuição.",
+      "aliases": ["posicionamento de co-branding"],
+      "job_tags": ["coordinate", "design", "plan"],
+      "object_tags": ["brand", "message", "partnership", "value-proposition"],
+      "need_tags": ["design:partnership", "coordinate:message", "plan:brand"],
+      "input_requirements": [
+        {"input_id": "brand-guardrails", "description": "Posicionamento, valores, identidade, voz e elementos não negociáveis.", "required": true, "evidence_types": ["brand_asset", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "partnership-context", "description": "Tipo, parceiros, objetivo, sobreposição de clientes e riscos conhecidos.", "required": true, "evidence_types": ["user_brief", "first_party_document"], "sensitivity": "confidential"},
+        {"input_id": "joint-value-proof", "description": "Capacidades e evidências que sustentam valor conjunto.", "required": true, "evidence_types": ["technical_capability", "analytics", "first_party_document"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "framework", "description": "Framework de mensagem e proteção de marca para parceria com proposta conjunta, prova e aprovações necessárias.", "required_sections": ["non-negotiable-guardrails", "joint-value-proposition", "message-hierarchy", "voice-and-proof", "approval-needs", "distribution-handoff"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Parcerias exigem marca estabilizada, objetivos e responsabilidades documentados, prova conjunta e governança; sem isso, a mensagem pode diluir a marca ou prometer capacidade não acordada.",
+      "prerequisites": [
+        {"prerequisite_id": "partner-scope-documented", "description": "Escopo, responsabilidades e claims permitidos estão documentados.", "required": true},
+        {"prerequisite_id": "legal-approval-separated", "description": "Revisão jurídica e aprovação executiva são requisitos externos, não decisões de Verbalizar.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "Não existem acordo de escopo, prova conjunta ou aprovação para claims e uso de marca.", "reason": "A tática poderia criar compromisso, associação ou risco reputacional não autorizado.", "fallback": "Produzir perguntas de alinhamento e um rascunho sem publicação até as aprovações."}
+      ],
+      "use_when": ["A parceria está definida e precisa de posicionamento, co-branding e sistema de mensagem conjunto."],
+      "do_not_use_when": ["A decisão é selecionar o parceiro, negociar contrato, coordenar distribuição ou medir performance."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "high", "flags": ["ambiguous_instruction", "unidiomatic_translation"], "assessment_note": "A linha 205 contém heading incompleto e há terminologia literal ao longo do texto; governança, jurídico, canal e métricas excedem a saída catalogada."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 252, "review_notes": "Fonte completa revisada; tipos de parceria, mensagens, governança, conteúdo, métricas, risco e linha incompleta foram avaliados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.roteiro-de-evolucao-das-marcas",
+      "canonical_path": "biblioteca/Verbalizar/roteiro-de-evolucao-das-marcas.md",
+      "canonical_sha256": "19656f394e0b00ad57fc01cf2053bd0f5b54bca9bb9167e4734be1eca38c50b4",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Roteiro de evolução das marcas",
+      "summary": "Planeja a evolução de posicionamento, mensagem, voz e identidade verbal em dois a três anos, preservando o núcleo e registrando hipóteses de mercado e handoffs operacionais.",
+      "aliases": ["roadmap de evolução de marca"],
+      "job_tags": ["forecast", "optimize", "plan"],
+      "object_tags": ["brand", "forecast", "positioning", "voice-tone"],
+      "need_tags": ["plan:brand", "forecast:positioning", "optimize:voice-tone"],
+      "input_requirements": [
+        {"input_id": "current-brand-state", "description": "Posicionamento, valor de marca, missão, personalidade, visual e mensagem atuais.", "required": true, "evidence_types": ["brand_asset", "analytics", "prior_decision"], "sensitivity": "internal"},
+        {"input_id": "business-growth-plan", "description": "Crescimento, expansão, oferta, modelo e estratégia competitiva planejados.", "required": true, "evidence_types": ["first_party_document", "user_brief"], "sensitivity": "confidential"},
+        {"input_id": "future-market-signals", "description": "Tendências, tecnologia, regulação, clientes e concorrência com fontes e horizonte.", "required": true, "evidence_types": ["market_source", "analytics"], "sensitivity": "public"}
+      ],
+      "output_contract": {"output_type": "strategy", "description": "Roadmap de evolução verbal de marca com núcleo preservado, hipóteses, marcos e critérios de revisão.", "required_sections": ["core-to-preserve", "evolution-opportunities", "market-hypotheses", "message-roadmap", "voice-roadmap", "review-triggers", "handoffs"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Um roadmap plurianual exige baseline de marca, planos de negócio, dados de percepção e fontes de mercado, além de governança para distinguir cenário de decisão aceita.",
+      "prerequisites": [
+        {"prerequisite_id": "brand-baseline-measured", "description": "O estado atual possui evidência suficiente para saber o que preservar e o que mudar.", "required": true},
+        {"prerequisite_id": "forecast-assumptions-explicit", "description": "Datas, tendências e cenários futuros permanecem hipóteses com fonte e horizonte.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "Datas ou previsões fixas da fonte são usadas como estado atual sem verificação.", "reason": "O texto contém horizontes 2024-2027 e um marcador cross-pillar órfão, que não são fatos atuais.", "fallback": "Rebasear o horizonte com fontes atuais e manter cenários como hipóteses antes do roadmap."}
+      ],
+      "use_when": ["A marca tem baseline e plano de negócio e precisa antecipar a evolução de posicionamento e mensagem por dois a três anos."],
+      "do_not_use_when": ["Não há baseline de marca ou o objetivo é executar rebranding, canal, jornada ou experimento."],
+      "selection_confidence": "medium",
+      "quality": {"semantic_review_status": "needs_editorial_review", "translation_risk": "high", "flags": ["ambiguous_instruction", "terminology_inconsistent", "unidiomatic_translation", "unverified_external_claim"], "assessment_note": "A fonte fixa anos 2024-2027, contém traduções literais, aspas finais e a linha órfã Tailor | Orientar; nenhuma dessas marcas é tratada como fato atual."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 239, "review_notes": "Fonte completa revisada; baseline, horizontes datados, roadmap, implementação, métricas e marcador final foram avaliados."}
+    },
+    {
+      "tactic_id": "lm.verbalizar.voz-do-sintetizador-de-cliente",
+      "canonical_path": "biblioteca/Verbalizar/voz-do-sintetizador-de-cliente.md",
+      "canonical_sha256": "44d276d89d444c74e24b0ac509efde60ab1660f0522bb0f344ddc86fbf993931",
+      "canonical_immutable": true,
+      "pillar": "Verbalizar",
+      "methodology_stage": "Express",
+      "display_name": "Voz do sintetizador de cliente",
+      "summary": "Sintetiza conversas e feedback em padrões de problema, meta, solução, emoção, decisão, sucesso, objeção e recomendações de mensagem.",
+      "aliases": ["sintetizador de voz do cliente"],
+      "job_tags": ["analyze", "synthesize"],
+      "object_tags": ["customer-voice", "message", "objection", "value-proposition"],
+      "need_tags": ["analyze:customer-voice", "synthesize:message", "synthesize:objection"],
+      "input_requirements": [
+        {"input_id": "customer-conversation-corpus", "description": "Transcrições de vendas, suporte, pesquisas, entrevistas e avaliações com referência.", "required": true, "evidence_types": ["interview_or_transcript", "crm_record", "market_source"], "sensitivity": "customer_level_pii"},
+        {"input_id": "business-and-message-context", "description": "Oferta, mercado, setor e mensagem atual.", "required": true, "evidence_types": ["user_brief", "brand_asset", "prior_decision"], "sensitivity": "internal"}
+      ],
+      "output_contract": {"output_type": "analysis", "description": "Síntese de voz do cliente com padrões, citações, implicações e prioridades de mensagem.", "required_sections": ["problem-language", "goal-and-success-language", "decision-drivers", "emotional-patterns", "message-recommendations", "research-gaps"], "decision_owner": "verbalizar"},
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "A síntese depende de corpus variado e rastreável para identificar recorrência e separar voz individual de padrão; não exige automação avançada, mas não é segura com anedota única.",
+      "prerequisites": [
+        {"prerequisite_id": "conversation-corpus-minimized", "description": "PII e conteúdo desnecessário são redigidos antes da análise.", "required": true},
+        {"prerequisite_id": "quotes-traceable", "description": "Citações e frequências permanecem ligadas à fonte e amostra.", "required": true}
+      ],
+      "contraindications": [
+        {"condition": "Uma amostra pequena ou enviesada será apresentada como verdade sobre todo o público.", "reason": "A síntese converteria observação local em fato geral.", "fallback": "Marcar padrões como hipótese, reportar a amostra e solicitar pesquisa adicional."}
+      ],
+      "use_when": ["Há conversas e feedback heterogêneos e é preciso sintetizar necessidades, emoções, objeções e linguagem para mensagem."],
+      "do_not_use_when": ["O objetivo é apenas construir guia de tom a partir de um grande corpus de avaliações ou definir segmentos."],
+      "selection_confidence": "high",
+      "quality": {"semantic_review_status": "reviewed_with_flags", "translation_risk": "medium", "flags": ["pii_sensitive", "unidiomatic_translation"], "assessment_note": "O método é semanticamente completo, mas contém construções literais e pede transcrições e tickets potencialmente sensíveis; a análise deve preservar proveniência e minimização."},
+      "provenance": {"baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e", "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library", "collection_reference": "https://www.hubspot.com/loop-marketing", "individual_source_verified": false, "redistribution_review": "not_reviewed"},
+      "review_evidence": {"reviewed_full_source": true, "source_line_count": 128, "review_notes": "Fonte completa revisada; seis dimensões, citações, temas, jornada emocional, recomendações e lacunas foram mapeados."}
+    }
+  ],
+  "relations": [
+    {"relation_id": "rel-verbalizar-differentiation-competitive-voice", "relation_type": "overlaps", "from_tactic_id": "lm.verbalizar.analisador-de-diferenciacao-de-marcas", "to_tactic_id": "lm.verbalizar.analise-de-voz-competitiva", "directional": false, "rationale": "Ambas buscam diferenciação; a primeira parte de provas e resultados próprios, enquanto a segunda parte do corpus de voz dos concorrentes.", "routing_effect": "prefer_more_specific", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-differentiation-competitor-gaps", "relation_type": "overlaps", "from_tactic_id": "lm.verbalizar.analisador-de-diferenciacao-de-marcas", "to_tactic_id": "lm.verbalizar.localizador-de-lacunas-do-concorrente", "directional": false, "rationale": "Ambas produzem oportunidades de posicionamento; selecionar pela evidência dominante: diferenciais próprios versus lacunas externas.", "routing_effect": "prefer_more_specific", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-competitive-voice-competitor-gaps", "relation_type": "overlaps", "from_tactic_id": "lm.verbalizar.analise-de-voz-competitiva", "to_tactic_id": "lm.verbalizar.localizador-de-lacunas-do-concorrente", "directional": false, "rationale": "As duas analisam concorrentes; uma prioriza voz e tom, a outra temas, provas e espaços de posicionamento.", "routing_effect": "prefer_more_specific", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-content-audit-campaign-concept", "relation_type": "overlaps", "from_tactic_id": "lm.verbalizar.auditoria-e-estrategia-de-conteudo", "to_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha", "directional": false, "rationale": "A auditoria pode recomendar novas campanhas, mas o gerador é o artefato específico para conceitos criativos novos.", "routing_effect": "prefer_more_specific", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-content-audit-content-themes", "relation_type": "overlaps", "from_tactic_id": "lm.verbalizar.auditoria-e-estrategia-de-conteudo", "to_tactic_id": "lm.verbalizar.gerador-de-tema-de-conteudo", "directional": false, "rationale": "A auditoria localiza lacunas no acervo; o gerador cria o sistema temático que pode preencher essas lacunas.", "routing_effect": "prefer_more_specific", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-campaign-concept-content-themes", "relation_type": "complements", "from_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha", "to_tactic_id": "lm.verbalizar.gerador-de-tema-de-conteudo", "directional": false, "rationale": "Temas editoriais podem fornecer matéria-prima a conceitos de campanha, desde que os outputs permaneçam distintos.", "routing_effect": "allow_together", "confidence": "medium", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-buyer-persona-icp", "relation_type": "alternative_to", "from_tactic_id": "lm.verbalizar.buyer-persona-validador", "to_tactic_id": "lm.verbalizar.perfil-do-cliente-ideal", "directional": false, "rationale": "Usar o perfil do cliente ideal quando o modelo está ausente e o validador quando já existe uma persona a confrontar com dados.", "routing_effect": "never_auto_co_select", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-personality-archetype", "relation_type": "overlaps", "from_tactic_id": "lm.verbalizar.criador-de-perfil-de-personalidade-da-marca", "to_tactic_id": "lm.verbalizar.identificador-do-arquetipo-da-marca", "directional": false, "rationale": "Ambas estruturam personalidade; o perfil deriva traços diretamente, enquanto o identificador usa a taxonomia dos doze arquétipos.", "routing_effect": "prefer_more_specific", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-customer-language-customer-synthesis", "relation_type": "overlaps", "from_tactic_id": "lm.verbalizar.decodificador-de-idioma-do-cliente", "to_tactic_id": "lm.verbalizar.voz-do-sintetizador-de-cliente", "directional": false, "rationale": "O decodificador aprofunda léxico e tom; o sintetizador cobre também necessidades, emoções, decisão, objeções e sucesso.", "routing_effect": "prefer_more_specific", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-message-hierarchy-depends-value-proposition", "relation_type": "depends_on", "from_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens", "to_tactic_id": "lm.verbalizar.otimizador-de-proposta-de-valor", "directional": true, "rationale": "A hierarquia precisa de uma proposta de valor aceita; a tática de otimização é uma forma de fornecê-la quando estiver ausente ou fraca.", "routing_effect": "require_order", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-campaign-depends-message-hierarchy", "relation_type": "depends_on", "from_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha", "to_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens", "directional": true, "rationale": "Conceitos de campanha devem respeitar mensagem central, suporte, prova e CTA definidos na hierarquia.", "routing_effect": "require_order", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-content-themes-depend-message-hierarchy", "relation_type": "depends_on", "from_tactic_id": "lm.verbalizar.gerador-de-tema-de-conteudo", "to_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens", "directional": true, "rationale": "Temas editoriais precisam derivar da hierarquia de mensagens para não criar um posicionamento paralelo.", "routing_effect": "require_order", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-activation-depends-message-hierarchy", "relation_type": "depends_on", "from_tactic_id": "lm.verbalizar.planejador-de-ativacao-de-marcas", "to_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens", "directional": true, "rationale": "A ativação só pode comunicar uma marca cuja hierarquia e guardrails já estejam definidos.", "routing_effect": "require_order", "confidence": "high", "review_status": "confirmed"},
+    {"relation_id": "rel-verbalizar-seasonal-campaign", "relation_type": "complements", "from_tactic_id": "lm.verbalizar.desenvolvedor-de-estrategia-sazonal", "to_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha", "directional": false, "rationale": "A estratégia sazonal fornece contexto e eixo temporal; o gerador traduz um momento priorizado em conceito criativo específico.", "routing_effect": "allow_together", "confidence": "medium", "review_status": "confirmed"}
+  ],
+  "cross_pillar_relation_candidates": [
+    {
+      "candidate_id": "xrel-verbalizar-audience-models-to-orientar",
+      "from_tactic_ids": ["lm.verbalizar.buyer-persona-validador", "lm.verbalizar.perfil-do-cliente-ideal", "lm.verbalizar.mapeador-da-jornada-do-cliente", "lm.verbalizar.analisador-de-padroes-de-sucesso-do-cliente"],
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Orientar",
+      "target_capability": "segmentacao-lifecycle-elegibilidade-e-scoring",
+      "rationale": "Essas fontes geram evidência útil de público e jornada, mas segmento, lifecycle, elegibilidade, progressão e scoring precisam do owner Orientar.",
+      "boundary": "Verbalizar entrega implicações de mensagem; não decide segmento, elegibilidade, progressão, scoring ou personalização.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-verbalizar-distribution-plans-to-ampliar",
+      "from_tactic_ids": ["lm.verbalizar.desenvolvedor-de-estrategia-sazonal", "lm.verbalizar.gerador-de-conceito-de-campanha", "lm.verbalizar.gerador-de-tema-de-conteudo", "lm.verbalizar.planejador-de-ativacao-de-marcas", "lm.verbalizar.posicionador-de-lideranca-de-pensamento", "lm.verbalizar.posicionamento-da-parceria"],
+      "candidate_relation_type": "complements",
+      "target_pillar": "Ampliar",
+      "target_capability": "selecao-de-canais-cadencia-e-distribuicao-operacional",
+      "rationale": "Os prompts sugerem canais, plataformas, timing ou frequência, mas Verbalizar entrega mensagem e restrições; Ampliar decide distribuição operacional.",
+      "boundary": "Verbalizar não escolhe canal, cadência, frequência, orçamento ou execução de distribuição.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-verbalizar-testing-to-refinar",
+      "from_tactic_ids": ["lm.verbalizar.construtor-de-hierarquia-de-mensagens", "lm.verbalizar.auditoria-e-estrategia-de-conteudo", "lm.verbalizar.gerador-de-conceito-de-campanha", "lm.verbalizar.gerador-de-tema-de-conteudo", "lm.verbalizar.otimizador-de-proposta-de-valor", "lm.verbalizar.planejador-de-ativacao-de-marcas"],
+      "candidate_relation_type": "complements",
+      "target_pillar": "Refinar",
+      "target_capability": "contrato-experimental-validacao-e-decisao-de-performance",
+      "rationale": "Verbalizar pode emitir oportunidades de teste, mas contrato experimental, métrica, threshold, evidência e classificação de performance pertencem a Refinar.",
+      "boundary": "Verbalizar não define desenho experimental, threshold, causalidade ou decisão ESCALAR, OTIMIZAR, PARAR ou TESTAR.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-verbalizar-thought-leadership-to-ampliar",
+      "from_tactic_id": "lm.verbalizar.posicionador-de-lideranca-de-pensamento",
+      "candidate_relation_type": "complements",
+      "target_pillar": "Ampliar",
+      "target_tactic_id": "lm.ampliar.amplificacao-da-lideranca-do-pensamento",
+      "rationale": "Verbalizar define território e ponto de vista; Ampliar distribui e amplifica nos canais apropriados, conforme a fronteira já registrada em P1-R/LIB-F006.",
+      "boundary": "Verbalizar não escolhe plataformas, frequência ou mecânica de amplificação; Ampliar não altera tese, voz, claims ou prova.",
+      "review_status": "needs_cross_pillar_review"
+    }
+  ],
+  "review_summary": {
+    "index_reviewed_full": true,
+    "prompt_bodies_reviewed_full": 25,
+    "entry_count": 25,
+    "unique_tactic_ids": 25,
+    "unique_canonical_paths": 25,
+    "canonical_hash_mismatches": 0,
+    "maturity_distribution": {"nascente": 2, "em_desenvolvimento": 15, "maduro": 8, "avancado": 0},
+    "quality_status_distribution": {"reviewed_no_blocking_issue": 0, "reviewed_with_flags": 18, "needs_editorial_review": 7},
+    "relation_count": 14,
+    "within_pillar_relations_only": true,
+    "canonical_sources_modified": false,
+    "source_repo_clean_after_review": true,
+    "review_method": "Manual semantic review of INDEX.md and every line of all 25 prompt bodies; hashes and line counts independently replayed from SOURCE_INDEX and the source filesystem."
+  },
+  "unresolved_questions": [
+    {
+      "id": "VERB-UQ001",
+      "question": "Should the structurally incomplete prompts be selectable before an editorial sidecar supplies clarified sections without modifying the canonical bodies?",
+      "blocking": false,
+      "owner": "lead_p3_integration",
+      "safe_default": "Use the specialist base method or only the unambiguous sections; never infer the missing text and keep needs_editorial_review visible to the router."
+    },
+    {
+      "id": "VERB-UQ002",
+      "question": "Which cross-pillar tactic IDs will receive the proposed Orientar, Ampliar and Refinar handoffs?",
+      "blocking": false,
+      "owner": "lead_p3_integration",
+      "safe_default": "Keep these as cross_pillar_relation_candidates and do not emit formal relation objects until both tactic IDs exist in the integrated catalog."
+    },
+    {
+      "id": "VERB-UQ003",
+      "question": "A redistribuição individual dos prompts foi juridicamente revisada?",
+      "blocking": true,
+      "owner": "release_legal_review",
+      "safe_default": "Manter redistribution_review como not_reviewed em todas as entradas e não autorizar redistribuição."
+    }
+  ]
+}

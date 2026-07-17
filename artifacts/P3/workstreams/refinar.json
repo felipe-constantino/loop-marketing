@@ -1,0 +1,3817 @@
+{
+  "workstream": "pillar_catalog_refinar",
+  "status": "completed",
+  "pillar": "Refinar",
+  "methodology_stage": "Evolve",
+  "baseline": {
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  },
+  "entries": [
+    {
+      "tactic_id": "lm.refinar.acelerador-de-velocidade-de-marketing",
+      "canonical_path": "biblioteca/Refinar/acelerador-de-velocidade-de-marketing.md",
+      "canonical_sha256": "54b1d0ac369c7bd04dcbd5727a47dff4cd8d521fe2a68609b715d420d4ab1eb6",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Acelerador de velocidade de marketing",
+      "summary": "Diagnostica tempos de ciclo e gargalos operacionais para propor um plano de aceleração mensurável, sem executar automações nem assumir aprovações.",
+      "aliases": [
+        "otimização do ciclo de marketing"
+      ],
+      "job_tags": [
+        "audit",
+        "diagnose",
+        "optimize"
+      ],
+      "object_tags": [
+        "campaign",
+        "optimization"
+      ],
+      "need_tags": [
+        "diagnose:campaign",
+        "optimize:optimization"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "current-process-baseline",
+          "description": "Mapa atual do processo, tempos de ciclo, responsáveis, filas e evidência dos gargalos.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "quality-and-risk-constraints",
+          "description": "Guardrails de qualidade, compliance, orçamento e tolerância a risco.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "implementation-capability",
+          "description": "Capacidade real de equipe, tecnologia e aprovação para as melhorias propostas.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "optimization_plan",
+        "description": "Diagnostica tempos de ciclo e gargalos operacionais para propor um plano de aceleração mensurável, sem executar automações nem assumir aprovações.",
+        "required_sections": [
+          "velocity-baseline",
+          "bottleneck-evidence",
+          "quality-guardrails",
+          "prioritized-improvements",
+          "measurement-plan"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer mapa de processo, tempos observados e capacidade básica de medição; automação e mudanças estruturais continuam condicionadas à capacidade e autorização externas.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "measured-current-state",
+          "description": "Estado atual e tempos de ciclo foram medidos em vez de estimados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "authorized-change-path",
+          "description": "Há caminho conhecido para aprovação e execução posterior.",
+          "required": false
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há tempos de ciclo observados e o objetivo é reduzir espera ou retrabalho.",
+        "É preciso equilibrar velocidade, qualidade e risco operacional."
+      ],
+      "do_not_use_when": [
+        "Não usar para declarar vantagem competitiva sem fonte comparável.",
+        "Não usar para automatizar aprovações, orçamento ou campanha sem autoridade externa."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation",
+          "mixed_language"
+        ],
+        "assessment_note": "O núcleo de melhoria de processo é utilizável; a tradução alterna velocity, velocidade e formulações pouco idiomáticas."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 204,
+        "review_notes": "Corpo integral revisado; o contrato foi limitado a diagnóstico e plano, sem mutação externa."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.analisador-de-desempenho-de-coorte",
+      "canonical_path": "biblioteca/Refinar/analisador-de-desempenho-de-coorte.md",
+      "canonical_sha256": "6df274669ed1d9a8f407ac8b19da67de3f4da1f4706aa7e60214bc4c1483d815",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Analisador de desempenho de coorte",
+      "summary": "Compara coortes em janelas equivalentes para separar padrões de retenção, receita, engajamento e valor de associações ainda não causais.",
+      "aliases": [
+        "análise longitudinal por safra"
+      ],
+      "job_tags": [
+        "analyze",
+        "model",
+        "diagnose"
+      ],
+      "object_tags": [
+        "cohort",
+        "customer-value",
+        "lifecycle"
+      ],
+      "need_tags": [
+        "analyze:cohort",
+        "model:customer-value"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "cohort-dataset",
+          "description": "Dados agregados por coorte, período e outcome com origem rastreável.",
+          "required": true,
+          "evidence_types": [
+            "crm_aggregate",
+            "analytics"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "cohort-and-window-definition",
+          "description": "Definição de entrada, exposição, janela, censura e denominadores de cada coorte.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "first_party_document"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "lifecycle-contract",
+          "description": "Estágios e elegibilidade previamente definidos por Orientar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "analysis",
+        "description": "Compara coortes em janelas equivalentes para separar padrões de retenção, receita, engajamento e valor de associações ainda não causais.",
+        "required_sections": [
+          "cohort-definition",
+          "window-and-denominator",
+          "comparative-results",
+          "association-not-causation",
+          "optimization-implications"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Exige dados longitudinais consistentes, definições estáveis de coorte, janelas comparáveis e denominadores válidos; sem isso a comparação é enviesada.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "stable-cohort-definition",
+          "description": "Definições de coorte, janela e outcome são estáveis.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "sufficient-longitudinal-history",
+          "description": "Existe histórico suficiente para a janela analisada.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Existem safras comparáveis acompanhadas ao longo do tempo.",
+        "A decisão precisa considerar retenção ou valor além da conversão inicial."
+      ],
+      "do_not_use_when": [
+        "Não usar para redefinir segmentos ou regras de lifecycle; isso pertence a Orientar.",
+        "Não tratar correlação entre coorte e resultado como efeito causal sem desenho válido."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation",
+          "pii_sensitive"
+        ],
+        "assessment_note": "O escopo longitudinal é claro, mas há termos traduzidos de forma instável e risco de uso indevido de dados de clientes."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 201,
+        "review_notes": "Corpo integral revisado; comparações foram condicionadas a coortes e janelas equivalentes."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.analise-competitiva-do-velocity",
+      "canonical_path": "biblioteca/Refinar/analise-competitiva-do-velocity.md",
+      "canonical_sha256": "a8544dcb815e747ef7eabc9ca024f99e986ee1968dd9e2b83d45c14f2539ea87",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Análise competitiva do Velocity",
+      "summary": "Compara o ciclo interno de iteração com sinais públicos observáveis de concorrentes, mantendo estimativas como inferências com fonte e incerteza.",
+      "aliases": [
+        "benchmark competitivo de velocidade"
+      ],
+      "job_tags": [
+        "research",
+        "analyze",
+        "audit"
+      ],
+      "object_tags": [
+        "competitor",
+        "benchmark",
+        "campaign"
+      ],
+      "need_tags": [
+        "research:competitor",
+        "analyze:benchmark"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "observed-market-signals",
+          "description": "Fontes públicas datadas e observáveis sobre atividade dos concorrentes.",
+          "required": true,
+          "evidence_types": [
+            "market_source"
+          ],
+          "sensitivity": "public"
+        },
+        {
+          "input_id": "own-comparable-baseline",
+          "description": "Tempos, resultados ou processos internos medidos em definição comparável.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "first_party_document"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "inference-policy",
+          "description": "Critérios para separar observação, estimativa e hipótese, com confidence.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "analysis",
+        "description": "Compara o ciclo interno de iteração com sinais públicos observáveis de concorrentes, mantendo estimativas como inferências com fonte e incerteza.",
+        "required_sections": [
+          "observed-signals",
+          "estimation-method",
+          "comparable-cycle-benchmark",
+          "gap-analysis",
+          "acceleration-options"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer cronologia interna mensurada e fontes públicas rastreáveis; estimativas de concorrentes podem ser feitas com incerteza explícita sem infraestrutura avançada.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "traceable-public-sources",
+          "description": "Cada sinal externo possui fonte pública rastreável.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "comparable-internal-cycle",
+          "description": "O ciclo interno usa definição comparável.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há sinais públicos datados e um ciclo interno comparável.",
+        "O objetivo é localizar atraso operacional, não inferir resultados financeiros do concorrente."
+      ],
+      "do_not_use_when": [
+        "Não usar quando não há fonte observável para estimar o concorrente.",
+        "Não apresentar frequência pública de conteúdo como prova de aprendizagem ou desempenho."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "terminology_inconsistent",
+          "unverified_external_claim",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O método é acionável quando as estimativas são rotuladas; o texto mistura idiomas e sugere inferências competitivas que exigem verificação."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 99,
+        "review_notes": "Corpo integral revisado; sinais públicos foram separados de inferências e fatos internos."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.calculadora-de-otimizacao",
+      "canonical_path": "biblioteca/Refinar/calculadora-de-otimizacao.md",
+      "canonical_sha256": "98072946c2da87fb9f325baf3e0c5aa05c16c7bacc7fd0583be5e1854623ebd7",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Calculadora de otimização",
+      "summary": "Estrutura custos, retornos, horizonte temporal e incrementalidade para priorizar investimentos, sem calcular índice quando definição, benchmark ou denominador são inválidos.",
+      "aliases": [
+        "otimização de ROI de marketing"
+      ],
+      "job_tags": [
+        "analyze",
+        "model",
+        "optimize"
+      ],
+      "object_tags": [
+        "attribution",
+        "marketing-mix",
+        "customer-value"
+      ],
+      "need_tags": [
+        "analyze:attribution",
+        "optimize:marketing-mix"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "cost-and-return-ledger",
+          "description": "Custos diretos e indiretos, retornos e horizontes com definições contábeis.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "analytics"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "attribution-and-incrementality-evidence",
+          "description": "Modelo de atribuição, validações de incrementalidade e limitações conhecidas.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "experiment_record"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "metric-domain-contract",
+          "description": "Direção, unidade, janela, benchmark, denominadores e tratamento predeclarado de zero ou negativos.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "optimization_plan",
+        "description": "Estrutura custos, retornos, horizonte temporal e incrementalidade para priorizar investimentos, sem calcular índice quando definição, benchmark ou denominador são inválidos.",
+        "required_sections": [
+          "metric-and-cost-definitions",
+          "attribution-assumptions",
+          "horizon-analysis",
+          "valid-calculations",
+          "investment-options"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Exige contabilidade de custos, receita e horizonte comparáveis, atribuição documentada e regras de cálculo validadas; o corpo avançado inclui incrementalidade e mix.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "validated-cost-accounting",
+          "description": "Custos e retornos usam definição, unidade e horizonte consistentes.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "documented-attribution-limits",
+          "description": "Limites de atribuição e incrementalidade estão documentados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Custos e retornos estão definidos na mesma unidade e janela.",
+        "É preciso priorizar investimento com premissas e incerteza documentadas."
+      ],
+      "do_not_use_when": [
+        "Não usar com denominador zero, domínio negativo não transformado ou dados incomparáveis.",
+        "Não converter retorno influenciado em incrementalidade causal sem controle ou método válido."
+      ],
+      "selection_confidence": "low",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O corpo está extensamente truncado e fragmentado; o núcleo de ROI é identificável, mas a execução exige reconstrução editorial e fórmulas predefinidas."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 225,
+        "review_notes": "Corpo integral revisado; catalogado pelo núcleo sem preencher lacunas textuais como fatos."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.construtor-de-estrutura-de-experimentacao-rapida",
+      "canonical_path": "biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+      "canonical_sha256": "d4207b9bee18c8e03a08e73d72909ff1180db45d144cdd62152cd053338bb653",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Construtor de estrutura de experimentação rápida",
+      "summary": "Monta backlog e sprint de experimentos leves com hipótese, variável, controle, métrica, amostra e regras predeclaradas de decisão.",
+      "aliases": [
+        "framework de experimentos de 14 dias"
+      ],
+      "job_tags": [
+        "design",
+        "test",
+        "prioritize"
+      ],
+      "object_tags": [
+        "experiment",
+        "test-portfolio"
+      ],
+      "need_tags": [
+        "design:experiment",
+        "prioritize:test-portfolio"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "test-opportunity",
+          "description": "Problema, hipótese proposta e decisão que o teste deve informar.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "baseline-and-metric-contract",
+          "description": "Baseline comparável, métrica primária, direção, target e denominador.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "instrumentation-sample-capability",
+          "description": "Instrumentação, mecanismo de assignment, controle, amostra e duração viáveis.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "prior-experiments",
+          "description": "Testes anteriores e aprendizados para evitar repetição.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "experiment_design",
+        "description": "Monta backlog e sprint de experimentos leves com hipótese, variável, controle, métrica, amostra e regras predeclaradas de decisão.",
+        "required_sections": [
+          "prioritized-backlog",
+          "experiment-contracts",
+          "sample-and-power-rules",
+          "sprint-dependencies",
+          "decision-and-learning-rules"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer instrumentação básica, baseline, capacidade de amostra e disciplina de registro; pode operar com poucos testes desde que cada contrato seja completo.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "testable-hypothesis",
+          "description": "A hipótese especifica mudança e resultado mensurável.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "valid-control-and-assignment",
+          "description": "Controle e assignment permitem isolar a variável ou interação.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "predeclared-sample-duration-decision",
+          "description": "Amostra, duração, early stop e decisão foram predeclarados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há hipóteses específicas que podem ser isoladas em até 14 dias.",
+        "A equipe precisa priorizar aprendizado por esforço e risco."
+      ],
+      "do_not_use_when": [
+        "Não aplicar a heurística de 100 conversões por célula sem cálculo ou justificativa específica.",
+        "Não avançar experimento além de proposed sem evidência e autorização requeridas."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "terminology_inconsistent",
+          "unverified_external_claim",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "A estrutura é concreta, mas a heurística numérica de amostra e exemplos de thresholds não são universais e precisam ser predeclarados por métrica."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 87,
+        "review_notes": "Corpo integral revisado; a heurística de amostra foi tratada como não verificada, não como regra factual."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "canonical_path": "biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+      "canonical_sha256": "d0496e2d444cbb0171a8a81ec7f01cb4a7b55eadfe3f0ead1a57e4401c163e7a",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Coordenador de testes entre canais",
+      "summary": "Coordena testes simultâneos entre canais, isolando audiência e variáveis ou explicitando interações para preservar validade estatística.",
+      "aliases": [
+        "coordenação experimental cross-channel"
+      ],
+      "job_tags": [
+        "coordinate",
+        "design",
+        "test"
+      ],
+      "object_tags": [
+        "experiment",
+        "channel",
+        "test-portfolio"
+      ],
+      "need_tags": [
+        "coordinate:experiment",
+        "test:channel"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "test-opportunity",
+          "description": "Problema, hipótese proposta e decisão que o teste deve informar.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "baseline-and-metric-contract",
+          "description": "Baseline comparável, métrica primária, direção, target e denominador.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "instrumentation-sample-capability",
+          "description": "Instrumentação, mecanismo de assignment, controle, amostra e duração viáveis.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "prior-experiments",
+          "description": "Testes anteriores e aprendizados para evitar repetição.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "experiment_design",
+        "description": "Coordena testes simultâneos entre canais, isolando audiência e variáveis ou explicitando interações para preservar validade estatística.",
+        "required_sections": [
+          "test-inventory",
+          "audience-overlap-map",
+          "interaction-design",
+          "calendar-and-allocation",
+          "validity-and-analysis-plan"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Exige identificação consistente entre canais, capacidade de separar amostras, controlar sobreposição e corrigir múltiplos testes.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "testable-hypothesis",
+          "description": "A hipótese especifica mudança e resultado mensurável.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "valid-control-and-assignment",
+          "description": "Controle e assignment permitem isolar a variável ou interação.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "predeclared-sample-duration-decision",
+          "description": "Amostra, duração, early stop e decisão foram predeclarados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Existem testes simultâneos com audiência ou variável potencialmente sobreposta.",
+        "É preciso escolher serialização ou desenho explícito de interação."
+      ],
+      "do_not_use_when": [
+        "Não usar para decidir cadência operacional ou papel de canal; isso pertence a Ampliar.",
+        "Não executar testes paralelos contaminados sem isolamento ou desenho multivariado explícito."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O escopo estatístico e de coordenação é claro, apesar de tradução literal e terminologia instável."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 173,
+        "review_notes": "Corpo integral revisado; coordenação de experimento foi separada da autoridade operacional de canal."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.designer-de-estrutura-de-teste-sistematica",
+      "canonical_path": "biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+      "canonical_sha256": "384e0e5d305c707ed1f0e17d18bfbabadf9ecd0d80375ee4982e8ccca0d1453f",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Designer de estrutura de teste sistemática",
+      "summary": "Define portfólio, hipóteses, desenho, critérios de sucesso e integração de aprendizado para um programa recorrente de testes.",
+      "aliases": [
+        "framework sistemático de testes"
+      ],
+      "job_tags": [
+        "design",
+        "plan",
+        "test"
+      ],
+      "object_tags": [
+        "experiment",
+        "test-portfolio",
+        "learning"
+      ],
+      "need_tags": [
+        "design:test-portfolio",
+        "test:experiment"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "test-opportunity",
+          "description": "Problema, hipótese proposta e decisão que o teste deve informar.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "baseline-and-metric-contract",
+          "description": "Baseline comparável, métrica primária, direção, target e denominador.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "instrumentation-sample-capability",
+          "description": "Instrumentação, mecanismo de assignment, controle, amostra e duração viáveis.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "prior-experiments",
+          "description": "Testes anteriores e aprendizados para evitar repetição.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "experiment_design",
+        "description": "Define portfólio, hipóteses, desenho, critérios de sucesso e integração de aprendizado para um programa recorrente de testes.",
+        "required_sections": [
+          "test-strategy",
+          "hypothesis-method",
+          "design-and-control",
+          "sample-duration-thresholds",
+          "learning-integration"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer objetivo de teste, baseline, dados e recursos mínimos; a estrutura pode começar pequena, mas nenhum experimento é selecionável sem metadados completos.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "testable-hypothesis",
+          "description": "A hipótese especifica mudança e resultado mensurável.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "valid-control-and-assignment",
+          "description": "Controle e assignment permitem isolar a variável ou interação.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "predeclared-sample-duration-decision",
+          "description": "Amostra, duração, early stop e decisão foram predeclarados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "A organização precisa de método repetível para priorizar e registrar testes.",
+        "Há capacidade mínima de instrumentar controle, métrica, amostra e duração."
+      ],
+      "do_not_use_when": [
+        "Não usar para lançar um teste sem contrato formal completo.",
+        "Não usar significância estatística como rótulo sem método, tamanho de amostra e regra predeclarados."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O prompt é curto e semanticamente estável; ainda contém tradução literal de termos estatísticos."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 64,
+        "review_notes": "Corpo integral revisado; contrato alinhado aos oito elementos mínimos de criação de experimento em P2."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.diagnostico-da-entrega-da-viagem-do-cliente",
+      "canonical_path": "biblioteca/Refinar/diagnostico-da-entrega-da-viagem-do-cliente.md",
+      "canonical_sha256": "308f1290bbe860ed78a457048a987a46d4fb230a3441f3150ae6ceac4c6bcdec",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Diagnóstico da entrega da jornada do cliente",
+      "summary": "Quantifica quedas entre etapas e organiza causas possíveis, correções testáveis e validação, preservando hipóteses quando a causa não foi isolada.",
+      "aliases": [
+        "diagnóstico de drop-off do funil"
+      ],
+      "job_tags": [
+        "diagnose",
+        "analyze",
+        "prioritize"
+      ],
+      "object_tags": [
+        "customer-journey",
+        "conversion-path",
+        "experiment"
+      ],
+      "need_tags": [
+        "diagnose:customer-journey",
+        "analyze:conversion-path"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "journey-and-eligibility-contract",
+          "description": "Mapa de jornada, estágios, eventos e elegibilidade definidos por Orientar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "stage-and-path-metrics",
+          "description": "Eventos agregados por etapa/caminho, janela e denominador positivo.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "qualitative-evidence",
+          "description": "Feedback, pesquisa ou observação qualitativa com origem rastreável.",
+          "required": false,
+          "evidence_types": [
+            "interview_or_transcript",
+            "first_party_document"
+          ],
+          "sensitivity": "customer_aggregate"
+        }
+      ],
+      "output_contract": {
+        "output_type": "diagnostic",
+        "description": "Quantifica quedas entre etapas e organiza causas possíveis, correções testáveis e validação, preservando hipóteses quando a causa não foi isolada.",
+        "required_sections": [
+          "funnel-definitions",
+          "dropoff-calculation",
+          "evidence-and-hypotheses",
+          "validation-tests",
+          "effort-impact-priority"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer eventos e denominadores definidos por etapa, ao menos dados agregados e um benchmark; não depende de modelagem avançada.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "orientar-journey-contract",
+          "description": "A jornada e elegibilidade foram definidas pelo owner Orientar.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "valid-stage-denominators",
+          "description": "Eventos e denominadores por etapa são válidos e comparáveis.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "As etapas e populações elegíveis já estão definidas por Orientar.",
+        "É preciso localizar a maior queda e propor validações mensuráveis."
+      ],
+      "do_not_use_when": [
+        "Não redefinir estágios, elegibilidade ou supressão a partir do diagnóstico.",
+        "Não afirmar causa de abandono apenas pela maior queda observada."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "ambiguous_instruction",
+          "unidiomatic_translation",
+          "terminology_inconsistent",
+          "pii_sensitive"
+        ],
+        "assessment_note": "O prompt é acionável, mas confunde entrega, retirada e drop-off e contém trechos truncados; dados devem permanecer agregados."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 84,
+        "review_notes": "Corpo integral revisado; causas foram mantidas como hipóteses até validação."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "canonical_path": "biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+      "canonical_sha256": "eec9aa911b0e6138e576d4928e1f39c1e273029051ebc2d9214dfa5c8db28fa5",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Diagnóstico de desempenho de campanha",
+      "summary": "Diagnostica desempenho contra benchmark comparável, separa fatores observados de hipóteses causais e produz classificação e próximos testes sob as regras P2.",
+      "aliases": [
+        "análise causal de campanha"
+      ],
+      "job_tags": [
+        "diagnose",
+        "analyze",
+        "classify"
+      ],
+      "object_tags": [
+        "campaign",
+        "benchmark",
+        "experiment"
+      ],
+      "need_tags": [
+        "diagnose:campaign",
+        "classify:benchmark"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "observed-performance",
+          "description": "Métricas observadas por campanha, período, segmento e canal com provenance.",
+          "required": true,
+          "evidence_types": [
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "benchmark-contract",
+          "description": "Benchmark comparável ou ausência explícita, direção, janela e denominador da métrica.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "analytics",
+            "market_source"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "domain-contracts",
+          "description": "Mensagem, audience/lifecycle e plano de canal/cadência vigentes para interpretar sem redefinir.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "prior-tests-and-context",
+          "description": "Experimentos, mudanças e fatores externos relevantes.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record",
+            "first_party_document"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "diagnostic",
+        "description": "Diagnostica desempenho contra benchmark comparável, separa fatores observados de hipóteses causais e produz classificação e próximos testes sob as regras P2.",
+        "required_sections": [
+          "data-quality-and-benchmark",
+          "performance-readout",
+          "ranked-hypotheses",
+          "p2-classification",
+          "cross-pillar-implications"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer métricas por período, benchmark comparável e contexto de campanha; causalidade e classificação só avançam quando a evidência exigida existe.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "comparable-benchmark",
+          "description": "Há benchmark comparável ou ausência explicitamente registrada.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "valid-metric-definition",
+          "description": "Direção, janela e denominador da métrica são válidos.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há pelo menos dois períodos comparáveis e métricas com direção declarada.",
+        "É preciso separar sucesso, falha, contexto e oportunidade de teste."
+      ],
+      "do_not_use_when": [
+        "Não calcular performance_index com domínio negativo ou denominador inválido.",
+        "Não reescrever mensagem, segmento ou canal; emitir implicações para os respectivos owners."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O escopo diagnóstico é abrangente, mas a tradução mistura termos e o corpo tenta cobrir muitos owners; o sidecar restringe a decisão a Refinar."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 259,
+        "review_notes": "Corpo integral revisado; benchmark, causalidade e fronteiras cross-pillar foram tornados explícitos."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.estrategista-de-teste-multi-variate",
+      "canonical_path": "biblioteca/Refinar/estrategista-de-teste-multi-variate.md",
+      "canonical_sha256": "a8f7833def8bc18b79db83936383c3a3e5b1039c0789fe52e94eff7ad663de37",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Estrategista de teste multivariado",
+      "summary": "Desenha experimentos com múltiplas variáveis e efeitos de interação, condicionados a potência, amostra, correção estatística e capacidade técnica suficientes.",
+      "aliases": [
+        "desenho experimental multivariado"
+      ],
+      "job_tags": [
+        "design",
+        "test",
+        "analyze"
+      ],
+      "object_tags": [
+        "experiment",
+        "test-portfolio"
+      ],
+      "need_tags": [
+        "design:experiment",
+        "analyze:experiment"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "test-opportunity",
+          "description": "Problema, hipótese proposta e decisão que o teste deve informar.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "baseline-and-metric-contract",
+          "description": "Baseline comparável, métrica primária, direção, target e denominador.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "instrumentation-sample-capability",
+          "description": "Instrumentação, mecanismo de assignment, controle, amostra e duração viáveis.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "prior-experiments",
+          "description": "Testes anteriores e aprendizados para evitar repetição.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "experiment_design",
+        "description": "Desenha experimentos com múltiplas variáveis e efeitos de interação, condicionados a potência, amostra, correção estatística e capacidade técnica suficientes.",
+        "required_sections": [
+          "variable-and-levels",
+          "factorial-or-alternative-design",
+          "interaction-hypotheses",
+          "power-and-multiplicity",
+          "decision-rules"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "O INDEX marca MADURO+; o corpo exige volume, experiência, tecnologia e rigor para estimar interações sem células subalimentadas.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "testable-hypothesis",
+          "description": "A hipótese especifica mudança e resultado mensurável.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "valid-control-and-assignment",
+          "description": "Controle e assignment permitem isolar a variável ou interação.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "predeclared-sample-duration-decision",
+          "description": "Amostra, duração, early stop e decisão foram predeclarados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há amostra suficiente para múltiplas células e efeitos de interação.",
+        "Duas ou mais variáveis precisam ser testadas sob desenho explícito."
+      ],
+      "do_not_use_when": [
+        "Não usar como atalho para executar testes simultâneos contaminados.",
+        "Não interpretar efeito principal ou interação sem potência e correção adequadas."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O núcleo avançado é claro, mas o prompt é muito curto e usa terminologia multivariate/multi-variate de forma instável."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 40,
+        "review_notes": "Corpo integral revisado; o marcador MADURO+ e os requisitos de interação foram preservados."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.gerador-de-relatorios-de-otimizacao-continua",
+      "canonical_path": "biblioteca/Refinar/gerador-de-relatorios-de-otimizacao-continua.md",
+      "canonical_sha256": "c8b3517a5c145b1a92a0ab0d9af9ca21c2478e4a9c4e19b6423e0e5c75bda90e",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Gerador de relatórios de otimização contínua",
+      "summary": "Consolida desempenho, evidência, desafios, recomendações e uma oportunidade de experimento sem promover causas prováveis a fatos.",
+      "aliases": [
+        "relatório recorrente de otimização"
+      ],
+      "job_tags": [
+        "synthesize",
+        "measure",
+        "generate"
+      ],
+      "object_tags": [
+        "reporting",
+        "campaign",
+        "optimization"
+      ],
+      "need_tags": [
+        "synthesize:reporting",
+        "measure:campaign"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "period-performance",
+          "description": "Dados fechados ou snapshot consistente do período, com definições e fonte.",
+          "required": true,
+          "evidence_types": [
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "objectives-and-benchmarks",
+          "description": "Objetivos, metas e benchmarks predeclarados.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "known-gaps-and-context",
+          "description": "Lacunas, anomalias, mudanças e evidência qualitativa relevantes.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "interview_or_transcript"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "report",
+        "description": "Consolida desempenho, evidência, desafios, recomendações e uma oportunidade de experimento sem promover causas prováveis a fatos.",
+        "required_sections": [
+          "executive-summary",
+          "wins-with-evidence",
+          "challenges-and-hypotheses",
+          "prioritized-recommendations",
+          "next-test-opportunity"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer dados do período, objetivos e benchmark documentados; pode operar antes de capacidades preditivas, desde que lacunas sejam reportadas.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "stable-reporting-snapshot",
+          "description": "O período ou snapshot está fechado e consistente.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "evidence-linked-claims",
+          "description": "Afirmações do relatório podem apontar para evidence_refs.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há um período fechado ou snapshot consistente para reporte.",
+        "A liderança precisa de leitura concisa com evidência e próximo aprendizado."
+      ],
+      "do_not_use_when": [
+        "Não rotular causa provável como comprovada no resumo executivo.",
+        "Não converter proposta de próximo teste em estado approved ou running."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "ambiguous_instruction",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "A saída é útil, mas exemplos trazem thresholds não justificados e o texto mistura inglês e fragmentos malformados."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 94,
+        "review_notes": "Corpo integral revisado; vitórias/desafios foram vinculados a evidência e o próximo teste permaneceu proposta."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.interprete-de-analises-da-jornada-do-cliente",
+      "canonical_path": "biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+      "canonical_sha256": "9aca0cf5326e11714de6ce211b0bf8de04f7e94be076f2c77acc6ea917b0c9c5",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Intérprete de análises da jornada do cliente",
+      "summary": "Analisa progressão, atrito e conversão ao longo de uma jornada já definida, emitindo hipóteses e implicações sem redefinir lifecycle, mensagem ou cadência.",
+      "aliases": [
+        "análise de atrito da jornada"
+      ],
+      "job_tags": [
+        "analyze",
+        "diagnose",
+        "optimize"
+      ],
+      "object_tags": [
+        "customer-journey",
+        "conversion-path",
+        "touchpoint"
+      ],
+      "need_tags": [
+        "analyze:customer-journey",
+        "diagnose:conversion-path"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "journey-and-eligibility-contract",
+          "description": "Mapa de jornada, estágios, eventos e elegibilidade definidos por Orientar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "stage-and-path-metrics",
+          "description": "Eventos agregados por etapa/caminho, janela e denominador positivo.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "qualitative-evidence",
+          "description": "Feedback, pesquisa ou observação qualitativa com origem rastreável.",
+          "required": false,
+          "evidence_types": [
+            "interview_or_transcript",
+            "first_party_document"
+          ],
+          "sensitivity": "customer_aggregate"
+        }
+      ],
+      "output_contract": {
+        "output_type": "diagnostic",
+        "description": "Analisa progressão, atrito e conversão ao longo de uma jornada já definida, emitindo hipóteses e implicações sem redefinir lifecycle, mensagem ou cadência.",
+        "required_sections": [
+          "journey-contract",
+          "stage-and-path-metrics",
+          "friction-evidence",
+          "ranked-hypotheses",
+          "owner-specific-implications"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Exige mapa de jornada e eventos consistentes, mas pode começar com dados agregados e gaps explícitos antes de análises preditivas.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "orientar-journey-contract",
+          "description": "A jornada e elegibilidade foram definidas pelo owner Orientar.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "valid-stage-denominators",
+          "description": "Eventos e denominadores por etapa são válidos e comparáveis.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "A jornada e suas transições já foram definidas por Orientar.",
+        "Há dados por etapa, caminho ou touchpoint para localizar atrito."
+      ],
+      "do_not_use_when": [
+        "Não criar novos estágios, segmentos ou regras de progressão.",
+        "Não recomendar timing, frequência ou conteúdo final em nome de outros owners."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation",
+          "pii_sensitive"
+        ],
+        "assessment_note": "O conteúdo é abrangente, porém usa viagem/jornada e conversões de forma instável e prevê personalização potencialmente sensível."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 219,
+        "review_notes": "Corpo integral revisado; análise da jornada foi separada das definições de Orientar."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.mecanismo-de-experimentacao-rapida",
+      "canonical_path": "biblioteca/Refinar/mecanismo-de-experimentacao-rapida.md",
+      "canonical_sha256": "909ef0df43b186ac0164e6eb245e12cb9105ddb0d13d23a8897db9e4038baba6",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Mecanismo de experimentação rápida",
+      "summary": "Estrutura um experimento pequeno e barato para validar uma hipótese antes de escalar, com controle, métrica, amostra, duração e regra de decisão.",
+      "aliases": [
+        "teste mínimo viável"
+      ],
+      "job_tags": [
+        "design",
+        "test",
+        "validate"
+      ],
+      "object_tags": [
+        "experiment",
+        "learning"
+      ],
+      "need_tags": [
+        "test:experiment",
+        "validate:learning"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "test-opportunity",
+          "description": "Problema, hipótese proposta e decisão que o teste deve informar.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "baseline-and-metric-contract",
+          "description": "Baseline comparável, métrica primária, direção, target e denominador.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "instrumentation-sample-capability",
+          "description": "Instrumentação, mecanismo de assignment, controle, amostra e duração viáveis.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "prior-experiments",
+          "description": "Testes anteriores e aprendizados para evitar repetição.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "experiment_design",
+        "description": "Estrutura um experimento pequeno e barato para validar uma hipótese antes de escalar, com controle, métrica, amostra, duração e regra de decisão.",
+        "required_sections": [
+          "testable-hypothesis",
+          "minimum-viable-design",
+          "control-and-metric",
+          "sample-duration-thresholds",
+          "learning-and-scale-rule"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Pode operar com recursos limitados, mas ainda exige instrumentação, comparação e decisão predeclarada; rapidez não reduz os requisitos mínimos de evidência.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "testable-hypothesis",
+          "description": "A hipótese especifica mudança e resultado mensurável.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "valid-control-and-assignment",
+          "description": "Controle e assignment permitem isolar a variável ou interação.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "predeclared-sample-duration-decision",
+          "description": "Amostra, duração, early stop e decisão foram predeclarados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Uma ideia precisa de validação de baixo custo antes de investimento maior.",
+        "É possível isolar uma variável ou declarar desenho multivariado."
+      ],
+      "do_not_use_when": [
+        "Não usar rapidez para dispensar controle, amostra ou duração mínima.",
+        "Não escalar resultado sem evidência válida e classificação P2."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O prompt é curto e claro no objetivo, mas não detalha o rigor que o contrato P2 torna obrigatório."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 41,
+        "review_notes": "Corpo integral revisado; rapidez foi subordinada ao contrato formal de experimento."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.mecanismo-de-otimizacao-em-tempo-real",
+      "canonical_path": "biblioteca/Refinar/mecanismo-de-otimizacao-em-tempo-real.md",
+      "canonical_sha256": "af92c70b43a8f9111db20ab6a985ab95c237e3f04efce4582b89e4bff3207f3a",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Mecanismo de otimização em tempo real",
+      "summary": "Define monitoramento, alertas e ajustes reversíveis durante campanha ativa, sempre sob thresholds predeclarados, controles e autorização externa.",
+      "aliases": [
+        "otimização de campanha ao vivo"
+      ],
+      "job_tags": [
+        "analyze",
+        "optimize",
+        "test"
+      ],
+      "object_tags": [
+        "campaign",
+        "optimization",
+        "channel"
+      ],
+      "need_tags": [
+        "optimize:campaign",
+        "test:optimization"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "live-performance-feed",
+          "description": "Telemetria da campanha por célula, com atraso, completude e qualidade conhecidos.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "predeclared-alert-contract",
+          "description": "Métricas, direção, baseline, janela, amostra e thresholds definidos antes da leitura.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "execution-guardrails",
+          "description": "Autoridade externa, limites de orçamento, rollback e ações permitidas.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "technical_capability"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "experiment-state",
+          "description": "Assignment, controle e estado real dos experimentos ativos.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "optimization_plan",
+        "description": "Define monitoramento, alertas e ajustes reversíveis durante campanha ativa, sempre sob thresholds predeclarados, controles e autorização externa.",
+        "required_sections": [
+          "live-data-quality",
+          "alert-thresholds",
+          "reversible-actions",
+          "experiment-guardrails",
+          "authorization-and-rollback"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "O INDEX marca MADURO+; exige streaming confiável, alertas validados, safeguards de orçamento, rollback e autoridade operacional explícita.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "validated-live-instrumentation",
+          "description": "Telemetria e alertas foram validados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "reversible-authorized-actions",
+          "description": "Ações possíveis têm autoridade, limites e rollback.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "predeclared-decision-rules",
+          "description": "Thresholds e amostra foram definidos antes da observação.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "A campanha está ativa e há telemetria confiável em janela adequada.",
+        "Ações são pequenas, reversíveis e condicionadas a thresholds predeclarados."
+      ],
+      "do_not_use_when": [
+        "Não automatizar orçamento, público, criativo ou canal apenas por ruído inicial.",
+        "Não inferir autorização de execução da autoridade analítica de Refinar."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "security_sensitive",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O prompt cobre automação e APIs, criando risco operacional; o sidecar exige autorização, limites e rollback."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 185,
+        "review_notes": "Corpo integral revisado; automação foi tratada como plano sujeito a controle externo, não como execução autorizada."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.mecanismo-de-previsao-de-desempenho",
+      "canonical_path": "biblioteca/Refinar/mecanismo-de-previsao-de-desempenho.md",
+      "canonical_sha256": "f0e41015831963006c5239177a0ec31a52d4f88ee4a21da856dc43deb3c27c6c",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Mecanismo de previsão de desempenho",
+      "summary": "Projeta tendências e cenários com histórico, fatores externos e incerteza explícita, medindo posteriormente erro e confiabilidade da previsão.",
+      "aliases": [
+        "forecast de desempenho de marketing"
+      ],
+      "job_tags": [
+        "forecast",
+        "model",
+        "analyze"
+      ],
+      "object_tags": [
+        "forecast",
+        "campaign",
+        "benchmark"
+      ],
+      "need_tags": [
+        "forecast:campaign",
+        "analyze:benchmark"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "historical-series",
+          "description": "Séries históricas comparáveis com sazonalidade, eventos e qualidade documentados.",
+          "required": true,
+          "evidence_types": [
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "external-drivers",
+          "description": "Fontes de mercado e fatores externos com data e comparabilidade.",
+          "required": false,
+          "evidence_types": [
+            "market_source"
+          ],
+          "sensitivity": "public"
+        },
+        {
+          "input_id": "forecast-objective",
+          "description": "Horizonte, target, decisão, tolerância a erro e cenário desejado.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "validation-history",
+          "description": "Backtests ou previsões anteriores e seus erros.",
+          "required": false,
+          "evidence_types": [
+            "experiment_record",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "forecast",
+        "description": "Projeta tendências e cenários com histórico, fatores externos e incerteza explícita, medindo posteriormente erro e confiabilidade da previsão.",
+        "required_sections": [
+          "data-and-assumptions",
+          "model-method",
+          "scenario-ranges",
+          "uncertainty-and-risks",
+          "backtest-and-monitoring"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "O INDEX marca MADURO+; exige séries históricas comparáveis, sazonalidade, fatores externos e processo de validação contínua.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "comparable-historical-basis",
+          "description": "Há base histórica comparável ou lacuna assumida explicitamente.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "forecast-validation-plan",
+          "description": "Existe plano de backtest e monitoramento do erro.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há histórico suficiente e uma decisão futura que se beneficia de intervalos de cenário.",
+        "Premissas e fontes externas podem ser explicitadas e atualizadas."
+      ],
+      "do_not_use_when": [
+        "Não apresentar cenário como promessa ou previsão pontual sem intervalo.",
+        "Não confundir correlação histórica com causalidade futura."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O escopo de forecast é claro, mas o texto mistura prediction/previsão e contém fragmentos traduzidos de forma irregular."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 213,
+        "review_notes": "Corpo integral revisado; previsões foram enquadradas como cenários com erro e incerteza."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.modelador-de-combinacao-de-marketing",
+      "canonical_path": "biblioteca/Refinar/modelador-de-combinacao-de-marketing.md",
+      "canonical_sha256": "24211a8f357f7d43292483986ae4b83c2cf3920eeb500f79bda9692ff4b9e805",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Modelador de combinação de marketing",
+      "summary": "Modela contribuição, interação, saturação e alocação do portfólio de marketing com método estatístico validado e limites de causalidade explícitos.",
+      "aliases": [
+        "marketing mix modeling"
+      ],
+      "job_tags": [
+        "model",
+        "analyze",
+        "optimize"
+      ],
+      "object_tags": [
+        "marketing-mix",
+        "attribution",
+        "channel"
+      ],
+      "need_tags": [
+        "model:marketing-mix",
+        "analyze:attribution"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "marketing-activity-series",
+          "description": "Séries de investimento, exposição e outcomes por atividade em granularidade consistente.",
+          "required": true,
+          "evidence_types": [
+            "analytics"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "context-and-controls",
+          "description": "Sazonalidade, preço, promoção, economia e outros controles do processo gerador.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "market_source"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "modeling-capability",
+          "description": "Ferramentas, competência estatística, validação e governança para modelagem.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "model",
+        "description": "Modela contribuição, interação, saturação e alocação do portfólio de marketing com método estatístico validado e limites de causalidade explícitos.",
+        "required_sections": [
+          "data-generating-process",
+          "model-specification",
+          "incrementality-and-interactions",
+          "validation-and-uncertainty",
+          "allocation-scenarios"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "avancado",
+      "maturity_rationale": "O INDEX marca AVANÇADO; exige histórico granular, variação suficiente, controles externos, competência estatística e validação de modelo e saturação.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "sufficient-time-variation",
+          "description": "Há histórico e variação suficientes para estimar efeitos.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "statistical-validation-capability",
+          "description": "Existe capacidade de especificar, validar e monitorar o modelo.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há séries históricas e investimento variável por atividade com controles de contexto.",
+        "A decisão exige interação e alocação agregada, não crédito determinístico por indivíduo."
+      ],
+      "do_not_use_when": [
+        "Não usar apenas correlação de canal para afirmar incrementalidade.",
+        "Não realocar orçamento automaticamente a partir de modelo não validado ou instável."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "ambiguous_instruction",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O núcleo de mix e interação é identificável, mas partes do corpo estão truncadas e não especificam método estatístico."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 186,
+        "review_notes": "Corpo integral revisado; a saída exige validação e não promete causalidade por padrão."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.modelador-de-desempenho-previsivel",
+      "canonical_path": "biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+      "canonical_sha256": "a2bf3d68b1c1afc404bbd7c46ca742dffd260118934b10f4c9a2ec911d382854",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Modelador de desempenho previsível",
+      "summary": "Desenvolve e valida modelos preditivos de campanha, documentando variáveis, separação treino-teste, intervalos, drift e diferença entre associação e causalidade.",
+      "aliases": [
+        "modelo preditivo de campanha"
+      ],
+      "job_tags": [
+        "model",
+        "forecast",
+        "validate"
+      ],
+      "object_tags": [
+        "predictive-model",
+        "forecast",
+        "campaign"
+      ],
+      "need_tags": [
+        "model:predictive-model",
+        "validate:forecast"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "training-dataset",
+          "description": "Histórico versionado com target, features, timestamps e regras de inclusão.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "validation-design",
+          "description": "Separação treino-validação, baseline, métricas e teste fora da amostra.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "model-use-contract",
+          "description": "Decisão suportada, riscos, explicabilidade, drift e limites de uso.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "model",
+        "description": "Desenvolve e valida modelos preditivos de campanha, documentando variáveis, separação treino-teste, intervalos, drift e diferença entre associação e causalidade.",
+        "required_sections": [
+          "target-and-feature-contract",
+          "training-and-validation-data",
+          "model-and-baseline",
+          "uncertainty-bias-and-drift",
+          "decision-use-and-monitoring"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "avancado",
+      "maturity_rationale": "O INDEX marca AVANÇADO; exige histórico amplo, engenharia de dados, validação fora da amostra, monitoramento de drift e governança de uso.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "versioned-training-data",
+          "description": "Dados de treino e target estão versionados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "out-of-sample-validation",
+          "description": "Há validação fora da amostra e baseline.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "privacy-and-drift-governance",
+          "description": "Há governança de privacidade, drift e uso.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há volume histórico, definição de target e capacidade de validação fora da amostra.",
+        "A decisão precisa de probabilidade ou intervalo, não de promessa determinística."
+      ],
+      "do_not_use_when": [
+        "Não prever resposta individual com PII sem base legal e governança.",
+        "Não interpretar importância preditiva de variável como efeito causal."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "terminology_inconsistent",
+          "pii_sensitive",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O corpo distingue correlação e causalidade em parte, mas mistura idiomas e inclui previsão individual sensível sem governança detalhada."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 198,
+        "review_notes": "Corpo integral revisado; requisitos de validação, drift e governança foram adicionados como metadados externos."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real",
+      "canonical_path": "biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+      "canonical_sha256": "557dc09cbd9de4177dea0129823efc7c0268ea40672047a4de9f4b96c7e369d9",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Monitoramento antecipado de sinais e otimização em tempo real",
+      "summary": "Audita dados ruidosos de campanha na primeira janela e recomenda apenas ações reversíveis, mantendo sinais direcionais abaixo do limiar como incerteza.",
+      "aliases": [
+        "leitura de sinais iniciais"
+      ],
+      "job_tags": [
+        "diagnose",
+        "analyze",
+        "test"
+      ],
+      "object_tags": [
+        "campaign",
+        "optimization",
+        "experiment"
+      ],
+      "need_tags": [
+        "diagnose:campaign",
+        "test:experiment"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "live-performance-feed",
+          "description": "Telemetria da campanha por célula, com atraso, completude e qualidade conhecidos.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "predeclared-alert-contract",
+          "description": "Métricas, direção, baseline, janela, amostra e thresholds definidos antes da leitura.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "execution-guardrails",
+          "description": "Autoridade externa, limites de orçamento, rollback e ações permitidas.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "technical_capability"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "experiment-state",
+          "description": "Assignment, controle e estado real dos experimentos ativos.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "diagnostic",
+        "description": "Audita dados ruidosos de campanha na primeira janela e recomenda apenas ações reversíveis, mantendo sinais direcionais abaixo do limiar como incerteza.",
+        "required_sections": [
+          "data-stability",
+          "directional-signals",
+          "risk-signals",
+          "reversible-actions",
+          "microtest-contracts"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "O INDEX marca MADURO+; exige dados diários por célula, baseline, controle de anomalias, amostra mínima e capacidade de reversão.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "validated-live-instrumentation",
+          "description": "Telemetria e alertas foram validados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "reversible-authorized-actions",
+          "description": "Ações possíveis têm autoridade, limites e rollback.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "predeclared-decision-rules",
+          "description": "Thresholds e amostra foram definidos antes da observação.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "A campanha está viva e a janela inicial ainda é ruidosa.",
+        "Há necessidade de distinguir sinal direcional de decisão consolidada."
+      ],
+      "do_not_use_when": [
+        "Não matar ou escalar célula antes da amostra e janela predeclaradas.",
+        "Não usar exemplos de 300 cliques ou percentuais do prompt como thresholds universais."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "mixed_language",
+          "unverified_external_claim",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O prompt enfatiza cautela, mas contém campos truncados, HTML residual e exemplos numéricos não generalizáveis."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 88,
+        "review_notes": "Corpo integral revisado; sinais iniciais foram mantidos como direcionais e thresholds de exemplo como não verificados."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.otimizador-de-agilidade-de-marketing",
+      "canonical_path": "biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md",
+      "canonical_sha256": "24c8bba74dce870795566cf3c6fc5788927e074bc41de0856c7daeb9e2517158",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Otimizador de agilidade de marketing",
+      "summary": "Audita capacidade de resposta a mudanças de mercado e propõe melhorias de processo; o corpo canônico é incompleto e não sustenta automação ou resposta competitiva detalhada.",
+      "aliases": [
+        "capacidade adaptativa de marketing"
+      ],
+      "job_tags": [
+        "audit",
+        "optimize",
+        "plan"
+      ],
+      "object_tags": [
+        "optimization",
+        "campaign"
+      ],
+      "need_tags": [
+        "audit:optimization",
+        "plan:campaign"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "current-process-baseline",
+          "description": "Mapa atual do processo, tempos de ciclo, responsáveis, filas e evidência dos gargalos.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "quality-and-risk-constraints",
+          "description": "Guardrails de qualidade, compliance, orçamento e tolerância a risco.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "implementation-capability",
+          "description": "Capacidade real de equipe, tecnologia e aprovação para as melhorias propostas.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "framework",
+        "description": "Audita capacidade de resposta a mudanças de mercado e propõe melhorias de processo; o corpo canônico é incompleto e não sustenta automação ou resposta competitiva detalhada.",
+        "required_sections": [
+          "current-agility",
+          "barriers",
+          "response-capabilities",
+          "risk-and-quality-guardrails",
+          "improvement-backlog"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer baseline de resposta, processos e restrições; o corpo incompleto reduz confiança de seleção, embora o conceito não demande modelagem avançada.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "measured-current-state",
+          "description": "Estado atual e tempos de ciclo foram medidos em vez de estimados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "authorized-change-path",
+          "description": "Há caminho conhecido para aprovação e execução posterior.",
+          "required": false
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "A necessidade é avaliar adaptabilidade organizacional com evidência interna.",
+        "O prompt será usado apenas como estrutura de auditoria, sob revisão humana."
+      ],
+      "do_not_use_when": [
+        "Não usar como analisador completo de inteligência competitiva; o corpo termina em fragmento alheio.",
+        "Não inferir estratégia, automação ou mutação externa a partir das lacunas do arquivo."
+      ],
+      "selection_confidence": "low",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O arquivo termina abruptamente e incorpora um cabeçalho de outro recurso, tornando seu escopo operacional incompleto."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 29,
+        "review_notes": "Corpo integral revisado; a incompletude foi preservada e bloqueia seleção automática sem revisão."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+      "canonical_path": "biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+      "canonical_sha256": "dad237af53a8e11d6a933e459af7c1100c3a1a804b3a5aebfad0276a62951ad5",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Otimizador de atribuição de marketing",
+      "summary": "Seleciona, documenta e valida modelos de atribuição e incrementalidade, distinguindo crédito modelado de contribuição causal real.",
+      "aliases": [
+        "modelo multitoque de atribuição"
+      ],
+      "job_tags": [
+        "model",
+        "measure",
+        "validate"
+      ],
+      "object_tags": [
+        "attribution",
+        "touchpoint",
+        "customer-journey"
+      ],
+      "need_tags": [
+        "model:attribution",
+        "measure:touchpoint"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "touchpoint-outcome-schema",
+          "description": "Eventos de touchpoint e outcomes ligados por janela e população, com definições estáveis.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "journey-and-channel-contract",
+          "description": "Jornada de Orientar e mapa operacional de touchpoints de Ampliar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "validation-capability",
+          "description": "Holdout, lift, experimento ou outra capacidade para testar incrementalidade.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "model",
+        "description": "Seleciona, documenta e valida modelos de atribuição e incrementalidade, distinguindo crédito modelado de contribuição causal real.",
+        "required_sections": [
+          "touchpoint-and-outcome-schema",
+          "candidate-models",
+          "assumptions-and-bias",
+          "incrementality-validation",
+          "decision-use-and-limits"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Exige identidade e eventos integrados, jornadas multitoque, outcomes estáveis e capacidade de validação por holdout, lift ou comparação de modelos.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "integrated-touchpoint-schema",
+          "description": "Touchpoints e outcomes têm schema e identidade consistentes.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "incrementality-check",
+          "description": "Há método para testar limites causais do crédito atribuído.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há dados de touchpoint e outcome ligados por janela e população comparáveis.",
+        "É preciso documentar limites do crédito antes de informar orçamento."
+      ],
+      "do_not_use_when": [
+        "Não chamar peso de atribuição de impacto causal sem incrementalidade validada.",
+        "Não usar registros individuais sem minimização, acesso e base legal apropriados."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "pii_sensitive",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O escopo é pertinente, mas mistura precisão de atribuição com verdadeiro impacto e envolve dados de jornada potencialmente identificáveis."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 194,
+        "review_notes": "Corpo integral revisado; crédito de modelo e incrementalidade causal foram separados."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.otimizador-de-testes-sequenciais",
+      "canonical_path": "biblioteca/Refinar/otimizador-de-testes-sequenciais.md",
+      "canonical_sha256": "c16e645b0130c91e1ec3a72921c7161d01a4df2cc7b2c88bfb52185fea462ce9",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Otimizador de testes sequenciais",
+      "summary": "Apesar do nome e do INDEX, o corpo descreve monitoramento e resposta competitiva, não desenho ou análise de testes sequenciais.",
+      "aliases": [
+        "inteligência competitiva contínua no corpo"
+      ],
+      "job_tags": [
+        "research",
+        "analyze",
+        "audit"
+      ],
+      "object_tags": [
+        "competitor",
+        "benchmark",
+        "campaign"
+      ],
+      "need_tags": [
+        "research:competitor",
+        "analyze:benchmark"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "observed-market-signals",
+          "description": "Fontes públicas datadas e observáveis sobre atividade dos concorrentes.",
+          "required": true,
+          "evidence_types": [
+            "market_source"
+          ],
+          "sensitivity": "public"
+        },
+        {
+          "input_id": "own-comparable-baseline",
+          "description": "Tempos, resultados ou processos internos medidos em definição comparável.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "first_party_document"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "inference-policy",
+          "description": "Critérios para separar observação, estimativa e hipótese, com confidence.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "analysis",
+        "description": "Apesar do nome e do INDEX, o corpo descreve monitoramento e resposta competitiva, não desenho ou análise de testes sequenciais.",
+        "required_sections": [
+          "scope-mismatch-warning",
+          "observed-competitor-signals",
+          "inference-and-confidence",
+          "strategic-options",
+          "owner-boundaries"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "O conteúdo efetivo requer fontes competitivas e processo de análise, mas a divergência nome-corpo impede uso automático como recurso de testes sequenciais.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "traceable-public-sources",
+          "description": "Cada sinal externo possui fonte pública rastreável.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "comparable-internal-cycle",
+          "description": "O ciclo interno usa definição comparável.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Somente quando o corpo de inteligência competitiva for intencionalmente escolhido e revisado.",
+        "Há fontes públicas observáveis e o objetivo não é testar sequencialmente."
+      ],
+      "do_not_use_when": [
+        "Não selecionar para desenhar testes sequenciais; o corpo não fornece esse método.",
+        "Não apresentar atividade pública de concorrente como desempenho, intenção ou causalidade comprovada."
+      ],
+      "selection_confidence": "low",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation",
+          "unverified_external_claim"
+        ],
+        "assessment_note": "Há divergência material entre filename/INDEX e corpo, que contém um prompt amplo de inteligência competitiva e inferências externas."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 245,
+        "review_notes": "Corpo integral revisado; catalogado semanticamente pelo corpo e marcado como incompatível com o nome."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.otimizador-de-valor-do-ciclo-de-vida-do-cliente",
+      "canonical_path": "biblioteca/Refinar/otimizador-de-valor-do-ciclo-de-vida-do-cliente.md",
+      "canonical_sha256": "07de759efc23636163d9a75b631fc81011e3ade7547221cdc0bbcb9560f7c828",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Otimizador de valor do ciclo de vida do cliente",
+      "summary": "Modela LTV por coorte e segmento, documentando horizonte, receita, custos, retenção e incerteza antes de orientar investimento.",
+      "aliases": [
+        "otimização baseada em LTV"
+      ],
+      "job_tags": [
+        "model",
+        "analyze",
+        "optimize"
+      ],
+      "object_tags": [
+        "customer-value",
+        "cohort",
+        "lifecycle"
+      ],
+      "need_tags": [
+        "model:customer-value",
+        "analyze:cohort"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "longitudinal-customer-aggregate",
+          "description": "Receita, custo, retenção e expansão agregados por coorte e horizonte.",
+          "required": true,
+          "evidence_types": [
+            "crm_aggregate",
+            "analytics"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "ltv-accounting-contract",
+          "description": "Definição de LTV, CAC, margem, desconto, censura e horizonte.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "first_party_document"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "segment-and-lifecycle-contract",
+          "description": "Segmentos e lifecycle definidos por Orientar para consumo, não redefinição.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "model",
+        "description": "Modela LTV por coorte e segmento, documentando horizonte, receita, custos, retenção e incerteza antes de orientar investimento.",
+        "required_sections": [
+          "ltv-definition",
+          "cohort-and-horizon",
+          "revenue-cost-and-retention",
+          "validation-and-uncertainty",
+          "investment-implications"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Exige dados longitudinais de receita, custo, retenção e expansão por coorte, além de backtest e definições contábeis estáveis.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "stable-ltv-definition",
+          "description": "LTV, custo, margem e horizonte estão formalmente definidos.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "longitudinal-history",
+          "description": "Há histórico longitudinal suficiente e censura tratada.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há histórico de receita, custo e retenção em horizonte adequado.",
+        "A decisão precisa equilibrar aquisição, retenção e expansão pelo valor esperado."
+      ],
+      "do_not_use_when": [
+        "Não priorizar indivíduos ou segmentos sem governança e owner de elegibilidade.",
+        "Não usar correlação de engajamento como causa de LTV superior."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "pii_sensitive",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O núcleo de LTV é claro, mas a tradução é inconsistente e a modelagem pode envolver dados sensíveis de clientes."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 204,
+        "review_notes": "Corpo integral revisado; LTV foi condicionado a coorte, horizonte e validação."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.resultados-previsiveis-da-campanha-antes-do-lancamento",
+      "canonical_path": "biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+      "canonical_sha256": "c500944d35ff8e30ea81a7ed2a0a81ae6776e4485ee6e3fd823cf93b0be65dc4",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Resultados previsíveis da campanha antes do lançamento",
+      "summary": "Produz cenários baixo, esperado e alto antes do lançamento, com fontes, premissas, intervalos e riscos explícitos, sem fabricar dados ausentes.",
+      "aliases": [
+        "forecast pré-lançamento de campanha"
+      ],
+      "job_tags": [
+        "forecast",
+        "model",
+        "validate"
+      ],
+      "object_tags": [
+        "forecast",
+        "campaign",
+        "experiment"
+      ],
+      "need_tags": [
+        "forecast:campaign",
+        "validate:forecast"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "campaign-plan",
+          "description": "Objetivo, audiência, canais, ativos, orçamento, duração e guardrails planejados.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "historical-or-benchmark-data",
+          "description": "Histórico próprio comparável ou benchmarks externos com fonte e definição.",
+          "required": false,
+          "evidence_types": [
+            "analytics",
+            "market_source"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "assumption-and-risk-register",
+          "description": "Premissas explícitas, lacunas de tracking, riscos e tolerância a erro.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "forecast",
+        "description": "Produz cenários baixo, esperado e alto antes do lançamento, com fontes, premissas, intervalos e riscos explícitos, sem fabricar dados ausentes.",
+        "required_sections": [
+          "input-and-assumption-register",
+          "baseline-and-adjustments",
+          "scenario-ranges",
+          "risk-leading-indicators",
+          "validation-experiments"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "O INDEX marca MADURO+; exige histórico ou benchmark comparável, modelagem de cenários, incerteza e capacidade de validar premissas após o lançamento.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "explicit-assumptions",
+          "description": "Premissas e lacunas estão explicitamente registradas.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "comparable-basis-or-low-confidence",
+          "description": "Existe base comparável ou a confiança permanece baixa sem ponto fabricado.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Há campanha planejada e dados próprios ou benchmarks com fonte.",
+        "A decisão precisa de faixa de cenário e registro de risco, não promessa."
+      ],
+      "do_not_use_when": [
+        "Não inventar baseline quando dados e fonte estão ausentes.",
+        "Não usar exemplos numéricos ou benchmarks setoriais sem comparabilidade e referência."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "mixed_language",
+          "unverified_external_claim",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O prompt manda declarar incerteza, mas contém campos truncados, HTML residual e exemplos numéricos sem fonte."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 117,
+        "review_notes": "Corpo integral revisado; todas as previsões foram enquadradas como hipóteses e intervalos condicionais."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.sintese-de-aprendizado-multi-loop",
+      "canonical_path": "biblioteca/Refinar/sintese-de-aprendizado-multi-loop.md",
+      "canonical_sha256": "9fef25519e43b4f3c20841bc30965da9ae8ff244a270e7ee6a0287466c16b04a",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Síntese de aprendizado multi-loop",
+      "summary": "Consolida resultados de vários ciclos em padrões recorrentes e princípios condicionais, preservando contexto, contraprovas e limites de generalização.",
+      "aliases": [
+        "meta-aprendizado entre ciclos"
+      ],
+      "job_tags": [
+        "synthesize",
+        "analyze",
+        "validate"
+      ],
+      "object_tags": [
+        "learning",
+        "campaign",
+        "test-portfolio"
+      ],
+      "need_tags": [
+        "synthesize:learning",
+        "analyze:campaign"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "completed-cycle-records",
+          "description": "Registros de ciclos ou experimentos com objetivo, desenho, resultado, contexto e evidence_refs.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "qualitative-learning-sources",
+          "description": "Feedback de cliente, vendas, suporte ou mercado com provenance.",
+          "required": false,
+          "evidence_types": [
+            "interview_or_transcript",
+            "first_party_document",
+            "market_source"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "decisions-and-supersessions",
+          "description": "Decisões aceitas, aprendizados prévios e relações de supersessão.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "report",
+        "description": "Consolida resultados de vários ciclos em padrões recorrentes e princípios condicionais, preservando contexto, contraprovas e limites de generalização.",
+        "required_sections": [
+          "cycle-evidence-inventory",
+          "recurring-wins-and-failures",
+          "counterevidence-and-context",
+          "meta-learning",
+          "next-cycle-updates"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer ao menos múltiplos ciclos documentados com métricas e contexto comparáveis; não exige automação avançada, mas exige disciplina de evidência.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "evidence-linked-learning-records",
+          "description": "Aprendizados de origem têm evidence_refs e contexto.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "append-only-knowledge-history",
+          "description": "Correções e supersessões preservam o histórico.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Existem três ou mais ciclos ou experimentos com resultados rastreáveis.",
+        "É necessário diferenciar padrão recorrente de anedota."
+      ],
+      "do_not_use_when": [
+        "Não transformar repetição correlacional em princípio causal universal.",
+        "Não alterar diretamente mensagem, segmento ou canal; emitir atualização proposta ao owner."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "A estrutura de síntese é clara, mas o texto mistura idiomas, contém trechos truncados e exemplos não demonstrativos."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 87,
+        "review_notes": "Corpo integral revisado; meta-aprendizados exigem evidência, contexto e contraprova."
+      }
+    },
+    {
+      "tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+      "canonical_path": "biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+      "canonical_sha256": "0db489b2b7b1717eaaf079187401d0882d9abff2cd9de0b5981ed470d5bb3ade",
+      "canonical_immutable": true,
+      "pillar": "Refinar",
+      "methodology_stage": "Evolve",
+      "display_name": "Sistema de integração de aprendizagem",
+      "summary": "Define captura, documentação, validação, compartilhamento e reaplicação de aprendizados com provenance e contexto preservados.",
+      "aliases": [
+        "sistema de gestão do aprendizado"
+      ],
+      "job_tags": [
+        "design",
+        "synthesize",
+        "validate"
+      ],
+      "object_tags": [
+        "learning",
+        "reporting",
+        "experiment"
+      ],
+      "need_tags": [
+        "design:learning",
+        "validate:learning"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "completed-cycle-records",
+          "description": "Registros de ciclos ou experimentos com objetivo, desenho, resultado, contexto e evidence_refs.",
+          "required": true,
+          "evidence_types": [
+            "experiment_record",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "qualitative-learning-sources",
+          "description": "Feedback de cliente, vendas, suporte ou mercado com provenance.",
+          "required": false,
+          "evidence_types": [
+            "interview_or_transcript",
+            "first_party_document",
+            "market_source"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "decisions-and-supersessions",
+          "description": "Decisões aceitas, aprendizados prévios e relações de supersessão.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "learning_system",
+        "description": "Define captura, documentação, validação, compartilhamento e reaplicação de aprendizados com provenance e contexto preservados.",
+        "required_sections": [
+          "learning-taxonomy",
+          "evidence-and-context-schema",
+          "capture-and-review-workflow",
+          "application-and-supersession",
+          "quality-and-retention-metrics"
+        ],
+        "decision_owner": "refinar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer registros consistentes, responsáveis e repositório acessível; pode começar manualmente e evoluir sem depender de predição ou tempo real.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "evidence-linked-learning-records",
+          "description": "Aprendizados de origem têm evidence_refs e contexto.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "append-only-knowledge-history",
+          "description": "Correções e supersessões preservam o histórico.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A métrica, direção, janela, benchmark, denominador ou provenance necessária está ausente, inválida ou incomparável.",
+          "reason": "P2 exige TESTAR ou data_gap_plan nesses casos e proíbe índice fabricado, inclusive com domínio negativo ou denominador zero sem transformação predeclarada.",
+          "fallback": "Não calcular performance_index; registrar a lacuna, confidence e a evidência necessária."
+        },
+        {
+          "condition": "A análise observa associação sem variável isolada, controle ou desenho multivariado explícito.",
+          "reason": "Correlação, atribuição modelada ou previsão não provam causalidade.",
+          "fallback": "Registrar como hipótese com contraprova e propor validação apropriada."
+        },
+        {
+          "condition": "A saída exigiria criar mensagem, redefinir segmento/lifecycle, configurar canal/cadência, aceitar gargalo global ou executar mutação externa.",
+          "reason": "Essas decisões pertencem respectivamente a Verbalizar, Orientar, Ampliar, Loop Planning ou operador autorizado.",
+          "fallback": "Emitir somente evidência, restrição e implicação cross-pillar para o owner."
+        }
+      ],
+      "use_when": [
+        "Aprendizados estão dispersos e precisam de provenance e reaplicação controlada.",
+        "Há owner e processo para revisar validade e contexto antes do reuso."
+      ],
+      "do_not_use_when": [
+        "Não registrar hipótese ou correlação como melhor prática confirmada.",
+        "Não sobrescrever aprendizado anterior; registrar supersessão e evidência nova."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O sistema é semanticamente claro, mas a tradução mistura idiomas e usa termos como aplicativo/insight de forma pouco idiomática."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 233,
+        "review_notes": "Corpo integral revisado; aprendizado foi modelado como registro auditável, contextual e não destrutivo."
+      }
+    }
+  ],
+  "relations": [
+    {
+      "relation_id": "rel-refinar-calculator-depends-attribution",
+      "relation_type": "depends_on",
+      "from_tactic_id": "lm.refinar.calculadora-de-otimizacao",
+      "to_tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+      "directional": true,
+      "rationale": "Cálculo de retorno influenciado precisa primeiro de modelo e limites de atribuição documentados. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "require_order",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-multivariate-depends-systematic-design",
+      "relation_type": "depends_on",
+      "from_tactic_id": "lm.refinar.estrategista-de-teste-multi-variate",
+      "to_tactic_id": "lm.refinar.designer-de-estrutura-de-teste-sistematica",
+      "directional": true,
+      "rationale": "O desenho multivariado avançado pressupõe contrato sistemático de hipótese, controle, amostra e decisão. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "require_order",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-cross-channel-depends-systematic-design",
+      "relation_type": "depends_on",
+      "from_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "to_tactic_id": "lm.refinar.designer-de-estrutura-de-teste-sistematica",
+      "directional": true,
+      "rationale": "Coordenação entre canais pressupõe contratos de teste válidos antes de resolver sobreposição e interação. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "require_order",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-realtime-depends-early-signal-monitoring",
+      "relation_type": "depends_on",
+      "from_tactic_id": "lm.refinar.mecanismo-de-otimizacao-em-tempo-real",
+      "to_tactic_id": "lm.refinar.monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real",
+      "directional": true,
+      "rationale": "Ajustes ao vivo exigem primeiro verificação de estabilidade, anomalias e suficiência das células. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "require_order",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-ltv-depends-cohort-analysis",
+      "relation_type": "depends_on",
+      "from_tactic_id": "lm.refinar.otimizador-de-valor-do-ciclo-de-vida-do-cliente",
+      "to_tactic_id": "lm.refinar.analisador-de-desempenho-de-coorte",
+      "directional": true,
+      "rationale": "Modelagem de LTV por segmento depende de coortes e horizontes longitudinais comparáveis. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "require_order",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-rapid-builder-alternative-rapid-engine",
+      "relation_type": "alternative_to",
+      "from_tactic_id": "lm.refinar.construtor-de-estrutura-de-experimentacao-rapida",
+      "to_tactic_id": "lm.refinar.mecanismo-de-experimentacao-rapida",
+      "directional": false,
+      "rationale": "Ambos cobrem experimentação rápida; o construtor detalha backlog e sprint, enquanto o mecanismo é um framework mínimo. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "never_auto_co_select",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-cross-channel-complements-multivariate",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "to_tactic_id": "lm.refinar.estrategista-de-teste-multi-variate",
+      "directional": false,
+      "rationale": "Interações cross-channel podem requerer desenho multivariado explícito quando a serialização não é viável. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-campaign-diagnostic-complements-report",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "to_tactic_id": "lm.refinar.gerador-de-relatorios-de-otimizacao-continua",
+      "directional": false,
+      "rationale": "O diagnóstico produz evidência e hipóteses que o relatório pode sintetizar para liderança. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-journey-diagnostics-overlap",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.refinar.diagnostico-da-entrega-da-viagem-do-cliente",
+      "to_tactic_id": "lm.refinar.interprete-de-analises-da-jornada-do-cliente",
+      "directional": false,
+      "rationale": "O primeiro foca a maior queda e validação; o segundo cobre análise abrangente de atrito e trajetórias. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-forecast-models-overlap",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.refinar.mecanismo-de-previsao-de-desempenho",
+      "to_tactic_id": "lm.refinar.modelador-de-desempenho-previsivel",
+      "directional": false,
+      "rationale": "Ambos projetam desempenho, mas um organiza forecast e cenários e o outro exige modelagem preditiva avançada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "inform_only",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-prelaunch-overlaps-predictive-model",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.refinar.modelador-de-desempenho-previsivel",
+      "to_tactic_id": "lm.refinar.resultados-previsiveis-da-campanha-antes-do-lancamento",
+      "directional": false,
+      "rationale": "O forecast pré-lançamento é específico para campanha planejada; o modelador cria capacidade preditiva reutilizável. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-attribution-complements-mmm",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.modelador-de-combinacao-de-marketing",
+      "to_tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+      "directional": false,
+      "rationale": "Atribuição por jornada e MMM agregado oferecem lentes complementares que precisam de reconciliação, não equivalência. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-velocity-overlaps-agility",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.refinar.acelerador-de-velocidade-de-marketing",
+      "to_tactic_id": "lm.refinar.otimizador-de-agilidade-de-marketing",
+      "directional": false,
+      "rationale": "Velocidade mede tempos de ciclo; agilidade trata capacidade adaptativa, mas seu corpo está incompleto. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-competitive-prompts-collide",
+      "relation_type": "collides_with",
+      "from_tactic_id": "lm.refinar.analise-competitiva-do-velocity",
+      "to_tactic_id": "lm.refinar.otimizador-de-testes-sequenciais",
+      "directional": false,
+      "rationale": "O corpo do suposto otimizador sequencial é inteligência competitiva ampla e pode duplicar o benchmark de velocity. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "never_auto_co_select",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-learning-synthesis-complements-system",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.sintese-de-aprendizado-multi-loop",
+      "to_tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+      "directional": false,
+      "rationale": "A síntese produz meta-aprendizados; o sistema define captura, governança e reaplicação. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-early-signals-complements-campaign-diagnostic",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "to_tactic_id": "lm.refinar.monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real",
+      "directional": false,
+      "rationale": "Sinais iniciais orientam ações reversíveis; o diagnóstico compara desempenho em janela mais consolidada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-cohort-complements-journey-analysis",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.analisador-de-desempenho-de-coorte",
+      "to_tactic_id": "lm.refinar.interprete-de-analises-da-jornada-do-cliente",
+      "directional": false,
+      "rationale": "Coortes acrescentam dimensão longitudinal à análise de progressão e atrito da jornada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-prelaunch-complements-early-signals",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real",
+      "to_tactic_id": "lm.refinar.resultados-previsiveis-da-campanha-antes-do-lancamento",
+      "directional": false,
+      "rationale": "Premissas do forecast pré-lançamento viram sinais antecipados a validar na primeira janela. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-optimization-report-complements-learning-system",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.gerador-de-relatorios-de-otimizacao-continua",
+      "to_tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+      "directional": false,
+      "rationale": "Relatórios recorrentes fornecem registros que o sistema de aprendizagem valida, versiona e reaplica. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-refinar-systematic-design-complements-learning-system",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.designer-de-estrutura-de-teste-sistematica",
+      "to_tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+      "directional": false,
+      "rationale": "O programa de testes precisa de captura e reaplicação de aprendizados para evitar repetição. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    }
+  ],
+  "cross_pillar_relation_candidates": [
+    {
+      "candidate_id": "xrel-refinar-campaign-verbalizar",
+      "from_tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "candidate_relation_type": "complements",
+      "target_pillar": "Verbalizar",
+      "target_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "rationale": "Achados de mensagem e CTA são evidência para Verbalizar, que continua owner da redação.",
+      "boundary": "Refinar não escreve mensagem final nem altera posicionamento.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-refinar-journey-orientar",
+      "from_tactic_id": "lm.refinar.diagnostico-da-entrega-da-viagem-do-cliente",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Orientar",
+      "target_tactic_id": "lm.orientar.otimizador-de-caminho-de-conversao",
+      "rationale": "Diagnóstico de queda depende de etapas, elegibilidade e caminho definidos por Orientar.",
+      "boundary": "Refinar mede e testa; não redefine lifecycle ou elegibilidade.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-refinar-ltv-orientar",
+      "from_tactic_id": "lm.refinar.otimizador-de-valor-do-ciclo-de-vida-do-cliente",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Orientar",
+      "target_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "rationale": "LTV por segmento consome uma segmentação governada pelo owner Orientar.",
+      "boundary": "Refinar não inclui, exclui ou prioriza pessoas fora do contrato de elegibilidade.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-refinar-attribution-ampliar",
+      "from_tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Ampliar",
+      "target_tactic_id": "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+      "rationale": "O modelo de Refinar depende do mapa e dos requisitos de captura de touchpoints especificados por Ampliar.",
+      "boundary": "Refinar valida e interpreta atribuição; Ampliar mantém papel e instrumentação operacional dos canais.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-refinar-cross-channel-ampliar",
+      "from_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Ampliar",
+      "target_tactic_id": "lm.ampliar.estrategista-de-diversificacao-do-canal",
+      "rationale": "O desenho experimental consome candidatos, capacidade e restrições operacionais de canal.",
+      "boundary": "Refinar define experimento e resultado; Ampliar decide fit, papel e cadência.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-refinar-multivariate-verbalizar",
+      "from_tactic_id": "lm.refinar.estrategista-de-teste-multi-variate",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Verbalizar",
+      "target_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "rationale": "Variantes de mensagem ou conceito precisam ser fornecidas pelo owner antes do teste.",
+      "boundary": "Refinar não cria claims, voz ou CTA para preencher células experimentais.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-refinar-mmm-ampliar",
+      "from_tactic_id": "lm.refinar.modelador-de-combinacao-de-marketing",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Ampliar",
+      "target_tactic_id": "lm.ampliar.orquestrador-de-experiencia-omnicanal",
+      "rationale": "Modelagem de mix requer mapa real de canais, touchpoints e coordenação operacional.",
+      "boundary": "Refinar estima contribuição e incerteza; Ampliar decide configuração operacional.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-refinar-learning-verbalizar",
+      "from_tactic_id": "lm.refinar.sintese-de-aprendizado-multi-loop",
+      "candidate_relation_type": "complements",
+      "target_pillar": "Verbalizar",
+      "target_tactic_id": "lm.verbalizar.auditoria-e-estrategia-de-conteudo",
+      "rationale": "Aprendizados recorrentes de conteúdo podem informar auditoria e evolução de mensagem.",
+      "boundary": "Refinar emite implicação baseada em evidência; Verbalizar decide a mudança semântica.",
+      "review_status": "needs_cross_pillar_review"
+    }
+  ],
+  "review_summary": {
+    "index_reviewed_full": true,
+    "canonical_prompt_bodies_reviewed_full": 25,
+    "total_prompt_source_lines_reviewed": 3769,
+    "exact_manifest_entries": 25,
+    "canonical_immutable_entries": 25,
+    "decision_owner": "refinar",
+    "owner_boundary": "Refinar diagnostica desempenho, documenta benchmark, formaliza experimento, define métrica e thresholds, valida evidência, classifica ESCALAR/OTIMIZAR/PARAR/TESTAR e registra aprendizado. Não cria mensagem, redefine lifecycle/segmento, configura canal/cadência, aceita gargalo global ou autoriza execução externa.",
+    "benchmark_guard": "Sem benchmark comparável, dois períodos comparáveis, amostra predeclarada, variável isolada ou desenho multivariado, métrica/direção/denominador válidos e domínio não negativo suportado, a saída permanece TESTAR ou data_gap_plan e não calcula performance_index.",
+    "maturity_distribution": {
+      "em_desenvolvimento": 13,
+      "maduro": 10,
+      "avancado": 2
+    },
+    "semantic_review_distribution": {
+      "reviewed_with_flags": 20,
+      "needs_editorial_review": 5
+    },
+    "quality_flag_counts": {
+      "terminology_inconsistent": 25,
+      "unidiomatic_translation": 25,
+      "mixed_language": 14,
+      "pii_sensitive": 6,
+      "unverified_external_claim": 5,
+      "ambiguous_instruction": 8,
+      "security_sensitive": 1,
+      "duplicate_like": 2
+    },
+    "intrapillar_relations": 20,
+    "directional_dependencies": 5,
+    "cross_pillar_candidates": 8,
+    "source_anomalies": [
+      "otimizador-de-testes-sequenciais.md tem corpo de inteligência competitiva, não de testes sequenciais.",
+      "otimizador-de-agilidade-de-marketing.md termina abruptamente com fragmento de outro recurso."
+    ],
+    "preservation_statement": "Relações, limites e flags são sidecar; não autorizam mesclar, excluir, renomear, recasear ou reescrever qualquer prompt canônico."
+  },
+  "unresolved_questions": [
+    {
+      "id": "REF-UQ001",
+      "question": "O filename/INDEX de otimizador-de-testes-sequenciais deve permanecer roteável apesar de o corpo tratar inteligência competitiva?",
+      "blocking": true,
+      "owner": "lead_p3_integration",
+      "safe_default": "Preservar o prompt, manter selection_confidence low e bloquear seleção automática como teste sequencial."
+    },
+    {
+      "id": "REF-UQ002",
+      "question": "O fragmento final de otimizador-de-agilidade-de-marketing será corrigido em uma futura versão canonizada?",
+      "blocking": true,
+      "owner": "future_editorial_release",
+      "safe_default": "Preservar bytes, sinalizar needs_editorial_review e exigir revisão humana antes da seleção."
+    },
+    {
+      "id": "REF-UQ003",
+      "question": "Qual método estatístico e defaults específicos por métrica definirão amostra mínima e melhoria material?",
+      "blocking": true,
+      "owner": "p4_or_p7_statistical_policy",
+      "safe_default": "Exigir regra predeclarada por projeto/métrica; sem ela manter TESTAR e não inventar threshold."
+    },
+    {
+      "id": "REF-UQ004",
+      "question": "A redistribuição individual dos prompts foi juridicamente revisada?",
+      "blocking": true,
+      "owner": "release_legal_review",
+      "safe_default": "redistribution_review permanece not_reviewed e não autoriza distribuição."
+    }
+  ]
+}
+

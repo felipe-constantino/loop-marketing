@@ -1,10 +1,10 @@
-# Checkpoint CP-0008
+# Checkpoint CP-0009
 
 Atualizado em: 2026-07-17
 
 ## Objetivo
 
-Executar P3 como catalogação não destrutiva dos 100 prompts, usando a especificação P2 e sem alterar ainda a skill ou a biblioteca canônica.
+Concluir P3 pela revisão relacional independente e integração do catálogo 100/100, sem alterar ainda a skill ou a biblioteca canônica.
 
 ## Estado atual
 
@@ -14,7 +14,7 @@ Executar P3 como catalogação não destrutiva dos 100 prompts, usando a especif
 - Worktree no baseline: limpo
 - Biblioteca canônica: 100 prompts
 - Autorização do usuário: recebida em 2026-07-17 (`pode iniciar`)
-- Implementação v2: P1 e P2 concluídas; P3 iniciada em modo de catálogo sidecar
+- Implementação v2: P1 e P2 concluídas; quatro workstreams de catálogo P3 concluídos
 - Validação determinística: aprovada, sem erros
 - Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
 - Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
@@ -31,7 +31,14 @@ Executar P3 como catalogação não destrutiva dos 100 prompts, usando a especif
 - P2: dois gates independentes aprovaram; último gate com zero achados bloqueantes e não bloqueantes
 - Contrato P2: cinco papéis, um owner por decisão, 22 campos de handoff e 30 códigos de rejeição
 - Compatibilidade P2: comandos curtos canônicos, aliases v1.x e estado único em `.loop-marketing/`
-- Gate atual: `G4 — concluir e validar o catálogo canônico P3`
+- Schema P3: válido e com política confirmed-only para efeito normativo
+- Workstreams P3: 4/4 válidos, 100 entradas únicas e 100/100 prompts preservados
+- Revisão integral registrada: 17.454 linhas nos 100 corpos canônicos
+- Relações candidatas: 78 intrapilar + 28 cross-pillar aguardando replay independente
+- Metadados: 55 táticas em desenvolvimento, 37 maduras, 5 nascentes e 3 avançadas
+- Qualidade: 38 entradas precisam de revisão editorial; flags não alteram o canônico
+- Proveniência: individual_source_verified=false e redistribution_review=not_reviewed em 100/100
+- Gate atual: `G4 — revisar relações, integrar e executar gate final P3`
 
 ## Decisões vigentes
 
@@ -45,6 +52,8 @@ Executar P3 como catalogação não destrutiva dos 100 prompts, usando a especif
 - Tratar aliases e metadados como camadas sobre a biblioteca; não fundir ou remover prompts canônicos.
 - Usar zero táticas quando não houver match seguro; uma por padrão e no máximo duas por `route_node_id`.
 - Tratar maturidade ausente como `unknown`, nunca como `nascente` por fallback.
+- Permitir efeito normativo no roteador somente para relações confirmadas; relações propostas são audit-only.
+- Tratar revisão jurídica de redistribuição como restrição de release, não como autorização implícita de P3.
 
 ## Artefatos de continuidade
 
@@ -92,9 +101,21 @@ P1 foi concluída em modo read-only. Os 117 arquivos estão classificados; os ac
 - Registrar risco editorial/tradução como flag de revisão, não como prova automática de erro.
 - Provar 100/100 paths e hashes antes de fechar a fase.
 
+## Resultado intermediário de P3
+
+- `artifacts/P3/catalog-schema.json`: schema sidecar e política relacional definidos.
+- `artifacts/P3/workstreams/verbalizar.json`: 25/25 entradas e 14 relações internas.
+- `artifacts/P3/workstreams/orientar.json`: 25/25 entradas e 28 relações internas.
+- `artifacts/P3/workstreams/ampliar.json`: 25/25 entradas e 16 relações internas.
+- `artifacts/P3/workstreams/refinar.json`: 25/25 entradas e 20 relações internas.
+- `scripts/p3_validate.py`: valida schema, cada pilar, cobertura agregada, replay relacional e artefatos finais.
+- `scripts/p3_integrate.py`: integração determinística preparada; só executa após workstreams e relações válidos.
+- Gate agregado atual: `python3 scripts/p3_validate.py workstreams` aprovado com zero erros.
+- Fonte canônica: limpa e ancorada no baseline após as quatro revisões.
+
 ## Próxima ação única
 
-Definir o schema P3, revisar os quatro pilares em arquivos não sobrepostos e integrar o catálogo 100/100.
+Reproduzir independentemente as 106 hipóteses relacionais, integrar os artefatos oficiais e executar o gate final P3.
 
 ## Proibido durante P3
 

@@ -1,0 +1,3604 @@
+{
+  "workstream": "pillar_catalog_ampliar",
+  "status": "completed",
+  "pillar": "Ampliar",
+  "methodology_stage": "Amplify",
+  "baseline": {
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  },
+  "entries": [
+    {
+      "tactic_id": "lm.ampliar.amplificacao-da-lideranca-do-pensamento",
+      "canonical_path": "biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+      "canonical_sha256": "37d2adfc40c4c4baff204b0e563d36222d13e14ab0494a72266e53aebc37156b",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Amplificação da liderança do pensamento",
+      "summary": "Distribui uma tese de liderança de pensamento já validada por canais, mídia, eventos e redes sem redefinir o posicionamento.",
+      "aliases": [
+        "amplificação de thought leadership"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "plan"
+      ],
+      "object_tags": [
+        "channel",
+        "content",
+        "thought-leadership"
+      ],
+      "need_tags": [
+        "distribute:thought-leadership",
+        "plan:channel"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "thought-leadership-contract",
+          "description": "Tese, provas, especialistas e limites de posicionamento validados por Verbalizar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "audience-eligibility",
+          "description": "Segmentos e estágios elegíveis definidos por Orientar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "channel-opportunity-map",
+          "description": "Canais, mídia, eventos e redes disponíveis com capacidade e restrições.",
+          "required": true,
+          "evidence_types": [
+            "channel_inventory",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Distribui uma tese de liderança de pensamento já validada por canais, mídia, eventos e redes sem redefinir o posicionamento.",
+        "required_sections": [
+          "amplification-objective",
+          "channel-role-map",
+          "sequence-and-cadence",
+          "measurement-requirements",
+          "handoff-boundaries"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Exige tese e ativos já validados, ao menos dois canais viáveis e capacidade básica de coordenação; não requer orquestração avançada.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "validated-thought-leadership",
+          "description": "Verbalizar publicou tese, provas e posicionamento que Ampliar não pode reescrever.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "channel-capacity",
+          "description": "Há capacidade operacional declarada para os canais selecionados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A tese, voz ou prova ainda não está definida.",
+          "reason": "O prompt pressupõe liderança de pensamento existente e pode invadir Verbalizar.",
+          "fallback": "Roteie primeiro para Verbalizar."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há conteúdo de liderança de pensamento validado que precisa ganhar alcance coordenado.",
+        "É necessário combinar mídia, eventos e redes sob um plano de distribuição."
+      ],
+      "do_not_use_when": [
+        "Não usar para criar ou validar a tese de liderança de pensamento.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "high",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Objetivo tático é claro, mas há tradução pouco idiomática e uso instável de 'autoridades' e 'oportunidades falantes'."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 35,
+        "review_notes": "Corpo integral revisado; catalogado apenas como distribuição de uma tese já pertencente a Verbalizar."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.amplificador-de-conteudo-de-video",
+      "canonical_path": "biblioteca/Ampliar/amplificador-de-conteudo-de-video.md",
+      "canonical_sha256": "5d85a73ec6b626917a0aa124729ad684e744b67fbf972eae051f474c34d61981",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Amplificador de Conteúdo de Vídeo",
+      "summary": "Planeja papel, formatos, distribuição e cadência do vídeo a partir de conteúdo e mensagem já validados.",
+      "aliases": [
+        "estratégia de distribuição de vídeo"
+      ],
+      "job_tags": [
+        "distribute",
+        "optimize",
+        "plan"
+      ],
+      "object_tags": [
+        "channel",
+        "content",
+        "video"
+      ],
+      "need_tags": [
+        "distribute:video",
+        "optimize:channel",
+        "plan:content"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "validated-content-inventory",
+          "description": "Ativos de conteúdo e vídeo aprovados, com direitos de uso e mensagem preservada.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "video-audience-evidence",
+          "description": "Preferências agregadas de formato e plataforma dos segmentos elegíveis.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "crm_aggregate",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "video-production-capability",
+          "description": "Capacidade de produção, edição, publicação e moderação por plataforma.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "user_brief"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Planeja papel, formatos, distribuição e cadência do vídeo a partir de conteúdo e mensagem já validados.",
+        "required_sections": [
+          "asset-repurposing-map",
+          "platform-role-map",
+          "format-requirements",
+          "publishing-cadence",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer biblioteca de conteúdo, capacidade recorrente de produção e dados básicos de consumo; uma operação nascente deve usar o método base.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "message-and-cta-validated",
+          "description": "Verbalizar definiu mensagem, tom e CTA.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "video-rights-confirmed",
+          "description": "Direitos e consentimentos dos ativos de cliente estão confirmados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "Não há conteúdo validado ou capacidade contínua de produção.",
+          "reason": "O plano viraria uma lista inviável de formatos e plataformas.",
+          "fallback": "Começar por um piloto de canal no método base."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Vídeo é um canal candidato comprovado e há ativos reutilizáveis.",
+        "É preciso diferenciar formatos e papéis de LinkedIn, YouTube e vídeo curto."
+      ],
+      "do_not_use_when": [
+        "Não usar para escrever a mensagem, CTA ou criar história de cliente sem consentimento.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Há fragmentos ingleses, colchetes não fechados e headings quebrados; a camada sidecar limita o uso a distribuição e formato."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 219,
+        "review_notes": "Corpo integral revisado, inclusive fases de implementação e métricas; decisões de performance foram excluídas do owner Ampliar."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.amplificador-de-defesa-do-cliente",
+      "canonical_path": "biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+      "canonical_sha256": "69efeb0501a7beaa0307426904e1ab7328306b4b38e4b20422fecc2b00bc55c5",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Amplificador de Defesa do Cliente",
+      "summary": "Estrutura canais, touchpoints e reconhecimento de um programa de advocacy para clientes elegíveis e consentidos.",
+      "aliases": [
+        "programa de advocacy do cliente"
+      ],
+      "job_tags": [
+        "coordinate",
+        "design",
+        "distribute"
+      ],
+      "object_tags": [
+        "community",
+        "customer-advocacy",
+        "referral"
+      ],
+      "need_tags": [
+        "design:customer-advocacy",
+        "distribute:customer-advocacy",
+        "coordinate:community"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "advocacy-eligibility-aggregate",
+          "description": "Sinais agregados de sucesso, satisfação, retenção e disposição, sem identificar pessoas.",
+          "required": true,
+          "evidence_types": [
+            "crm_aggregate",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "consent-and-legal-rules",
+          "description": "Regras de consentimento, incentivos, publicidade, depoimentos e direitos de uso.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "prior_decision"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "advocacy-capability",
+          "description": "Equipe, plataforma, benefícios e capacidade de relacionamento do programa.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "user_brief"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "campaign_system",
+        "description": "Estrutura canais, touchpoints e reconhecimento de um programa de advocacy para clientes elegíveis e consentidos.",
+        "required_sections": [
+          "eligibility-constraints",
+          "advocacy-journey",
+          "channel-and-touchpoint-plan",
+          "recognition-and-rights",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Pressupõe sucesso do cliente observável, governança de consentimento, recursos recorrentes e capacidade de operar comunidade e benefícios.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "orientar-eligibility",
+          "description": "Orientar definiu elegibilidade, exclusões e supressões.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "consent-governance",
+          "description": "Consentimento e direitos de participação e publicação são verificáveis.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A seleção depende de registros individuais ou dados pessoais não minimizados.",
+          "reason": "O prompt solicita características de clientes e pode induzir persistência de PII.",
+          "fallback": "Usar somente agregados e obter política de consentimento antes de prosseguir."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há base comprovada de clientes satisfeitos e objetivo de advocacy contínuo.",
+        "É necessário coordenar reconhecimento, conteúdo, comunidade e canais."
+      ],
+      "do_not_use_when": [
+        "Não usar como sinônimo de programa de indicação ou UGC quando esse for o único output.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "duplicate_like",
+          "mixed_language",
+          "pii_sensitive",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Mistura advocacy, indicação e UGC e solicita sinais individuais; seleção exige delimitação e dados agregados."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 245,
+        "review_notes": "Corpo integral revisado; sobreposições preservadas como relações externas, sem fundir prompts."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.amplificador-de-eventos-e-conferencias",
+      "canonical_path": "biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+      "canonical_sha256": "85704f462364ef51024cd3786d5188de9457c23356d41b9cc0c238fe3e7addb1",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Amplificador de eventos e conferências",
+      "summary": "Planeja amplificação pré, durante e pós participação em conferências, feiras e eventos de terceiros.",
+      "aliases": [
+        "amplificação de conferências"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "plan"
+      ],
+      "object_tags": [
+        "channel",
+        "event",
+        "thought-leadership"
+      ],
+      "need_tags": [
+        "plan:event",
+        "distribute:event",
+        "coordinate:channel"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "third-party-event-commitments",
+          "description": "Eventos de terceiros, modalidade de participação, datas, orçamento e ativos confirmados.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "first_party_document"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "event-audience-alignment",
+          "description": "Sobreposição com segmentos elegíveis e objetivos de relacionamento.",
+          "required": true,
+          "evidence_types": [
+            "market_source",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "event-content-contract",
+          "description": "Tese, apresentação, mensagem e CTA validados.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Planeja amplificação pré, durante e pós participação em conferências, feiras e eventos de terceiros.",
+        "required_sections": [
+          "event-role-and-fit",
+          "pre-event-plan",
+          "live-coordination",
+          "post-event-follow-up",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer compromisso real com evento, mensagem e público definidos e capacidade de acompanhamento, mas pode começar com um evento prioritário.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "event-participation-confirmed",
+          "description": "Participação, patrocínio, fala ou exposição está confirmada ou explicitamente em avaliação.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "follow-up-capability",
+          "description": "Há owner e capacidade para follow-up pós-evento.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "O objetivo é hospedar webinar ou evento próprio.",
+          "reason": "O escopo deste prompt é participação e amplificação de evento de terceiros.",
+          "fallback": "Preferir evento-ao-vivo-e-amplificador-de-webinar ou o prompt de marketing de eventos conforme o tipo."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "A organização participará de conferência, feira ou evento setorial de terceiros.",
+        "É preciso coordenar conteúdo e relacionamentos antes, durante e depois."
+      ],
+      "do_not_use_when": [
+        "Não usar para webinar próprio quando não há participação externa.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Quase duplica marketing de eventos e contém marcador residual 'name of the user action'; o catálogo estreita para eventos de terceiros."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 250,
+        "review_notes": "Corpo integral revisado; distinção semântica baseada no índice e no contexto de participação."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.amplificador-de-marketing-de-eventos",
+      "canonical_path": "biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+      "canonical_sha256": "2c01285a922a744cf7d8655b3ec57c746e7e8ffe9741e9a38fbbdcace4da1ca2",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Amplificador de marketing de eventos",
+      "summary": "Define o sistema de promoção e distribuição de eventos próprios, com pré-evento, cobertura e follow-up.",
+      "aliases": [
+        "marketing de eventos próprios"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "plan"
+      ],
+      "object_tags": [
+        "campaign",
+        "channel",
+        "event"
+      ],
+      "need_tags": [
+        "plan:event",
+        "coordinate:campaign",
+        "distribute:event"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "owned-event-brief",
+          "description": "Evento próprio, objetivo, formato, data, oferta e capacidade operacional.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "first_party_document"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "eligible-event-audience",
+          "description": "Segmentos elegíveis, supressões e prioridade definidos por Orientar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "event-message-contract",
+          "description": "Mensagem, promessa, prova e CTA definidos por Verbalizar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "campaign_system",
+        "description": "Define o sistema de promoção e distribuição de eventos próprios, com pré-evento, cobertura e follow-up.",
+        "required_sections": [
+          "event-objective-and-role",
+          "audience-build-plan",
+          "live-channel-coordination",
+          "follow-up-cadence",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Exige capacidade mínima de hospedar, promover, capturar consentimento e acompanhar o evento; não exige programa anual maduro.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "event-operational-owner",
+          "description": "Owner operacional, tecnologia e data do evento estão definidos.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "message-and-audience-validated",
+          "description": "Mensagem e audiência passaram pelos owners correspondentes.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "O evento é apenas uma conferência de terceiros.",
+          "reason": "O corpo sobrepõe participação externa, mas o uso canônico foi estreitado para evento próprio.",
+          "fallback": "Usar amplificador-de-eventos-e-conferencias."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há webinar, workshop ou evento próprio a promover e amplificar.",
+        "É necessário coordenar aquisição de audiência, experiência ao vivo e follow-up."
+      ],
+      "do_not_use_when": [
+        "Não usar para participação simples em conferência de terceiros.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O corpo trata amplamente participação em eventos, contrariando a especialização do índice em eventos próprios."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 217,
+        "review_notes": "Corpo integral revisado; aplicação limitada a eventos próprios para evitar co-seleção duplicada."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.amplificador-de-marketing-local-e-regional",
+      "canonical_path": "biblioteca/Ampliar/amplificador-de-marketing-local-e-regional.md",
+      "canonical_sha256": "805223f79110362e422b0b2a1c95bf700e2ccfde06d51d5285fefc54d1151a86",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Amplificador de marketing local e regional",
+      "summary": "Planeja presença regional por canais, comunidades, parceiros, eventos e mídia locais para mercados já definidos.",
+      "aliases": [
+        "plano de distribuição regional"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "plan"
+      ],
+      "object_tags": [
+        "community",
+        "local-market",
+        "partnership"
+      ],
+      "need_tags": [
+        "plan:local-market",
+        "distribute:local-market",
+        "coordinate:partnership"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "regional-market-scope",
+          "description": "Regiões prioritárias, objetivo e restrições geográficas já definidos.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "user_brief"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "regional-audience-evidence",
+          "description": "Variações agregadas de público, elegibilidade e confiança por região.",
+          "required": true,
+          "evidence_types": [
+            "crm_aggregate",
+            "market_source",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "local-channel-inventory",
+          "description": "Comunidades, mídia, eventos e parceiros locais com capacidade e regras.",
+          "required": true,
+          "evidence_types": [
+            "channel_inventory",
+            "market_source"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Planeja presença regional por canais, comunidades, parceiros, eventos e mídia locais para mercados já definidos.",
+        "required_sections": [
+          "regional-role-map",
+          "community-and-partner-plan",
+          "local-channel-mix",
+          "event-and-media-cadence",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer ao menos uma região prioritária comprovada, sinais de público e capacidade local; pode ser aplicado antes de escala nacional madura.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "regional-eligibility-defined",
+          "description": "Orientar delimitou quem é elegível em cada região.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "localized-message-approved",
+          "description": "Verbalizar aprovou o que pode variar e o que deve permanecer consistente.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A solicitação é definir novos segmentos regionais ou adaptar semanticamente a mensagem.",
+          "reason": "Essas decisões pertencem a Orientar e Verbalizar.",
+          "fallback": "Obter os contratos dos owners antes de planejar distribuição."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "A presença local/regional é o canal estratégico e os mercados já foram priorizados.",
+        "É preciso coordenar comunidade, parceiros, eventos e mídia locais."
+      ],
+      "do_not_use_when": [
+        "Não usar para decidir a segmentação regional ou reescrever posicionamento.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "high",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Escopo é identificável, mas a tradução apresenta termos literais como 'empenhamento' e 'oportunidades falantes'."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 200,
+        "review_notes": "Corpo integral revisado; decisões de audiência e mensagem foram convertidas em pré-requisitos."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.construtor-de-rede-influenciadora",
+      "canonical_path": "biblioteca/Ampliar/construtor-de-rede-influenciadora.md",
+      "canonical_sha256": "ad69e335c9d8cbc969ab80012ef081e1f934e91cf42e6e55e0492e2a45b3d325",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Construtor de Rede Influenciadora",
+      "summary": "Desenha uma rede contínua de micro e nano-influenciadores com critérios de fit, relacionamento e amplificação.",
+      "aliases": [
+        "rede de microinfluenciadores"
+      ],
+      "job_tags": [
+        "coordinate",
+        "design",
+        "identify"
+      ],
+      "object_tags": [
+        "audience",
+        "creator",
+        "partnership"
+      ],
+      "need_tags": [
+        "identify:creator",
+        "design:partnership",
+        "coordinate:creator"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "creator-audience-fit",
+          "description": "Critérios de audiência e confiança para micro e nano-influenciadores.",
+          "required": true,
+          "evidence_types": [
+            "market_source",
+            "prior_decision"
+          ],
+          "sensitivity": "public"
+        },
+        {
+          "input_id": "brand-safety-contract",
+          "description": "Valores, limites, disclosure e requisitos legais da parceria.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset",
+            "first_party_document"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "relationship-capability",
+          "description": "Orçamento, equipe e capacidade de manter uma rede contínua.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "strategy",
+        "description": "Desenha uma rede contínua de micro e nano-influenciadores com critérios de fit, relacionamento e amplificação.",
+        "required_sections": [
+          "network-objective",
+          "creator-fit-criteria",
+          "relationship-model",
+          "amplification-roles",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Uma rede contínua requer governança, capacidade de relacionamento, brand safety e medição além de uma parceria pontual.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "creator-governance",
+          "description": "Existem regras de due diligence, disclosure, segurança de marca e contratação.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "audience-fit-defined",
+          "description": "Orientar forneceu a audiência elegível; Ampliar avalia somente fit de canal/rede.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "O objetivo é uma única parceria pontual com creator.",
+          "reason": "Este prompt trata uma rede contínua e pode superdimensionar a operação.",
+          "fallback": "Usar estrategista-de-parceria-creator."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há capacidade para construir e manter uma rede de micro/nano-influenciadores.",
+        "O objetivo é amplificação sustentada por relações múltiplas."
+      ],
+      "do_not_use_when": [
+        "Não usar para uma parceria única ou sem governança de brand safety.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "medium",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Inclui resíduo 'Evolve | Refinar' e sobrepõe parceria de creator; exige revisão editorial."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 36,
+        "review_notes": "Corpo integral revisado, inclusive linha residual final; preservado como rede, não parceria pontual."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.distribuicao-voltada-para-a-comunidade",
+      "canonical_path": "biblioteca/Ampliar/distribuicao-voltada-para-a-comunidade.md",
+      "canonical_sha256": "6181ffec54f2c883931fbe0be24e95f81fc7286afadcae9ce3f34c7dd06263ee",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Distribuição voltada para a comunidade",
+      "summary": "Seleciona comunidades como canal e define participação de valor, formatos e cadência compatíveis com suas regras.",
+      "aliases": [
+        "distribuição em comunidades"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "identify"
+      ],
+      "object_tags": [
+        "audience",
+        "community",
+        "thought-leadership"
+      ],
+      "need_tags": [
+        "identify:community",
+        "distribute:community",
+        "coordinate:community"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "community-map",
+          "description": "Comunidades candidatas, regras, cultura, atividade e fontes públicas.",
+          "required": true,
+          "evidence_types": [
+            "market_source",
+            "channel_inventory"
+          ],
+          "sensitivity": "public"
+        },
+        {
+          "input_id": "eligible-audience",
+          "description": "Público e problemas elegíveis já definidos.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "value-assets",
+          "description": "Conhecimento, conteúdo e limites promocionais que podem gerar valor.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Seleciona comunidades como canal e define participação de valor, formatos e cadência compatíveis com suas regras.",
+        "required_sections": [
+          "community-fit-matrix",
+          "participation-rules",
+          "value-contribution-plan",
+          "relationship-cadence",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "nascente",
+      "maturity_rationale": "Pode começar com uma comunidade e contribuição manual, desde que público, expertise e regras estejam documentados; não exige automação.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "community-rules-known",
+          "description": "Regras formais e normas culturais foram lidas.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "non-promotional-value",
+          "description": "Existe conteúdo ou expertise útil sem captura ou promoção invasiva.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A estratégia depende de spam, scraping de membros ou abordagem comercial não solicitada.",
+          "reason": "Viola autenticidade, consentimento e regras comunitárias.",
+          "fallback": "Manter participação orgânica de valor ou escolher outro canal."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "O público participa de comunidades identificáveis e a organização pode contribuir com valor.",
+        "É preciso definir papel, ritmo e limites de participação."
+      ],
+      "do_not_use_when": [
+        "Não usar para mineração de membros, outreach automatizado ou venda direta disfarçada.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Sem bloqueio semântico central; tradução literal usa 'autoridades', 'prédio' e construções pouco idiomáticas."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 214,
+        "review_notes": "Corpo integral revisado; segurança comunitária adicionada como contraindicação."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.diversificacao-de-midia-paga",
+      "canonical_path": "biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+      "canonical_sha256": "3a037b4e8c5971aa4c9c9a66c5957f52a6bef366cbfe6305ba2f068e76d52d86",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Diversificação de mídia paga",
+      "summary": "Identifica canais pagos adicionais e define fit, limites de investimento e requisitos para testes que Refinar deve formalizar.",
+      "aliases": [
+        "expansão de canais pagos"
+      ],
+      "job_tags": [
+        "identify",
+        "plan",
+        "prioritize"
+      ],
+      "object_tags": [
+        "audience",
+        "campaign",
+        "channel"
+      ],
+      "need_tags": [
+        "identify:channel",
+        "prioritize:channel",
+        "plan:campaign"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "paid-channel-baseline",
+          "description": "Inventário de canais pagos, custos, alcance, saturação e capacidade atuais.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "channel_inventory"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "eligible-paid-audience",
+          "description": "Audiências elegíveis, consentimento e restrições por canal.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "test-budget-and-capability",
+          "description": "Limite de orçamento, recursos criativos e capacidade técnica para pilotos.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "technical_capability"
+          ],
+          "sensitivity": "confidential"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Identifica canais pagos adicionais e define fit, limites de investimento e requisitos para testes que Refinar deve formalizar.",
+        "required_sections": [
+          "paid-channel-fit",
+          "candidate-priority",
+          "budget-guardrails",
+          "measurement-requirements",
+          "refinar-handoff"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Pressupõe mix pago existente, dados comparáveis, orçamento de piloto, tracking e capacidade criativa; sem isso a diversificação não é segura.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "attribution-requirements-defined",
+          "description": "Requisitos mínimos de tracking e atribuição foram definidos.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "pilot-authorization-separate",
+          "description": "O plano não é autorização para comprar mídia; execução terá gate próprio.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "Não existem métricas comparáveis, tracking ou limite de orçamento.",
+          "reason": "O prompt pede eficiência, critérios de saída e escala que não podem ser decididos sem Refinar.",
+          "fallback": "Produzir somente inventário de fit e encaminhar desenho de teste a Refinar."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "A operação paga madura precisa reduzir dependência de plataformas tradicionais.",
+        "Há orçamento e capacidade para avaliar canais pagos adicionais."
+      ],
+      "do_not_use_when": [
+        "Não usar para classificar um canal como vencedor ou autorizar gasto.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O texto atribui teste, critérios de escala e performance a Ampliar; sidecar limita a fit e requisitos para handoff a Refinar."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 215,
+        "review_notes": "Corpo integral revisado; todas as decisões ESCALAR/PARAR e desenho experimental foram excluídas do contrato de saída."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.estrategia-de-conteudo-entre-plataformas",
+      "canonical_path": "biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+      "canonical_sha256": "6a4224482aa555ae5d133ce34aa85a078a6d881b0d788d6515dd843d2cc50156",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Estratégia de conteúdo entre plataformas",
+      "summary": "Adapta formato, duração e distribuição de conteúdo entre plataformas sem alterar mensagem, proposta de valor ou audiência.",
+      "aliases": [
+        "adaptação de formato multiplataforma"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "optimize"
+      ],
+      "object_tags": [
+        "brand",
+        "channel",
+        "content"
+      ],
+      "need_tags": [
+        "distribute:content",
+        "optimize:channel",
+        "coordinate:brand"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "message-hierarchy",
+          "description": "Mensagem, tom, proposta de valor e invariantes definidos por Verbalizar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "content-master-assets",
+          "description": "Ativos mestres aprovados e direitos de uso.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "platform-capabilities",
+          "description": "Formatos, cultura, audiência e capacidade por plataforma.",
+          "required": true,
+          "evidence_types": [
+            "channel_inventory",
+            "market_source",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Adapta formato, duração e distribuição de conteúdo entre plataformas sem alterar mensagem, proposta de valor ou audiência.",
+        "required_sections": [
+          "content-invariants",
+          "platform-role-map",
+          "format-adaptation-matrix",
+          "distribution-cadence",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Exige produção recorrente, ativos mestres e operação em múltiplas plataformas, mas não requer integração omnicanal madura.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "verbalizar-message-contract",
+          "description": "Mensagem e tom imutáveis para adaptação de formato estão aprovados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "platform-ownership",
+          "description": "Há owner e capacidade para cada plataforma incluída.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A adaptação exige mudar claim, proposta de valor, tom ou CTA.",
+          "reason": "Isso é decisão de Verbalizar, não de formato operacional.",
+          "fallback": "Solicitar variação semântica a Verbalizar e depois adaptar o formato."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Um conteúdo central precisa assumir formatos nativos em várias plataformas.",
+        "Consistência de marca e coordenação de calendário são requisitos."
+      ],
+      "do_not_use_when": [
+        "Não usar para criar nova mensagem ou escolher segmentos.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "medium",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Mistura adaptação semântica e performance com formato/distribuição; há fragmento inglês e drift terminológico."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 207,
+        "review_notes": "Corpo integral revisado; o catálogo fixa adaptação operacional e preserva o contrato de Verbalizar."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.estrategia-de-podcast-e-audio",
+      "canonical_path": "biblioteca/Ampliar/estrategia-de-podcast-e-audio.md",
+      "canonical_sha256": "b9bb93903dd9e596177287971b37fd9a5b3755e4628701460736fee3a916ce88",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Estratégia de podcast e áudio",
+      "summary": "Define papel, formatos, distribuição e cadência de podcast e áudio para audiência e expertise já validadas.",
+      "aliases": [
+        "plano de canal de áudio"
+      ],
+      "job_tags": [
+        "distribute",
+        "identify",
+        "plan"
+      ],
+      "object_tags": [
+        "channel",
+        "podcast-audio",
+        "thought-leadership"
+      ],
+      "need_tags": [
+        "identify:podcast-audio",
+        "plan:channel",
+        "distribute:podcast-audio"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "audio-audience-evidence",
+          "description": "Hábitos agregados de escuta e podcasts relevantes para o público elegível.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "market_source",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "audio-message-and-expertise",
+          "description": "Tese, especialistas, histórias, CTA e tom aprovados.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "audio-capability",
+          "description": "Orçamento, apresentadores, gravação, edição e distribuição disponíveis.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "user_brief"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Define papel, formatos, distribuição e cadência de podcast e áudio para audiência e expertise já validadas.",
+        "required_sections": [
+          "audio-channel-role",
+          "guest-and-owned-format-map",
+          "distribution-plan",
+          "cadence-and-capacity",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer expertise comunicável e capacidade consistente de produção/distribuição, mas pode iniciar por aparições de convidados antes de podcast próprio.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "audio-expertise-validated",
+          "description": "Verbalizar validou tese, linguagem e CTA.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "audio-production-ready",
+          "description": "Capacidade de produção e direitos de voz/conteúdo estão confirmados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "Não há evidência de consumo de áudio pelo público nem capacidade de produção.",
+          "reason": "O canal seria escolhido pela forma, não pelo fit.",
+          "fallback": "Usar o método base para avaliar canais ou coletar evidência."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "O público consome áudio e existe expertise adequada a aparições, publicidade ou conteúdo próprio.",
+        "É preciso escolher entre canal próprio, convidado e mídia paga em podcast."
+      ],
+      "do_not_use_when": [
+        "Não usar para escrever scripts, mensagens ou CTAs sem Verbalizar.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Há headings incompletos, inglês residual e instruções de mensagem/teste que excedem a fronteira de Ampliar."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 187,
+        "review_notes": "Corpo integral revisado; output limitado a decisão de canal, formato e distribuição."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.estrategia-viral-em-todas-as-plataformas",
+      "canonical_path": "biblioteca/Ampliar/estrategia-viral-em-todas-as-plataformas.md",
+      "canonical_sha256": "20059f12410067e5216a28f93097e20f836046f4eca54bf5720ebf3c7e9049fe",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Estratégia viral em todas as plataformas",
+      "summary": "Planeja distribuição e amplificação cross-platform de conteúdo validado com limites explícitos de risco de marca.",
+      "aliases": [
+        "amplificação viral cross-platform"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "plan"
+      ],
+      "object_tags": [
+        "brand",
+        "content",
+        "viral-distribution"
+      ],
+      "need_tags": [
+        "plan:viral-distribution",
+        "distribute:content",
+        "coordinate:brand"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "validated-viral-candidate",
+          "description": "Conteúdo, mensagem, prova e limites de marca aprovados.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "sharing-patterns",
+          "description": "Sinais históricos agregados de compartilhamento e comportamento por plataforma.",
+          "required": true,
+          "evidence_types": [
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "brand-risk-tolerance",
+          "description": "Limites de risco, aprovação, moderação e resposta a crise.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "prior_decision"
+          ],
+          "sensitivity": "confidential"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Planeja distribuição e amplificação cross-platform de conteúdo validado com limites explícitos de risco de marca.",
+        "required_sections": [
+          "viral-objective",
+          "platform-amplification-map",
+          "brand-safety-guardrails",
+          "release-sequence",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Buscar viralidade com segurança exige histórico, governança de marca, monitoramento e capacidade de resposta; ausência desses controles bloqueia.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "content-validated",
+          "description": "Conteúdo e mensagem foram validados por Verbalizar.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "brand-safety-response",
+          "description": "Existe owner e protocolo de moderação/crise.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "O conteúdo ainda precisa ser criado ou a organização não possui controles de brand safety.",
+          "reason": "O prompt mistura criação com distribuição e aumenta risco reputacional.",
+          "fallback": "Roteie criação para Verbalizar ou use amplificação convencional."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Existe conteúdo comprovadamente compartilhável e a meta é coordenar amplificação orgânica entre plataformas.",
+        "Há limites de marca e resposta a risco definidos."
+      ],
+      "do_not_use_when": [
+        "Não usar para prometer viralidade ou criar a ideia central da campanha.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "ambiguous_instruction",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "A promessa de viralidade não é verificável; sidecar trata apenas como potencial e plano de distribuição, nunca como resultado garantido."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 35,
+        "review_notes": "Corpo integral revisado; promessa causal foi removida do contrato de decisão."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.estrategista-de-diversificacao-do-canal",
+      "canonical_path": "biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+      "canonical_sha256": "782beb73b63a2326c4487afc6fde0083c1270e7392878155eb3f9785909275bd",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Estrategista de diversificação do canal",
+      "summary": "Mapeia e prioriza novos canais por presença do público, fit, capacidade e restrições, sem decidir performance futura.",
+      "aliases": [
+        "descoberta de novos canais"
+      ],
+      "job_tags": [
+        "identify",
+        "prioritize",
+        "research"
+      ],
+      "object_tags": [
+        "ai-search",
+        "audience",
+        "channel",
+        "community",
+        "creator",
+        "video"
+      ],
+      "need_tags": [
+        "identify:channel",
+        "research:audience",
+        "prioritize:channel"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "current-channel-portfolio",
+          "description": "Canais atuais, papéis, capacidade, custos e lacunas.",
+          "required": true,
+          "evidence_types": [
+            "channel_inventory",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "audience-channel-behavior",
+          "description": "Evidência de onde segmentos elegíveis pesquisam, aprendem e confiam.",
+          "required": true,
+          "evidence_types": [
+            "market_source",
+            "crm_aggregate",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "expansion-constraints",
+          "description": "Objetivo, orçamento, equipe, tecnologia e autorizações disponíveis.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "technical_capability"
+          ],
+          "sensitivity": "confidential"
+        }
+      ],
+      "output_contract": {
+        "output_type": "matrix",
+        "description": "Mapeia e prioriza novos canais por presença do público, fit, capacidade e restrições, sem decidir performance futura.",
+        "required_sections": [
+          "portfolio-baseline",
+          "candidate-channel-fit",
+          "capability-and-risk",
+          "priority-order",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Exige portfólio atual e ao menos dados básicos de audiência/capacidade; não requer atribuição madura para mapear fit, mas exige Refinar antes de validar performance.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "audience-defined",
+          "description": "Orientar definiu audiência e elegibilidade.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "resource-envelope-known",
+          "description": "Orçamento, equipe e tecnologia disponíveis são conhecidos.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A solicitação exige afirmar quais canais 'funcionam melhor' ou escalar canais.",
+          "reason": "Fit e capacidade não provam performance; essa classificação pertence a Refinar.",
+          "fallback": "Entregar matriz de candidatos e requisitos de teste a Refinar."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há lacuna de alcance e é preciso descobrir canais onde o público realmente está.",
+        "O objetivo é priorizar candidatos por fit e viabilidade."
+      ],
+      "do_not_use_when": [
+        "Não usar para recomendar 5–7 canais automaticamente quando a capacidade suporta menos.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O corpo exige quantidade fixa e mistura fit, testes e performance; o sidecar usa capacidade como limite e separa Refinar."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 265,
+        "review_notes": "Corpo integral revisado; número de canais não foi transformado em obrigação do catálogo."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.estrategista-de-parceria-creator",
+      "canonical_path": "biblioteca/Ampliar/estrategista-de-parceria-creator.md",
+      "canonical_sha256": "67d23843936b286fc7126e6f744eab97e659a40b23f433335379174cb6ffa1e7",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Estrategista de parceria Creator",
+      "summary": "Avalia fit de creator e estrutura uma parceria específica com governança, distribuição e valor mútuo.",
+      "aliases": [
+        "parceria pontual com creator"
+      ],
+      "job_tags": [
+        "coordinate",
+        "identify",
+        "plan"
+      ],
+      "object_tags": [
+        "audience",
+        "creator",
+        "partnership"
+      ],
+      "need_tags": [
+        "identify:creator",
+        "plan:partnership",
+        "coordinate:creator"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "creator-candidate-evidence",
+          "description": "Dados públicos de conteúdo, audiência, reputação e disponibilidade dos creators candidatos.",
+          "required": true,
+          "evidence_types": [
+            "market_source",
+            "analytics"
+          ],
+          "sensitivity": "public"
+        },
+        {
+          "input_id": "creator-audience-criteria",
+          "description": "Audiência elegível e critérios de sobreposição definidos sem perfis individuais.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "partnership-governance",
+          "description": "Orçamento, disclosure, contratação, brand safety, aprovação e capacidade de gestão.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "user_brief"
+          ],
+          "sensitivity": "confidential"
+        }
+      ],
+      "output_contract": {
+        "output_type": "strategy",
+        "description": "Avalia fit de creator e estrutura uma parceria específica com governança, distribuição e valor mútuo.",
+        "required_sections": [
+          "creator-fit-scorecard",
+          "partnership-model",
+          "content-and-channel-roles",
+          "governance-and-disclosure",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Exige due diligence, contrato, brand safety, orçamento, mensuração e gestão contínua de relação com terceiros.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "creator-due-diligence",
+          "description": "Critérios de autenticidade, segurança, conflitos e disclosure estão definidos.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "message-contract",
+          "description": "Verbalizar definiu invariantes de mensagem; voz do creator não autoriza alterar claims.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A organização pretende construir uma rede contínua de muitos microinfluenciadores.",
+          "reason": "Esse escopo excede uma parceria específica.",
+          "fallback": "Usar construtor-de-rede-influenciadora."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Existe intenção de parceria com um creator ou pequeno conjunto definido.",
+        "É preciso comparar fit, modelo de colaboração e governança."
+      ],
+      "do_not_use_when": [
+        "Não usar sem due diligence, disclosure ou capacidade contratual.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "duplicate_like",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Escopo é útil, mas há termos literais e sobreposição com rede de influenciadores."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 227,
+        "review_notes": "Corpo integral revisado; dados limitados a fontes públicas e agregadas."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.evento-ao-vivo-e-amplificador-de-webinar",
+      "canonical_path": "biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+      "canonical_sha256": "984b72ca165b607e4282be47fbaf29093d90a242ee351e2b34ab0b074476352a",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Evento ao vivo e amplificador de Webinar",
+      "summary": "Coordena aquisição de audiência, experiência, conteúdo e follow-up de webinar ou evento ao vivo próprio.",
+      "aliases": [
+        "amplificação de webinar"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "plan"
+      ],
+      "object_tags": [
+        "channel",
+        "content",
+        "event"
+      ],
+      "need_tags": [
+        "plan:event",
+        "coordinate:event",
+        "distribute:content"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "live-event-brief",
+          "description": "Objetivo, formato, data, conteúdo, especialistas e oferta do evento.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "eligible-live-audience",
+          "description": "Audiência, consentimento, supressões e prioridade.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "live-event-capability",
+          "description": "Plataforma, produção, moderação, gravação e follow-up disponíveis.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Coordena aquisição de audiência, experiência, conteúdo e follow-up de webinar ou evento ao vivo próprio.",
+        "required_sections": [
+          "audience-build",
+          "live-touchpoint-plan",
+          "content-amplification",
+          "follow-up-cadence",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer stack e equipe mínimas, mensagem/audiência definidas e capacidade de follow-up; pode começar por um único webinar.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "event-message-approved",
+          "description": "Mensagem, conteúdo e CTA foram aprovados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "event-consent-controls",
+          "description": "Consentimento, gravação e comunicações pós-evento possuem regras.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "O escopo é somente participação em conferência de terceiros.",
+          "reason": "Este prompt é específico para experiência ao vivo/webinar operada pela organização.",
+          "fallback": "Usar amplificador-de-eventos-e-conferencias."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "O canal é webinar ou evento ao vivo próprio.",
+        "É necessário coordenar pré, durante, pós e reaproveitamento."
+      ],
+      "do_not_use_when": [
+        "Não usar para escolher conferências externas ou escrever a mensagem do evento.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Prompt curto e específico, mas traduz headings literalmente e sobrepõe outros dois prompts de evento."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 35,
+        "review_notes": "Corpo integral revisado; uso estreitado para evento próprio/webinar."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.identificador-de-parceiro-estrategico",
+      "canonical_path": "biblioteca/Ampliar/identificador-de-parceiro-estrategico.md",
+      "canonical_sha256": "3126a78a69dd2ffeb3b1b20bdcb16b79bf5233595c589a22bb0b5944567b1e56",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Identificador de Parceiro Estratégico",
+      "summary": "Identifica e prioriza parceiros por alinhamento de audiência, complementaridade, capacidade, risco e valor mútuo.",
+      "aliases": [
+        "matriz de parceiros estratégicos"
+      ],
+      "job_tags": [
+        "identify",
+        "prioritize",
+        "score"
+      ],
+      "object_tags": [
+        "audience",
+        "channel",
+        "partnership"
+      ],
+      "need_tags": [
+        "identify:partnership",
+        "score:partnership",
+        "prioritize:partnership"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "partnership-objective",
+          "description": "Objetivo, público a alcançar, limites de marca e valor oferecido.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision",
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "partner-landscape",
+          "description": "Parceiros atuais e candidatos com evidência pública de audiência, oferta e reputação.",
+          "required": true,
+          "evidence_types": [
+            "market_source",
+            "first_party_document"
+          ],
+          "sensitivity": "public"
+        },
+        {
+          "input_id": "partnership-capability",
+          "description": "Recursos, tecnologia, governança e capacidade de desenvolver parceria.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "user_brief"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "scorecard",
+        "description": "Identifica e prioriza parceiros por alinhamento de audiência, complementaridade, capacidade, risco e valor mútuo.",
+        "required_sections": [
+          "partner-criteria",
+          "candidate-scorecard",
+          "channel-and-audience-fit",
+          "risk-and-capability",
+          "recommended-outreach-order"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer objetivo e audiência definidos e capacidade mínima de parceria, mas pode iniciar pela avaliação antes de existir parceiro ativo.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "audience-and-value-defined",
+          "description": "Orientar definiu audiência e Verbalizar definiu valor/mensagem.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "partner-due-diligence",
+          "description": "Há critérios de reputação, conflito, privacidade e segurança.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "Já existe parceiro escolhido e o objetivo é executar co-marketing.",
+          "reason": "A identificação adicionaria trabalho redundante.",
+          "fallback": "Usar mecanismo-de-co-marketing-da-parceria."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "É necessário encontrar ou comparar parceiros antes de definir colaboração.",
+        "O objetivo inclui acesso a audiência, canal ou ecossistema complementar."
+      ],
+      "do_not_use_when": [
+        "Não usar para formalizar contrato, integração técnica ou campanha já definida.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "high",
+        "flags": [
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Escopo de identificação é útil, mas o corpo avança para operação e contém fragmentos/termos literais."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 210,
+        "review_notes": "Corpo integral revisado; o output para em priorização e outreach, antes da operação de co-marketing."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.mecanismo-de-amplificacao-de-conteudo",
+      "canonical_path": "biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+      "canonical_sha256": "4c29511b80313c6d93cc3a8bb6a5c4e48d92ba93044c51aad728e0c9cb54ec47",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Mecanismo de amplificação de conteúdo",
+      "summary": "Seleciona conteúdo já validado para repurposing e coordena formatos, canais e cadência de amplificação.",
+      "aliases": [
+        "sistema de repurposing e amplificação"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "map"
+      ],
+      "object_tags": [
+        "channel",
+        "content",
+        "touchpoint"
+      ],
+      "need_tags": [
+        "map:content",
+        "distribute:content",
+        "coordinate:channel"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "validated-content-candidates",
+          "description": "Ativos com mensagem, direitos e adequação já validados; performance, quando alegada, possui evidência de Refinar.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset",
+            "prior_decision",
+            "analytics"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "audience-content-fit",
+          "description": "Preferências agregadas de formato/canal dos segmentos elegíveis.",
+          "required": true,
+          "evidence_types": [
+            "crm_aggregate",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "distribution-capability",
+          "description": "Canais, formatos, ferramentas, equipe e limites de frequência.",
+          "required": true,
+          "evidence_types": [
+            "channel_inventory",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Seleciona conteúdo já validado para repurposing e coordena formatos, canais e cadência de amplificação.",
+        "required_sections": [
+          "content-candidate-map",
+          "repurposing-format-map",
+          "channel-distribution-plan",
+          "cadence-and-capacity",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Exige conteúdo existente e ao menos dois meios de distribuição com capacidade; não exige um sistema omnicanal completo.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "content-effectiveness-validated",
+          "description": "Qualquer alegação de conteúdo 'que funciona' possui evidência de Refinar.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "message-invariants",
+          "description": "Verbalizar definiu elementos que não podem mudar no repurposing.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "O conteúdo ainda precisa ser criado, validado ou ter performance diagnosticada.",
+          "reason": "Ampliar não cria a tese nem classifica eficácia.",
+          "fallback": "Roteie a Verbalizar ou Refinar antes de amplificar."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há conteúdo validado subdistribuído que pode ser reaproveitado.",
+        "É necessário mapear formatos e distribuição multicanal."
+      ],
+      "do_not_use_when": [
+        "Não usar como auditoria de qualidade ou performance de conteúdo.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "medium",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Mistura auditoria, criação, personalização, performance e distribuição; sidecar restringe a repurposing/distribuição."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 216,
+        "review_notes": "Corpo integral revisado; dependências de Verbalizar, Orientar e Refinar explicitadas."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.mecanismo-de-co-marketing-da-parceria",
+      "canonical_path": "biblioteca/Ampliar/mecanismo-de-co-marketing-da-parceria.md",
+      "canonical_sha256": "c3ecdf0fd7b041ebf15a8d8b3c629f33830c9623991b7b1051558ae0432c2f39",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Mecanismo de Co-Marketing da Parceria",
+      "summary": "Coordena campanha e distribuição conjunta com parceiro já selecionado, preservando owners de audiência e mensagem.",
+      "aliases": [
+        "sistema de co-marketing"
+      ],
+      "job_tags": [
+        "coordinate",
+        "distribute",
+        "plan"
+      ],
+      "object_tags": [
+        "audience",
+        "campaign",
+        "partnership"
+      ],
+      "need_tags": [
+        "plan:campaign",
+        "coordinate:partnership",
+        "distribute:campaign"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "selected-partner-contract",
+          "description": "Parceiro escolhido, value exchange, limites, owners e capacidade de canais.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "first_party_document"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "shared-audience-constraints",
+          "description": "Sobreposição agregada, elegibilidade, consentimento e supressões.",
+          "required": true,
+          "evidence_types": [
+            "crm_aggregate",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "co-marketing-message",
+          "description": "Mensagem, co-branding, claims e CTA aprovados pelos owners.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "campaign_system",
+        "description": "Coordena campanha e distribuição conjunta com parceiro já selecionado, preservando owners de audiência e mensagem.",
+        "required_sections": [
+          "partner-value-exchange",
+          "shared-audience-rules",
+          "channel-and-asset-plan",
+          "coordination-governance",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer parceiro ativo, acordo mínimo, audiência compartilhada segura e recursos coordenados, mas pode começar por uma iniciativa limitada.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "partner-selected",
+          "description": "Parceiro passou por seleção e due diligence.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "joint-governance",
+          "description": "Owners, aprovações, dados e uso de marca estão definidos.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "Ainda não há parceiro selecionado ou due diligence.",
+          "reason": "O prompt pressupõe colaboração operacional e pode pular a seleção.",
+          "fallback": "Usar identificador-de-parceiro-estrategico."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Parceiro já foi escolhido e é necessário planejar iniciativa conjunta.",
+        "A campanha requer coordenação de canais e ativos entre organizações."
+      ],
+      "do_not_use_when": [
+        "Não usar para descobrir parceiros ou compartilhar dados de audiência individuais.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "duplicate_like",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Escopo é distinguível pela existência de parceiro, embora o texto também repita identificação."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 60,
+        "review_notes": "Corpo integral revisado; seleção de parceiro fixada como dependência direcional."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.mecanismo-de-referencias-do-cliente",
+      "canonical_path": "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+      "canonical_sha256": "6a65f7da2acb23f23eb5ca2133362023b1b5edba7ad5b8feb06f47396dccc92d",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Mecanismo de Referências do Cliente",
+      "summary": "Desenha touchpoints, incentivo, suporte e cadência de um programa de indicações para clientes elegíveis e consentidos.",
+      "aliases": [
+        "programa de indicação de clientes"
+      ],
+      "job_tags": [
+        "coordinate",
+        "design",
+        "distribute"
+      ],
+      "object_tags": [
+        "customer-advocacy",
+        "referral",
+        "touchpoint"
+      ],
+      "need_tags": [
+        "design:referral",
+        "coordinate:touchpoint",
+        "distribute:referral"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "referral-readiness-aggregate",
+          "description": "Satisfação, sucesso e volume de indicação em nível agregado.",
+          "required": true,
+          "evidence_types": [
+            "crm_aggregate",
+            "analytics"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "referral-consent-rules",
+          "description": "Elegibilidade, consentimento, incentivos, fraude, disclosure e privacidade.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "prior_decision"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "program-capability",
+          "description": "Equipe, plataforma, orçamento e capacidade de atendimento aos indicados.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "user_brief"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "campaign_system",
+        "description": "Desenha touchpoints, incentivo, suporte e cadência de um programa de indicações para clientes elegíveis e consentidos.",
+        "required_sections": [
+          "eligibility-and-suppression",
+          "referral-mechanics",
+          "touchpoint-and-cadence",
+          "quality-guardrails",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Depende de satisfação comprovada, capacidade de atendimento, governança de incentivos/consentimento e tracking confiável.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "customer-success-evidenced",
+          "description": "A base elegível possui sucesso e satisfação evidenciados em agregado.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "referral-governance",
+          "description": "Regras legais, de consentimento, fraude e incentivos estão aprovadas.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A execução exige listar ou abordar clientes individuais sem autorização específica.",
+          "reason": "O prompt pode induzir tratamento de PII e outreach não consentido.",
+          "fallback": "Manter o plano agregado e obter autorização operacional separada."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há clientes satisfeitos e objetivo específico de gerar indicações.",
+        "É necessário estruturar processo, incentivo e touchpoints de referral."
+      ],
+      "do_not_use_when": [
+        "Não usar quando o objetivo principal é conteúdo UGC ou advocacy amplo.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "duplicate_like",
+          "pii_sensitive",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Solicita padrões e clientes de referência; sidecar exige agregação, consentimento e distingue referral de advocacy/UGC."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 35,
+        "review_notes": "Corpo integral revisado; nenhuma seleção individual é autorizada."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario",
+      "canonical_path": "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+      "canonical_sha256": "4a055d619de1dff5926f01db0ebc1ba9c2e054e43060e92926f066f061d90b94",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Multiplicador de Conteúdo Gerado pelo Usuário",
+      "summary": "Estrutura coleta, direitos, curadoria, canais e reconhecimento de UGC de clientes elegíveis.",
+      "aliases": [
+        "programa UGC de clientes"
+      ],
+      "job_tags": [
+        "coordinate",
+        "design",
+        "distribute"
+      ],
+      "object_tags": [
+        "community",
+        "customer-advocacy",
+        "ugc"
+      ],
+      "need_tags": [
+        "design:ugc",
+        "distribute:ugc",
+        "coordinate:community"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "ugc-readiness-aggregate",
+          "description": "Ativos existentes e sinais agregados de disposição e sucesso, sem perfis pessoais.",
+          "required": true,
+          "evidence_types": [
+            "crm_aggregate",
+            "brand_asset"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "ugc-rights-and-consent",
+          "description": "Consentimento, licenças, atribuição, moderação e regras de uso.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "prior_decision"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "ugc-program-capability",
+          "description": "Equipe, plataforma de submissão, curadoria, suporte e capacidade de comunidade.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability",
+            "user_brief"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "campaign_system",
+        "description": "Estrutura coleta, direitos, curadoria, canais e reconhecimento de UGC de clientes elegíveis.",
+        "required_sections": [
+          "creator-eligibility",
+          "submission-and-rights",
+          "curation-workflow",
+          "channel-amplification",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Exige base satisfeita, direitos de uso, moderação, suporte a criadores e operação comunitária contínua.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "ugc-consent-governance",
+          "description": "Direitos, consentimento, atribuição e remoção estão definidos.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "message-and-brand-guardrails",
+          "description": "Verbalizar definiu claims e limites; UGC não pode ser reescrito como prova não verificada.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "Conteúdo de cliente contém PII, claims não comprovados ou não possui direitos.",
+          "reason": "Publicação e amplificação seriam inseguras e potencialmente ilegais.",
+          "fallback": "Bloquear o ativo, obter consentimento/direitos e revisar claims."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Clientes já criam ou desejam criar conteúdo e há capacidade de curadoria.",
+        "O objetivo específico é ampliar UGC com direitos e reconhecimento."
+      ],
+      "do_not_use_when": [
+        "Não usar como programa genérico de advocacy ou indicação.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "duplicate_like",
+          "pii_sensitive",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Solicita características individuais e mistura UGC, advocacy e comunidade; governança de direitos é obrigatória."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 246,
+        "review_notes": "Corpo integral revisado; catálogo preserva distinção entre conteúdo, indicação e advocacy."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.orquestrador-de-experiencia-omnicanal",
+      "canonical_path": "biblioteca/Ampliar/orquestrador-de-experiencia-omnicanal.md",
+      "canonical_sha256": "331ceedd813ade5c42989cceaa7ac9339ddade8ddae3f12ffea2eec1e90f2111",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Orquestrador de Experiência Omnicanal",
+      "summary": "Coordena papéis, timing, fallback, frequência e não conflito entre touchpoints já delimitados por audiência e mensagem.",
+      "aliases": [
+        "plano de coordenação omnicanal"
+      ],
+      "job_tags": [
+        "coordinate",
+        "design",
+        "map"
+      ],
+      "object_tags": [
+        "channel",
+        "customer-journey",
+        "touchpoint"
+      ],
+      "need_tags": [
+        "map:touchpoint",
+        "coordinate:channel",
+        "design:touchpoint"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "touchpoint-inventory",
+          "description": "Todos os touchpoints, owners, capacidades, custos e restrições.",
+          "required": true,
+          "evidence_types": [
+            "channel_inventory",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "eligibility-and-suppression",
+          "description": "Segmentos, estágios, prioridade, elegibilidade e supressões de Orientar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "message-and-cta-map",
+          "description": "Mensagem e CTA por estágio fornecidos por Verbalizar.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "brand_asset"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Coordena papéis, timing, fallback, frequência e não conflito entre touchpoints já delimitados por audiência e mensagem.",
+        "required_sections": [
+          "touchpoint-map",
+          "channel-role-plan",
+          "timing-and-fallback",
+          "frequency-and-pressure-cap",
+          "non-conflict-rules"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Coordenação omnicanal exige múltiplos touchpoints ativos, integração mínima, regras de identidade/consentimento e capacidade de aplicar caps.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "audience-contract-complete",
+          "description": "Orientar forneceu elegibilidade, exclusões e supressões.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "message-contract-complete",
+          "description": "Verbalizar forneceu mensagem/CTA e invariantes.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "identity-and-consent-capability",
+          "description": "Há identidade e consentimento suficientes para aplicar coordenação sem PII indevida.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "Jornada, audiência ou mensagem ainda não está definida.",
+          "reason": "O prompt mistura jornada e coordenação e poderia sobrescrever owners.",
+          "fallback": "Solicitar contratos a Orientar/Verbalizar antes da orquestração."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há múltiplos touchpoints ativos causando conflito, repetição ou pressão.",
+        "É preciso definir papel, cadência, fallback e cap global."
+      ],
+      "do_not_use_when": [
+        "Não usar para redefinir jornada, estágio, audiência ou mensagem.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O corpo atribui otimização de jornada/mensagem a Ampliar e contém inglês residual; sidecar fixa apenas coordenação operacional."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 40,
+        "review_notes": "Corpo integral revisado; alinhado à semantic_boundary canônica de Ampliar."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+      "canonical_path": "biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+      "canonical_sha256": "0040caf08361b20b99cd81dde58488d46bdd8d637696685c889f7408e83093da",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Otimizador de Atribuição Cruzada de Canal",
+      "summary": "Especifica mapa de touchpoints, requisitos de tracking e usos de canal para um modelo cuja análise e validação pertencem a Refinar.",
+      "aliases": [
+        "requisitos de atribuição cross-channel"
+      ],
+      "job_tags": [
+        "coordinate",
+        "design",
+        "map"
+      ],
+      "object_tags": [
+        "attribution",
+        "channel",
+        "touchpoint"
+      ],
+      "need_tags": [
+        "map:touchpoint",
+        "design:attribution",
+        "coordinate:channel"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "touchpoint-data-map",
+          "description": "Touchpoints, IDs, eventos, janelas, consentimento e gaps de rastreamento.",
+          "required": true,
+          "evidence_types": [
+            "channel_inventory",
+            "technical_capability"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "decision-use-cases",
+          "description": "Decisões de canal que a atribuição deve informar, sem pré-escolher modelo ou resultado.",
+          "required": true,
+          "evidence_types": [
+            "user_brief",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "measurement-readiness",
+          "description": "Cobertura, qualidade, integração e granularidade disponíveis em agregado.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        }
+      ],
+      "output_contract": {
+        "output_type": "brief",
+        "description": "Especifica mapa de touchpoints, requisitos de tracking e usos de canal para um modelo cuja análise e validação pertencem a Refinar.",
+        "required_sections": [
+          "touchpoint-map",
+          "tracking-requirements",
+          "data-quality-gaps",
+          "decision-use-cases",
+          "refinar-handoff"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Atribuição multicontato exige integração de dados, IDs e eventos consistentes, consentimento e volume histórico; sem isso permanece requisito, não modelo.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "tracking-foundation",
+          "description": "Eventos e IDs de canal possuem definições e qualidade mínimas.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "refinar-owner-handoff",
+          "description": "Refinar aceitará seleção, validação e interpretação do modelo.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A solicitação é escolher/validar modelo, ponderar causalmente canais ou realocar orçamento pela performance.",
+          "reason": "Essas decisões pertencem a Refinar; Ampliar só define requisitos e usos.",
+          "fallback": "Entregar brief de requisitos e encaminhar a Refinar."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "A operação precisa mapear tracking e atribuição necessários para decisões cross-channel.",
+        "Há múltiplos touchpoints e gaps de integração a especificar."
+      ],
+      "do_not_use_when": [
+        "Não usar para produzir classificação de performance, modelo causal final ou recomendação de orçamento.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "medium",
+        "flags": [
+          "ambiguous_instruction",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "O prompt reivindica modelagem e otimização, incluindo fragmento truncado 'true'; P2 limita Ampliar a requisitos de atribuição."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 70,
+        "review_notes": "Corpo integral revisado; contrato de saída é brief para Refinar, não modelo."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.otimizador-de-visibilidade-do-ai-search",
+      "canonical_path": "biblioteca/Ampliar/otimizador-de-visibilidade-do-ai-search.md",
+      "canonical_sha256": "259a0c955417cd77e2976d9060cc5e25af7c0851e745ebc6a700f769582bdd24",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Otimizador de Visibilidade do AI Search",
+      "summary": "Planeja AI search como canal de descoberta e define cobertura, distribuição e requisitos de medição para conteúdo comprovado.",
+      "aliases": [
+        "plano de visibilidade em busca de IA",
+        "AEO de canal"
+      ],
+      "job_tags": [
+        "audit",
+        "distribute",
+        "plan"
+      ],
+      "object_tags": [
+        "ai-search",
+        "channel",
+        "content"
+      ],
+      "need_tags": [
+        "audit:ai-search",
+        "plan:channel",
+        "distribute:content"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "authoritative-content-inventory",
+          "description": "Conteúdo, autores, fontes, pesquisa e provas já validados.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset",
+            "first_party_document",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "target-query-evidence",
+          "description": "Consultas e problemas reais do público com fonte ou hipótese explícita.",
+          "required": true,
+          "evidence_types": [
+            "analytics",
+            "market_source",
+            "crm_aggregate"
+          ],
+          "sensitivity": "customer_aggregate"
+        },
+        {
+          "input_id": "publishing-and-monitoring-capability",
+          "description": "Capacidade técnica de publicação, atualização, logs e monitoramento de citações.",
+          "required": true,
+          "evidence_types": [
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Planeja AI search como canal de descoberta e define cobertura, distribuição e requisitos de medição para conteúdo comprovado.",
+        "required_sections": [
+          "query-coverage-map",
+          "content-distribution-requirements",
+          "source-and-proof-guardrails",
+          "monitoring-plan",
+          "refinar-measurement-handoff"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "maduro",
+      "maturity_rationale": "Exige acervo autoritativo, governança editorial, fontes, manutenção e monitoramento; sem base de conteúdo o plano vira especulação.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "claims-source-validated",
+          "description": "Claims, dados e expertise possuem fontes verificáveis.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "content-owner-contract",
+          "description": "Verbalizar controla mensagem e criação; Ampliar controla distribuição/visibilidade.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "measurement-plan",
+          "description": "Refinar validará como medir visibilidade e impacto sem alegação causal indevida.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "A estratégia depende de regras não verificadas sobre algoritmos ou promete citação/recomendação.",
+          "reason": "O corpo contém afirmações externas não verificadas sobre mecanismos de IA.",
+          "fallback": "Marcar hipóteses, buscar fonte atual e limitar a recomendações testáveis."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Existe conteúdo autoritativo e o AI search é um canal de descoberta prioritário.",
+        "É preciso mapear consultas, cobertura, publicação e monitoramento."
+      ],
+      "do_not_use_when": [
+        "Não usar para garantir citações, inventar fatores algorítmicos ou criar claims sem fonte.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation",
+          "unverified_external_claim"
+        ],
+        "assessment_note": "Contém terminologia AEO/OEA inconsistente e hipóteses sobre seleção/citação por IA apresentadas como fatos."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 210,
+        "review_notes": "Corpo integral revisado; todas as alegações sobre mecanismos de IA permanecem hipóteses até fonte atual."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.premios-da-industria-e-amplificador-de-reconhecimento",
+      "canonical_path": "biblioteca/Ampliar/premios-da-industria-e-amplificador-de-reconhecimento.md",
+      "canonical_sha256": "6dd429236c164a75a181946e25428ac953cd04266faf75621392560e44143f90",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Prêmios da indústria e amplificador de reconhecimento",
+      "summary": "Identifica prêmios aderentes e planeja canais de amplificação de reconhecimento comprovado.",
+      "aliases": [
+        "amplificação de prêmios setoriais"
+      ],
+      "job_tags": [
+        "distribute",
+        "identify",
+        "prioritize"
+      ],
+      "object_tags": [
+        "brand",
+        "social-proof",
+        "thought-leadership"
+      ],
+      "need_tags": [
+        "identify:social-proof",
+        "prioritize:thought-leadership",
+        "distribute:brand"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "award-opportunity-list",
+          "description": "Prêmios, critérios, prazos, custos, reputação e elegibilidade com fonte pública.",
+          "required": true,
+          "evidence_types": [
+            "market_source"
+          ],
+          "sensitivity": "public"
+        },
+        {
+          "input_id": "verified-proof-assets",
+          "description": "Resultados, certificações, depoimentos e evidências permitidas para submissão.",
+          "required": true,
+          "evidence_types": [
+            "first_party_document",
+            "brand_asset"
+          ],
+          "sensitivity": "confidential"
+        },
+        {
+          "input_id": "recognition-objective",
+          "description": "Objetivo, público, canais e limites de claims aprovados.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision",
+            "user_brief"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Identifica prêmios aderentes e planeja canais de amplificação de reconhecimento comprovado.",
+        "required_sections": [
+          "award-fit-matrix",
+          "evidence-readiness",
+          "submission-channel-role",
+          "recognition-amplification",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Requer provas verificáveis e recursos de submissão, mas pode começar por poucas oportunidades sem operação madura.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "award-criteria-verified",
+          "description": "Critérios, legitimidade e custos do prêmio foram verificados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "claims-approved",
+          "description": "Verbalizar e responsáveis legais aprovaram provas e claims.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "Não existem provas verificáveis ou o prêmio exige claim exagerado/pagamento enganoso.",
+          "reason": "Reconhecimento sem credibilidade prejudica marca e pode fabricar prova.",
+          "fallback": "Descartar a oportunidade ou obter evidência válida."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "Há provas reais e oportunidades de reconhecimento alinhadas.",
+        "É preciso priorizar submissões e planejar amplificação do reconhecimento."
+      ],
+      "do_not_use_when": [
+        "Não usar para prometer vitória ou fabricar case/evidência.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "reviewed_with_flags",
+        "translation_risk": "medium",
+        "flags": [
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Escopo é claro; tradução e headings têm artefatos editoriais, mas sem bloqueio semântico adicional."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 58,
+        "review_notes": "Corpo integral revisado; 'envios vencedores' não foi tratado como garantia."
+      }
+    },
+    {
+      "tactic_id": "lm.ampliar.rede-de-distribuicao-de-conteudo",
+      "canonical_path": "biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+      "canonical_sha256": "1e2112ea58b4ae4e9625b51c3b61c73229060257bb662f6ae5acd7a5987d96d4",
+      "canonical_immutable": true,
+      "pillar": "Ampliar",
+      "methodology_stage": "Amplify",
+      "display_name": "Rede de distribuição de conteúdo",
+      "summary": "Define papéis e coordenação entre canais próprios, ganhos, pagos, parceiros e comunidades para conteúdo validado.",
+      "aliases": [
+        "matriz owned-earned-paid de conteúdo"
+      ],
+      "job_tags": [
+        "distribute",
+        "map",
+        "plan"
+      ],
+      "object_tags": [
+        "channel",
+        "content",
+        "touchpoint"
+      ],
+      "need_tags": [
+        "map:channel",
+        "plan:content",
+        "distribute:content"
+      ],
+      "input_requirements": [
+        {
+          "input_id": "validated-content-flow",
+          "description": "Volume, tipos e ativos de conteúdo aprovados para distribuição.",
+          "required": true,
+          "evidence_types": [
+            "brand_asset",
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "distribution-channel-inventory",
+          "description": "Canais próprios, ganhos, pagos, parceiros e comunidades com capacidade.",
+          "required": true,
+          "evidence_types": [
+            "channel_inventory",
+            "technical_capability"
+          ],
+          "sensitivity": "internal"
+        },
+        {
+          "input_id": "eligible-audience-and-message",
+          "description": "Audiência elegível, supressões, mensagem e CTA aprovados.",
+          "required": true,
+          "evidence_types": [
+            "prior_decision"
+          ],
+          "sensitivity": "internal"
+        }
+      ],
+      "output_contract": {
+        "output_type": "channel_plan",
+        "description": "Define papéis e coordenação entre canais próprios, ganhos, pagos, parceiros e comunidades para conteúdo validado.",
+        "required_sections": [
+          "owned-earned-paid-map",
+          "channel-role-and-fit",
+          "distribution-sequence",
+          "capacity-and-budget",
+          "measurement-requirements"
+        ],
+        "decision_owner": "ampliar"
+      },
+      "minimum_maturity": "em_desenvolvimento",
+      "maturity_rationale": "Exige conteúdo recorrente e ao menos duas classes de distribuição, além de capacidade de coordenação básica.",
+      "prerequisites": [
+        {
+          "prerequisite_id": "content-and-message-validated",
+          "description": "Conteúdo e mensagem foram validados.",
+          "required": true
+        },
+        {
+          "prerequisite_id": "distribution-rights",
+          "description": "Direitos para mídia ganha, parceiros e clientes estão confirmados.",
+          "required": true
+        }
+      ],
+      "contraindications": [
+        {
+          "condition": "O objetivo principal é criar/adaptar o conteúdo ou diagnosticar qual conteúdo performou.",
+          "reason": "Essas decisões pertencem a Verbalizar e Refinar.",
+          "fallback": "Obter o ativo validado e retornar para distribuição."
+        },
+        {
+          "condition": "A solicitação exige classificar desempenho como ESCALAR, OTIMIZAR, PARAR ou TESTAR, definir desenho experimental ou concluir causalidade.",
+          "reason": "Ampliar decide papel, fit, capacidade, timing, cadência e requisitos de medição do canal; classificação de performance e experimento pertencem a Refinar.",
+          "fallback": "Emitir requisitos de canal e handoff para Refinar, sem antecipar a classificação."
+        }
+      ],
+      "use_when": [
+        "É preciso organizar distribuição de conteúdo entre owned, earned, paid, parceiro e comunidade.",
+        "O problema é cobertura e coordenação do portfólio de canais."
+      ],
+      "do_not_use_when": [
+        "Não usar para repurposing detalhado ou análise de performance do conteúdo.",
+        "Não usar para classificar performance como ESCALAR, OTIMIZAR, PARAR ou TESTAR; encaminhar essa decisão a Refinar."
+      ],
+      "selection_confidence": "high",
+      "quality": {
+        "semantic_review_status": "needs_editorial_review",
+        "translation_risk": "high",
+        "flags": [
+          "ambiguous_instruction",
+          "duplicate_like",
+          "mixed_language",
+          "terminology_inconsistent",
+          "unidiomatic_translation"
+        ],
+        "assessment_note": "Mistura SEO, email, adaptação e otimização; sidecar fixa a matriz de distribuição e preserva owners."
+      },
+      "provenance": {
+        "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "collection_origin": "user_reported_hubspot_loop_marketing_prompt_library",
+        "collection_reference": "https://www.hubspot.com/loop-marketing",
+        "individual_source_verified": false,
+        "redistribution_review": "not_reviewed"
+      },
+      "review_evidence": {
+        "reviewed_full_source": true,
+        "source_line_count": 57,
+        "review_notes": "Corpo integral revisado; relação com repurposing registrada sem fusão."
+      }
+    }
+  ],
+  "relations": [
+    {
+      "relation_id": "rel-ampliar-paid-needs-attribution-requirements",
+      "relation_type": "depends_on",
+      "from_tactic_id": "lm.ampliar.diversificacao-de-midia-paga",
+      "to_tactic_id": "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+      "directional": true,
+      "rationale": "Diversificação paga requer requisitos mínimos de tracking antes de piloto; isso ordena briefs, não transfere a Refinar a decisão de canal e não funde prompts.",
+      "routing_effect": "require_order",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-co-marketing-needs-partner",
+      "relation_type": "depends_on",
+      "from_tactic_id": "lm.ampliar.mecanismo-de-co-marketing-da-parceria",
+      "to_tactic_id": "lm.ampliar.identificador-de-parceiro-estrategico",
+      "directional": true,
+      "rationale": "Co-marketing pressupõe parceiro selecionado e validado; ambos os prompts permanecem canônicos e separados.",
+      "routing_effect": "require_order",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-content-cross-platform-complements-amplification",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.estrategia-de-conteudo-entre-plataformas",
+      "to_tactic_id": "lm.ampliar.mecanismo-de-amplificacao-de-conteudo",
+      "directional": false,
+      "rationale": "Um define adaptação de formato por plataforma e o outro o sistema de repurposing/distribuição; podem co-selecionar apenas para outputs distintos, sem merge.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-content-amplification-complements-network",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.mecanismo-de-amplificacao-de-conteudo",
+      "to_tactic_id": "lm.ampliar.rede-de-distribuicao-de-conteudo",
+      "directional": false,
+      "rationale": "Repurposing e matriz owned-earned-paid são outputs distintos e complementares; nenhuma relação implica exclusão ou substituição.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-conference-collides-event-marketing",
+      "relation_type": "collides_with",
+      "from_tactic_id": "lm.ampliar.amplificador-de-eventos-e-conferencias",
+      "to_tactic_id": "lm.ampliar.amplificador-de-marketing-de-eventos",
+      "directional": false,
+      "rationale": "Os corpos são quase duplicados; não co-selecionar automaticamente. Escolher conferência de terceiros versus evento próprio, preservando ambos.",
+      "routing_effect": "never_auto_co_select",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-conference-alternative-live-webinar",
+      "relation_type": "alternative_to",
+      "from_tactic_id": "lm.ampliar.amplificador-de-eventos-e-conferencias",
+      "to_tactic_id": "lm.ampliar.evento-ao-vivo-e-amplificador-de-webinar",
+      "directional": false,
+      "rationale": "Selecionar por tipo de evento: participação externa versus webinar/evento próprio. A relação não autoriza merge ou remoção.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-event-marketing-overlaps-live-webinar",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.amplificador-de-marketing-de-eventos",
+      "to_tactic_id": "lm.ampliar.evento-ao-vivo-e-amplificador-de-webinar",
+      "directional": false,
+      "rationale": "Ambos cobrem evento próprio; preferir webinar quando o formato ao vivo é específico e usar marketing de eventos para sistema mais amplo.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-advocacy-overlaps-referral",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.amplificador-de-defesa-do-cliente",
+      "to_tactic_id": "lm.ampliar.mecanismo-de-referencias-do-cliente",
+      "directional": false,
+      "rationale": "Advocacy é programa amplo; referral é geração de indicação. Preferir o output mais específico e preservar ambos.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-advocacy-overlaps-ugc",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.amplificador-de-defesa-do-cliente",
+      "to_tactic_id": "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario",
+      "directional": false,
+      "rationale": "Advocacy pode incluir conteúdo, mas UGC possui direitos, submissão e curadoria próprios; não fundir.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-referral-overlaps-ugc",
+      "relation_type": "alternative_to",
+      "from_tactic_id": "lm.ampliar.mecanismo-de-referencias-do-cliente",
+      "to_tactic_id": "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario",
+      "directional": false,
+      "rationale": "Escolher referral quando o output é indicação e UGC quando é conteúdo criado pelo cliente; ambos permanecem intactos.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-influencer-network-overlaps-creator",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.construtor-de-rede-influenciadora",
+      "to_tactic_id": "lm.ampliar.estrategista-de-parceria-creator",
+      "directional": false,
+      "rationale": "Rede contínua e parceria específica compartilham avaliação de creator; preferir o escopo mais específico, sem merge.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-channel-diversification-overlaps-paid",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.diversificacao-de-midia-paga",
+      "to_tactic_id": "lm.ampliar.estrategista-de-diversificacao-do-canal",
+      "directional": false,
+      "rationale": "Mídia paga é subconjunto do portfólio de canais; preferir a tática paga quando esse for o escopo exclusivo.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-community-complements-local",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.amplificador-de-marketing-local-e-regional",
+      "to_tactic_id": "lm.ampliar.distribuicao-voltada-para-a-comunidade",
+      "directional": false,
+      "rationale": "Comunidade pode ser um canal específico dentro de presença regional; co-seleção exige outputs distintos e capacidade.",
+      "routing_effect": "allow_together",
+      "confidence": "medium",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-omnichannel-complements-attribution",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.orquestrador-de-experiencia-omnicanal",
+      "to_tactic_id": "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+      "directional": false,
+      "rationale": "Coordenação operacional e requisitos de mensuração podem coexistir, mantendo modelo/performance com Refinar.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-awards-complements-thought-leadership",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.amplificacao-da-lideranca-do-pensamento",
+      "to_tactic_id": "lm.ampliar.premios-da-industria-e-amplificador-de-reconhecimento",
+      "directional": false,
+      "rationale": "Reconhecimento verificável pode ser um canal de amplificação de uma tese existente; não cria nem valida a tese.",
+      "routing_effect": "allow_together",
+      "confidence": "medium",
+      "review_status": "proposed"
+    },
+    {
+      "relation_id": "rel-ampliar-video-complements-live-webinar",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.amplificador-de-conteudo-de-video",
+      "to_tactic_id": "lm.ampliar.evento-ao-vivo-e-amplificador-de-webinar",
+      "directional": false,
+      "rationale": "Webinar validado pode gerar formatos de vídeo distribuíveis; co-seleção exige outputs separados e direitos confirmados.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "proposed"
+    }
+  ],
+  "cross_pillar_relation_candidates": [
+    {
+      "candidate_id": "xrel-ampliar-thought-leadership-verbalizar",
+      "from_tactic_id": "lm.ampliar.amplificacao-da-lideranca-do-pensamento",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Verbalizar",
+      "target_tactic_id": "lm.verbalizar.posicionador-de-lideranca-de-pensamento",
+      "rationale": "Ampliar distribui a tese; Verbalizar é owner do posicionamento e da mensagem.",
+      "boundary": "Não criar ou alterar tese, claims, voz ou prova.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-ampliar-cross-platform-verbalizar",
+      "from_tactic_id": "lm.ampliar.estrategia-de-conteudo-entre-plataformas",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Verbalizar",
+      "target_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "rationale": "Adaptação de formato depende de invariantes de mensagem e CTA.",
+      "boundary": "Ampliar adapta formato, duração e distribuição, não semântica.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-ampliar-viral-verbalizar",
+      "from_tactic_id": "lm.ampliar.estrategia-viral-em-todas-as-plataformas",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Verbalizar",
+      "target_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "rationale": "Conceito e mensagem precedem a amplificação viral.",
+      "boundary": "Nenhuma promessa de viralidade ou criação de conceito por Ampliar.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-ampliar-omnichannel-orientar",
+      "from_tactic_id": "lm.ampliar.orquestrador-de-experiencia-omnicanal",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Orientar",
+      "target_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "rationale": "Coordenação de touchpoints depende de estágio, elegibilidade e supressão.",
+      "boundary": "Ampliar não redefine jornada ou estágio.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-ampliar-attribution-refinar",
+      "from_tactic_id": "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Refinar",
+      "target_tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+      "rationale": "Ampliar especifica requisitos; Refinar seleciona, valida e interpreta o modelo.",
+      "boundary": "Nenhuma classificação de performance ou realocação de orçamento por Ampliar.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-ampliar-paid-refinar",
+      "from_tactic_id": "lm.ampliar.diversificacao-de-midia-paga",
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Refinar",
+      "target_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "rationale": "Pilotos pagos e critérios de decisão exigem desenho experimental de Refinar.",
+      "boundary": "Ampliar fornece candidatos, fit, capacidade e guardrails de canal.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-ampliar-channel-diversity-refinar",
+      "from_tactic_id": "lm.ampliar.estrategista-de-diversificacao-do-canal",
+      "candidate_relation_type": "complements",
+      "target_pillar": "Refinar",
+      "target_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "rationale": "Candidatos de canal precisam de avaliação controlada antes de escala.",
+      "boundary": "Fit de canal não equivale a ESCALAR, OTIMIZAR, PARAR ou TESTAR.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-ampliar-customer-programs-orientar",
+      "from_tactic_ids": [
+        "lm.ampliar.amplificador-de-defesa-do-cliente",
+        "lm.ampliar.mecanismo-de-referencias-do-cliente",
+        "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario"
+      ],
+      "candidate_relation_type": "depends_on",
+      "target_pillar": "Orientar",
+      "target_capability": "customer_eligibility_consent_suppression",
+      "rationale": "Programas com clientes dependem de elegibilidade, consentimento e supressão definidos pelo owner.",
+      "boundary": "Ampliar não seleciona indivíduos nem persiste PII.",
+      "review_status": "needs_cross_pillar_review"
+    },
+    {
+      "candidate_id": "xrel-ampliar-ai-search-refinar",
+      "from_tactic_id": "lm.ampliar.otimizador-de-visibilidade-do-ai-search",
+      "candidate_relation_type": "complements",
+      "target_pillar": "Refinar",
+      "target_tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "rationale": "Medição de visibilidade e impacto precisa de definição e validação de Refinar.",
+      "boundary": "Ampliar não apresenta hipótese algorítmica como fato ou causalidade.",
+      "review_status": "needs_cross_pillar_review"
+    }
+  ],
+  "review_summary": {
+    "index_reviewed_full": true,
+    "canonical_prompt_bodies_reviewed_full": 25,
+    "total_prompt_source_lines_reviewed": 3789,
+    "exact_manifest_entries": 25,
+    "canonical_immutable_entries": 25,
+    "decision_owner": "ampliar",
+    "owner_boundary": "Ampliar decide papel, fit, capacidade, canais, touchpoints, timing, frequência e cadência. Refinar decide desenho experimental, benchmark, causalidade e classificação ESCALAR/OTIMIZAR/PARAR/TESTAR.",
+    "maturity_distribution": {
+      "em_desenvolvimento": 14,
+      "maduro": 10,
+      "nascente": 1
+    },
+    "semantic_review_distribution": {
+      "reviewed_with_flags": 10,
+      "needs_editorial_review": 15
+    },
+    "quality_flag_counts": {
+      "terminology_inconsistent": 25,
+      "unidiomatic_translation": 25,
+      "ambiguous_instruction": 14,
+      "mixed_language": 14,
+      "duplicate_like": 15,
+      "pii_sensitive": 3,
+      "unverified_external_claim": 1
+    },
+    "intrapillar_relations": 16,
+    "directional_dependencies": 2,
+    "cross_pillar_candidates": 9,
+    "preservation_statement": "Relações e flags são metadados sidecar; nenhuma relação autoriza mesclar, excluir, renomear, recasear ou reescrever prompt canônico.",
+    "p1_translation_risk_context": {
+      "high": 15,
+      "medium": 10,
+      "interpretation": "Sinais heurísticos de P1 foram usados para priorizar revisão; flags finais resultam da leitura semântica integral e não provam erro de origem."
+    }
+  },
+  "unresolved_questions": [
+    {
+      "id": "AMP-UQ001",
+      "question": "A integração final deve manter otimizador-de-atribuicao-cruzada-de-canal em Ampliar como brief de requisitos ou criar uma visão explícita compartilhada com Refinar?",
+      "blocking": false,
+      "owner": "lead_p3_integration",
+      "safe_default": "Manter em Ampliar somente como brief; modelo, validação e interpretação permanecem em Refinar."
+    },
+    {
+      "id": "AMP-UQ002",
+      "question": "O corpo de amplificador-de-marketing-de-eventos, quase duplicado ao prompt de conferências, será documentado como evento próprio apesar do texto amplo?",
+      "blocking": false,
+      "owner": "lead_p3_integration",
+      "safe_default": "Aplicar o recorte do INDEX e nunca co-selecionar automaticamente os dois."
+    },
+    {
+      "id": "AMP-UQ003",
+      "question": "A redistribuição individual dos prompts foi juridicamente revisada?",
+      "blocking": true,
+      "owner": "release_legal_review",
+      "safe_default": "redistribution_review permanece not_reviewed em todas as entradas e não autoriza distribuição."
+    }
+  ]
+}
