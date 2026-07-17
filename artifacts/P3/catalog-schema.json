@@ -36,6 +36,22 @@
       "type": "string",
       "enum": ["verbalizar", "orientar", "ampliar", "refinar"]
     },
+    "authorityId": {
+      "type": "string",
+      "enum": [
+        "loop_planning", "verbalizar", "orientar", "ampliar", "refinar",
+        "security_review", "authorized_operator"
+      ]
+    },
+    "decisionDomain": {
+      "type": "string",
+      "enum": [
+        "global_orchestration", "message_and_copy",
+        "lifecycle_segmentation_and_eligibility", "channel_timing_and_cadence",
+        "experiment_performance_and_learning", "security_privacy_and_data_use",
+        "external_execution_authorization"
+      ]
+    },
     "maturity": {
       "type": "string",
       "enum": ["nascente", "em_desenvolvimento", "maduro", "avancado"]
@@ -196,6 +212,94 @@
         }
       }
     },
+    "canonicalScopeConflict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conflict_id", "conflict_type", "source_line_start", "source_line_end",
+        "canonical_request", "decision_domain", "destination_authority",
+        "safe_handling"
+      ],
+      "properties": {
+        "conflict_id": {"$ref": "#/$defs/slug"},
+        "conflict_type": {
+          "type": "string",
+          "enum": [
+            "owner_boundary", "sensitive_data", "external_execution",
+            "editorial_integrity", "unverifiable_claim"
+          ]
+        },
+        "source_line_start": {"type": "integer", "minimum": 1},
+        "source_line_end": {"type": "integer", "minimum": 1},
+        "canonical_request": {"$ref": "#/$defs/nonEmptyString"},
+        "decision_domain": {"$ref": "#/$defs/decisionDomain"},
+        "destination_authority": {"$ref": "#/$defs/authorityId"},
+        "safe_handling": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "mandatoryHandoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "handoff_id", "target_authority", "decision_domain", "trigger",
+        "requested_output", "required"
+      ],
+      "properties": {
+        "handoff_id": {"$ref": "#/$defs/slug"},
+        "target_authority": {"$ref": "#/$defs/authorityId"},
+        "decision_domain": {"$ref": "#/$defs/decisionDomain"},
+        "trigger": {"$ref": "#/$defs/nonEmptyString"},
+        "requested_output": {"$ref": "#/$defs/nonEmptyString"},
+        "required": {"type": "boolean"}
+      }
+    },
+    "executionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "execution_mode", "automatic_selection", "runtime_overlay_required",
+        "owner_domain", "allowed_output_sections", "excluded_output_sections",
+        "prohibited_decisions", "canonical_scope_conflicts",
+        "mandatory_handoffs", "fallback"
+      ],
+      "properties": {
+        "execution_mode": {
+          "type": "string",
+          "enum": ["canonical_safe", "sidecar_constrained", "base_method_only"]
+        },
+        "automatic_selection": {
+          "type": "string",
+          "enum": ["allowed", "planner_review_required", "forbidden"]
+        },
+        "runtime_overlay_required": {"type": "boolean"},
+        "owner_domain": {"$ref": "#/$defs/decisionDomain"},
+        "allowed_output_sections": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/slug"}
+        },
+        "excluded_output_sections": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/slug"}
+        },
+        "prohibited_decisions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/decisionDomain"}
+        },
+        "canonical_scope_conflicts": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/canonicalScopeConflict"}
+        },
+        "mandatory_handoffs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/mandatoryHandoff"}
+        },
+        "fallback": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
     "tactic": {
       "type": "object",
       "additionalProperties": false,
@@ -203,6 +307,7 @@
         "tactic_id", "canonical_path", "canonical_sha256", "canonical_immutable",
         "pillar", "methodology_stage", "display_name", "summary", "aliases",
         "job_tags", "object_tags", "need_tags", "input_requirements", "output_contract",
+        "execution_policy",
         "minimum_maturity", "maturity_rationale", "prerequisites", "contraindications",
         "use_when", "do_not_use_when", "selection_confidence", "quality", "provenance",
         "review_evidence"
@@ -251,6 +356,7 @@
           "items": {"$ref": "#/$defs/inputRequirement"}
         },
         "output_contract": {"$ref": "#/$defs/outputContract"},
+        "execution_policy": {"$ref": "#/$defs/executionPolicy"},
         "minimum_maturity": {"$ref": "#/$defs/maturity"},
         "maturity_rationale": {"$ref": "#/$defs/nonEmptyString"},
         "prerequisites": {

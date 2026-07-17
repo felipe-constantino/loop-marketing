@@ -1,10 +1,10 @@
-# Checkpoint CP-0009
+# Checkpoint CP-0010
 
 Atualizado em: 2026-07-17
 
 ## Objetivo
 
-Concluir P3 pela revisão relacional independente e integração do catálogo 100/100, sem alterar ainda a skill ou a biblioteca canônica.
+Concluir P3 pela revisão independente das 106 hipóteses relacionais e integração dos artefatos oficiais, sem alterar ainda a skill ou a biblioteca canônica.
 
 ## Estado atual
 
@@ -34,11 +34,16 @@ Concluir P3 pela revisão relacional independente e integração do catálogo 10
 - Schema P3: válido e com política confirmed-only para efeito normativo
 - Workstreams P3: 4/4 válidos, 100 entradas únicas e 100/100 prompts preservados
 - Revisão integral registrada: 17.454 linhas nos 100 corpos canônicos
-- Relações candidatas: 78 intrapilar + 28 cross-pillar aguardando replay independente
+- Políticas de execução: 100/100 válidas, com 323 conflitos de linha e 278 handoffs
+- Modos: 3 canonical_safe, 91 sidecar_constrained e 6 base_method_only
+- Seleção: 3 allowed, 91 planner_review_required e 6 forbidden
+- Relações candidatas: 78 intrapilar + 28 cross-pillar em replay independente
 - Metadados: 55 táticas em desenvolvimento, 37 maduras, 5 nascentes e 3 avançadas
 - Qualidade: 38 entradas precisam de revisão editorial; flags não alteram o canônico
 - Proveniência: individual_source_verified=false e redistribution_review=not_reviewed em 100/100
-- Gate atual: `G4 — revisar relações, integrar e executar gate final P3`
+- Red-team semântico: primeiro gate FAIL, segundo gate FAIL e reteste final PASS com histórico preservado
+- Regressão negativa: baseline PASS e 12/12 mutações inseguras corretamente rejeitadas
+- Gate atual: `G4 — concluir replay relacional, integrar e selar P3`
 
 ## Decisões vigentes
 
@@ -54,6 +59,8 @@ Concluir P3 pela revisão relacional independente e integração do catálogo 10
 - Tratar maturidade ausente como `unknown`, nunca como `nascente` por fallback.
 - Permitir efeito normativo no roteador somente para relações confirmadas; relações propostas são audit-only.
 - Tratar revisão jurídica de redistribuição como restrição de release, não como autorização implícita de P3.
+- Aplicar um de três modos por tática: canonical_safe, sidecar_constrained ou base_method_only.
+- Exigir fail-closed quando overlay, revisão do planner ou handoff obrigatório não estiver disponível.
 
 ## Artefatos de continuidade
 
@@ -110,12 +117,16 @@ P1 foi concluída em modo read-only. Os 117 arquivos estão classificados; os ac
 - `artifacts/P3/workstreams/refinar.json`: 25/25 entradas e 20 relações internas.
 - `scripts/p3_validate.py`: valida schema, cada pilar, cobertura agregada, replay relacional e artefatos finais.
 - `scripts/p3_integrate.py`: integração determinística preparada; só executa após workstreams e relações válidos.
+- `scripts/p3_regression.py`: 12 casos negativos em sandbox temporário, todos aprovados.
+- `scripts/p3_seal.py`: selo e verificação do conjunto de evidências após os gates finais.
+- `artifacts/P3/workstreams/catalog-cross-audit-3pillars.json`: gate inicial FAIL, preservado.
+- `artifacts/P3/workstreams/catalog-final-audit.json`: reteste final PASS, blockers=0 e FAIL anterior preservado.
 - Gate agregado atual: `python3 scripts/p3_validate.py workstreams` aprovado com zero erros.
 - Fonte canônica: limpa e ancorada no baseline após as quatro revisões.
 
 ## Próxima ação única
 
-Reproduzir independentemente as 106 hipóteses relacionais, integrar os artefatos oficiais e executar o gate final P3.
+Concluir `relation-review.json`, integrar catálogo/mapa/relatório e executar validator, regressão, auditoria e selo P3.
 
 ## Proibido durante P3
 

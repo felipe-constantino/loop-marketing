@@ -133,6 +133,53 @@
         "reviewed_full_source": true,
         "source_line_count": 35,
         "review_notes": "Corpo integral revisado; catalogado apenas como distribuição de uma tese já pertencente a Verbalizar."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "amplification-objective",
+          "channel-role-map",
+          "sequence-and-cadence",
+          "measurement-requirements",
+          "handoff-boundaries"
+        ],
+        "excluded_output_sections": [
+          "specialist-positioning-and-influence-measurement"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "thought-leadership-positioning-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 9,
+            "source_line_end": 9,
+            "canonical_request": "Inclui posicionamento especializado na estratégia de amplificação.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar limita-se a canais, touchpoints, timing e cadência; a tese e o posicionamento vêm de Verbalizar."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "amplificacao-da-lideranca-do-pensamento-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -264,6 +311,53 @@
         "reviewed_full_source": true,
         "source_line_count": 219,
         "review_notes": "Corpo integral revisado, inclusive fases de implementação e métricas; decisões de performance foram excluídas do owner Ampliar."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "asset-repurposing-map",
+          "platform-role-map",
+          "format-requirements",
+          "publishing-cadence",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "video-message-creation-and-performance-evaluation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "video-content-creation-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 5,
+            "source_line_end": 9,
+            "canonical_request": "Pede criação, redefinição de conteúdo e amplificação de mensagens de marca em vídeo.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar especifica o papel e a distribuição do vídeo; criação, roteiro e adaptação da mensagem vão para Verbalizar."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "amplificador-de-conteudo-de-video-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -323,13 +417,24 @@
             "user_brief"
           ],
           "sensitivity": "internal"
+        },
+        {
+          "input_id": "authorized-customer-level-advocacy-records",
+          "description": "Registros individuais solicitados pelo canônico; opcionais e bloqueados por padrão, liberados somente após security_review e authorization_ref válidos.",
+          "required": false,
+          "evidence_types": [
+            "crm_record",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_level_pii"
         }
       ],
       "output_contract": {
         "output_type": "campaign_system",
         "description": "Estrutura canais, touchpoints e reconhecimento de um programa de advocacy para clientes elegíveis e consentidos.",
         "required_sections": [
-          "eligibility-constraints",
+          "accepted-eligibility-contract-reference",
+          "no-individual-selection-invariant",
           "advocacy-journey",
           "channel-and-touchpoint-plan",
           "recognition-and-rights",
@@ -395,6 +500,74 @@
         "reviewed_full_source": true,
         "source_line_count": 245,
         "review_notes": "Corpo integral revisado; sobreposições preservadas como relações externas, sem fundir prompts."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "accepted-eligibility-contract-reference",
+          "no-individual-selection-invariant",
+          "advocacy-journey",
+          "channel-and-touchpoint-plan",
+          "recognition-and-rights",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "individual-advocate-identification",
+          "individual-advocate-segmentation",
+          "individual-customer-outreach"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "advocacy-customer-pii",
+            "conflict_type": "sensitive_data",
+            "source_line_start": 12,
+            "source_line_end": 39,
+            "canonical_request": "Solicita clientes identificáveis, satisfação, sucesso, relacionamento, redes e motivações individuais.",
+            "decision_domain": "security_privacy_and_data_use",
+            "destination_authority": "security_review",
+            "safe_handling": "Usar somente agregados por padrão; qualquer registro individual permanece bloqueado até security_review e authorization_ref válidos."
+          },
+          {
+            "conflict_id": "advocacy-eligibility-selection",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 45,
+            "source_line_end": 64,
+            "canonical_request": "Pede identificação, avaliação e segmentação individual de potenciais defensores.",
+            "decision_domain": "lifecycle_segmentation_and_eligibility",
+            "destination_authority": "orientar",
+            "safe_handling": "Ampliar consome apenas referência a contrato de elegibilidade aceito; Orientar seleciona ou suprime pessoas."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "amplificador-de-defesa-do-cliente-security-privacy-and-data-use-handoff",
+            "target_authority": "security_review",
+            "decision_domain": "security_privacy_and_data_use",
+            "trigger": "Sempre que a tática alcançar o uso de dados pessoais, consentimento e autorização solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por security_review para o domínio security_privacy_and_data_use; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          },
+          {
+            "handoff_id": "amplificador-de-defesa-do-cliente-lifecycle-segmentation-and-eligibility-handoff",
+            "target_authority": "orientar",
+            "decision_domain": "lifecycle_segmentation_and_eligibility",
+            "trigger": "Sempre que a tática alcançar a elegibilidade, segmentação ou seleção de pessoas solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por orientar para o domínio lifecycle_segmentation_and_eligibility; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -526,6 +699,53 @@
         "reviewed_full_source": true,
         "source_line_count": 250,
         "review_notes": "Corpo integral revisado; distinção semântica baseada no índice e no contexto de participação."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "event-role-and-fit",
+          "pre-event-plan",
+          "live-coordination",
+          "post-event-follow-up",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "event-content-creation-and-conversion-decisions"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "conference-content-creation-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Inclui criação de conteúdo e conversões de relacionamento no plano do evento.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar define papel de canal e cadência pré, durante e pós-evento; conteúdo e copy são fornecidos por Verbalizar."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "amplificador-de-eventos-e-conferencias-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -655,6 +875,53 @@
         "reviewed_full_source": true,
         "source_line_count": 217,
         "review_notes": "Corpo integral revisado; aplicação limitada a eventos próprios para evitar co-seleção duplicada."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "event-objective-and-role",
+          "audience-build-plan",
+          "live-channel-coordination",
+          "follow-up-cadence",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "event-message-and-content-creation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "event-marketing-content-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Pede criação de conteúdo e engajamento de público como parte da estratégia.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar entrega canais, touchpoints e cadência; Verbalizar decide mensagens e conteúdo."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "amplificador-de-marketing-de-eventos-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -784,6 +1051,53 @@
         "reviewed_full_source": true,
         "source_line_count": 200,
         "review_notes": "Corpo integral revisado; decisões de audiência e mensagem foram convertidas em pré-requisitos."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "regional-role-map",
+          "community-and-partner-plan",
+          "local-channel-mix",
+          "event-and-media-cadence",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "regional-message-and-content-creation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "regional-content-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Inclui consciência de marca e estratégias de conteúdo específicas por região.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar pode definir canal, geografia, timing e cadência; conteúdo e mensagem regional pertencem a Verbalizar."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "amplificador-de-marketing-local-e-regional-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -915,6 +1229,53 @@
         "reviewed_full_source": true,
         "source_line_count": 36,
         "review_notes": "Corpo integral revisado, inclusive linha residual final; preservado como rede, não parceria pontual."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "network-objective",
+          "creator-fit-criteria",
+          "relationship-model",
+          "amplification-roles",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "influencer-identification-and-relationship-development"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "influencer-network-structural-ambiguity",
+            "conflict_type": "editorial_integrity",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Agrupa identificação, relacionamento, colaboração e desenvolvimento de rede sem separar decisão de planejamento e execução.",
+            "decision_domain": "global_orchestration",
+            "destination_authority": "loop_planning",
+            "safe_handling": "Não selecionar automaticamente; o planner deve decompor o escopo antes de Ampliar emitir qualquer brief de canal."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "construtor-de-rede-influenciadora-global-orchestration-handoff",
+            "target_authority": "loop_planning",
+            "decision_domain": "global_orchestration",
+            "trigger": "Sempre que a tática alcançar a decisão global de escopo e composição solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por loop_planning para o domínio global_orchestration; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -1042,6 +1403,53 @@
         "reviewed_full_source": true,
         "source_line_count": 214,
         "review_notes": "Corpo integral revisado; segurança comunitária adicionada como contraindicação."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "community-fit-matrix",
+          "participation-rules",
+          "value-contribution-plan",
+          "relationship-cadence",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "external-community-engagement-and-content-creation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "community-engagement-execution",
+            "conflict_type": "external_execution",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Pede envolvimento direto em comunidades e criação de estratégias de engajamento.",
+            "decision_domain": "external_execution_authorization",
+            "destination_authority": "authorized_operator",
+            "safe_handling": "Ampliar apenas recomenda canais, touchpoints, timing e cadência; participação externa exige operador autorizado."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "distribuicao-voltada-para-a-comunidade-external-execution-authorization-handoff",
+            "target_authority": "authorized_operator",
+            "decision_domain": "external_execution_authorization",
+            "trigger": "Sempre que a tática alcançar a execução externa, contato, negociação ou publicação solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por authorized_operator para o domínio external_execution_authorization; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -1173,6 +1581,53 @@
         "reviewed_full_source": true,
         "source_line_count": 215,
         "review_notes": "Corpo integral revisado; todas as decisões ESCALAR/PARAR e desenho experimental foram excluídas do contrato de saída."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "paid-channel-fit",
+          "candidate-priority",
+          "budget-guardrails",
+          "measurement-requirements",
+          "refinar-handoff"
+        ],
+        "excluded_output_sections": [
+          "experiment-design-budget-allocation-and-performance-interpretation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "paid-diversification-experiment-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 9,
+            "source_line_end": 9,
+            "canonical_request": "Pede estruturas de teste, roteiro de implementação e otimização de eficiência de custos.",
+            "decision_domain": "experiment_performance_and_learning",
+            "destination_authority": "refinar",
+            "safe_handling": "Ampliar entrega shortlist, papel de canal, capacidade e requisitos de medição; Refinar desenha e interpreta testes."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "diversificacao-de-midia-paga-experiment-performance-and-learning-handoff",
+            "target_authority": "refinar",
+            "decision_domain": "experiment_performance_and_learning",
+            "trigger": "Sempre que a tática alcançar o desenho de teste, modelagem, validação e interpretação de desempenho solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por refinar para o domínio experiment_performance_and_learning; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -1304,6 +1759,53 @@
         "reviewed_full_source": true,
         "source_line_count": 207,
         "review_notes": "Corpo integral revisado; o catálogo fixa adaptação operacional e preserva o contrato de Verbalizar."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "content-invariants",
+          "platform-role-map",
+          "format-adaptation-matrix",
+          "distribution-cadence",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "message-and-content-adaptation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "cross-platform-content-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 5,
+            "source_line_end": 9,
+            "canonical_request": "Pede adaptação de mensagens e conteúdo principais por plataforma.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar define requisitos, formato de canal e cadência; Verbalizar produz e adapta mensagem e conteúdo."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "estrategia-de-conteudo-entre-plataformas-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -1435,6 +1937,53 @@
         "reviewed_full_source": true,
         "source_line_count": 187,
         "review_notes": "Corpo integral revisado; output limitado a decisão de canal, formato e distribuição."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "audio-channel-role",
+          "guest-and-owned-format-map",
+          "distribution-plan",
+          "cadence-and-capacity",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "audio-content-creation-and-performance-interpretation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "podcast-content-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Inclui criação de conteúdo de áudio e medição de desempenho.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar define papel do áudio, inventário, touchpoints e cadência; Verbalizar decide pauta, roteiro e conteúdo."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "estrategia-de-podcast-e-audio-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -1563,6 +2112,53 @@
         "reviewed_full_source": true,
         "source_line_count": 35,
         "review_notes": "Corpo integral revisado; promessa causal foi removida do contrato de decisão."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "viral-objective",
+          "platform-amplification-map",
+          "brand-safety-guardrails",
+          "release-sequence",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "viral-content-creation-and-business-outcome-assurance"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "viral-structural-ambiguity",
+            "conflict_type": "editorial_integrity",
+            "source_line_start": 5,
+            "source_line_end": 35,
+            "canonical_request": "Mistura criação viral, otimização cross-platform, integridade de marca e geração de resultados comerciais em um único bloco.",
+            "decision_domain": "global_orchestration",
+            "destination_authority": "loop_planning",
+            "safe_handling": "A tática nunca é auto-selecionada; o planner deve separar escopo, restrições de marca e resultado esperado antes do uso."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "estrategia-viral-em-todas-as-plataformas-global-orchestration-handoff",
+            "target_authority": "loop_planning",
+            "decision_domain": "global_orchestration",
+            "trigger": "Sempre que a tática alcançar a decisão global de escopo e composição solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por loop_planning para o domínio global_orchestration; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -1698,6 +2294,53 @@
         "reviewed_full_source": true,
         "source_line_count": 265,
         "review_notes": "Corpo integral revisado; número de canais não foi transformado em obrigação do catálogo."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "portfolio-baseline",
+          "candidate-channel-fit",
+          "capability-and-risk",
+          "priority-order",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "performance-analysis-channel-ranking-and-test-design"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "channel-diversification-performance-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 9,
+            "source_line_end": 9,
+            "canonical_request": "Pede análise de desempenho e identificação ranqueada de cinco a sete novos canais com roteiros de implementação.",
+            "decision_domain": "experiment_performance_and_learning",
+            "destination_authority": "refinar",
+            "safe_handling": "Ampliar pode propor shortlist e requisitos de capacidade; Refinar valida evidência, desempenho e desenho de teste."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "estrategista-de-diversificacao-do-canal-experiment-performance-and-learning-handoff",
+            "target_authority": "refinar",
+            "decision_domain": "experiment_performance_and_learning",
+            "trigger": "Sempre que a tática alcançar o desenho de teste, modelagem, validação e interpretação de desempenho solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por refinar para o domínio experiment_performance_and_learning; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -1827,6 +2470,53 @@
         "reviewed_full_source": true,
         "source_line_count": 227,
         "review_notes": "Corpo integral revisado; dados limitados a fontes públicas e agregadas."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "creator-fit-scorecard",
+          "partnership-model",
+          "content-and-channel-roles",
+          "governance-and-disclosure",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "creator-outreach-negotiation-and-content-collaboration"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "creator-partnership-external-execution",
+            "conflict_type": "external_execution",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Pede identificar e fazer parceria com criadores, incluindo abordagens e estruturas de colaboração.",
+            "decision_domain": "external_execution_authorization",
+            "destination_authority": "authorized_operator",
+            "safe_handling": "Ampliar entrega critérios de fit, canal, touchpoints e cadência; contato, negociação e compromisso exigem operador autorizado."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "estrategista-de-parceria-creator-external-execution-authorization-handoff",
+            "target_authority": "authorized_operator",
+            "decision_domain": "external_execution_authorization",
+            "trigger": "Sempre que a tática alcançar a execução externa, contato, negociação ou publicação solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por authorized_operator para o domínio external_execution_authorization; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -1955,6 +2645,53 @@
         "reviewed_full_source": true,
         "source_line_count": 35,
         "review_notes": "Corpo integral revisado; uso estreitado para evento próprio/webinar."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "audience-build",
+          "live-touchpoint-plan",
+          "content-amplification",
+          "follow-up-cadence",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "event-content-creation-and-lead-follow-up"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "webinar-content-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Inclui amplificação de conteúdo e táticas de acompanhamento de eventos.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar define canais, touchpoints e cadência; conteúdo e mensagens de acompanhamento são entregues por Verbalizar."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "evento-ao-vivo-e-amplificador-de-webinar-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -2086,6 +2823,53 @@
         "reviewed_full_source": true,
         "source_line_count": 210,
         "review_notes": "Corpo integral revisado; o output para em priorização e outreach, antes da operação de co-marketing."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "partner-criteria",
+          "candidate-scorecard",
+          "channel-and-audience-fit",
+          "risk-and-capability",
+          "recommended-outreach-order"
+        ],
+        "excluded_output_sections": [
+          "partner-outreach-negotiation-and-agreement"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "strategic-partner-external-execution",
+            "conflict_type": "external_execution",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Pede identificar, avaliar e desenvolver parcerias com empresas, organizações e indivíduos.",
+            "decision_domain": "external_execution_authorization",
+            "destination_authority": "authorized_operator",
+            "safe_handling": "Ampliar emite critérios de fit e plano de canal; abordagem, negociação e acordo exigem operador autorizado."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "identificador-de-parceiro-estrategico-external-execution-authorization-handoff",
+            "target_authority": "authorized_operator",
+            "decision_domain": "external_execution_authorization",
+            "trigger": "Sempre que a tática alcançar a execução externa, contato, negociação ou publicação solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por authorized_operator para o domínio external_execution_authorization; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -2217,6 +3001,53 @@
         "reviewed_full_source": true,
         "source_line_count": 216,
         "review_notes": "Corpo integral revisado; dependências de Verbalizar, Orientar e Refinar explicitadas."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "content-candidate-map",
+          "repurposing-format-map",
+          "channel-distribution-plan",
+          "cadence-and-capacity",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "content-rewriting-and-performance-interpretation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "content-amplification-message-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Pede redefinir e otimizar conteúdo existente em vários formatos e canais.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar define distribuição, touchpoints, timing e cadência; reescrita e transformação do conteúdo vão para Verbalizar."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "mecanismo-de-amplificacao-de-conteudo-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -2346,6 +3177,53 @@
         "reviewed_full_source": true,
         "source_line_count": 60,
         "review_notes": "Corpo integral revisado; seleção de parceiro fixada como dependência direcional."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "partner-value-exchange",
+          "shared-audience-rules",
+          "channel-and-asset-plan",
+          "coordination-governance",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "campaign-creation-and-partner-execution"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "co-marketing-campaign-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 5,
+            "source_line_end": 9,
+            "canonical_request": "Pede desenvolvimento de campanhas em parceria e estruturas de colaboração.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar entrega papel de canal, distribuição e cadência; campanha, conceito e mensagem pertencem a Verbalizar."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "mecanismo-de-co-marketing-da-parceria-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -2405,13 +3283,24 @@
             "user_brief"
           ],
           "sensitivity": "internal"
+        },
+        {
+          "input_id": "authorized-customer-level-referral-records",
+          "description": "Registros individuais de potenciais referenciadores; opcionais e bloqueados por padrão, liberados somente após security_review e authorization_ref válidos.",
+          "required": false,
+          "evidence_types": [
+            "crm_record",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_level_pii"
         }
       ],
       "output_contract": {
         "output_type": "campaign_system",
         "description": "Desenha touchpoints, incentivo, suporte e cadência de um programa de indicações para clientes elegíveis e consentidos.",
         "required_sections": [
-          "eligibility-and-suppression",
+          "accepted-eligibility-and-suppression-reference",
+          "no-individual-selection-invariant",
           "referral-mechanics",
           "touchpoint-and-cadence",
           "quality-guardrails",
@@ -2476,6 +3365,74 @@
         "reviewed_full_source": true,
         "source_line_count": 35,
         "review_notes": "Corpo integral revisado; nenhuma seleção individual é autorizada."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "accepted-eligibility-and-suppression-reference",
+          "no-individual-selection-invariant",
+          "referral-mechanics",
+          "touchpoint-and-cadence",
+          "quality-guardrails",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "individual-referrer-identification",
+          "individual-customer-outreach",
+          "eligibility-selection"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "referral-customer-pii",
+            "conflict_type": "sensitive_data",
+            "source_line_start": 13,
+            "source_line_end": 19,
+            "canonical_request": "Solicita clientes identificáveis que indicam, níveis de satisfação e sucesso individual.",
+            "decision_domain": "security_privacy_and_data_use",
+            "destination_authority": "security_review",
+            "safe_handling": "Usar somente agregados por padrão; PII fica bloqueada até security_review e authorization_ref válidos."
+          },
+          {
+            "conflict_id": "referral-eligibility-selection",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 24,
+            "source_line_end": 28,
+            "canonical_request": "Pede identificar clientes com potencial de referência e desenvolver sua motivação.",
+            "decision_domain": "lifecycle_segmentation_and_eligibility",
+            "destination_authority": "orientar",
+            "safe_handling": "Ampliar consome somente referência a contrato de elegibilidade e supressão aceito; Orientar decide seleção."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "mecanismo-de-referencias-do-cliente-security-privacy-and-data-use-handoff",
+            "target_authority": "security_review",
+            "decision_domain": "security_privacy_and_data_use",
+            "trigger": "Sempre que a tática alcançar o uso de dados pessoais, consentimento e autorização solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por security_review para o domínio security_privacy_and_data_use; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          },
+          {
+            "handoff_id": "mecanismo-de-referencias-do-cliente-lifecycle-segmentation-and-eligibility-handoff",
+            "target_authority": "orientar",
+            "decision_domain": "lifecycle_segmentation_and_eligibility",
+            "trigger": "Sempre que a tática alcançar a elegibilidade, segmentação ou seleção de pessoas solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por orientar para o domínio lifecycle_segmentation_and_eligibility; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -2535,13 +3492,24 @@
             "user_brief"
           ],
           "sensitivity": "internal"
+        },
+        {
+          "input_id": "authorized-customer-level-ugc-records",
+          "description": "Registros individuais de potenciais criadores; opcionais e bloqueados por padrão, liberados somente após security_review e authorization_ref válidos.",
+          "required": false,
+          "evidence_types": [
+            "crm_record",
+            "prior_decision"
+          ],
+          "sensitivity": "customer_level_pii"
         }
       ],
       "output_contract": {
         "output_type": "campaign_system",
         "description": "Estrutura coleta, direitos, curadoria, canais e reconhecimento de UGC de clientes elegíveis.",
         "required_sections": [
-          "creator-eligibility",
+          "accepted-creator-eligibility-contract-reference",
+          "no-individual-selection-invariant",
           "submission-and-rights",
           "curation-workflow",
           "channel-amplification",
@@ -2606,6 +3574,74 @@
         "reviewed_full_source": true,
         "source_line_count": 246,
         "review_notes": "Corpo integral revisado; catálogo preserva distinção entre conteúdo, indicação e advocacy."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "accepted-creator-eligibility-contract-reference",
+          "no-individual-selection-invariant",
+          "submission-and-rights",
+          "curation-workflow",
+          "channel-amplification",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "individual-creator-identification",
+          "individual-creator-outreach",
+          "individual-content-solicitation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "ugc-customer-pii",
+            "conflict_type": "sensitive_data",
+            "source_line_start": 12,
+            "source_line_end": 33,
+            "canonical_request": "Solicita clientes identificáveis, atividade social, influência, sucesso e disposição individual.",
+            "decision_domain": "security_privacy_and_data_use",
+            "destination_authority": "security_review",
+            "safe_handling": "Operar com padrões agregados; registros individuais ficam bloqueados até security_review e authorization_ref válidos."
+          },
+          {
+            "conflict_id": "ugc-creator-eligibility-selection",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 54,
+            "source_line_end": 55,
+            "canonical_request": "Pede identificação e segmentação de criadores UGC individuais.",
+            "decision_domain": "lifecycle_segmentation_and_eligibility",
+            "destination_authority": "orientar",
+            "safe_handling": "Ampliar consome apenas referência a contrato de elegibilidade aceito e não seleciona criadores; Orientar decide."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "multiplicador-de-conteudo-gerado-pelo-usuario-security-privacy-and-data-use-handoff",
+            "target_authority": "security_review",
+            "decision_domain": "security_privacy_and_data_use",
+            "trigger": "Sempre que a tática alcançar o uso de dados pessoais, consentimento e autorização solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por security_review para o domínio security_privacy_and_data_use; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          },
+          {
+            "handoff_id": "multiplicador-de-conteudo-gerado-pelo-usuario-lifecycle-segmentation-and-eligibility-handoff",
+            "target_authority": "orientar",
+            "decision_domain": "lifecycle_segmentation_and_eligibility",
+            "trigger": "Sempre que a tática alcançar a elegibilidade, segmentação ou seleção de pessoas solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por orientar para o domínio lifecycle_segmentation_and_eligibility; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -2740,6 +3776,53 @@
         "reviewed_full_source": true,
         "source_line_count": 40,
         "review_notes": "Corpo integral revisado; alinhado à semantic_boundary canônica de Ampliar."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "touchpoint-map",
+          "channel-role-plan",
+          "timing-and-fallback",
+          "frequency-and-pressure-cap",
+          "non-conflict-rules"
+        ],
+        "excluded_output_sections": [
+          "lifecycle-eligibility-message-creation-and-performance-interpretation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "omnichannel-lifecycle-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 5,
+            "source_line_end": 9,
+            "canonical_request": "Pede orquestração da jornada e experiência completa do cliente em todos os pontos de contato.",
+            "decision_domain": "lifecycle_segmentation_and_eligibility",
+            "destination_authority": "orientar",
+            "safe_handling": "Ampliar coordena papel, timing e cadência dos touchpoints; Orientar fornece estados, elegibilidade e supressões."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "orquestrador-de-experiencia-omnicanal-lifecycle-segmentation-and-eligibility-handoff",
+            "target_authority": "orientar",
+            "decision_domain": "lifecycle_segmentation_and_eligibility",
+            "trigger": "Sempre que a tática alcançar a elegibilidade, segmentação ou seleção de pessoas solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por orientar para o domínio lifecycle_segmentation_and_eligibility; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -2756,7 +3839,6 @@
       ],
       "job_tags": [
         "coordinate",
-        "design",
         "map"
       ],
       "object_tags": [
@@ -2766,7 +3848,6 @@
       ],
       "need_tags": [
         "map:touchpoint",
-        "design:attribution",
         "coordinate:channel"
       ],
       "input_requirements": [
@@ -2870,6 +3951,57 @@
         "reviewed_full_source": true,
         "source_line_count": 70,
         "review_notes": "Corpo integral revisado; contrato de saída é brief para Refinar, não modelo."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "touchpoint-map",
+          "tracking-requirements",
+          "data-quality-gaps",
+          "decision-use-cases",
+          "refinar-handoff"
+        ],
+        "excluded_output_sections": [
+          "attribution-model-selection",
+          "attribution-model-weighting",
+          "attribution-model-validation",
+          "budget-allocation",
+          "performance-interpretation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "cross-channel-attribution-refinar-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 42,
+            "source_line_end": 69,
+            "canonical_request": "Pede seleção, customização e ponderação de modelo, validação de precisão, interpretação de desempenho e alocação orçamentária.",
+            "decision_domain": "experiment_performance_and_learning",
+            "destination_authority": "refinar",
+            "safe_handling": "Ampliar entrega somente brief de touchpoints, requisitos de tracking, lacunas e usos decisórios; Refinar modela, valida e interpreta."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "otimizador-de-atribuicao-cruzada-de-canal-experiment-performance-and-learning-handoff",
+            "target_authority": "refinar",
+            "decision_domain": "experiment_performance_and_learning",
+            "trigger": "Sempre que a tática alcançar o desenho de teste, modelagem, validação e interpretação de desempenho solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por refinar para o domínio experiment_performance_and_learning; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -3008,6 +4140,53 @@
         "reviewed_full_source": true,
         "source_line_count": 210,
         "review_notes": "Corpo integral revisado; todas as alegações sobre mecanismos de IA permanecem hipóteses até fonte atual."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "query-coverage-map",
+          "content-distribution-requirements",
+          "source-and-proof-guardrails",
+          "monitoring-plan",
+          "refinar-measurement-handoff"
+        ],
+        "excluded_output_sections": [
+          "content-claim-creation-and-search-outcome-assurance"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "ai-search-unverifiable-visibility-claim",
+            "conflict_type": "unverifiable_claim",
+            "source_line_start": 5,
+            "source_line_end": 9,
+            "canonical_request": "Pede aumentar menções, citações e recomendações de marca por mecanismos externos de IA.",
+            "decision_domain": "experiment_performance_and_learning",
+            "destination_authority": "refinar",
+            "safe_handling": "Tratar como hipótese não verificada; Refinar define mensuração, validação e interpretação sem prometer o resultado externo."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "otimizador-de-visibilidade-do-ai-search-experiment-performance-and-learning-handoff",
+            "target_authority": "refinar",
+            "decision_domain": "experiment_performance_and_learning",
+            "trigger": "Sempre que a tática alcançar o desenho de teste, modelagem, validação e interpretação de desempenho solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por refinar para o domínio experiment_performance_and_learning; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -3135,6 +4314,53 @@
         "reviewed_full_source": true,
         "source_line_count": 58,
         "review_notes": "Corpo integral revisado; 'envios vencedores' não foi tratado como garantia."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "award-fit-matrix",
+          "evidence-readiness",
+          "submission-channel-role",
+          "recognition-amplification",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "award-submission-copy-and-external-submission"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "award-submission-content-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 5,
+            "source_line_end": 9,
+            "canonical_request": "Pede desenvolver envios vencedores e otimizar submissões de premiação.",
+            "decision_domain": "message_and_copy",
+            "destination_authority": "verbalizar",
+            "safe_handling": "Ampliar seleciona canais de reconhecimento, timing e cadência; narrativa e texto da submissão vão para Verbalizar."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "premios-da-industria-e-amplificador-de-reconhecimento-message-and-copy-handoff",
+            "target_authority": "verbalizar",
+            "decision_domain": "message_and_copy",
+            "trigger": "Sempre que a tática alcançar a criação ou alteração de mensagem e conteúdo solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por verbalizar para o domínio message_and_copy; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     },
     {
@@ -3265,6 +4491,53 @@
         "reviewed_full_source": true,
         "source_line_count": 57,
         "review_notes": "Corpo integral revisado; relação com repurposing registrada sem fusão."
+      },
+      "execution_policy": {
+        "execution_mode": "sidecar_constrained",
+        "automatic_selection": "planner_review_required",
+        "runtime_overlay_required": true,
+        "owner_domain": "channel_timing_and_cadence",
+        "allowed_output_sections": [
+          "owned-earned-paid-map",
+          "channel-role-and-fit",
+          "distribution-sequence",
+          "capacity-and-budget",
+          "measurement-requirements"
+        ],
+        "excluded_output_sections": [
+          "content-creation-segmentation-and-performance-interpretation"
+        ],
+        "prohibited_decisions": [
+          "global_orchestration",
+          "message_and_copy",
+          "lifecycle_segmentation_and_eligibility",
+          "experiment_performance_and_learning",
+          "security_privacy_and_data_use",
+          "external_execution_authorization"
+        ],
+        "canonical_scope_conflicts": [
+          {
+            "conflict_id": "distribution-performance-boundary",
+            "conflict_type": "owner_boundary",
+            "source_line_start": 7,
+            "source_line_end": 9,
+            "canonical_request": "Pede medição de desempenho e impacto de negócio da distribuição de conteúdo.",
+            "decision_domain": "experiment_performance_and_learning",
+            "destination_authority": "refinar",
+            "safe_handling": "Ampliar especifica rede, papel dos canais, touchpoints e cadência; Refinar mede, valida e interpreta resultados."
+          }
+        ],
+        "mandatory_handoffs": [
+          {
+            "handoff_id": "rede-de-distribuicao-de-conteudo-experiment-performance-and-learning-handoff",
+            "target_authority": "refinar",
+            "decision_domain": "experiment_performance_and_learning",
+            "trigger": "Sempre que a tática alcançar o desenho de teste, modelagem, validação e interpretação de desempenho solicitada pelo corpo canônico.",
+            "requested_output": "Decisão registrada por refinar para o domínio experiment_performance_and_learning; Ampliar consome apenas restrições e requisitos aprovados.",
+            "required": true
+          }
+        ],
+        "fallback": "Se o overlay não puder ser aplicado, não carregar nem executar esta tática; usar apenas o método base de Ampliar para requisitos de canal, touchpoints, timing e cadência, registrando os handoffs pendentes."
       }
     }
   ],
@@ -3576,7 +4849,22 @@
       "high": 15,
       "medium": 10,
       "interpretation": "Sinais heurísticos de P1 foram usados para priorizar revisão; flags finais resultam da leitura semântica integral e não provam erro de origem."
-    }
+    },
+    "execution_policy_distribution": {
+      "canonical_safe": 0,
+      "sidecar_constrained": 25,
+      "base_method_only": 0
+    },
+    "automatic_selection_distribution": {
+      "allowed": 0,
+      "planner_review_required": 25,
+      "forbidden": 0
+    },
+    "entries_with_runtime_overlay": 25,
+    "entries_with_scope_conflicts": 25,
+    "total_scope_conflicts": 28,
+    "total_mandatory_handoffs": 28,
+    "execution_policy_statement": "Todas as 25 táticas exigem overlay sidecar e revisão do planner; Ampliar decide somente canal, touchpoint, timing e cadência. Os seis domínios externos ao owner estão explicitamente proibidos e roteados por conflito real."
   },
   "unresolved_questions": [
     {

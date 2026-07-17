@@ -155,6 +155,9 @@ def build_artifacts() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
             "entries_with_output_contract": sum(
                 bool(tactic["output_contract"]) for tactic in tactics
             ),
+            "entries_with_execution_policy": sum(
+                bool(tactic["execution_policy"]) for tactic in tactics
+            ),
             "entries_with_maturity_rationale": sum(
                 bool(tactic["maturity_rationale"].strip()) for tactic in tactics
             ),
@@ -163,6 +166,20 @@ def build_artifacts() -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
             ),
             "minimum_maturity_distribution": sorted_counter(
                 [tactic["minimum_maturity"] for tactic in tactics]
+            ),
+            "execution_mode_distribution": sorted_counter(
+                [tactic["execution_policy"]["execution_mode"] for tactic in tactics]
+            ),
+            "automatic_selection_distribution": sorted_counter(
+                [tactic["execution_policy"]["automatic_selection"] for tactic in tactics]
+            ),
+            "canonical_scope_conflict_count": sum(
+                len(tactic["execution_policy"]["canonical_scope_conflicts"])
+                for tactic in tactics
+            ),
+            "mandatory_handoff_count": sum(
+                len(tactic["execution_policy"]["mandatory_handoffs"])
+                for tactic in tactics
             ),
             "input_sensitivity_distribution": sorted_counter(sensitivities),
         },

@@ -47,6 +47,94 @@ PILLARS = {
     },
 }
 
+ROLE_DOMAIN = {
+    "verbalizar": "message_and_copy",
+    "orientar": "lifecycle_segmentation_and_eligibility",
+    "ampliar": "channel_timing_and_cadence",
+    "refinar": "experiment_performance_and_learning",
+}
+DOMAIN_AUTHORITY = {
+    "global_orchestration": "loop_planning",
+    "message_and_copy": "verbalizar",
+    "lifecycle_segmentation_and_eligibility": "orientar",
+    "channel_timing_and_cadence": "ampliar",
+    "experiment_performance_and_learning": "refinar",
+    "security_privacy_and_data_use": "security_review",
+    "external_execution_authorization": "authorized_operator",
+}
+
+REFINAR_SCOPE_FIXTURES = {
+    "lm.refinar.sistema-de-integracao-de-aprendizagem": {
+        "domains": {
+            "message_and_copy", "lifecycle_segmentation_and_eligibility",
+            "channel_timing_and_cadence", "external_execution_authorization",
+        },
+        "ranges": [(125, 136), (171, 182)],
+    },
+    "lm.refinar.analisador-de-desempenho-de-coorte": {
+        "domains": {
+            "message_and_copy", "lifecycle_segmentation_and_eligibility",
+            "channel_timing_and_cadence", "external_execution_authorization",
+        },
+        "ranges": [(104, 107), (121, 155), (155, 165)],
+    },
+    "lm.refinar.interprete-de-analises-da-jornada-do-cliente": {
+        "domains": {
+            "global_orchestration", "message_and_copy",
+            "lifecycle_segmentation_and_eligibility", "channel_timing_and_cadence",
+            "external_execution_authorization",
+        },
+        "ranges": [(63, 98), (118, 138), (173, 195)],
+    },
+    "lm.refinar.coordenador-de-testes-entre-canais": {
+        "domains": {"channel_timing_and_cadence", "external_execution_authorization"},
+        "ranges": [(102, 119), (122, 141)],
+    },
+    "lm.refinar.otimizador-de-atribuicao-de-marketing": {
+        "domains": {
+            "message_and_copy", "lifecycle_segmentation_and_eligibility",
+            "channel_timing_and_cadence", "external_execution_authorization",
+        },
+        "ranges": [(5, 9), (89, 90), (102, 124), (142, 170)],
+    },
+    "lm.refinar.modelador-de-combinacao-de-marketing": {
+        "domains": {
+            "global_orchestration", "message_and_copy",
+            "lifecycle_segmentation_and_eligibility", "channel_timing_and_cadence",
+            "external_execution_authorization",
+        },
+        "ranges": [(50, 52), (77, 105), (126, 128), (136, 162), (170, 173)],
+    },
+    "lm.refinar.calculadora-de-otimizacao": {
+        "domains": {
+            "global_orchestration", "channel_timing_and_cadence",
+            "external_execution_authorization",
+        },
+        "ranges": [(123, 127), (162, 185)],
+    },
+    "lm.refinar.gerador-de-relatorios-de-otimizacao-continua": {
+        "domains": {
+            "message_and_copy", "channel_timing_and_cadence",
+            "external_execution_authorization",
+        },
+        "ranges": [(45, 50), (89, 93)],
+    },
+    "lm.refinar.resultados-previsiveis-da-campanha-antes-do-lancamento": {
+        "domains": {
+            "message_and_copy", "lifecycle_segmentation_and_eligibility",
+            "channel_timing_and_cadence", "external_execution_authorization",
+        },
+        "ranges": [(36, 42), (50, 56), (117, 117)],
+    },
+    "lm.refinar.construtor-de-estrutura-de-experimentacao-rapida": {
+        "domains": {
+            "message_and_copy", "lifecycle_segmentation_and_eligibility",
+            "channel_timing_and_cadence", "external_execution_authorization",
+        },
+        "ranges": [(24, 24), (32, 44), (69, 69)],
+    },
+}
+
 
 def load(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
@@ -124,7 +212,8 @@ def schema_values(schema: dict[str, Any], definition: str, field: str = "enum") 
 def validate_schema(schema: dict[str, Any], errors: list[str]) -> None:
     required_defs = {
         "tactic", "tacticCatalog", "relation", "relationshipMap", "baseline",
-        "jobTag", "objectTag", "quality", "provenance",
+        "jobTag", "objectTag", "quality", "provenance", "executionPolicy",
+        "canonicalScopeConflict", "mandatoryHandoff", "decisionDomain",
     }
     missing = sorted(required_defs - schema.get("$defs", {}).keys())
     if missing:
@@ -172,6 +261,294 @@ def validate_input_requirements(
             errors.append(f"{label} input {input_id} has invalid evidence_types")
         if item.get("sensitivity") not in sensitivity_allowed:
             errors.append(f"{label} input {input_id} has invalid sensitivity")
+
+
+def validate_execution_policy(
+    entry: dict[str, Any],
+    meta: dict[str, str],
+    source_record: dict[str, Any],
+    schema: dict[str, Any],
+    label: str,
+    errors: list[str],
+) -> None:
+    policy = entry.get("execution_policy")
+    policy_schema = schema["$defs"]["executionPolicy"]
+    policy_fields = set(policy_schema["properties"])
+    if not isinstance(policy, dict) or set(policy) != policy_fields:
+        errors.append(f"{label} execution_policy fields differ from schema")
+        return
+    mode = policy.get("execution_mode")
+    automatic = policy.get("automatic_selection")
+    if mode not in {"canonical_safe", "sidecar_constrained", "base_method_only"}:
+        errors.append(f"{label} has invalid execution mode")
+    if automatic not in {"allowed", "planner_review_required", "forbidden"}:
+        errors.append(f"{label} has invalid automatic selection policy")
+    owner_domain = ROLE_DOMAIN[meta["role"]]
+    if policy.get("owner_domain") != owner_domain:
+        errors.append(f"{label} execution owner domain differs from P2 authority")
+    if not isinstance(policy.get("runtime_overlay_required"), bool):
+        errors.append(f"{label} runtime_overlay_required must be boolean")
+
+    output = entry.get("output_contract")
+    required_sections = set(output.get("required_sections", [])) if isinstance(output, dict) else set()
+    allowed_sections = policy.get("allowed_output_sections")
+    excluded_sections = policy.get("excluded_output_sections")
+    if not isinstance(allowed_sections, list) or len(allowed_sections) != len(set(allowed_sections)):
+        errors.append(f"{label} has invalid allowed_output_sections")
+        allowed_sections = []
+    if not isinstance(excluded_sections, list) or len(excluded_sections) != len(set(excluded_sections)):
+        errors.append(f"{label} has invalid excluded_output_sections")
+        excluded_sections = []
+    if set(allowed_sections) & set(excluded_sections):
+        errors.append(f"{label} allowed and excluded output sections overlap")
+    if mode == "base_method_only":
+        if allowed_sections:
+            errors.append(f"{label} base_method_only cannot expose canonical output sections")
+    elif set(allowed_sections) != required_sections:
+        errors.append(f"{label} allowed output sections must equal the sidecar output contract")
+
+    prohibited = policy.get("prohibited_decisions")
+    domain_allowed = set(DOMAIN_AUTHORITY)
+    if (
+        not isinstance(prohibited, list)
+        or not prohibited
+        or len(prohibited) != len(set(prohibited))
+        or not set(prohibited).issubset(domain_allowed)
+    ):
+        errors.append(f"{label} has invalid prohibited_decisions")
+        prohibited = []
+    if owner_domain in prohibited:
+        errors.append(f"{label} prohibits its own P2 decision domain")
+    expected_prohibited = domain_allowed - {owner_domain}
+    if set(prohibited) != expected_prohibited:
+        errors.append(
+            f"{label} prohibited_decisions must cover every non-owner authority domain"
+        )
+
+    conflicts = policy.get("canonical_scope_conflicts")
+    conflict_fields = set(schema["$defs"]["canonicalScopeConflict"]["properties"])
+    conflict_ids: set[str] = set()
+    conflict_domains: set[str] = set()
+    if not isinstance(conflicts, list):
+        errors.append(f"{label} canonical_scope_conflicts must be a list")
+        conflicts = []
+    for index, conflict in enumerate(conflicts, 1):
+        if not isinstance(conflict, dict) or set(conflict) != conflict_fields:
+            errors.append(f"{label} scope conflict {index} fields differ from schema")
+            continue
+        conflict_id = conflict.get("conflict_id")
+        if not isinstance(conflict_id, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]*", conflict_id) or conflict_id in conflict_ids:
+            errors.append(f"{label} scope conflict {index} has invalid conflict_id")
+        conflict_ids.add(str(conflict_id))
+        if conflict.get("conflict_type") not in {
+            "owner_boundary", "sensitive_data", "external_execution",
+            "editorial_integrity", "unverifiable_claim",
+        }:
+            errors.append(f"{label} scope conflict {conflict_id} has invalid type")
+        start = conflict.get("source_line_start")
+        end = conflict.get("source_line_end")
+        if (
+            not isinstance(start, int) or not isinstance(end, int)
+            or start < 1 or end < start or end > source_record["line_count"]
+        ):
+            errors.append(f"{label} scope conflict {conflict_id} has invalid source lines")
+        domain = conflict.get("decision_domain")
+        authority = conflict.get("destination_authority")
+        if domain not in DOMAIN_AUTHORITY or DOMAIN_AUTHORITY.get(str(domain)) != authority:
+            errors.append(f"{label} scope conflict {conflict_id} has invalid authority mapping")
+        else:
+            conflict_domains.add(str(domain))
+        if domain not in prohibited:
+            errors.append(f"{label} scope conflict {conflict_id} is not prohibited by policy")
+        if not nonempty(conflict.get("canonical_request")) or not nonempty(conflict.get("safe_handling")):
+            errors.append(f"{label} scope conflict {conflict_id} has empty evidence or handling")
+
+    handoffs = policy.get("mandatory_handoffs")
+    handoff_fields = set(schema["$defs"]["mandatoryHandoff"]["properties"])
+    handoff_ids: set[str] = set()
+    handoff_domains: set[str] = set()
+    if not isinstance(handoffs, list):
+        errors.append(f"{label} mandatory_handoffs must be a list")
+        handoffs = []
+    for index, handoff in enumerate(handoffs, 1):
+        if not isinstance(handoff, dict) or set(handoff) != handoff_fields:
+            errors.append(f"{label} handoff {index} fields differ from schema")
+            continue
+        handoff_id = handoff.get("handoff_id")
+        if not isinstance(handoff_id, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]*", handoff_id) or handoff_id in handoff_ids:
+            errors.append(f"{label} handoff {index} has invalid handoff_id")
+        handoff_ids.add(str(handoff_id))
+        domain = handoff.get("decision_domain")
+        target = handoff.get("target_authority")
+        if domain not in DOMAIN_AUTHORITY or DOMAIN_AUTHORITY.get(str(domain)) != target:
+            errors.append(f"{label} handoff {handoff_id} has invalid authority mapping")
+        else:
+            handoff_domains.add(str(domain))
+        if handoff.get("required") is not True:
+            errors.append(f"{label} handoff {handoff_id} must be required")
+        if not nonempty(handoff.get("trigger")) or not nonempty(handoff.get("requested_output")):
+            errors.append(f"{label} handoff {handoff_id} has empty trigger or output")
+    if not conflict_domains.issubset(handoff_domains):
+        errors.append(f"{label} scope conflicts do not all have mandatory authority handoffs")
+
+    if mode == "canonical_safe":
+        if conflicts or excluded_sections or policy.get("runtime_overlay_required") is not False:
+            errors.append(f"{label} canonical_safe has conflicts, exclusions, or overlay")
+    elif mode == "sidecar_constrained":
+        if policy.get("runtime_overlay_required") is not True or not (conflicts or excluded_sections):
+            errors.append(f"{label} constrained mode lacks executable overlay constraints")
+        if automatic == "allowed":
+            errors.append(f"{label} constrained mode cannot be selected automatically")
+    elif mode == "base_method_only":
+        if automatic != "forbidden" or policy.get("runtime_overlay_required") is not False:
+            errors.append(f"{label} base_method_only must forbid selection and skip overlay")
+    quality = entry.get("quality")
+    if (
+        isinstance(quality, dict)
+        and quality.get("semantic_review_status") == "needs_editorial_review"
+        and automatic == "allowed"
+    ):
+        errors.append(f"{label} needs editorial review but allows automatic selection")
+    flags = set(quality.get("flags", [])) if isinstance(quality, dict) else set()
+    automatic_review_flags = {
+        "ambiguous_instruction", "pii_sensitive", "security_sensitive",
+        "unverified_external_claim",
+    }
+    if automatic == "allowed" and flags & automatic_review_flags:
+        errors.append(
+            f"{label} allows automatic selection despite review-required flags "
+            f"{sorted(flags & automatic_review_flags)}"
+        )
+    if "unverified_external_claim" in flags:
+        has_claim_constraint = any(
+            isinstance(conflict, dict)
+            and conflict.get("conflict_type") == "unverifiable_claim"
+            for conflict in conflicts
+        )
+        if mode == "canonical_safe" or not has_claim_constraint:
+            errors.append(f"{label} has an unverified claim without a constrained execution rule")
+    if not nonempty(policy.get("fallback")):
+        errors.append(f"{label} execution policy has empty fallback")
+
+
+def validate_authority_fixtures(
+    entry: dict[str, Any], label: str, errors: list[str]
+) -> None:
+    tactic_id = entry.get("tactic_id")
+    jobs = set(entry.get("job_tags", []))
+    objects = set(entry.get("object_tags", []))
+    needs = set(entry.get("need_tags", []))
+    output = entry.get("output_contract", {})
+    output_type = output.get("output_type") if isinstance(output, dict) else None
+    sections = set(output.get("required_sections", [])) if isinstance(output, dict) else set()
+    policy = entry.get("execution_policy", {})
+
+    if tactic_id == "lm.verbalizar.perfil-do-cliente-ideal" and (
+        "segment" in jobs
+        or "segmentation" in objects
+        or "segment:segmentation" in needs
+        or output_type == "segmentation_model"
+    ):
+        errors.append(f"{label} exposes an Orientar segmentation decision through Verbalizar")
+    if tactic_id == "lm.verbalizar.mapeador-da-jornada-do-cliente" and (
+        "map:customer-journey" in needs or output_type == "journey_map"
+    ):
+        errors.append(f"{label} exposes lifecycle journey ownership through Verbalizar")
+    if tactic_id == "lm.orientar.personalizacao-orientada-por-comentarios" and (
+        "optimize" in jobs
+        or "optimization" in objects
+        or "optimize:optimization" in needs
+        or output_type == "learning_system"
+        or "learning-loop" in sections
+    ):
+        errors.append(f"{label} exposes a Refinar learning decision through Orientar")
+    if tactic_id == "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal" and (
+        "design:attribution" in needs or output_type != "brief"
+    ):
+        errors.append(f"{label} exposes attribution model design through Ampliar")
+
+    customer_programs = {
+        "lm.ampliar.amplificador-de-defesa-do-cliente",
+        "lm.ampliar.mecanismo-de-referencias-do-cliente",
+        "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario",
+    }
+    if tactic_id in customer_programs:
+        sensitivities = {
+            requirement.get("sensitivity")
+            for requirement in entry.get("input_requirements", [])
+            if isinstance(requirement, dict)
+        }
+        if "customer_level_pii" not in sensitivities:
+            conflicts = policy.get("canonical_scope_conflicts", []) if isinstance(policy, dict) else []
+            has_sensitive_exclusion = any(
+                isinstance(conflict, dict)
+                and conflict.get("conflict_type") == "sensitive_data"
+                and conflict.get("decision_domain") == "security_privacy_and_data_use"
+                for conflict in conflicts
+            )
+            if (
+                policy.get("execution_mode") not in {"sidecar_constrained", "base_method_only"}
+                or not has_sensitive_exclusion
+                or not policy.get("excluded_output_sections")
+            ):
+                errors.append(f"{label} under-models canonical customer-level PII without a safe-mode exclusion")
+        for section in sections:
+            if (
+                ("eligibility" in section or "suppression" in section)
+                and "reference" not in section
+                and "accepted" not in section
+            ):
+                errors.append(f"{label} owns eligibility semantics instead of consuming a reference")
+
+    refinar_fixture = REFINAR_SCOPE_FIXTURES.get(str(tactic_id))
+    if refinar_fixture is not None:
+        conflicts = policy.get("canonical_scope_conflicts", []) if isinstance(policy, dict) else []
+        declared_domains = {
+            conflict.get("decision_domain")
+            for conflict in conflicts
+            if isinstance(conflict, dict)
+        }
+        missing_domains = sorted(refinar_fixture["domains"] - declared_domains)
+        if missing_domains:
+            errors.append(
+                f"{label} misses required Refinar cross-owner conflict domains {missing_domains}"
+            )
+        for expected_start, expected_end in refinar_fixture["ranges"]:
+            covered = any(
+                isinstance(conflict, dict)
+                and isinstance(conflict.get("source_line_start"), int)
+                and isinstance(conflict.get("source_line_end"), int)
+                and conflict["source_line_start"] <= expected_end
+                and conflict["source_line_end"] >= expected_start
+                for conflict in conflicts
+            )
+            if not covered:
+                errors.append(
+                    f"{label} misses required Refinar source conflict range "
+                    f"{expected_start}-{expected_end}"
+                )
+        if tactic_id == "lm.refinar.sistema-de-integracao-de-aprendizagem" and (
+            policy.get("execution_mode") != "sidecar_constrained"
+            or policy.get("automatic_selection") != "planner_review_required"
+            or policy.get("runtime_overlay_required") is not True
+        ):
+            errors.append(f"{label} learning integration body must be sidecar constrained")
+
+    if entry.get("pillar") == "Refinar" and policy.get("execution_mode") == "sidecar_constrained":
+        fallback = str(policy.get("fallback", "")).lower()
+        phrase_groups = {
+            "overlay": ("overlay",),
+            "planner review": ("planner review", "revisão do planner", "revisao do planner"),
+            "do not load": ("não carregar", "nao carregar"),
+            "do not execute": ("não executar", "nao executar"),
+            "base method": ("método-base", "metodo-base", "método base", "metodo base"),
+            "TESTAR": ("testar",),
+            "data_gap_plan": ("data_gap_plan",),
+            "pending handoff": ("handoff pendente", "pending handoff"),
+        }
+        for phrase_name, alternatives in phrase_groups.items():
+            if not any(alternative in fallback for alternative in alternatives):
+                errors.append(f"{label} constrained Refinar fallback misses {phrase_name}")
 
 
 def validate_entry(
@@ -246,6 +623,8 @@ def validate_entry(
             errors.append(f"{label} output owner must be {meta['role']}")
         if not nonempty(output.get("description")):
             errors.append(f"{label} has empty output description")
+
+    validate_execution_policy(entry, meta, source_map[path], schema, label, errors)
 
     if entry.get("minimum_maturity") not in schema_values(schema, "maturity"):
         errors.append(f"{label} has invalid minimum_maturity")
@@ -326,6 +705,7 @@ def validate_entry(
     }
     if "customer_level_pii" in sensitivities and isinstance(quality, dict) and "pii_sensitive" not in quality.get("flags", []):
         errors.append(f"{label} consumes customer-level PII without pii_sensitive flag")
+    validate_authority_fixtures(entry, label, errors)
 
 
 def validate_relations(
@@ -426,9 +806,11 @@ def validate_workstreams(
         if value.get("pillar") != pillar or value.get("methodology_stage") != meta["stage"]:
             errors.append(f"{pillar} workstream identity is invalid")
         entries = value.get("entries")
-        if not isinstance(entries, list) or len(entries) != 25:
+        if not isinstance(entries, list):
             errors.append(f"{pillar} workstream must contain exactly 25 entries")
             continue
+        if len(entries) != 25:
+            errors.append(f"{pillar} workstream must contain exactly 25 entries")
         pillar_paths: set[str] = set()
         pillar_ids: set[str] = set()
         for entry in entries:
@@ -448,6 +830,13 @@ def validate_workstreams(
             value.get("relations"), all_source_ids, f"{pillar} workstream",
             schema, errors, within_ids=pillar_ids,
         )
+        if isinstance(value.get("relations"), list):
+            for relation in value["relations"]:
+                if isinstance(relation, dict) and relation.get("review_status") != "proposed":
+                    errors.append(
+                        f"{pillar} workstream relation {relation.get('relation_id')} "
+                        "must remain proposed until independent replay"
+                    )
         candidates = value.get("cross_pillar_relation_candidates")
         if not isinstance(candidates, list):
             errors.append(f"{pillar} cross-pillar candidates must be a list")
@@ -862,6 +1251,7 @@ def validate_finals(
     for field in (
         "entries_with_all_required_fields", "entries_reviewed_full_source",
         "entries_with_input_requirements", "entries_with_output_contract",
+        "entries_with_execution_policy",
         "entries_with_maturity_rationale", "entries_with_contraindications",
     ):
         if metadata.get(field) != 100:
@@ -871,6 +1261,30 @@ def validate_finals(
     ).items()))
     if metadata.get("minimum_maturity_distribution") != expected_maturity:
         errors.append("preservation report maturity distribution differs from catalog")
+    expected_execution_modes = dict(sorted(Counter(
+        item.get("execution_policy", {}).get("execution_mode")
+        for item in tactics if isinstance(item, dict)
+    ).items()))
+    if metadata.get("execution_mode_distribution") != expected_execution_modes:
+        errors.append("preservation report execution mode distribution differs from catalog")
+    expected_automatic_selection = dict(sorted(Counter(
+        item.get("execution_policy", {}).get("automatic_selection")
+        for item in tactics if isinstance(item, dict)
+    ).items()))
+    if metadata.get("automatic_selection_distribution") != expected_automatic_selection:
+        errors.append("preservation report automatic selection distribution differs from catalog")
+    expected_conflicts = sum(
+        len(item.get("execution_policy", {}).get("canonical_scope_conflicts", []))
+        for item in tactics if isinstance(item, dict)
+    )
+    expected_handoffs = sum(
+        len(item.get("execution_policy", {}).get("mandatory_handoffs", []))
+        for item in tactics if isinstance(item, dict)
+    )
+    if metadata.get("canonical_scope_conflict_count") != expected_conflicts:
+        errors.append("preservation report scope conflict count differs from catalog")
+    if metadata.get("mandatory_handoff_count") != expected_handoffs:
+        errors.append("preservation report mandatory handoff count differs from catalog")
     relationship_summary = report.get("relationship_summary", {})
     if relationship_summary.get("total_relations") != len(relation_values):
         errors.append("preservation report relation count differs from relationship map")
