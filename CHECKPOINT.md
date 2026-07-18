@@ -1,10 +1,10 @@
-# Checkpoint CP-0011
+# Checkpoint CP-0012
 
 Atualizado em: 2026-07-17
 
 ## Objetivo
 
-Executar P4 para definir contratos versionados de estado, eventos, handoffs e migração, usando P2 e o catálogo P3 selado.
+Preparar P5 para implementar o orquestrador host-neutral e seus adaptadores sobre os contratos P2-P4 já selados.
 
 ## Estado atual
 
@@ -14,7 +14,7 @@ Executar P4 para definir contratos versionados de estado, eventos, handoffs e mi
 - Worktree no baseline: limpo
 - Biblioteca canônica: 100 prompts
 - Autorização do usuário: recebida em 2026-07-17 (`pode iniciar`)
-- Implementação v2: P1, P2 e P3 concluídas; P4 iniciada em modo de contratos sidecar
+- Implementação v2: P1, P2, P3 e P4 concluídas; P5 ainda não iniciada
 - Validação determinística: aprovada, sem erros
 - Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
 - Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
@@ -45,7 +45,17 @@ Executar P4 para definir contratos versionados de estado, eventos, handoffs e mi
 - Regressão negativa: baselines PASS e 16/16 mutações inseguras corretamente rejeitadas
 - Artefatos oficiais P3: catálogo 100, mapa 91 relações, relatório de preservação e manifesto selado
 - Gate final P3: validator PASS, auditoria PASS, regressão 16/16 e selo verificável
-- Gate atual: `G5 — concluir contratos e migração P4`
+- P4: schemas de estado, transação/evento e handoff integrados em JSON Schema 2020-12
+- P4: ledger por transaction batch, CAS, lock, hash-chain, replay idempotente e recovery fail-closed
+- P4: 33 tipos de evento canônicos, sem inventar autoridade de domínio
+- P4: 12 arestas concretas da máquina de experimento, todas evidence-gated
+- P4: handoff fechado com exatamente 22 campos e fronteira por complemento de domínio
+- P4: migração v1 com dry-run, confirmation record vinculado, backup, promoção atômica e rollback
+- P4: validador PASS em 76 fixtures; regressão negativa 20/20
+- P4: gate independente PASS em 5/5 critérios, zero achados finais
+- P4: quatro blockers encontrados pelo auditor foram corrigidos e preservados como regressão
+- P4: manifesto selado com três relatórios verificáveis
+- Gate atual: `G6 — definir interfaces e implementar runtime P5`
 
 ## Decisões vigentes
 
@@ -63,6 +73,10 @@ Executar P4 para definir contratos versionados de estado, eventos, handoffs e mi
 - Tratar revisão jurídica de redistribuição como restrição de release, não como autorização implícita de P3.
 - Aplicar um de três modos por tática: canonical_safe, sidecar_constrained ou base_method_only.
 - Exigir fail-closed quando overlay, revisão do planner ou handoff obrigatório não estiver disponível.
+- Avançar uma revisão por transaction batch comprometido, não por evento individual.
+- Tratar event e transaction replay como noop somente quando o conteúdo canônico recomputado e os hashes declarados coincidirem.
+- Vincular confirmação de migração ao migration_id, digests, precondição de destino, versão, projeto, operação e timestamp.
+- Manter recovery, rollback e legacy.imported como auditoria fora da autoridade de eventos de domínio até contrato posterior explícito.
 
 ## Artefatos de continuidade
 
@@ -145,13 +159,28 @@ P1 foi concluída em modo read-only. Os 117 arquivos estão classificados; os ac
 - Definir migração v1.x com dry-run, backup, rollback e aliases completos.
 - Manter `/Users/enorm/Documents/Claude/loop-marketing` read-only durante P4.
 
+## Resultado final de P4
+
+- `artifacts/P4/state-schema.json`: snapshot derivado versionado e ancorado no ledger.
+- `artifacts/P4/event-schema.json`: transaction record fechado com eventos P2, hashes, revisões e idempotência.
+- `artifacts/P4/handoff-schema.json`: contrato fechado dos 22 campos e objetos internos tipados.
+- `artifacts/P4/state-event-contract.md`: CAS, commit point, fsync, replay e quarentena.
+- `artifacts/P4/migration-contract.md`: descoberta, dry-run, confirmation record, backup, staging e rollback.
+- `artifacts/P4/compatibility-fixtures.json`: 76 casos positivos/negativos.
+- `scripts/p4_validate.py`: gate sem dependências externas, incluindo 100 hashes e agregado exato.
+- `scripts/p4_regression.py`: 20 mutações inseguras, todas rejeitadas.
+- `scripts/p4_seal.py`: selo e verificação do bundle P4.
+- `artifacts/P4/final-independent-audit.json`: PASS em 5/5 critérios, blockers=0, nonblockers=0.
+
 ## Próxima ação única
 
-Executar três workstreams P4 não sobrepostos, integrar schemas/contrato/fixtures e rodar red-team de migração e concorrência.
+Definir o contrato modular P5 e implementar, em staging no controle, loader progressivo, roteador, validador, state store transacional, orquestrador e adaptadores host-neutral.
 
-## Proibido durante P3
+## Proibido durante P5
 
 - Alterar arquivos em `/Users/enorm/Documents/Claude/loop-marketing`.
 - Reescrever, remover ou reduzir a biblioteca tática.
 - Permitir que subagentes alterem o repositório-fonte, artefatos oficiais integrados ou o checkpoint canônico.
-- Executar migrações ou integrações externas.
+- Executar migrações reais, mutações externas ou ações em CRM/campanhas.
+- Criar estado específico de Claude, Codex ou outro host.
+- Aceitar evento, handoff, tática ou escrita que falhe os contratos P2-P4.

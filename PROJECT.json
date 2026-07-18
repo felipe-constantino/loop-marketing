@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0011",
-  "status": "p4_contracts_in_progress",
+  "checkpoint_id": "CP-0012",
+  "status": "p4_completed_p5_pending",
   "authorization": {
     "implementation_start_received": true,
     "received_at": "2026-07-17",
@@ -109,13 +109,16 @@
     {
       "id": "P4",
       "name": "Contratos, estado e migracao",
-      "status": "in_progress",
+      "status": "completed",
       "deliverables": [
         "artifacts/P4/state-schema.json",
         "artifacts/P4/event-schema.json",
         "artifacts/P4/handoff-schema.json",
+        "artifacts/P4/state-event-contract.md",
         "artifacts/P4/migration-contract.md",
-        "artifacts/P4/compatibility-fixtures.json"
+        "artifacts/P4/compatibility-fixtures.json",
+        "artifacts/P4/integration-manifest.json",
+        "artifacts/P4/final-independent-audit.json"
       ],
       "exit_criteria": [
         "Estado canonico versionado usa .loop-marketing/, state_revision e escrita atomica com concorrencia otimista.",
