@@ -1,10 +1,10 @@
-# Checkpoint CP-0012
+# Checkpoint CP-0014
 
-Atualizado em: 2026-07-17
+Atualizado em: 2026-07-19
 
 ## Objetivo
 
-Preparar P5 para implementar o orquestrador host-neutral e seus adaptadores sobre os contratos P2-P4 já selados.
+Fechar P5 com runtime host-neutral integrado, gate independente, selo verificável e continuidade pronta para P6.
 
 ## Estado atual
 
@@ -14,7 +14,7 @@ Preparar P5 para implementar o orquestrador host-neutral e seus adaptadores sobr
 - Worktree no baseline: limpo
 - Biblioteca canônica: 100 prompts
 - Autorização do usuário: recebida em 2026-07-17 (`pode iniciar`)
-- Implementação v2: P1, P2, P3 e P4 concluídas; P5 ainda não iniciada
+- Implementação v2: P1, P2, P3, P4 e P5 concluídas; P6 pendente
 - Validação determinística: aprovada, sem erros
 - Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
 - Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
@@ -55,7 +55,18 @@ Preparar P5 para implementar o orquestrador host-neutral e seus adaptadores sobr
 - P4: gate independente PASS em 5/5 critérios, zero achados finais
 - P4: quatro blockers encontrados pelo auditor foram corrigidos e preservados como regressão
 - P4: manifesto selado com três relatórios verificáveis
-- Gate atual: `G6 — definir interfaces e implementar runtime P5`
+- Commit selado de P4: `7a5f9929a77575bc3a6c38a688d02e347a09f777`
+- Bundle offline atualizado e verificado nesse commit
+- P5: runtime Python 3.9+ sem dependências, wheel instalável e CLI `loop-marketing`
+- P5: loader progressivo verifica 100 paths/hashes e carrega somente táticas selecionadas
+- P5: roteador deriva maturidade de perfil completo com evidência; enum cru não eleva capacidade
+- P5: route plan reproduzível, handoff fechado e receipt vinculam rota, tática, gargalo, revisão e evento
+- P5: state store com identity imutável, ledger autoritativo, double CAS, lock, fsync, recovery e noop exato após reinício
+- P5: evidência estrita exige registry externo e vínculo claim-event, inclusive em eventos de experimento
+- P5: dois blockers independentes de evidência foram corrigidos e preservados como regressão
+- P5: 50/50 testes, 19/19 regressões negativas, QA independente PASS e selo verificável
+- P5: fonte canônica limpa no baseline e 100/100 prompts preservados
+- Gate atual: `G7 — P5 selada; preparar contrato de segurança e autorização P6`
 
 ## Decisões vigentes
 
@@ -77,6 +88,9 @@ Preparar P5 para implementar o orquestrador host-neutral e seus adaptadores sobr
 - Tratar event e transaction replay como noop somente quando o conteúdo canônico recomputado e os hashes declarados coincidirem.
 - Vincular confirmação de migração ao migration_id, digests, precondição de destino, versão, projeto, operação e timestamp.
 - Manter recovery, rollback e legacy.imported como auditoria fora da autoridade de eventos de domínio até contrato posterior explícito.
+- Derivar maturidade de dimensões completas vinculadas a fatos; ignorar classificação crua não comprovada.
+- Exigir que toda factual claim resolva no evidence registry e pertença a `event.evidence_refs` no caminho estrito.
+- Vincular cada transaction record ao receipt e fingerprint produzidos pelo orquestrador; somente retry idêntico já persistido sobrevive a reinício.
 
 ## Artefatos de continuidade
 
@@ -172,15 +186,28 @@ P1 foi concluída em modo read-only. Os 117 arquivos estão classificados; os ac
 - `scripts/p4_seal.py`: selo e verificação do bundle P4.
 - `artifacts/P4/final-independent-audit.json`: PASS em 5/5 critérios, blockers=0, nonblockers=0.
 
+## Resultado final de P5
+
+- `artifacts/P5/runtime-contract.json`: interfaces, invariantes, ownership e limites do runtime.
+- `candidate/loop-marketing-v2/src/loop_marketing_runtime/`: loader, roteador, validador, state store, orquestrador, adaptadores e CLI host-neutral.
+- `candidate/loop-marketing-v2/data/` e `contracts/`: cópias exatas dos contratos selados P2-P4; a biblioteca permanece externa e imutável.
+- `artifacts/P5/runtime-fixtures.json`: matriz de 50 testes e regressões adversariais.
+- `artifacts/P5/final-independent-audit.json`: QA independente PASS, sem blockers finais.
+- `artifacts/P5/validation-report.json`: instalação real do wheel, CLI e 50/50 testes aprovados.
+- `artifacts/P5/regression-report.json`: 19/19 cenários negativos aprovados.
+- `artifacts/P5/integration-manifest.json`: hashes do runtime, contratos, testes, scripts e três relatórios de gate.
+- `python3 scripts/p5_seal.py verify`: PASS.
+
 ## Próxima ação única
 
-Definir o contrato modular P5 e implementar, em staging no controle, loader progressivo, roteador, validador, state store transacional, orquestrador e adaptadores host-neutral.
+Definir o contrato P6 de segurança, autorização e redaction sobre o runtime P5 selado, sem abrir superfície de escrita externa.
 
-## Proibido durante P5
+## Proibido durante P6
 
 - Alterar arquivos em `/Users/enorm/Documents/Claude/loop-marketing`.
 - Reescrever, remover ou reduzir a biblioteca tática.
 - Permitir que subagentes alterem o repositório-fonte, artefatos oficiais integrados ou o checkpoint canônico.
 - Executar migrações reais, mutações externas ou ações em CRM/campanhas.
 - Criar estado específico de Claude, Codex ou outro host.
-- Aceitar evento, handoff, tática ou escrita que falhe os contratos P2-P4.
+- Aceitar evento, handoff, tática ou escrita que falhe os contratos P2-P5.
+- Enfraquecer evidence binding, receipt binding, CAS, recovery ou fronteiras de owner para facilitar integração.

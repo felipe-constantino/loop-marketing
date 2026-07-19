@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0012",
-  "status": "p4_completed_p5_pending",
+  "checkpoint_id": "CP-0014",
+  "status": "p5_completed_p6_pending",
   "authorization": {
     "implementation_start_received": true,
     "received_at": "2026-07-17",
@@ -128,7 +128,29 @@
         "Schemas, fixtures e validadores passam gates positivos e negativos sem alterar a fonte canonica."
       ]
     },
-    {"id": "P5", "name": "Orquestrador e adaptadores", "status": "pending"},
+    {
+      "id": "P5",
+      "name": "Orquestrador e adaptadores",
+      "status": "completed",
+      "deliverables": [
+        "artifacts/P5/runtime-contract.json",
+        "candidate/loop-marketing-v2/src/loop_marketing_runtime/",
+        "candidate/loop-marketing-v2/adapters/",
+        "artifacts/P5/runtime-fixtures.json",
+        "artifacts/P5/integration-manifest.json",
+        "artifacts/P5/validation-report.json",
+        "artifacts/P5/regression-report.json",
+        "artifacts/P5/final-independent-audit.json"
+      ],
+      "exit_criteria": [
+        "Loader progressivo verifica catalogo, paths e hashes e aplica cardinalidade zero, um ou dois sem carregar a biblioteca inteira.",
+        "Roteador aplica owner, maturidade, evidencias, relacoes confirmadas, dependencias e rejeicoes P2/P3 de forma deterministica.",
+        "Orquestrador transforma snapshot imutavel em rota, handoff fechado e transaction batch validos sem elevar autorizacao externa.",
+        "State store implementa CAS, lock, commit atomico, hash-chain, replay idempotente e recovery P4 em projetos locais isolados.",
+        "Adaptadores resolvem os seis comandos canonicos e aliases para o mesmo command_id e estado, sem namespace de host.",
+        "Testes positivos, negativos, concorrentes e de retomada passam sem alterar a fonte canonica."
+      ]
+    },
     {"id": "P6", "name": "Seguranca e autorizacao", "status": "pending"},
     {"id": "P7", "name": "Avaliacoes, observabilidade e red team", "status": "pending"},
     {"id": "P8", "name": "Empacotamento e release", "status": "pending"}

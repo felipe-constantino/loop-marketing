@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "loop-marketing-runtime"
+version = "2.0.0.dev0"
+description = "Host-neutral local runtime for Loop Marketing v2"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+loop-marketing = "loop_marketing_runtime.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.data-files]
+"share/loop-marketing-runtime/contracts" = [
+  "contracts/state-schema.json",
+  "contracts/event-schema.json",
+  "contracts/handoff-schema.json",
+]
+"share/loop-marketing-runtime/data" = [
+  "data/tactic-catalog.json",
+  "data/relationship-map.json",
+  "data/role-matrix.json",
+  "data/routing-contract.json",
+]
+"share/loop-marketing-runtime/adapters" = ["adapters/adapter-contract.json"]

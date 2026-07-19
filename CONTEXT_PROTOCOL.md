@@ -65,4 +65,4 @@ Após o commit, atualizar e verificar `/Users/enorm/Documents/Claude/loop-market
 
 ## Gate de autorização atual
 
-A implementação da nova versão está bloqueada até o usuário confirmar explicitamente o início após a entrega desta camada de continuidade.
+A implementação da nova versão foi autorizada pelo usuário em 2026-07-17 com `pode iniciar`. A autorização não inclui push, publicação, migração real, mutação em plataformas externas nem alteração da biblioteca canônica.
