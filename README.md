@@ -1,60 +1,47 @@
-# Loop Marketing — Sistema de Decisão para CRM/Lifecycle
+# Loop Marketing v2.0
 
-Sistema de decisão para CRM e lifecycle marketing baseado na metodologia **Loop Marketing da HubSpot** (loop contínuo Express → Tailor → Amplify → Evolve, no lugar do funil linear).
+Skill composta para transformar a metodologia Loop Marketing em um fluxo operacional de CRM e lifecycle marketing, orientado por evidências.
 
-Não é uma lista de boas práticas: é um **copiloto que diagnostica onde está o seu gargalo e te dá a próxima decisão concreta** — calibrada por maturidade, com threshold e grau de confiança.
+O planner identifica o gargalo global e coordena quatro especialistas:
 
-```
-   EXPRESS  ──►  TAILOR  ──►  AMPLIFY  ──►  EVOLVE
-  /verbalizar   /orientar    /ampliar     /refinar
-  originar a    adaptar ao   distribuir   medir e
-  tese          público      nos canais   realimentar
-      ▲                                        │
-      └────────────────────────────────────────┘
-              Evolve realimenta Express
-        (cada volta o loop fica mais inteligente)
-```
+- **Verbalizar (Express):** posicionamento, proposta de valor e mensagem.
+- **Orientar (Tailor):** lifecycle, segmentação, elegibilidade e personalização.
+- **Ampliar (Amplify):** canais, cadência e coordenação de touchpoints.
+- **Refinar (Evolve):** diagnóstico, experimentação, métricas e aprendizado.
 
-## Documentação
+## Versão atual
 
-- **O que é e pra que serve:** [SOBRE.md](SOBRE.md)
-- **Como instalar e usar:** [LEIAME.md](LEIAME.md)
-- **Manifesto do skill:** [SKILL.md](SKILL.md)
-
-## O que tem aqui
-
-**Nível 1 — Decisão (6 comandos):** orquestrador + 4 especialistas + template.
-
-| Comando | Vertical | Função |
-|---------|----------|--------|
-| `/loop-planning-agent` | (orquestrador) | Diagnostica o gargalo e define a sequência |
-| `/verbalizar-agent` | Express | Mensagem e proposta de valor |
-| `/orientar-agent` | Tailor | Segmentação, lifecycle e personalização |
-| `/ampliar-agent` | Amplify | Canais e distribuição |
-| `/refinar-agent` | Evolve | Diagnóstico, testes e aprendizado |
-| `/projeto-template` | (memória) | Contexto de projeto por cliente |
-
-**Nível 2 — Execução:** biblioteca tática de 100 prompts (25 por vertical) em `biblioteca/`, acionada pelos agentes sob demanda via `INDEX.md`.
-
-## Instalação rápida
-
-1. Copie `commands/` para `.claude/commands/` do seu projeto.
-2. Copie `biblioteca/` para a raiz do projeto.
-3. Copie `CLAUDE.md` para a raiz do projeto.
-4. `mkdir -p .claude/loop-marketing`
-
-Passo a passo completo em [LEIAME.md](LEIAME.md).
+- Produto: **2.0.0**
+- Status: **release interno estável**
+- Biblioteca: **100 prompts canônicos e quatro índices, preservados integralmente**
+- Interface: planner, especialistas, integração de estado e avaliação sem mutação
 
 ## Estrutura
 
+```text
+loop-marketing/
+├── SKILL.md
+├── agents/
+├── scripts/
+└── references/
+    ├── library/
+    └── runtime-data/
 ```
-.
-├── README.md            ← este arquivo
-├── SOBRE.md             ← o que é / pra que serve
-├── LEIAME.md            ← instalação e uso
-├── SKILL.md             ← manifesto do skill
-├── CLAUDE.md            ← regras do sistema (copiar p/ raiz do projeto)
-├── AGENTS.md            ← espelho do CLAUDE.md para agentes estilo Codex
-├── commands/            ← 6 comandos
-└── biblioteca/          ← 4 verticais × (INDEX.md + 25 prompts)
+
+A pasta [`loop-marketing/`](loop-marketing/) é a skill instalável completa. Ela deve ser copiada como uma unidade; não é necessário instalar arquivos isolados.
+
+## Instalação
+
+Copie `loop-marketing/` para o diretório de skills do ambiente que executará a ferramenta. No Codex, o destino convencional é o diretório pessoal de skills com o mesmo nome da pasta.
+
+Depois da instalação, invoque a skill pelo nome:
+
+```text
+Use $loop-marketing para diagnosticar o gargalo de CRM deste projeto e propor o próximo ciclo com base nas evidências disponíveis.
 ```
+
+O fluxo operacional completo, os comandos do runtime e os limites de segurança estão documentados dentro da própria skill em [`SKILL.md`](loop-marketing/SKILL.md).
+
+## Compatibilidade
+
+Os nomes da v1.x continuam reconhecidos como aliases, sem criar um segundo estado. Projetos antigos podem ser migrados para o namespace v2 de forma controlada. A versão anterior permanece recuperável no histórico e na tag `v1.2.0`.
