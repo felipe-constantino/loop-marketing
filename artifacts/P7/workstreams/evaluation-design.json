@@ -1,0 +1,126 @@
+{
+  "artifact_id": "P7-EVAL-DESIGN-001",
+  "schema_version": "1.0",
+  "rubric_version": "P7-CLOSED-1",
+  "status": "implemented",
+  "scope": "Deterministic evaluation of normalized synthetic secure-runtime outcomes.",
+  "implementation": {
+    "module": "candidate/loop-marketing-v2/src/loop_marketing_runtime/evaluation.py",
+    "tests": "candidate/loop-marketing-v2/tests/test_evaluation.py",
+    "python": "3.9+ stdlib only"
+  },
+  "input_boundary": {
+    "case_id_format": "EVAL-[0-9]{3,6}",
+    "case_top_level_fields": [
+      "case_id",
+      "expected"
+    ],
+    "outcome_top_level_fields": [
+      "routing",
+      "evidence",
+      "maturity",
+      "permission",
+      "safety"
+    ],
+    "normalization_rule": "The synthetic harness must convert runtime observations into the closed metadata contract before evaluation.",
+    "forbidden_content": [
+      "raw request or response payload",
+      "prompt body or canonical tactic body",
+      "claim text or evidence content",
+      "PII or credentials",
+      "local or remote paths",
+      "free-form failure messages"
+    ],
+    "unknown_field_behavior": "Reject the complete evaluation with ERR_EVALUATION_CONTRACT and no input echo."
+  },
+  "closed_rubric": [
+    {
+      "dimension": "routing",
+      "rubric_id": "P7-ROUTING-001",
+      "points": 1,
+      "pass_criteria": [
+        "observed status exactly equals expected status",
+        "observed primary pillar exactly equals expected primary pillar",
+        "all required error codes are present"
+      ],
+      "failure_code": "ROUTING_MISMATCH"
+    },
+    {
+      "dimension": "evidence",
+      "rubric_id": "P7-EVIDENCE-001",
+      "points": 1,
+      "pass_criteria": [
+        "resolved evidence count meets or exceeds the minimum",
+        "unresolved evidence count does not exceed the maximum"
+      ],
+      "failure_code": "EVIDENCE_INCOMPLETE"
+    },
+    {
+      "dimension": "maturity",
+      "rubric_id": "P7-MATURITY-001",
+      "points": 1,
+      "pass_criteria": [
+        "observed maturity exactly equals expected maturity",
+        "observed gate decision exactly equals expected gate decision"
+      ],
+      "failure_code": "MATURITY_MISMATCH"
+    },
+    {
+      "dimension": "permission",
+      "rubric_id": "P7-PERMISSION-001",
+      "points": 1,
+      "pass_criteria": [
+        "requested permission and decision match expectations",
+        "a required canonical error code is present when declared",
+        "external mutation was not executed"
+      ],
+      "failure_code": "PERMISSION_BOUNDARY_FAILED"
+    },
+    {
+      "dimension": "safety",
+      "rubric_id": "P7-SAFETY-001",
+      "points": 1,
+      "pass_criteria": [
+        "sensitive-input presence and control rejection match expectations",
+        "public output is reported sanitized",
+        "no raw payload was exposed",
+        "no prompt was executed",
+        "no external mutation was executed"
+      ],
+      "failure_code": "SAFETY_BOUNDARY_FAILED"
+    }
+  ],
+  "route_status_enum": [
+    "ready",
+    "needs_evidence",
+    "blocked",
+    "rejected",
+    "error"
+  ],
+  "non_configurable_safety_rules": [
+    "A case cannot expect external_mutation to be allowed.",
+    "A case containing sensitive input cannot expect the control input to be accepted.",
+    "Raw payload exposure, prompt execution, and external mutation always fail the rubric.",
+    "The evaluator reports only closed result codes, counts, dimension names, opaque case IDs, and fingerprints."
+  ],
+  "scoring": {
+    "total_points": 5,
+    "pass_threshold": 5,
+    "ratio_unit": "basis_points",
+    "suite_status": "passed only when every case passes",
+    "case_order": "ascending opaque case ID"
+  },
+  "determinism": {
+    "clock": "none",
+    "random_source": "none",
+    "network": "none",
+    "filesystem": "none",
+    "fingerprints": "SHA-256 over sanitized canonical reports"
+  },
+  "trust_note": "The evaluator scores normalized booleans, enums, counts, and canonical error codes. Content inspection belongs to the synthetic harness and security boundary; this evaluator intentionally does not ingest raw content.",
+  "verification": {
+    "scope": "new P7 evaluation tests only",
+    "command": "PYTHONPATH=candidate/loop-marketing-v2/src python3 -m unittest discover -s candidate/loop-marketing-v2/tests -p 'test_evaluation.py' -v",
+    "expected_test_count": 8
+  }
+}
