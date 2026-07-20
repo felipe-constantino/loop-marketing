@@ -1,0 +1,884 @@
+{
+  "workstream": "architecture",
+  "status": "completed_with_findings",
+  "files_reviewed": [
+    "SKILL.md",
+    "README.md",
+    "LEIAME.md",
+    "SOBRE.md",
+    "CLAUDE.md",
+    "AGENTS.md",
+    "commands/ampliar-agent.md",
+    "commands/loop-planning-agent.md",
+    "commands/orientar-agent.md",
+    "commands/projeto-template.md",
+    "commands/refinar-agent.md",
+    "commands/verbalizar-agent.md",
+    "biblioteca/Ampliar/INDEX.md",
+    "biblioteca/Orientar/INDEX.md",
+    "biblioteca/Refinar/INDEX.md",
+    "biblioteca/Verbalizar/INDEX.md"
+  ],
+  "file_classification": [
+    {
+      "path": "SKILL.md",
+      "class": "manifesto_e_visao_de_arquitetura",
+      "responsibility": "Declara a versão, a arquitetura em dois níveis, os seis comandos, o protocolo de acesso à biblioteca e o fluxo operacional resumido.",
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 6, "line_end": 15},
+        {"path": "SKILL.md", "line_start": 16, "line_end": 29},
+        {"path": "SKILL.md", "line_start": 39, "line_end": 53}
+      ]
+    },
+    {
+      "path": "README.md",
+      "class": "entrada_de_documentacao_e_instalacao_rapida",
+      "responsibility": "Apresenta o sistema, liga os comandos às verticais e documenta a instalação e a estrutura do pacote.",
+      "evidence": [
+        {"path": "README.md", "line_start": 18, "line_end": 37},
+        {"path": "README.md", "line_start": 39, "line_end": 59}
+      ]
+    },
+    {
+      "path": "LEIAME.md",
+      "class": "manual_operacional_instalacao_e_changelog",
+      "responsibility": "Especifica instalação, uso, contratos de saída, memória persistente, restrições operacionais e mudanças das versões 1.1 e 1.2.",
+      "evidence": [
+        {"path": "LEIAME.md", "line_start": 28, "line_end": 72},
+        {"path": "LEIAME.md", "line_start": 76, "line_end": 140},
+        {"path": "LEIAME.md", "line_start": 152, "line_end": 175},
+        {"path": "LEIAME.md", "line_start": 210, "line_end": 225}
+      ]
+    },
+    {
+      "path": "SOBRE.md",
+      "class": "posicionamento_conceitual",
+      "responsibility": "Explica a metodologia, o ciclo Express–Tailor–Amplify–Evolve e a tradução da metodologia em sistema operacional de decisão.",
+      "evidence": [
+        {"path": "SOBRE.md", "line_start": 3, "line_end": 8},
+        {"path": "SOBRE.md", "line_start": 23, "line_end": 45},
+        {"path": "SOBRE.md", "line_start": 59, "line_end": 70}
+      ]
+    },
+    {
+      "path": "CLAUDE.md",
+      "class": "politica_global_de_runtime_claude",
+      "responsibility": "Define descoberta do projeto ativo, coleta proativa, escrita do estado, validação cruzada e gate de fecho para execução em Claude.",
+      "evidence": [
+        {"path": "CLAUDE.md", "line_start": 3, "line_end": 25},
+        {"path": "CLAUDE.md", "line_start": 29, "line_end": 44},
+        {"path": "CLAUDE.md", "line_start": 48, "line_end": 61}
+      ]
+    },
+    {
+      "path": "AGENTS.md",
+      "class": "politica_global_de_runtime_codex",
+      "responsibility": "Espelha a política global para agentes estilo Codex, mas usa um namespace de memória próprio.",
+      "evidence": [
+        {"path": "AGENTS.md", "line_start": 3, "line_end": 25},
+        {"path": "AGENTS.md", "line_start": 29, "line_end": 44},
+        {"path": "AGENTS.md", "line_start": 48, "line_end": 61}
+      ]
+    },
+    {
+      "path": "commands/loop-planning-agent.md",
+      "class": "orquestrador_e_roteador",
+      "responsibility": "Classifica maturidade, separa fato de interpretação e sintoma, pontua pilares, identifica causa provável, ordena especialistas e valida o ciclo.",
+      "evidence": [
+        {"path": "commands/loop-planning-agent.md", "line_start": 6, "line_end": 10},
+        {"path": "commands/loop-planning-agent.md", "line_start": 34, "line_end": 71},
+        {"path": "commands/loop-planning-agent.md", "line_start": 75, "line_end": 111},
+        {"path": "commands/loop-planning-agent.md", "line_start": 143, "line_end": 192},
+        {"path": "commands/loop-planning-agent.md", "line_start": 196, "line_end": 217}
+      ]
+    },
+    {
+      "path": "commands/projeto-template.md",
+      "class": "schema_markdown_e_gestor_de_estado",
+      "responsibility": "Cria, ativa, revisa e atualiza o arquivo persistente de projeto e define suas seções e políticas de mutação.",
+      "evidence": [
+        {"path": "commands/projeto-template.md", "line_start": 6, "line_end": 29},
+        {"path": "commands/projeto-template.md", "line_start": 33, "line_end": 124},
+        {"path": "commands/projeto-template.md", "line_start": 129, "line_end": 149}
+      ]
+    },
+    {
+      "path": "commands/verbalizar-agent.md",
+      "class": "especialista_express_mensagem",
+      "responsibility": "Decide proposta de valor, hierarquia de mensagens, linguagem do cliente, adaptação por estágio e entrega handoffs para os demais especialistas.",
+      "evidence": [
+        {"path": "commands/verbalizar-agent.md", "line_start": 6, "line_end": 10},
+        {"path": "commands/verbalizar-agent.md", "line_start": 60, "line_end": 149},
+        {"path": "commands/verbalizar-agent.md", "line_start": 166, "line_end": 230}
+      ]
+    },
+    {
+      "path": "commands/orientar-agent.md",
+      "class": "especialista_tailor_segmentacao_lifecycle",
+      "responsibility": "Decide lifecycle, segmentos comportamentais, elegibilidade, personalização e progressão, com gating explícito por maturidade.",
+      "evidence": [
+        {"path": "commands/orientar-agent.md", "line_start": 6, "line_end": 10},
+        {"path": "commands/orientar-agent.md", "line_start": 65, "line_end": 97},
+        {"path": "commands/orientar-agent.md", "line_start": 101, "line_end": 210},
+        {"path": "commands/orientar-agent.md", "line_start": 214, "line_end": 274}
+      ]
+    },
+    {
+      "path": "commands/ampliar-agent.md",
+      "class": "especialista_amplify_canais",
+      "responsibility": "Audita touchpoints, classifica canais, prioriza canal por segmento e estágio, coordena cadência omnichannel e define amplificação.",
+      "evidence": [
+        {"path": "commands/ampliar-agent.md", "line_start": 6, "line_end": 10},
+        {"path": "commands/ampliar-agent.md", "line_start": 59, "line_end": 105},
+        {"path": "commands/ampliar-agent.md", "line_start": 109, "line_end": 157},
+        {"path": "commands/ampliar-agent.md", "line_start": 161, "line_end": 194}
+      ]
+    },
+    {
+      "path": "commands/refinar-agent.md",
+      "class": "especialista_evolve_diagnostico_experimentos",
+      "responsibility": "Diagnostica desempenho, testa hipóteses, classifica ações, desenha testes e devolve aprendizado aos outros três pilares.",
+      "evidence": [
+        {"path": "commands/refinar-agent.md", "line_start": 6, "line_end": 12},
+        {"path": "commands/refinar-agent.md", "line_start": 64, "line_end": 139},
+        {"path": "commands/refinar-agent.md", "line_start": 143, "line_end": 215},
+        {"path": "commands/refinar-agent.md", "line_start": 219, "line_end": 253}
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/INDEX.md",
+      "class": "catalogo_progressivo_express",
+      "responsibility": "Roteia o Verbalizar para recursos táticos de mensagem por necessidade, mantendo o contrato de saída do especialista.",
+      "evidence": [
+        {"path": "biblioteca/Verbalizar/INDEX.md", "line_start": 1, "line_end": 11},
+        {"path": "biblioteca/Verbalizar/INDEX.md", "line_start": 13, "line_end": 39}
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/INDEX.md",
+      "class": "catalogo_progressivo_tailor",
+      "responsibility": "Roteia o Orientar para recursos táticos de segmentação e personalização e marca gates de maturidade em parte do catálogo.",
+      "evidence": [
+        {"path": "biblioteca/Orientar/INDEX.md", "line_start": 1, "line_end": 11},
+        {"path": "biblioteca/Orientar/INDEX.md", "line_start": 13, "line_end": 39}
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/INDEX.md",
+      "class": "catalogo_progressivo_amplify",
+      "responsibility": "Roteia o Ampliar para recursos táticos de distribuição e condiciona amplificação à validação prévia.",
+      "evidence": [
+        {"path": "biblioteca/Ampliar/INDEX.md", "line_start": 1, "line_end": 11},
+        {"path": "biblioteca/Ampliar/INDEX.md", "line_start": 13, "line_end": 39}
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/INDEX.md",
+      "class": "catalogo_progressivo_evolve",
+      "responsibility": "Roteia o Refinar para recursos de diagnóstico, experimentação, atribuição e síntese de aprendizado.",
+      "evidence": [
+        {"path": "biblioteca/Refinar/INDEX.md", "line_start": 1, "line_end": 11},
+        {"path": "biblioteca/Refinar/INDEX.md", "line_start": 13, "line_end": 39}
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "ARCH-001",
+      "severity": "high",
+      "category": "state_namespace",
+      "claim": "O runtime Codex procura e usa `.Codex/loop-marketing/`, enquanto o template executável, todos os comandos e a instalação documentada usam `.claude/loop-marketing/`; assim, os dois runtimes não compartilham o mesmo projeto ativo por contrato.",
+      "evidence": [
+        {"path": "AGENTS.md", "line_start": 3, "line_end": 11},
+        {"path": "commands/projeto-template.md", "line_start": 14, "line_end": 29},
+        {"path": "commands/loop-planning-agent.md", "line_start": 14, "line_end": 18},
+        {"path": "README.md", "line_start": 39, "line_end": 44}
+      ],
+      "impact": "Uma execução em Codex pode não encontrar o projeto criado pelo comando, criar memória paralela ou operar sem decisões e testes já registrados.",
+      "recommendation": "Definir um namespace canônico independente do host e usar adaptadores apenas para descoberta; fazer AGENTS.md e os seis comandos apontarem ao mesmo armazenamento e ao mesmo `_active.md`."
+    },
+    {
+      "id": "ARCH-002",
+      "severity": "high",
+      "category": "role_boundary",
+      "claim": "Timing, frequência e cadência têm responsabilidade conflitante: Orientar declara que decide timing e frequência, a fronteira comum diz que Orientar não decide timing, e Ampliar declara propriedade sobre cadência e limites globais de touchpoints.",
+      "evidence": [
+        {"path": "commands/orientar-agent.md", "line_start": 147, "line_end": 180},
+        {"path": "commands/orientar-agent.md", "line_start": 248, "line_end": 250},
+        {"path": "commands/verbalizar-agent.md", "line_start": 206, "line_end": 213},
+        {"path": "commands/verbalizar-agent.md", "line_start": 246, "line_end": 250},
+        {"path": "commands/ampliar-agent.md", "line_start": 133, "line_end": 155},
+        {"path": "commands/ampliar-agent.md", "line_start": 180, "line_end": 182},
+        {"path": "CLAUDE.md", "line_start": 58, "line_end": 61}
+      ],
+      "impact": "Handoffs isolados podem gerar duas decisões incompatíveis para o mesmo contato e o gate pode reverter uma decisão que o próprio método do Orientar exige.",
+      "recommendation": "Separar explicitamente `timing_de_lifecycle` de `cadencia_cross_channel`, ou atribuir toda decisão temporal a um único papel; atualizar escopos, métodos, handoffs e gate com a mesma matriz."
+    },
+    {
+      "id": "ARCH-003",
+      "severity": "high",
+      "category": "handoff_contract",
+      "claim": "A versão 1.2 exige que todo handoff carregue `Fronteira de escopo (o próximo NÃO decide)`, mas os blocos de handoff dos quatro especialistas e o handoff do orquestrador não contêm esse campo no template a ser preenchido.",
+      "evidence": [
+        {"path": "LEIAME.md", "line_start": 210, "line_end": 216},
+        {"path": "commands/verbalizar-agent.md", "line_start": 204, "line_end": 230},
+        {"path": "commands/orientar-agent.md", "line_start": 248, "line_end": 274},
+        {"path": "commands/ampliar-agent.md", "line_start": 180, "line_end": 194},
+        {"path": "commands/refinar-agent.md", "line_start": 302, "line_end": 321},
+        {"path": "commands/loop-planning-agent.md", "line_start": 185, "line_end": 192}
+      ],
+      "impact": "O requisito depende da memória do modelo, não do schema do artefato; em contexto isolado, o próximo agente pode receber um handoff sem limite de decisão verificável.",
+      "recommendation": "Adicionar o campo literalmente a cada bloco de handoff, inclusive Loop Planning → especialista, e validar sua presença antes de aceitar a transição."
+    },
+    {
+      "id": "ARCH-004",
+      "severity": "high",
+      "category": "concurrency_and_state",
+      "claim": "O orquestrador autoriza Verbalizar e Orientar a rodarem em paralelo, enquanto ambos escrevem nas mesmas seções compartilhadas e fazem overwrite de Gargalo atual e Próxima ação.",
+      "evidence": [
+        {"path": "commands/loop-planning-agent.md", "line_start": 143, "line_end": 161},
+        {"path": "commands/verbalizar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "commands/orientar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "CLAUDE.md", "line_start": 33, "line_end": 42}
+      ],
+      "impact": "Execuções paralelas podem perder append, sobrescrever a próxima ação ou registrar um gargalo final dependente da ordem de término.",
+      "recommendation": "Usar saídas imutáveis por execução e um único passo de merge do Loop Planning, com versão esperada do projeto e detecção de conflito antes de atualizar o estado canônico."
+    },
+    {
+      "id": "ARCH-005",
+      "severity": "high",
+      "category": "state_contract",
+      "claim": "A Seção 5 é chamada de append-only, mas o mesmo contrato manda atualizar in-place o campo Status de uma linha existente.",
+      "evidence": [
+        {"path": "CLAUDE.md", "line_start": 29, "line_end": 38},
+        {"path": "AGENTS.md", "line_start": 29, "line_end": 38},
+        {"path": "commands/projeto-template.md", "line_start": 136, "line_end": 149}
+      ],
+      "impact": "O histórico de transições não é realmente append-only e uma mudança indevida de status pode apagar o estado anterior sem trilha suficiente.",
+      "recommendation": "Escolher um contrato único: registrar cada transição como evento append-only com estado derivado, ou renomear a política para mutação controlada e manter histórico obrigatório de antes/depois."
+    },
+    {
+      "id": "ARCH-006",
+      "severity": "high",
+      "category": "evidence_contract",
+      "claim": "O schema de teste exige que o estado só avance com evidência real, porém o registro de TESTES ATIVOS não possui campos para referência de evidência, evento, ator ou data da transição.",
+      "evidence": [
+        {"path": "commands/projeto-template.md", "line_start": 82, "line_end": 92},
+        {"path": "commands/refinar-agent.md", "line_start": 186, "line_end": 207},
+        {"path": "LEIAME.md", "line_start": 210, "line_end": 216}
+      ],
+      "impact": "O gate não consegue distinguir de forma determinística uma transição comprovada de uma transição apenas narrada.",
+      "recommendation": "Adicionar `evidence_ref`, `event_type`, `transitioned_at`, `transitioned_by` e `previous_status` a cada evento de transição, com validação da máquina de estados."
+    },
+    {
+      "id": "ARCH-007",
+      "severity": "high",
+      "category": "external_access_and_secrets",
+      "claim": "As políticas globais e os comandos orientam procurar credenciais persistidas na memória do projeto e usá-las para consultar sistemas externos antes de perguntar ao usuário, sem contrato de escopo, autorização, armazenamento seguro ou distinção read/write no recorte auditado.",
+      "evidence": [
+        {"path": "CLAUDE.md", "line_start": 15, "line_end": 25},
+        {"path": "AGENTS.md", "line_start": 15, "line_end": 25},
+        {"path": "commands/loop-planning-agent.md", "line_start": 19, "line_end": 22},
+        {"path": "commands/refinar-agent.md", "line_start": 20, "line_end": 23}
+      ],
+      "impact": "Credenciais podem ficar em Markdown de projeto e chamadas externas podem ocorrer sem um gate verificável de finalidade, conta e permissão.",
+      "recommendation": "Persistir apenas referências a segredos em armazenamento seguro; exigir declaração de sistema, conta, escopo, operação read-only/write e autorização antes da chamada externa."
+    },
+    {
+      "id": "ARCH-008",
+      "severity": "medium",
+      "category": "orchestrator_authority",
+      "claim": "Loop Planning declara propriedade sobre diagnosticar o gargalo dominante e ordenar a resolução, mas cada especialista também recebe instrução de sobrescrever diretamente o Gargalo atual do projeto.",
+      "evidence": [
+        {"path": "commands/loop-planning-agent.md", "line_start": 6, "line_end": 10},
+        {"path": "commands/verbalizar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "commands/orientar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "commands/ampliar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "commands/refinar-agent.md", "line_start": 25, "line_end": 30}
+      ],
+      "impact": "Um especialista pode transformar um achado local no gargalo global sem nova comparação entre pilares, enfraquecendo a autoridade do orquestrador.",
+      "recommendation": "Especialistas devem emitir `gargalo_observado` como proposta; somente Loop Planning consolida e altera `Gargalo atual` após validação cross-pillar."
+    },
+    {
+      "id": "ARCH-009",
+      "severity": "medium",
+      "category": "progressive_disclosure",
+      "claim": "Cada INDEX instrui escolher UM arquivo e, no mesmo protocolo, permite no máximo 1–2 arquivos por ciclo; os comandos especialistas também permitem 1–2.",
+      "evidence": [
+        {"path": "biblioteca/Verbalizar/INDEX.md", "line_start": 5, "line_end": 11},
+        {"path": "biblioteca/Orientar/INDEX.md", "line_start": 5, "line_end": 11},
+        {"path": "biblioteca/Ampliar/INDEX.md", "line_start": 5, "line_end": 11},
+        {"path": "biblioteca/Refinar/INDEX.md", "line_start": 5, "line_end": 11},
+        {"path": "commands/verbalizar-agent.md", "line_start": 31, "line_end": 41}
+      ],
+      "impact": "A profundidade de contexto e o custo por ciclo ficam não determinísticos, especialmente quando dois recursos parecem aplicáveis.",
+      "recommendation": "Definir cardinalidade canônica: um recurso por default e um segundo somente com justificativa registrada, ou exatamente um por etapa."
+    },
+    {
+      "id": "ARCH-010",
+      "severity": "medium",
+      "category": "maturity_gating",
+      "claim": "A arquitetura promete decisões calibradas por maturidade, mas apenas Orientar possui uma classificação explícita e gates completos no modo direto; Verbalizar, Ampliar e Refinar podem ser invocados diretamente sem classificar maturidade, embora seus catálogos incluam ou aleguem gates.",
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 10, "line_end": 14},
+        {"path": "commands/orientar-agent.md", "line_start": 65, "line_end": 97},
+        {"path": "commands/verbalizar-agent.md", "line_start": 45, "line_end": 56},
+        {"path": "commands/ampliar-agent.md", "line_start": 46, "line_end": 56},
+        {"path": "commands/refinar-agent.md", "line_start": 49, "line_end": 60},
+        {"path": "biblioteca/Verbalizar/INDEX.md", "line_start": 5, "line_end": 11},
+        {"path": "biblioteca/Refinar/INDEX.md", "line_start": 22, "line_end": 33}
+      ],
+      "impact": "Invocações diretas podem selecionar táticas MADURO+/AVANÇADO sem o pré-requisito que o manifesto promete verificar.",
+      "recommendation": "Centralizar uma função de classificação reutilizável e torná-la precondição para qualquer especialista direto e para qualquer item de biblioteca marcado por maturidade."
+    },
+    {
+      "id": "ARCH-011",
+      "severity": "medium",
+      "category": "decision_thresholds",
+      "claim": "Os thresholds do Refinar deixam uma faixa sem classificação: PARAR cobre abaixo de 50% do benchmark e OTIMIZAR começa em 60%, sem regra para resultados entre 50% e menos de 60%.",
+      "evidence": [
+        {"path": "commands/refinar-agent.md", "line_start": 143, "line_end": 179}
+      ],
+      "impact": "O mesmo dado pode receber decisões diferentes conforme interpretação do agente, quebrando reprodutibilidade.",
+      "recommendation": "Fechar todos os intervalos, definir inclusividade dos limites e acrescentar regra explícita para dados contraditórios entre tendência, custo e benchmark."
+    },
+    {
+      "id": "ARCH-012",
+      "severity": "medium",
+      "category": "command_naming",
+      "claim": "SOBRE.md apresenta os quatro especialistas como `/verbalizar`, `/orientar`, `/ampliar` e `/refinar`, enquanto o manifesto, o README e os arquivos instaláveis usam nomes terminados em `-agent`.",
+      "evidence": [
+        {"path": "SOBRE.md", "line_start": 38, "line_end": 45},
+        {"path": "SKILL.md", "line_start": 18, "line_end": 25},
+        {"path": "README.md", "line_start": 28, "line_end": 35},
+        {"path": "LEIAME.md", "line_start": 76, "line_end": 85}
+      ],
+      "impact": "O usuário pode tentar invocar aliases que não correspondem aos seis nomes documentados para instalação.",
+      "recommendation": "Escolher nomes canônicos e declarar aliases reais de forma explícita; usar os mesmos nomes em diagramas, tabelas e exemplos."
+    },
+    {
+      "id": "ARCH-013",
+      "severity": "low",
+      "category": "version_drift",
+      "claim": "SKILL.md e o título do LEIAME declaram v1.2, mas a árvore ilustrativa do próprio LEIAME ainda nomeia a raiz como `loop-marketing-v1.1/`.",
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 6, "line_end": 8},
+        {"path": "LEIAME.md", "line_start": 1, "line_end": 3},
+        {"path": "LEIAME.md", "line_start": 187, "line_end": 205},
+        {"path": "LEIAME.md", "line_start": 210, "line_end": 220}
+      ],
+      "impact": "Empacotamento, suporte e futuras migrações podem interpretar o diretório como artefato 1.1 apesar dos contratos 1.2.",
+      "recommendation": "Manter uma versão canônica machine-readable no manifesto e gerar títulos, árvore e changelog a partir dela."
+    },
+    {
+      "id": "ARCH-014",
+      "severity": "medium",
+      "category": "schema_versioning",
+      "claim": "O arquivo de projeto persistente começa com nome e última atualização, mas não declara versão ou identificador de schema antes das seções operacionais.",
+      "evidence": [
+        {"path": "commands/projeto-template.md", "line_start": 33, "line_end": 58}
+      ],
+      "impact": "Mudanças estruturais futuras não podem selecionar migração ou validar compatibilidade de forma determinística.",
+      "recommendation": "Adicionar cabeçalho machine-readable com `schema_version`, `project_id`, `created_at` e `updated_at`, e definir migrações idempotentes por versão."
+    },
+    {
+      "id": "ARCH-015",
+      "severity": "info",
+      "category": "architectural_strength",
+      "claim": "O progressive disclosure é coerente no desenho de alto nível: os especialistas consultam primeiro um INDEX, carregam poucos recursos sob demanda e reenquadram o resultado no contrato do agente, sem expor o prompt cru como decisão final.",
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 10, "line_end": 15},
+        {"path": "commands/verbalizar-agent.md", "line_start": 31, "line_end": 41},
+        {"path": "commands/orientar-agent.md", "line_start": 33, "line_end": 44},
+        {"path": "commands/ampliar-agent.md", "line_start": 31, "line_end": 42},
+        {"path": "commands/refinar-agent.md", "line_start": 34, "line_end": 45}
+      ],
+      "impact": "O desenho limita carga de contexto e preserva a autoridade do especialista sobre a biblioteca tática.",
+      "recommendation": "Preservar o padrão na v2, resolvendo apenas a cardinalidade e os gates de maturidade apontados acima."
+    }
+  ],
+  "dependency_graph": {
+    "nodes": [
+      {
+        "id": "project_state",
+        "kind": "persistent_state",
+        "description": "Arquivo por cliente mais ponteiro `_active.md`.",
+        "evidence": [{"path": "commands/projeto-template.md", "line_start": 14, "line_end": 29}]
+      },
+      {
+        "id": "loop_planning",
+        "kind": "orchestrator",
+        "description": "Diagnostica, prioriza e roteia; não resolve diretamente os domínios especialistas.",
+        "evidence": [{"path": "commands/loop-planning-agent.md", "line_start": 6, "line_end": 10}]
+      },
+      {
+        "id": "verbalizar",
+        "kind": "specialist",
+        "description": "Responsável por mensagem e proposta de valor.",
+        "evidence": [{"path": "commands/verbalizar-agent.md", "line_start": 6, "line_end": 10}]
+      },
+      {
+        "id": "orientar",
+        "kind": "specialist",
+        "description": "Responsável por segmentação, lifecycle, elegibilidade e personalização.",
+        "evidence": [{"path": "commands/orientar-agent.md", "line_start": 6, "line_end": 10}]
+      },
+      {
+        "id": "ampliar",
+        "kind": "specialist",
+        "description": "Responsável por distribuição e coordenação multicanal.",
+        "evidence": [{"path": "commands/ampliar-agent.md", "line_start": 6, "line_end": 10}]
+      },
+      {
+        "id": "refinar",
+        "kind": "specialist_and_feedback_hub",
+        "description": "Responsável por diagnóstico, testes e feedback aos três pilares.",
+        "evidence": [{"path": "commands/refinar-agent.md", "line_start": 6, "line_end": 12}]
+      },
+      {
+        "id": "tactical_indexes",
+        "kind": "progressive_disclosure_catalog",
+        "description": "Quatro catálogos mapeiam necessidade para recurso tático e preservam o contrato do especialista.",
+        "evidence": [
+          {"path": "biblioteca/Verbalizar/INDEX.md", "line_start": 1, "line_end": 11},
+          {"path": "biblioteca/Orientar/INDEX.md", "line_start": 1, "line_end": 11},
+          {"path": "biblioteca/Ampliar/INDEX.md", "line_start": 1, "line_end": 11},
+          {"path": "biblioteca/Refinar/INDEX.md", "line_start": 1, "line_end": 11}
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "project_state",
+        "to": "loop_planning",
+        "relationship": "fornece cliente, maturidade, decisões e gargalo antes do diagnóstico",
+        "evidence": [{"path": "commands/loop-planning-agent.md", "line_start": 14, "line_end": 30}]
+      },
+      {
+        "from": "loop_planning",
+        "to": "verbalizar",
+        "relationship": "roteia quando mensagem é o gargalo ou dependência da sequência",
+        "evidence": [{"path": "commands/loop-planning-agent.md", "line_start": 143, "line_end": 192}]
+      },
+      {
+        "from": "loop_planning",
+        "to": "orientar",
+        "relationship": "roteia quando segmentação/lifecycle é o gargalo ou dependência da sequência",
+        "evidence": [{"path": "commands/loop-planning-agent.md", "line_start": 143, "line_end": 192}]
+      },
+      {
+        "from": "verbalizar",
+        "to": "ampliar",
+        "relationship": "mensagem deve estar clara antes da amplificação",
+        "evidence": [{"path": "commands/loop-planning-agent.md", "line_start": 145, "line_end": 159}]
+      },
+      {
+        "from": "orientar",
+        "to": "ampliar",
+        "relationship": "segmentos e elegibilidade antecedem distribuição",
+        "evidence": [
+          {"path": "commands/loop-planning-agent.md", "line_start": 145, "line_end": 159},
+          {"path": "commands/ampliar-agent.md", "line_start": 46, "line_end": 49}
+        ]
+      },
+      {
+        "from": "verbalizar",
+        "to": "tactical_indexes",
+        "relationship": "consulta o catálogo Verbalizar e carrega recurso sob demanda",
+        "evidence": [{"path": "commands/verbalizar-agent.md", "line_start": 31, "line_end": 41}]
+      },
+      {
+        "from": "orientar",
+        "to": "tactical_indexes",
+        "relationship": "consulta o catálogo Orientar com gating de maturidade",
+        "evidence": [{"path": "commands/orientar-agent.md", "line_start": 33, "line_end": 44}]
+      },
+      {
+        "from": "ampliar",
+        "to": "tactical_indexes",
+        "relationship": "consulta o catálogo Ampliar e exige validação antes de amplificar",
+        "evidence": [{"path": "commands/ampliar-agent.md", "line_start": 31, "line_end": 42}]
+      },
+      {
+        "from": "refinar",
+        "to": "tactical_indexes",
+        "relationship": "consulta o catálogo Refinar e evita repetir aprendizado já registrado",
+        "evidence": [{"path": "commands/refinar-agent.md", "line_start": 34, "line_end": 45}]
+      },
+      {
+        "from": "verbalizar",
+        "to": "refinar",
+        "relationship": "envia mensagens e hipóteses para medição/teste",
+        "evidence": [{"path": "commands/verbalizar-agent.md", "line_start": 216, "line_end": 222}]
+      },
+      {
+        "from": "orientar",
+        "to": "refinar",
+        "relationship": "envia estrutura de lifecycle, segmentos e thresholds para diagnóstico",
+        "evidence": [{"path": "commands/orientar-agent.md", "line_start": 268, "line_end": 274}]
+      },
+      {
+        "from": "ampliar",
+        "to": "refinar",
+        "relationship": "envia mapa de touchpoints e coordenação para medição",
+        "evidence": [{"path": "commands/ampliar-agent.md", "line_start": 184, "line_end": 189}]
+      },
+      {
+        "from": "refinar",
+        "to": "verbalizar",
+        "relationship": "devolve evidência sobre eficácia de mensagem",
+        "evidence": [{"path": "commands/refinar-agent.md", "line_start": 229, "line_end": 248}]
+      },
+      {
+        "from": "refinar",
+        "to": "orientar",
+        "relationship": "devolve evidência sobre segmentos, transições e churn",
+        "evidence": [{"path": "commands/refinar-agent.md", "line_start": 229, "line_end": 248}]
+      },
+      {
+        "from": "refinar",
+        "to": "ampliar",
+        "relationship": "devolve evidência sobre canais, conflitos e custo",
+        "evidence": [{"path": "commands/refinar-agent.md", "line_start": 229, "line_end": 248}]
+      },
+      {
+        "from": "loop_planning",
+        "to": "project_state",
+        "relationship": "registra scoring, gargalo e próxima ação",
+        "evidence": [{"path": "commands/loop-planning-agent.md", "line_start": 25, "line_end": 30}]
+      },
+      {
+        "from": "verbalizar",
+        "to": "project_state",
+        "relationship": "registra decisões/testes e sobrescreve gargalo/próxima ação",
+        "evidence": [{"path": "commands/verbalizar-agent.md", "line_start": 23, "line_end": 27}]
+      },
+      {
+        "from": "orientar",
+        "to": "project_state",
+        "relationship": "registra decisões/testes e sobrescreve gargalo/próxima ação",
+        "evidence": [{"path": "commands/orientar-agent.md", "line_start": 23, "line_end": 27}]
+      },
+      {
+        "from": "ampliar",
+        "to": "project_state",
+        "relationship": "registra decisões/testes e sobrescreve gargalo/próxima ação",
+        "evidence": [{"path": "commands/ampliar-agent.md", "line_start": 23, "line_end": 27}]
+      },
+      {
+        "from": "refinar",
+        "to": "project_state",
+        "relationship": "registra decisões, testes, aprendizados e sobrescreve gargalo/próxima ação",
+        "evidence": [{"path": "commands/refinar-agent.md", "line_start": 25, "line_end": 30}]
+      }
+    ],
+    "critical_paths": [
+      {
+        "path": ["project_state", "loop_planning", "orientar", "verbalizar", "ampliar", "refinar", "project_state"],
+        "condition": "Fluxo básico documentado para um ciclo completo.",
+        "evidence": [{"path": "LEIAME.md", "line_start": 95, "line_end": 111}]
+      },
+      {
+        "path": ["project_state", "loop_planning", "verbalizar", "orientar", "ampliar", "refinar", "project_state"],
+        "condition": "Sequência de lançamento quando a tese precede segmentação e distribuição.",
+        "evidence": [{"path": "commands/loop-planning-agent.md", "line_start": 174, "line_end": 183}]
+      }
+    ]
+  },
+  "role_matrix_observed": [
+    {
+      "role": "Loop Planning",
+      "owns": ["maturidade", "scoring_por_pilar", "causa_raiz_provavel", "sequenciamento", "validacao_cruzada"],
+      "must_not_own": ["mensagens", "segmentos", "plano_de_canal", "diagnostico_de_campanha_especialista"],
+      "reads": ["project_state", "arquivos_de_processo", "dados_de_CRM_se_disponiveis"],
+      "writes": ["decisoes", "gargalo_atual", "historico_de_gargalo", "proxima_acao"],
+      "evidence": [
+        {"path": "commands/loop-planning-agent.md", "line_start": 6, "line_end": 10},
+        {"path": "commands/loop-planning-agent.md", "line_start": 14, "line_end": 30},
+        {"path": "commands/loop-planning-agent.md", "line_start": 196, "line_end": 217},
+        {"path": "commands/loop-planning-agent.md", "line_start": 264, "line_end": 269}
+      ]
+    },
+    {
+      "role": "Verbalizar",
+      "owns": ["ICP", "proposta_de_valor", "hierarquia_de_mensagem", "linguagem_do_cliente", "mensagem_por_estagio", "CTA_de_mensagem"],
+      "must_not_own": ["audiencia", "canal", "medicao", "desenho_de_teste"],
+      "reads": ["project_state", "handoff", "documentos_de_voz_do_cliente", "biblioteca_Verbalizar"],
+      "writes": ["decisoes", "testes_propostos", "gargalo_atual", "proxima_acao", "handoff"],
+      "evidence": [
+        {"path": "commands/verbalizar-agent.md", "line_start": 6, "line_end": 20},
+        {"path": "commands/verbalizar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "commands/verbalizar-agent.md", "line_start": 31, "line_end": 41},
+        {"path": "commands/verbalizar-agent.md", "line_start": 246, "line_end": 252}
+      ]
+    },
+    {
+      "role": "Orientar",
+      "owns": ["lifecycle", "segmentacao", "elegibilidade", "personalizacao", "progressao"],
+      "must_not_own_observed": ["mensagem", "canal", "diagnostico_de_performance", "desenho_completo_de_teste"],
+      "ownership_conflict": ["timing", "frequencia"],
+      "reads": ["project_state", "handoff", "processos_e_dados_de_CRM", "biblioteca_Orientar"],
+      "writes": ["decisoes", "testes_propostos", "gargalo_atual", "proxima_acao", "handoff"],
+      "evidence": [
+        {"path": "commands/orientar-agent.md", "line_start": 6, "line_end": 20},
+        {"path": "commands/orientar-agent.md", "line_start": 23, "line_end": 29},
+        {"path": "commands/orientar-agent.md", "line_start": 147, "line_end": 180},
+        {"path": "commands/orientar-agent.md", "line_start": 248, "line_end": 250},
+        {"path": "commands/orientar-agent.md", "line_start": 294, "line_end": 300}
+      ]
+    },
+    {
+      "role": "Ampliar",
+      "owns": ["canais", "touchpoints", "coordenacao_omnichannel", "cadencia", "atribuicao_cross_channel", "amplificacao"],
+      "must_not_own": ["mensagem", "segmentos", "elegibilidade", "diagnostico_de_performance", "desenho_de_teste"],
+      "reads": ["project_state", "handoff", "configuracoes_de_canal", "biblioteca_Ampliar"],
+      "writes": ["decisoes", "testes_propostos", "gargalo_atual", "proxima_acao", "handoff"],
+      "evidence": [
+        {"path": "commands/ampliar-agent.md", "line_start": 6, "line_end": 20},
+        {"path": "commands/ampliar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "commands/ampliar-agent.md", "line_start": 133, "line_end": 155},
+        {"path": "commands/ampliar-agent.md", "line_start": 180, "line_end": 182},
+        {"path": "commands/ampliar-agent.md", "line_start": 246, "line_end": 251}
+      ]
+    },
+    {
+      "role": "Refinar",
+      "owns": ["diagnostico_de_desempenho", "causa_raiz_especialista", "classificacao_de_acao", "desenho_de_teste", "atribuicao", "aprendizado", "feedback_cross_pillar"],
+      "must_not_own": ["mensagem", "segmentos", "distribuicao"],
+      "reads": ["project_state", "handoff", "dados_de_performance", "biblioteca_Refinar"],
+      "writes": ["decisoes", "testes", "aprendizados", "gargalo_atual", "proxima_acao", "handoff"],
+      "evidence": [
+        {"path": "commands/refinar-agent.md", "line_start": 6, "line_end": 12},
+        {"path": "commands/refinar-agent.md", "line_start": 16, "line_end": 30},
+        {"path": "commands/refinar-agent.md", "line_start": 186, "line_end": 215},
+        {"path": "commands/refinar-agent.md", "line_start": 219, "line_end": 253},
+        {"path": "commands/refinar-agent.md", "line_start": 337, "line_end": 343}
+      ]
+    },
+    {
+      "role": "Projeto Template",
+      "owns": ["criacao_do_projeto", "ativacao_do_projeto", "schema_markdown", "politica_de_atualizacao"],
+      "must_not_own": ["decisoes_de_dominio"],
+      "reads": ["informacoes_do_usuario", "project_state_existente"],
+      "writes": ["arquivo_do_cliente", "ponteiro_active"],
+      "evidence": [
+        {"path": "commands/projeto-template.md", "line_start": 6, "line_end": 29},
+        {"path": "commands/projeto-template.md", "line_start": 33, "line_end": 149}
+      ]
+    },
+    {
+      "role": "Biblioteca tática",
+      "owns": ["insumo_tatico_sob_demanda"],
+      "must_not_own": ["decisao_final", "comando_invocavel_pelo_usuario"],
+      "reads": [],
+      "writes": [],
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 12, "line_end": 15},
+        {"path": "SKILL.md", "line_start": 27, "line_end": 29},
+        {"path": "biblioteca/Verbalizar/INDEX.md", "line_start": 3, "line_end": 11}
+      ]
+    }
+  ],
+  "version_drift": [
+    {
+      "id": "VD-001",
+      "declared": "v1.2",
+      "observed": "A árvore de diretórios no manual ainda usa `loop-marketing-v1.1/`.",
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 6, "line_end": 6},
+        {"path": "LEIAME.md", "line_start": 1, "line_end": 1},
+        {"path": "LEIAME.md", "line_start": 187, "line_end": 205}
+      ]
+    },
+    {
+      "id": "VD-002",
+      "declared": "README.md descreve AGENTS.md como espelho do CLAUDE.md.",
+      "observed": "O espelho altera `.claude` para `.Codex`, enquanto os comandos permanecem em `.claude`.",
+      "evidence": [
+        {"path": "README.md", "line_start": 50, "line_end": 59},
+        {"path": "CLAUDE.md", "line_start": 3, "line_end": 11},
+        {"path": "AGENTS.md", "line_start": 3, "line_end": 11},
+        {"path": "commands/projeto-template.md", "line_start": 14, "line_end": 29}
+      ]
+    },
+    {
+      "id": "VD-003",
+      "declared": "O pacote tem seis comandos: orquestrador, quatro especialistas e template.",
+      "observed": "Os especialistas descrevem o núcleo operacional como sistema de cinco skills, excluindo implicitamente o template da contagem de skills.",
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 10, "line_end": 25},
+        {"path": "commands/verbalizar-agent.md", "line_start": 8, "line_end": 10},
+        {"path": "commands/orientar-agent.md", "line_start": 8, "line_end": 10},
+        {"path": "commands/ampliar-agent.md", "line_start": 8, "line_end": 10},
+        {"path": "commands/refinar-agent.md", "line_start": 8, "line_end": 10}
+      ]
+    },
+    {
+      "id": "VD-004",
+      "declared": "Os nomes instaláveis têm sufixo `-agent`.",
+      "observed": "SOBRE.md usa nomes abreviados sem o sufixo.",
+      "evidence": [
+        {"path": "README.md", "line_start": 28, "line_end": 35},
+        {"path": "SOBRE.md", "line_start": 38, "line_end": 45}
+      ]
+    }
+  ],
+  "duplications": [
+    {
+      "id": "DUP-001",
+      "scope": ["CLAUDE.md", "AGENTS.md"],
+      "description": "As políticas de contexto, coleta, escrita, validação cruzada, idioma e princípio são duplicadas; a principal diferença observada é o namespace de memória.",
+      "risk": "Correções podem ser aplicadas a um runtime e não ao outro, como já ocorreu com o caminho do estado.",
+      "evidence": [
+        {"path": "CLAUDE.md", "line_start": 1, "line_end": 71},
+        {"path": "AGENTS.md", "line_start": 1, "line_end": 71}
+      ]
+    },
+    {
+      "id": "DUP-002",
+      "scope": ["commands/verbalizar-agent.md", "commands/orientar-agent.md", "commands/ampliar-agent.md", "commands/refinar-agent.md"],
+      "description": "Descoberta do projeto, coleta proativa, política de escrita, progressive disclosure e texto de fronteira são repetidos dentro de cada especialista.",
+      "risk": "Mudanças de contrato exigem edição coordenada em quatro arquivos e já produziram fronteiras incompatíveis com métodos locais.",
+      "evidence": [
+        {"path": "commands/verbalizar-agent.md", "line_start": 14, "line_end": 41},
+        {"path": "commands/orientar-agent.md", "line_start": 14, "line_end": 44},
+        {"path": "commands/ampliar-agent.md", "line_start": 14, "line_end": 42},
+        {"path": "commands/refinar-agent.md", "line_start": 16, "line_end": 45},
+        {"path": "commands/verbalizar-agent.md", "line_start": 204, "line_end": 206},
+        {"path": "commands/orientar-agent.md", "line_start": 248, "line_end": 250},
+        {"path": "commands/ampliar-agent.md", "line_start": 180, "line_end": 182},
+        {"path": "commands/refinar-agent.md", "line_start": 302, "line_end": 304}
+      ]
+    },
+    {
+      "id": "DUP-003",
+      "scope": ["biblioteca/Verbalizar/INDEX.md", "biblioteca/Orientar/INDEX.md", "biblioteca/Ampliar/INDEX.md", "biblioteca/Refinar/INDEX.md"],
+      "description": "O protocolo de seleção, leitura sob demanda, reenquadramento e limite por ciclo é repetido nos quatro índices.",
+      "risk": "A ambiguidade UM versus 1–2 está replicada em todos os catálogos.",
+      "evidence": [
+        {"path": "biblioteca/Verbalizar/INDEX.md", "line_start": 3, "line_end": 11},
+        {"path": "biblioteca/Orientar/INDEX.md", "line_start": 3, "line_end": 11},
+        {"path": "biblioteca/Ampliar/INDEX.md", "line_start": 3, "line_end": 11},
+        {"path": "biblioteca/Refinar/INDEX.md", "line_start": 3, "line_end": 11}
+      ]
+    },
+    {
+      "id": "DUP-004",
+      "scope": ["SKILL.md", "README.md", "LEIAME.md", "SOBRE.md"],
+      "description": "A topologia do loop e a tabela de papéis aparecem em quatro documentos voltados a públicos diferentes.",
+      "risk": "Nomes de comando e versão podem divergir entre visão, instalação e explicação conceitual.",
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 16, "line_end": 29},
+        {"path": "README.md", "line_start": 24, "line_end": 37},
+        {"path": "LEIAME.md", "line_start": 76, "line_end": 85},
+        {"path": "SOBRE.md", "line_start": 23, "line_end": 45}
+      ]
+    },
+    {
+      "id": "DUP-005",
+      "scope": ["CLAUDE.md", "AGENTS.md", "commands/projeto-template.md", "commands/*-agent.md"],
+      "description": "A política de mutação das seções do projeto é declarada no runtime global, no template e novamente em cada comando.",
+      "risk": "A semântica de append-only e a autoridade de overwrite ficam espalhadas, dificultando validação determinística.",
+      "evidence": [
+        {"path": "CLAUDE.md", "line_start": 29, "line_end": 44},
+        {"path": "AGENTS.md", "line_start": 29, "line_end": 44},
+        {"path": "commands/projeto-template.md", "line_start": 129, "line_end": 149},
+        {"path": "commands/loop-planning-agent.md", "line_start": 25, "line_end": 30},
+        {"path": "commands/refinar-agent.md", "line_start": 25, "line_end": 30}
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "UNRES-001",
+      "question": "Qual é o namespace canônico e interoperável do estado: `.claude/loop-marketing/`, `.Codex/loop-marketing/` ou um caminho neutro?",
+      "evidence": [
+        {"path": "CLAUDE.md", "line_start": 3, "line_end": 11},
+        {"path": "AGENTS.md", "line_start": 3, "line_end": 11},
+        {"path": "commands/projeto-template.md", "line_start": 14, "line_end": 29}
+      ]
+    },
+    {
+      "id": "UNRES-002",
+      "question": "Quem decide timing e frequência: Orientar para lifecycle, Ampliar para cadência cross-channel, ou um único dono para ambos?",
+      "evidence": [
+        {"path": "commands/orientar-agent.md", "line_start": 147, "line_end": 180},
+        {"path": "commands/orientar-agent.md", "line_start": 248, "line_end": 250},
+        {"path": "commands/ampliar-agent.md", "line_start": 133, "line_end": 155}
+      ]
+    },
+    {
+      "id": "UNRES-003",
+      "question": "O handoff é um schema validável ou apenas texto recomendado, e qual componente rejeita um handoff sem fronteira?",
+      "evidence": [
+        {"path": "LEIAME.md", "line_start": 210, "line_end": 216},
+        {"path": "commands/refinar-agent.md", "line_start": 302, "line_end": 321}
+      ]
+    },
+    {
+      "id": "UNRES-004",
+      "question": "Qual é a estratégia de merge ou lock quando Verbalizar e Orientar rodam em paralelo e escrevem no mesmo arquivo?",
+      "evidence": [
+        {"path": "commands/loop-planning-agent.md", "line_start": 143, "line_end": 161},
+        {"path": "commands/verbalizar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "commands/orientar-agent.md", "line_start": 23, "line_end": 27}
+      ]
+    },
+    {
+      "id": "UNRES-005",
+      "question": "A Seção 5 será event-sourced ou continuará mutável com histórico separado de transições?",
+      "evidence": [
+        {"path": "commands/projeto-template.md", "line_start": 82, "line_end": 92},
+        {"path": "commands/projeto-template.md", "line_start": 136, "line_end": 149}
+      ]
+    },
+    {
+      "id": "UNRES-006",
+      "question": "Quem pode alterar o gargalo global: qualquer especialista ou apenas Loop Planning após consolidação?",
+      "evidence": [
+        {"path": "commands/loop-planning-agent.md", "line_start": 6, "line_end": 10},
+        {"path": "commands/orientar-agent.md", "line_start": 23, "line_end": 27},
+        {"path": "commands/refinar-agent.md", "line_start": 25, "line_end": 30}
+      ]
+    },
+    {
+      "id": "UNRES-007",
+      "question": "Qual mecanismo autoriza e restringe consultas externas feitas com credenciais encontradas no projeto?",
+      "evidence": [
+        {"path": "CLAUDE.md", "line_start": 15, "line_end": 25},
+        {"path": "commands/loop-planning-agent.md", "line_start": 19, "line_end": 22}
+      ]
+    },
+    {
+      "id": "UNRES-008",
+      "question": "Qual é a cardinalidade canônica da biblioteca por ciclo: exatamente um ou até dois recursos?",
+      "evidence": [
+        {"path": "biblioteca/Orientar/INDEX.md", "line_start": 5, "line_end": 11},
+        {"path": "commands/orientar-agent.md", "line_start": 37, "line_end": 42}
+      ]
+    },
+    {
+      "id": "UNRES-009",
+      "question": "Como Verbalizar, Ampliar e Refinar aplicam gating de maturidade quando invocados diretamente?",
+      "evidence": [
+        {"path": "commands/verbalizar-agent.md", "line_start": 45, "line_end": 56},
+        {"path": "commands/ampliar-agent.md", "line_start": 46, "line_end": 56},
+        {"path": "commands/refinar-agent.md", "line_start": 49, "line_end": 60},
+        {"path": "biblioteca/Refinar/INDEX.md", "line_start": 22, "line_end": 33}
+      ]
+    },
+    {
+      "id": "UNRES-010",
+      "question": "Qual classificação se aplica a desempenho entre 50% e menos de 60% do benchmark?",
+      "evidence": [{"path": "commands/refinar-agent.md", "line_start": 143, "line_end": 179}]
+    },
+    {
+      "id": "UNRES-011",
+      "question": "Qual é a versão machine-readable do pacote e do schema de projeto para seleção de migração?",
+      "evidence": [
+        {"path": "SKILL.md", "line_start": 1, "line_end": 6},
+        {"path": "commands/projeto-template.md", "line_start": 33, "line_end": 58}
+      ]
+    }
+  ]
+}

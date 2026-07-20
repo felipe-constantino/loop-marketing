@@ -1,0 +1,500 @@
+{
+  "audit_id": "P3-CATALOG-FINAL-AUDIT-001",
+  "audit_type": "independent_semantic_final_red_team",
+  "status": "pass",
+  "audited_at_utc": "2026-07-17T23:34:13Z",
+  "retested_at_utc": "2026-07-17T23:45:03Z",
+  "scope": {
+    "pillars": [
+      "Verbalizar",
+      "Orientar",
+      "Ampliar",
+      "Refinar"
+    ],
+    "workstreams": [
+      "artifacts/P3/workstreams/verbalizar.json",
+      "artifacts/P3/workstreams/orientar.json",
+      "artifacts/P3/workstreams/ampliar.json",
+      "artifacts/P3/workstreams/refinar.json"
+    ],
+    "contracts": [
+      "artifacts/P3/catalog-schema.json",
+      "artifacts/P2/role-matrix.json",
+      "artifacts/P2/routing-contract.json",
+      "SOURCE_INDEX.json"
+    ],
+    "source_repository": "/Users/enorm/Documents/Claude/loop-marketing",
+    "source_mode": "read_only",
+    "explicit_write_scope": [
+      "artifacts/P3/workstreams/catalog-final-audit.json"
+    ],
+    "preserved_prior_audit": "artifacts/P3/workstreams/catalog-cross-audit-3pillars.json"
+  },
+  "retest_history": [
+    {
+      "retest_id": "P3-CATALOG-FINAL-AUDIT-001-INITIAL-GATE",
+      "audited_at_utc": "2026-07-17T23:34:13Z",
+      "status": "fail_blocking_findings",
+      "gate": {
+        "result": "FAIL",
+        "blocking_p3": 1,
+        "nonblocking_p3": 1,
+        "release_constraint": 1
+      },
+      "finding_state": {
+        "P3-FA-001": "blocking_p3",
+        "P3-FA-002": "nonblocking_p3",
+        "P3-FA-003": "release_constraint"
+      },
+      "preservation_note": "The initial FAIL is retained as historical evidence. P3-FA-001 covered 10 Refinar tactics and 29 canonical source ranges; P3-FA-002 covered the 21 sidecar-constrained Refinar policies that existed in that snapshot. Their original evidence, impact and required fixes remain below, with current retest resolutions added rather than replacing the prior facts."
+    }
+  ],
+  "coverage": {
+    "tactic_entries_reviewed": 100,
+    "tactic_entries_expected": 100,
+    "intra_pillar_relations_reviewed": 78,
+    "intra_pillar_relations_expected": 78,
+    "cross_pillar_candidates_reviewed": 28,
+    "cross_pillar_candidates_expected": 28,
+    "coverage_complete": true,
+    "pillar_counts": {
+      "Verbalizar": {
+        "entries": 25,
+        "relations": 14,
+        "cross_pillar_candidates": 4
+      },
+      "Orientar": {
+        "entries": 25,
+        "relations": 28,
+        "cross_pillar_candidates": 7
+      },
+      "Ampliar": {
+        "entries": 25,
+        "relations": 16,
+        "cross_pillar_candidates": 9
+      },
+      "Refinar": {
+        "entries": 25,
+        "relations": 20,
+        "cross_pillar_candidates": 8
+      }
+    },
+    "relationship_statuses": {
+      "intra_pillar": {
+        "proposed": 78,
+        "confirmed": 0
+      },
+      "cross_pillar_candidates": {
+        "needs_cross_pillar_review": 28
+      },
+      "runtime_effect": "none; all 106 relationship records are audit-only hypotheses"
+    },
+    "execution_policy_modes": {
+      "all_pillars": {
+        "canonical_safe": 3,
+        "sidecar_constrained": 91,
+        "base_method_only": 6
+      },
+      "Refinar": {
+        "canonical_safe": 2,
+        "sidecar_constrained": 22,
+        "base_method_only": 1
+      }
+    },
+    "structural_validator_result": {
+      "command": "python3 scripts/p3_validate.py workstreams",
+      "status": "valid",
+      "errors": []
+    },
+    "negative_regression_result": {
+      "command": "python3 scripts/p3_regression.py",
+      "suite": "p3-negative-regression",
+      "status": "passed",
+      "total": 12,
+      "passed": 12,
+      "failed": 0,
+      "repair_specific_cases": {
+        "NEG-011": "Refinar fixture omits a source-proven cross-owner conflict",
+        "NEG-012": "Refinar constrained fallback omits fail-closed runtime behavior"
+      }
+    },
+    "semantic_review_method": [
+      "review of all 100 sidecars and execution policies",
+      "review of all 78 intra-pillar relations and all 28 cross-pillar candidates",
+      "P2 owner and mandatory-handoff replay",
+      "canonical source-line replay for every material conflict reported below",
+      "search for omitted scope conflicts, false handoffs, incomplete prohibited domains, excessive canonical_safe classification and unsafe fallback",
+      "special replay of all 25 Refinar policies, evidence/TESTAR behavior, sequential-test body mismatch and agility foreign fragment"
+    ]
+  },
+  "gate": {
+    "result": "PASS",
+    "rule": "PASS only when blocking_p3 equals zero",
+    "blocking_p3": 0,
+    "nonblocking_p3": 0,
+    "release_constraint": 1,
+    "resolved_during_retest": [
+      "P3-FA-001",
+      "P3-FA-002"
+    ],
+    "accepted_release_constraints": [
+      "P3-XA-013",
+      "P3-FA-003"
+    ],
+    "rationale": "The 10 affected Refinar tactics now cover all 29 source ranges with constrained execution, safe containers, exclusions and owner or authorization handoffs; the learning-system tactic is no longer canonical_safe. All 22 current sidecar-constrained Refinar fallbacks fail closed when overlay, planner review or handoff is unavailable. Workstream validation and all 12 negative regressions pass. The provenance constraint remains accepted and independent of internal P3 correctness."
+  },
+  "initial_findings_resolution": [
+    {
+      "finding_id": "P3-XA-001",
+      "status": "resolved",
+      "resolution_evidence": "All 100 entries now have a schema-validated execution_policy with execution_mode, automatic_selection, runtime overlay state, allowed and excluded sections, prohibited domains, source-referenced conflicts, mandatory handoffs and fallback. The incomplete semantic population later found in Refinar was tracked separately as P3-FA-001 and is resolved in this retest."
+    },
+    {
+      "finding_id": "P3-XA-002",
+      "status": "resolved",
+      "resolution_evidence": "lm.verbalizar.perfil-do-cliente-ideal no longer owns a segmentation_model or routing need for accepted segmentation. It emits a Verbalizar analysis/message artifact, records segmentation as a prohibited domain, cites the canonical segmentation request and requires an Orientar handoff."
+    },
+    {
+      "finding_id": "P3-XA-003",
+      "status": "resolved",
+      "resolution_evidence": "lm.verbalizar.mapeador-da-jornada-do-cliente consumes an accepted stage map, emits message-system analysis rather than a lifecycle map, and records lifecycle, PII, channel, performance and external-operation conflicts with owner handoffs."
+    },
+    {
+      "finding_id": "P3-XA-004",
+      "status": "resolved",
+      "resolution_evidence": "lm.orientar.personalizacao-orientada-por-comentarios now emits evidence, context implications and unvalidated hypotheses, not a learning_system; test design, validation, result interpretation and the learning record are handed to Refinar."
+    },
+    {
+      "finding_id": "P3-XA-005",
+      "status": "resolved",
+      "resolution_evidence": "The three Ampliar customer-program entries now declare optional customer_level_pii inputs, carry sensitive-data conflicts and exclude individual identification, reidentifiable records and outreach unless security and authorization gates are satisfied."
+    },
+    {
+      "finding_id": "P3-XA-006",
+      "status": "resolved",
+      "resolution_evidence": "The customer-program output contracts now consume accepted Orientar eligibility and suppression references and include a no-individual-selection invariant; Ampliar owns only program mechanics, channels, touchpoints, timing, frequency and measurement requirements."
+    },
+    {
+      "finding_id": "P3-XA-007",
+      "status": "resolved",
+      "resolution_evidence": "The four exact-tactic Verbalizar dependencies were downgraded. All 78 intra-pillar relationships are proposed and non-normative, so accepted artifacts can satisfy prerequisites without mandatory execution of a named producer tactic."
+    },
+    {
+      "finding_id": "P3-XA-008",
+      "status": "resolved",
+      "resolution_evidence": "The conflicting thought-leadership relation hypotheses remain explicitly non-normative and are queued for cross-pillar relation review. Neither candidate can affect selection or ordering in P3."
+    },
+    {
+      "finding_id": "P3-XA-009",
+      "status": "resolved",
+      "resolution_evidence": "Attribution and paid-media direction hypotheses remain proposed and audit-only. The workstream contract no longer promotes them to runtime dependencies before artifact-direction replay."
+    },
+    {
+      "finding_id": "P3-XA-010",
+      "status": "resolved",
+      "resolution_evidence": "The generic Orientar optimize:optimization and Ampliar design:attribution routing tags were removed or narrowed; validator authority fixtures reject the prior broad owner mappings."
+    },
+    {
+      "finding_id": "P3-XA-011",
+      "status": "resolved",
+      "resolution_evidence": "Editorial ambiguity now has deterministic selection effect through execution_mode and automatic_selection. Entries with material ambiguity, PII, security or unverified claims cannot be automatically selected. The learning-system classification later found incorrect was moved from canonical_safe to sidecar_constrained and replayed under P3-FA-001."
+    },
+    {
+      "finding_id": "P3-XA-012",
+      "status": "resolved",
+      "resolution_evidence": "The referral-versus-UGC alternative relation remains proposed and non-normative pending relation adjudication. It cannot suppress either distinct tactic in the current catalog."
+    },
+    {
+      "finding_id": "P3-XA-013",
+      "status": "accepted_release_constraint",
+      "resolution_evidence": "All 100 entries still truthfully state individual_source_verified=false and redistribution_review=not_reviewed. Internal catalog work may proceed, but a public or commercial release containing canonical bodies remains blocked until documented provenance and redistribution review is complete."
+    }
+  ],
+  "new_findings": [
+    {
+      "finding_id": "P3-FA-001",
+      "status": "resolved",
+      "classification": "blocking_p3",
+      "severity": "critical",
+      "title": "Refinar execution policies omit material cross-owner and external-execution conflicts, including one canonical body incorrectly marked canonical_safe",
+      "evidence_context": "Historical evidence from the initial FAIL gate at 2026-07-17T23:34:13Z. The statements inside affected_tactics describe the pre-repair snapshot and are intentionally retained.",
+      "systemic_condition": "The validator proves that declared conflict domains have correct authorities and handoffs, but it cannot prove that every material request in the immutable canonical body was declared. In the affected entries, broad allowed sections such as optimization-implications, owner-specific-implications, prioritized-recommendations, investment-options, allocation-scenarios, validation-experiments and application-and-supersession can carry undeclared decisions. The strongest case, lm.refinar.sistema-de-integracao-de-aprendizagem, is automatic_selection=allowed, runtime_overlay_required=false, has no conflicts or handoffs, yet its canonical output explicitly covers application to channels, audiences and creative work plus implementation infrastructure.",
+      "retest_resolution": {
+        "result": "resolved",
+        "tactic_ids_expected": 10,
+        "tactic_ids_replayed": 10,
+        "source_ranges_expected": 29,
+        "source_ranges_covered": 29,
+        "missing_source_ranges": [],
+        "scope_fixture": "scripts/p3_validate.py defines REFINAR_SCOPE_FIXTURES for the same 10 tactic IDs and 29 ranges, checks required cross-owner domains, checks range overlap and requires the learning-system tactic to be constrained.",
+        "learning_system_policy": {
+          "tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+          "execution_mode": "sidecar_constrained",
+          "automatic_selection": "planner_review_required",
+          "runtime_overlay_required": true,
+          "conflict_ranges": [
+            "125-136",
+            "171-182"
+          ],
+          "handoff_domains": [
+            "global_orchestration",
+            "message_and_copy",
+            "lifecycle_segmentation_and_eligibility",
+            "channel_timing_and_cadence",
+            "external_execution_authorization"
+          ]
+        },
+        "containers_and_exclusions": "All 10 output contracts now constrain broad recommendation containers to evidence, experiment contracts, assumptions or owner-specific implications and handoffs. Their excluded_output_sections name the direct message, audience/lifecycle, channel/budget, prioritization, platform and mutation outputs proven by the 29 source ranges.",
+        "handoff_replay": "Every declared conflict domain has the P2 destination authority and a mandatory handoff. Direct external implementation, automation, mutation, publication or spend routes to authorized_operator.",
+        "regression_evidence": "NEG-011 removes a required learning-system message conflict and is rejected; the full 12-case negative suite passes 12/12."
+      },
+      "affected_tactics": [
+        {
+          "tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+          "canonical_path": "biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+          "affected_source_lines": [
+            "125-136",
+            "171-182"
+          ],
+          "evidence": "Lines 125-136 request prioritization and application of learning to channels, audiences and creative work; lines 171-182 request platform, integration and implementation processes. The policy is canonical_safe and has zero conflicts and zero handoffs."
+        },
+        {
+          "tactic_id": "lm.refinar.analisador-de-desempenho-de-coorte",
+          "canonical_path": "biblioteca/Refinar/analisador-de-desempenho-de-coorte.md",
+          "affected_source_lines": [
+            "104-107",
+            "121-155",
+            "155-165"
+          ],
+          "evidence": "The source recommends communication frequency, segmentation, channels, budget reallocation, campaign message, target audience and implementation infrastructure. The policy declares only the customer-data/security conflict."
+        },
+        {
+          "tactic_id": "lm.refinar.interprete-de-analises-da-jornada-do-cliente",
+          "canonical_path": "biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+          "affected_source_lines": [
+            "63-98",
+            "118-138",
+            "173-195"
+          ],
+          "evidence": "The source requests content and channel optimization, journey/path decisions, resource allocation, forms and landing-page changes, technology integration and execution planning. The policy declares only PII and lifecycle conflicts and lacks Verbalizar, Ampliar, Loop Planning and authorized-operator handoffs for those sections."
+        },
+        {
+          "tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+          "canonical_path": "biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+          "affected_source_lines": [
+            "102-119",
+            "122-141"
+          ],
+          "evidence": "The source moves from experimental coordination to integrated channel/journey optimization, implementation, technology, automation and operational workflows. The policy declares only the channel-calendar conflict and no external-execution handoff."
+        },
+        {
+          "tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+          "canonical_path": "biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+          "affected_source_lines": [
+            "5-9",
+            "89-90",
+            "102-124",
+            "142-170"
+          ],
+          "evidence": "The source requests channel and budget allocation, message/content/campaign decisions, automated optimization and implementation. The policy declares PII and segmentation conflicts only."
+        },
+        {
+          "tactic_id": "lm.refinar.modelador-de-combinacao-de-marketing",
+          "canonical_path": "biblioteca/Refinar/modelador-de-combinacao-de-marketing.md",
+          "affected_source_lines": [
+            "50-52",
+            "77-105",
+            "126-128",
+            "136-162",
+            "170-173"
+          ],
+          "evidence": "The source prescribes portfolio and resource allocation, stage-specific channel mix, new channels, audience expansion, value-proposition evolution, real-time changes, automation and budget processes. The policy declares only the truncated global-model definition."
+        },
+        {
+          "tactic_id": "lm.refinar.calculadora-de-otimizacao",
+          "canonical_path": "biblioteca/Refinar/calculadora-de-otimizacao.md",
+          "affected_source_lines": [
+            "123-127",
+            "162-185"
+          ],
+          "evidence": "The source requests increases and reductions of budget, team-resource reallocation, ideal spend and implementation/decision integration. The policy declares only editorial fragmentation and a Loop Planning handoff."
+        },
+        {
+          "tactic_id": "lm.refinar.gerador-de-relatorios-de-otimizacao-continua",
+          "canonical_path": "biblioteca/Refinar/gerador-de-relatorios-de-otimizacao-continua.md",
+          "affected_source_lines": [
+            "45-50",
+            "89-93"
+          ],
+          "evidence": "The source requests immediate landing-page, budget and creative changes and repeats them as a worked recommendation. The policy declares only malformed editorial fragments."
+        },
+        {
+          "tactic_id": "lm.refinar.resultados-previsiveis-da-campanha-antes-do-lancamento",
+          "canonical_path": "biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+          "affected_source_lines": [
+            "36-42",
+            "50-56",
+            "117-117"
+          ],
+          "evidence": "The source asks for winning audience/channel selections, concrete landing-page, creative and budget actions, and an explicit creative reduction before launch. The current conflict routes only the channel domain and omits message/creative and external-execution authorization."
+        },
+        {
+          "tactic_id": "lm.refinar.construtor-de-estrutura-de-experimentacao-rapida",
+          "canonical_path": "biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+          "affected_source_lines": [
+            "24-24",
+            "32-44",
+            "69-69"
+          ],
+          "evidence": "The source asks which experiments to execute, specifies creative, landing page, channel and targeting setup, and provides scale-budget rules. The policy declares only unsupported numeric heuristics at lines 84-85."
+        }
+      ],
+      "impact": "A runtime can satisfy the current JSON schema and still return or operationalize decisions owned by Verbalizar, Orientar, Ampliar, Loop Planning or an authorized operator. The canonical_safe learning-system entry can do so without any overlay or planner review.",
+      "required_fix": [
+        "Reclassify lm.refinar.sistema-de-integracao-de-aprendizagem as sidecar_constrained and automatic_selection=planner_review_required.",
+        "For every affected tactic, add every material source-line conflict, owner domain, destination authority and required handoff; narrow allowed sections and expand excluded sections so recommendation containers cannot carry direct cross-owner decisions.",
+        "Add semantic fixtures to scripts/p3_validate.py for the affected canonical paths, including at least one expected conflict per owner or external-operation section; schema completeness alone is insufficient.",
+        "Replay the full immutable bodies adversarially and prove that Refinar emits evidence, experiment contracts and owner-specific implications only, never the downstream decision or mutation."
+      ],
+      "validation_case": "The final audit can pass only when each affected source range is either inside Refinar authority or represented by a source-referenced exclusion/conflict and mandatory handoff. A full-body test of sistema-de-integracao-de-aprendizagem must refuse channel, audience, creative and implementation decisions without the corresponding owner or authorization references."
+    },
+    {
+      "finding_id": "P3-FA-002",
+      "status": "resolved",
+      "classification": "nonblocking_p3",
+      "severity": "medium",
+      "title": "Refinar constrained fallbacks must fail closed when the runtime overlay, planner review or mandatory handoff is unavailable",
+      "evidence_context": "Historical evidence from the initial FAIL gate, when Refinar had 21 sidecar-constrained entries. The current retest covers all 22 after the learning-system tactic was reclassified from canonical_safe.",
+      "affected_tactic_ids": [
+        "lm.refinar.acelerador-de-velocidade-de-marketing",
+        "lm.refinar.analisador-de-desempenho-de-coorte",
+        "lm.refinar.analise-competitiva-do-velocity",
+        "lm.refinar.calculadora-de-otimizacao",
+        "lm.refinar.construtor-de-estrutura-de-experimentacao-rapida",
+        "lm.refinar.coordenador-de-testes-entre-canais",
+        "lm.refinar.designer-de-estrutura-de-teste-sistematica",
+        "lm.refinar.diagnostico-da-entrega-da-viagem-do-cliente",
+        "lm.refinar.diagnostico-de-desempenho-de-campanha",
+        "lm.refinar.gerador-de-relatorios-de-otimizacao-continua",
+        "lm.refinar.interprete-de-analises-da-jornada-do-cliente",
+        "lm.refinar.mecanismo-de-otimizacao-em-tempo-real",
+        "lm.refinar.mecanismo-de-previsao-de-desempenho",
+        "lm.refinar.modelador-de-combinacao-de-marketing",
+        "lm.refinar.modelador-de-desempenho-previsivel",
+        "lm.refinar.monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real",
+        "lm.refinar.otimizador-de-agilidade-de-marketing",
+        "lm.refinar.otimizador-de-atribuicao-de-marketing",
+        "lm.refinar.otimizador-de-valor-do-ciclo-de-vida-do-cliente",
+        "lm.refinar.resultados-previsiveis-da-campanha-antes-do-lancamento",
+        "lm.refinar.sintese-de-aprendizado-multi-loop",
+        "lm.refinar.sistema-de-integracao-de-aprendizagem"
+      ],
+      "evidence": "Each fallback correctly requires TESTAR and data_gap_plan when evidence, benchmark, comparable periods, sample/design, metric direction, denominator or numeric domain are invalid. Unlike the constrained policies in the other three pillars, none says not to load or execute the canonical body when the overlay, planner review or a mandatory handoff cannot be enforced.",
+      "why_nonblocking": "runtime_overlay_required=true and automatic_selection=planner_review_required already prevent automatic selection in a conforming runtime. The omission weakens defense in depth but is not an independent execution permission.",
+      "recommended_fix": "Append a deterministic clause to every affected fallback: if the overlay, planner review or required handoff is unavailable, do not load or execute the canonical body; use only the Refinar base method, return TESTAR/data_gap_plan as applicable, and record the pending handoff. Add a validator fixture for this clause.",
+      "retest_resolution": {
+        "result": "resolved",
+        "sidecar_constrained_expected": 22,
+        "sidecar_constrained_replayed": 22,
+        "fully_compliant": 22,
+        "failures": [],
+        "newly_included_tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+        "required_fail_closed_semantics": [
+          "overlay unavailable",
+          "planner review unavailable",
+          "mandatory handoff unavailable",
+          "do not load canonical body",
+          "do not execute canonical body",
+          "use Refinar base method only",
+          "return TESTAR and data_gap_plan when applicable",
+          "record pending handoff"
+        ],
+        "validator_evidence": "scripts/p3_validate.py checks all eight phrase groups for every sidecar-constrained Refinar entry.",
+        "regression_evidence": "NEG-012 weakens one Refinar fallback to TESTAR/data_gap_plan only and is rejected; the full 12-case negative suite passes 12/12."
+      }
+    },
+    {
+      "finding_id": "P3-FA-003",
+      "status": "accepted_release_constraint",
+      "classification": "release_constraint",
+      "severity": "high",
+      "title": "Individual prompt provenance and redistribution rights remain unverified across the full catalog",
+      "affected_tactic_ids": [
+        "all 100 tactic IDs"
+      ],
+      "evidence": "Every entry retains individual_source_verified=false and redistribution_review=not_reviewed. The collection association is not an individual-source verification or redistribution license.",
+      "impact": "Internal read-only cataloging and testing may continue, but public or commercial packaging of canonical prompt bodies must fail closed.",
+      "required_release_gate": "Any release manifest that bundles a canonical body must reject entries whose redistribution_review is not verified_for_intended_distribution."
+    }
+  ],
+  "refinar_special_replay": {
+    "policies_reviewed": 25,
+    "evidence_and_testar": {
+      "result": "pass",
+      "statement": "All 25 Refinar entries prohibit fabricated performance_index values and require TESTAR/data_gap_plan when evidence, benchmark, comparable windows, sample/design, metric direction, denominator or numeric domain are invalid. All 22 sidecar-constrained policies additionally fail closed when overlay, planner review or mandatory handoff is unavailable."
+    },
+    "fa_001_replay": {
+      "result": "pass",
+      "tactic_ids": "10/10",
+      "canonical_source_ranges": "29/29",
+      "missing_ranges": [],
+      "learning_system_constrained": true,
+      "safe_containers_exclusions_and_handoffs": "pass"
+    },
+    "fa_002_replay": {
+      "result": "pass",
+      "sidecar_constrained_fallbacks": "22/22",
+      "missing_fail_closed_semantics": []
+    },
+    "sequential_tests": {
+      "tactic_id": "lm.refinar.otimizador-de-testes-sequenciais",
+      "result": "pass",
+      "canonical_evidence": [
+        "biblioteca/Refinar/otimizador-de-testes-sequenciais.md:1-9 is a competitive-intelligence body rather than sequential-test design",
+        "biblioteca/Refinar/otimizador-de-testes-sequenciais.md:23-30 requests unsupported competitor performance, market-share and pricing claims"
+      ],
+      "policy_evidence": "execution_mode=base_method_only, automatic_selection=forbidden, allowed_output_sections=[], the entire body is excluded, and the fallback explicitly prohibits loading or executing it."
+    },
+    "agility_fragment": {
+      "tactic_id": "lm.refinar.otimizador-de-agilidade-de-marketing",
+      "result": "pass",
+      "canonical_evidence": "biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md:27-29 is a foreign competitive-intelligence fragment.",
+      "policy_evidence": "The exact range is recorded as an editorial conflict, foreign-competitive-intelligence-fragment is excluded, planner review is required and the sidecar is constrained."
+    }
+  },
+  "confirmed_no_issue_checks": [
+    {
+      "check_id": "P3-FA-NI-001",
+      "result": "pass",
+      "statement": "The updated schema and validator enforce owner-domain identity, the complete six-domain prohibited-decision set, conflict line validity, authority mapping, mandatory handoff coverage for declared conflicts, execution-mode constraints and explicit authority fixtures."
+    },
+    {
+      "check_id": "P3-FA-NI-002",
+      "result": "pass",
+      "statement": "All 100 canonical paths, hashes and canonical_immutable declarations remain intact; no tactic was deleted, merged, renamed or rewritten."
+    },
+    {
+      "check_id": "P3-FA-NI-003",
+      "result": "pass",
+      "statement": "All 78 intra-pillar relations are proposed and all 28 cross-pillar candidates require review; no relationship record is normative in the current runtime."
+    },
+    {
+      "check_id": "P3-FA-NI-004",
+      "result": "pass",
+      "statement": "The corrected ICP, journey, feedback, attribution-requirements and customer-program authority fixtures reject the exact owner defects found in the initial audit."
+    },
+    {
+      "check_id": "P3-FA-NI-005",
+      "result": "pass",
+      "statement": "All three current canonical_safe candidates were sampled against their full bodies. The Verbalizar mission tactic stays inside message/purpose work; the multivariate and rapid-experiment mechanisms consume supplied variables and own experiment design without a material direct mutation found in their canonical output."
+    }
+  ],
+  "source_integrity": {
+    "repository": "/Users/enorm/Documents/Claude/loop-marketing",
+    "expected_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "observed_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "git_status_porcelain": "",
+    "clean": true,
+    "canonical_files_modified_by_audit": 0
+  }
+}

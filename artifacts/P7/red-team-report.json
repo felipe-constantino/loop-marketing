@@ -1,0 +1,61 @@
+{
+  "artifact_id": "loop-marketing-p7-red-team-report",
+  "schema_version": "1.0",
+  "product_version": "2.0.0",
+  "phase": "P7",
+  "verdict": "PASS",
+  "confidence": "high",
+  "blockers": [],
+  "auditors": [
+    "/root/p7_redteam_logic",
+    "/root/p7_redteam_runtime"
+  ],
+  "nominal_gates": {
+    "p6_seal_verify": "PASS",
+    "p7_validate": "PASS",
+    "p7_evaluate": "PASS",
+    "release_gate_status": "passed",
+    "evaluation_cases": 10,
+    "evaluation_cases_passed": 10,
+    "p7_tests": 13,
+    "full_suite_tests": 92,
+    "deterministic": true,
+    "audit_record_count": 22,
+    "audit_traces_attested": true,
+    "runtime_integrity_attested": true,
+    "runtime_integrity_drift_count": 0,
+    "canonical_source_preserved": true
+  },
+  "final_adversarial_results": [
+    {"probe": "empty_or_malformed_p6_manifest", "result": "rejected"},
+    {"probe": "empty_or_fabricated_evaluation_suite", "result": "rejected_or_unattested"},
+    {"probe": "two_independent_sensitive_inputs", "result": "two_denials_and_two_audit_events_without_leak"},
+    {"probe": "external_mutation_permission", "result": "denied_and_state_unchanged"},
+    {"probe": "semantically_impossible_external_mutation_audit", "result": "rejected"},
+    {"probe": "alternate_socket_import", "result": "capability_failed"},
+    {"probe": "os_system", "result": "capability_failed"},
+    {"probe": "path_write_outside_state_store", "result": "capability_failed"},
+    {"probe": "open_write_mode", "result": "capability_and_release_gate_failed_without_execution"},
+    {"probe": "os_open_write_flag", "result": "integrity_and_release_gate_failed_without_execution"},
+    {"probe": "extra_runtime_module", "result": "topology_and_release_gate_failed"},
+    {"probe": "existing_runtime_module_changed", "result": "hash_and_release_gate_failed"}
+  ],
+  "findings_closed_during_red_team": [
+    "runtime attestation was bound to exact SecureLoopRuntime execution",
+    "empty suites and semantically contradictory outcomes were rejected",
+    "rejected routing received an explicit evaluation case",
+    "external mutation used the public permission facade and remained denied",
+    "sensitive input failures became metadata-only audit events",
+    "audit event and outcome sequences became exact per evaluation case",
+    "P6 dependency verification became fail-closed on metadata, topology and hashes",
+    "network, process and filesystem capability checks covered alternate forms",
+    "runtime topology and module hashes became part of release attestation"
+  ],
+  "source_preservation": {
+    "canonical_source": "/Users/enorm/Documents/Claude/loop-marketing",
+    "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "clean": true,
+    "preserved": true,
+    "files_modified_by_auditors": []
+  }
+}

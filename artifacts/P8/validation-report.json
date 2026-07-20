@@ -1,0 +1,30 @@
+{
+  "artifact_id": "loop-marketing-p8-validation-report",
+  "generated_at": "2026-07-20T15:58:22.680106Z",
+  "command": "python3 scripts/p8_validate.py",
+  "result": {
+    "status": "PASS",
+    "errors": [],
+    "counts": {
+      "canonical_prompts": 100,
+      "library_files": 104,
+      "navigation_indexes": 4,
+      "runtime_modules": 14,
+      "command_invocations": 12
+    },
+    "gates": {
+      "p7_dependency_seal": true,
+      "official_skill_validator": true,
+      "documentation_contract": true,
+      "portable_path_hygiene": true,
+      "packaged_e2e_committed": true,
+      "evaluation_passed": true,
+      "sensitive_input_rejected": true
+    },
+    "source": {
+      "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+      "clean": true,
+      "preserved": true
+    }
+  }
+}

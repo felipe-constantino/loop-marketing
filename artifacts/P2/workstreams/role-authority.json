@@ -1,0 +1,1498 @@
+{
+  "schema_version": "1.0",
+  "phase": "P2",
+  "workstream": "role-authority",
+  "status": "proposed_for_lead_integration",
+  "normative_language": "Os termos MUST, MUST_NOT, SHOULD e MAY sao normativos. Este artefato especifica autoridade e contratos; nao implementa runtime, estado, adaptadores ou migracao.",
+  "baseline": {
+    "source_repo": "/Users/enorm/Documents/Claude/loop-marketing",
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "canonical_library_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  },
+  "scope": {
+    "in_scope": [
+      "Contratos canonicos e host-neutral dos cinco papeis de decisao.",
+      "Autoridade sobre mensagem, lifecycle e elegibilidade, timing operacional, frequencia, cadencia, experimentos e gargalo.",
+      "Eventos de estado que cada papel pode emitir, sem definir persistencia ou runtime.",
+      "Campos obrigatorios de handoff e gatilhos de escalacao e validacao cruzada."
+    ],
+    "out_of_scope": [
+      "Implementacao de orquestrador, state store, reducer, schema executavel ou adaptadores de host.",
+      "Alteracao, fusao, remocao ou reescrita de qualquer prompt canonico.",
+      "Definicao final dos thresholds numericos de roteamento e classificacao.",
+      "Execucao de testes, campanhas, migracoes ou mutacoes externas."
+    ]
+  },
+  "authority_invariants": [
+    {
+      "id": "RA-I001",
+      "rule": "Cada decisao de dominio tem exatamente um owner canonico; outros papeis podem fornecer evidencia, restricoes ou propostas, mas MUST_NOT confirmar a decisao em nome do owner."
+    },
+    {
+      "id": "RA-I002",
+      "rule": "Loop Planning e o unico owner do gargalo global aceito, do sequenciamento de papeis e do gate de validacao cruzada. Especialistas emitem apenas observacoes locais de gargalo."
+    },
+    {
+      "id": "RA-I003",
+      "rule": "Toda saida factual MUST conter evidence_refs; na ausencia de evidencia, o item MUST ser explicitamente registrado como assumption com confidence."
+    },
+    {
+      "id": "RA-I004",
+      "rule": "Eventos de estado sao append-only. Nenhum papel sobrescreve silenciosamente gargalo, experimento, decisao, aprendizado ou proxima acao."
+    },
+    {
+      "id": "RA-I005",
+      "rule": "Papeis especialistas MAY produzir saidas imutaveis em paralelo somente contra o mesmo state_revision; Loop Planning MUST integrar ou rejeitar conflitos antes de qualquer estado derivado mudar."
+    },
+    {
+      "id": "RA-I006",
+      "rule": "A biblioteca tatica e insumo sob demanda. Seus 100 prompts permanecem canonicos e imutaveis; aplicabilidade, maturidade, aliases e relacoes sao somente metadados externos."
+    },
+    {
+      "id": "RA-I007",
+      "rule": "Nenhum handoff e valido sem scope_boundary_next_does_not_decide preenchido e sem state_revision, decisions_to_respect, evidence_refs ou assumptions."
+    },
+    {
+      "id": "RA-I008",
+      "rule": "A aprovacao ou execucao de uma mutacao externa nunca e inferida de um contrato de papel; ela requer autoridade e evidencia externas conforme as futuras politicas P6."
+    }
+  ],
+  "canonical_authority_map": {
+    "global_bottleneck_and_role_sequence": "loop_planning",
+    "maturity_classification_and_cross_role_integration": "loop_planning",
+    "message_value_proposition_voice_tone_and_cta": "verbalizar",
+    "lifecycle_stages_segments_eligibility_and_lifecycle_events": "orientar",
+    "operational_timing_frequency_contact_pressure_and_cross_channel_cadence": "ampliar",
+    "performance_diagnosis_experiment_contract_success_metric_and_learning": "refinar"
+  },
+  "temporal_authority_model": {
+    "orientar_owns": [
+      "Eventos ou condicoes observaveis de entrada e saida de estagio.",
+      "Criterios de inclusao, exclusao, supressao e prioridade de elegibilidade.",
+      "Janelas semanticas de elegibilidade delimitadas por evento ou condicao de lifecycle.",
+      "Thresholds de progressao, estagnacao e regressao como significado de lifecycle."
+    ],
+    "ampliar_owns": [
+      "Data e hora operacional de envio ou exibicao.",
+      "Espera entre touchpoints, ordem de canais, retry e fallback.",
+      "Limite numerico de frequencia por canal e limite global de pressao de contato.",
+      "Cadencia, intensidade operacional e regras de nao conflito cross-channel."
+    ],
+    "refinar_owns": [
+      "Duracao, janela de observacao, amostra e criterio temporal de um experimento; isso nao concede autoridade sobre a cadencia do contato."
+    ],
+    "loop_planning_owns": [
+      "Ordem e dependencia entre papeis no ciclo; isso nao concede autoridade sobre timing de lifecycle ou de touchpoint."
+    ],
+    "verbalizar_owns": [
+      "Adaptacao da mensagem por estagio e CTA; isso nao concede autoridade para decidir quando ou quantas vezes entregar."
+    ],
+    "conflict_rule": "Quando uma restricao de elegibilidade de Orientar colidir com uma cadencia de Ampliar, a inelegibilidade ou supressao prevalece. Ampliar deve recalcular a cadencia sem alterar o criterio de elegibilidade."
+  },
+  "mandatory_handoff_contract": {
+    "contract_version": "1.0",
+    "fields": [
+      {
+        "name": "handoff_id",
+        "required": true,
+        "constraint": "Identificador unico e estavel."
+      },
+      {
+        "name": "contract_version",
+        "required": true,
+        "constraint": "Versao do contrato de handoff."
+      },
+      {
+        "name": "project_ref",
+        "required": true,
+        "constraint": "Referencia opaca ao projeto; MUST_NOT conter segredo ou PII desnecessaria."
+      },
+      {
+        "name": "cycle_id",
+        "required": true,
+        "constraint": "Identifica o ciclo que originou o handoff."
+      },
+      {
+        "name": "state_revision",
+        "required": true,
+        "constraint": "Revisao imutavel contra a qual a saida foi produzida."
+      },
+      {
+        "name": "from_role",
+        "required": true,
+        "constraint": "canonical_role_id do emissor."
+      },
+      {
+        "name": "to_role",
+        "required": true,
+        "constraint": "canonical_role_id do receptor."
+      },
+      {
+        "name": "created_at",
+        "required": true,
+        "constraint": "Timestamp com timezone."
+      },
+      {
+        "name": "objective",
+        "required": true,
+        "constraint": "Uma frase, especifica ao dominio do receptor."
+      },
+      {
+        "name": "mode",
+        "required": true,
+        "constraint": "complete, partial ou minimum_viable."
+      },
+      {
+        "name": "maturity",
+        "required": true,
+        "constraint": "Classificacao vigente ou unknown com escalacao obrigatoria."
+      },
+      {
+        "name": "bottleneck_ref",
+        "required": true,
+        "constraint": "Referencia ao gargalo global aceito; observacao local nao o substitui."
+      },
+      {
+        "name": "input_refs",
+        "required": true,
+        "constraint": "Referencias a inputs, sem copiar corpus desnecessario."
+      },
+      {
+        "name": "decisions_to_respect",
+        "required": true,
+        "constraint": "Decisoes anteriores que o receptor MUST_NOT redefinir."
+      },
+      {
+        "name": "scope_boundary_next_does_not_decide",
+        "required": true,
+        "constraint": "Array nao vazio com as autoridades que permanecem fora do receptor."
+      },
+      {
+        "name": "evidence_refs",
+        "required": true,
+        "constraint": "Pode ser vazio somente quando assumptions nao for vazio e todo claim estiver marcado como hipotese."
+      },
+      {
+        "name": "assumptions",
+        "required": true,
+        "constraint": "Hipoteses com justificativa e confidence; usar array vazio quando nao houver."
+      },
+      {
+        "name": "known_gaps",
+        "required": true,
+        "constraint": "Lacunas de dados, capacidade ou autorizacao."
+      },
+      {
+        "name": "requested_output",
+        "required": true,
+        "constraint": "Entregavel que o receptor deve produzir dentro de sua autoridade."
+      },
+      {
+        "name": "cross_validation_required",
+        "required": true,
+        "constraint": "Booleano acompanhado dos papeis ou conflitos que precisam ser validados."
+      },
+      {
+        "name": "escalation_conditions",
+        "required": true,
+        "constraint": "Condicoes que impedem conclusao silenciosa pelo receptor."
+      }
+    ],
+    "acceptance_rules": [
+      "to_role MUST existir neste artefato.",
+      "scope_boundary_next_does_not_decide MUST ser compativel com canonical_authority_map.",
+      "Um handoff com state_revision obsoleto MUST ser revalidado antes da integracao.",
+      "requested_output MUST_NOT atribuir ao receptor uma decisao pertencente a outro owner.",
+      "Claims sem evidence_refs MUST permanecer assumptions e MUST_NOT avancar estado."
+    ]
+  },
+  "state_event_authority": {
+    "model": "Eventos append-only emitidos pelos papeis; persistencia, reducer e controle de concorrencia pertencem a P4/P5.",
+    "common_required_event_fields": [
+      "event_id",
+      "event_type",
+      "project_ref",
+      "cycle_id",
+      "actor_role",
+      "occurred_at",
+      "state_revision",
+      "evidence_refs",
+      "payload"
+    ],
+    "guards": [
+      "Um especialista MUST_NOT emitir bottleneck_accepted, route_plan_issued ou cycle_closed.",
+      "Somente Refinar pode converter uma oportunidade de teste em contrato formal de experimento e interpretar seu resultado.",
+      "A transicao de experimento para approved requer authorization_ref; para instrumented requer evidencia de instrumentacao; para running requer evidencia de lancamento; para completed requer evidencia de encerramento e resultado.",
+      "Reinicio de ciclo ou nova invocacao MUST_NOT avancar estado.",
+      "A integracao de saidas paralelas MUST comparar state_revision e detectar conflito."
+    ]
+  },
+  "authority_resolutions": [
+    {
+      "id": "RA-R001",
+      "topic": "timing_frequency_and_cadence",
+      "resolution": "Orientar e owner de eventos, condicoes e janelas semanticas de elegibilidade. Ampliar e owner de timing operacional, espera, frequencia, intensidade de contato e cadencia cross-channel. Uma supressao de Orientar restringe Ampliar; Ampliar nao pode remover a supressao.",
+      "source_findings": [
+        "ARCH-002",
+        "P1-R008"
+      ],
+      "evidence": [
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 147,
+          "line_end": 180,
+          "observation": "O baseline mistura elegibilidade com frequencia, timing e intensidade."
+        },
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 248,
+          "line_end": 266,
+          "observation": "A propria fronteira nega timing e canal ao Orientar e passa coordenacao ao Ampliar."
+        },
+        {
+          "path": "commands/ampliar-agent.md",
+          "line_start": 133,
+          "line_end": 157,
+          "observation": "Ampliar ja especifica espera, fallback e limite global de touchpoints."
+        },
+        {
+          "path": "CLAUDE.md",
+          "line_start": 58,
+          "line_end": 61,
+          "observation": "O gate comum trata timing e canal por Orientar como invasao de escopo."
+        }
+      ]
+    },
+    {
+      "id": "RA-R002",
+      "topic": "lifecycle_eligibility",
+      "resolution": "Orientar e o unico owner de estagios, segmentos, criterios de entrada e saida, inclusao, exclusao, supressao, progressao, regressao e elegibilidade. Verbalizar e Ampliar consomem essas decisoes sem redefini-las.",
+      "source_findings": [
+        "ARCH-002",
+        "ARCH-003",
+        "P1-R008",
+        "P1-R009"
+      ],
+      "evidence": [
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 101,
+          "line_end": 118
+        },
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 122,
+          "line_end": 160
+        },
+        {
+          "path": "commands/ampliar-agent.md",
+          "line_start": 246,
+          "line_end": 251
+        }
+      ]
+    },
+    {
+      "id": "RA-R003",
+      "topic": "message_authority",
+      "resolution": "Verbalizar e o unico owner de proposta de valor, hierarquia de mensagem, linguagem, tom, provas, objecoes e CTA. Adaptar por estagio nao transfere ao Verbalizar autoridade sobre segmento, elegibilidade, canal, cadencia ou teste.",
+      "source_findings": [
+        "ARCH-003",
+        "P1-R009"
+      ],
+      "evidence": [
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 6,
+          "line_end": 10
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 101,
+          "line_end": 149
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 246,
+          "line_end": 252
+        }
+      ]
+    },
+    {
+      "id": "RA-R004",
+      "topic": "experiment_authority",
+      "resolution": "Refinar e o unico owner do contrato formal de experimento: hipotese testavel, variavel, controle, metrica, amostra, duracao, criterio de decisao, validacao de evidencia, interpretacao e aprendizado. Os demais papeis emitem test_opportunity_proposed, sem criar ou avancar experimento. A aprovacao e o lancamento dependem de atores e evidencias externos, nao da autoridade analitica de Refinar.",
+      "source_findings": [
+        "ARCH-003",
+        "ARCH-006",
+        "ARCH-011",
+        "P1-R009",
+        "P1-R013"
+      ],
+      "evidence": [
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 23,
+          "line_end": 30,
+          "observation": "Especialista de dominio apenas sinaliza oportunidade; desenho pertence ao Refinar."
+        },
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 186,
+          "line_end": 215
+        },
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 219,
+          "line_end": 253
+        }
+      ]
+    },
+    {
+      "id": "RA-R005",
+      "topic": "bottleneck_authority",
+      "resolution": "Loop Planning e o unico owner do gargalo global aceito e de sua mudanca. Verbalizar, Orientar, Ampliar e Refinar podem emitir bottleneck_observation_emitted com evidencia e confidence; somente Loop Planning compara pilares, aceita ou rejeita a proposta e registra o novo gargalo.",
+      "source_findings": [
+        "ARCH-004",
+        "ARCH-008",
+        "P1-R006",
+        "P1-R015"
+      ],
+      "evidence": [
+        {
+          "path": "commands/loop-planning-agent.md",
+          "line_start": 6,
+          "line_end": 10
+        },
+        {
+          "path": "commands/loop-planning-agent.md",
+          "line_start": 75,
+          "line_end": 111
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 23,
+          "line_end": 27,
+          "observation": "Overwrite por especialista no baseline e substituido por observacao local."
+        },
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 25,
+          "line_end": 30,
+          "observation": "Overwrite por especialista no baseline e substituido por observacao local."
+        }
+      ]
+    },
+    {
+      "id": "RA-R006",
+      "topic": "handoff_boundary",
+      "resolution": "Todo handoff, inclusive Loop Planning para especialista, MUST carregar scope_boundary_next_does_not_decide como campo de schema e nao apenas como instrucao narrativa.",
+      "source_findings": [
+        "ARCH-003",
+        "P1-R009"
+      ],
+      "evidence": [
+        {
+          "path": "LEIAME.md",
+          "line_start": 210,
+          "line_end": 216
+        },
+        {
+          "path": "commands/loop-planning-agent.md",
+          "line_start": 185,
+          "line_end": 192
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 204,
+          "line_end": 230
+        },
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 302,
+          "line_end": 321
+        }
+      ]
+    },
+    {
+      "id": "RA-R007",
+      "topic": "parallelism_and_state_integration",
+      "resolution": "Especialistas produzem saidas imutaveis e propostas de evento. Nenhum especialista atualiza estado global diretamente. Paralelismo exige state_revision comum e integracao exclusiva por Loop Planning; divergencia de revisao ou decisao sobreposta bloqueia merge automatico.",
+      "source_findings": [
+        "ARCH-004",
+        "ARCH-005",
+        "ARCH-006",
+        "P1-R006"
+      ],
+      "evidence": [
+        {
+          "path": "commands/loop-planning-agent.md",
+          "line_start": 143,
+          "line_end": 161
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 23,
+          "line_end": 27
+        },
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 23,
+          "line_end": 29
+        }
+      ]
+    },
+    {
+      "id": "RA-R008",
+      "topic": "library_preservation_and_role_binding",
+      "resolution": "Cada especialista consulta somente o indice de sua vertical e seleciona um prompt por padrao; um segundo recurso requer justificativa registrada. Prompts permanecem inalterados e nao ganham autoridade decisoria. Maturidade, aliases e dependencias sao metadados externos.",
+      "source_findings": [
+        "ARCH-009",
+        "ARCH-010",
+        "ARCH-015",
+        "LIB-F003",
+        "LIB-F005",
+        "LIB-F006",
+        "P1-R012",
+        "P1-R017",
+        "P1-R019"
+      ],
+      "evidence": [
+        {
+          "path": "SKILL.md",
+          "line_start": 10,
+          "line_end": 29
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 31,
+          "line_end": 41
+        },
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 33,
+          "line_end": 44
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "canonical_role_id": "loop_planning",
+      "display_name": "Loop Planning",
+      "role_type": "orchestrator_and_integrator",
+      "aliases": [
+        "loop-planning-agent",
+        "/loop-planning-agent",
+        "Loop Planning Agent"
+      ],
+      "purpose": "Diagnosticar o sistema como um todo, separar fatos de hipoteses e sintomas, classificar maturidade, comparar pilares, aceitar o gargalo global, definir a sequencia de papeis e fechar o ciclo por validacao cruzada.",
+      "owns": [
+        "maturity_classification",
+        "cross_pillar_scoring",
+        "global_bottleneck_acceptance",
+        "role_sequence_and_dependencies",
+        "specialist_mode_selection",
+        "parallel_output_integration",
+        "cross_validation_gate",
+        "cycle_close_recommendation"
+      ],
+      "does_not_own": [
+        "message_or_copy",
+        "segment_or_eligibility_definition",
+        "channel_or_contact_cadence",
+        "experiment_design_or_result_interpretation",
+        "external_execution_authorization"
+      ],
+      "required_inputs": [
+        {
+          "field": "project_ref_and_state_revision",
+          "requirement": "MUST"
+        },
+        {
+          "field": "user_goal_or_observed_problem",
+          "requirement": "MUST"
+        },
+        {
+          "field": "facts_interpretations_and_symptoms_with_evidence_or_assumption_tags",
+          "requirement": "MUST"
+        },
+        {
+          "field": "prior_decisions_active_experiments_and_learnings",
+          "requirement": "MUST"
+        },
+        {
+          "field": "maturity_signals_and_data_availability",
+          "requirement": "MUST"
+        },
+        {
+          "field": "constraints_authorizations_and_known_external_prerequisites",
+          "requirement": "MUST"
+        }
+      ],
+      "outputs": [
+        "diagnostic_summary",
+        "maturity_classification_with_basis",
+        "pillar_scores_with_evidence",
+        "accepted_global_bottleneck_with_confidence",
+        "ordered_or_partially_parallel_role_plan",
+        "one_handoff_per_next_role",
+        "data_gaps_and_out_of_loop_prerequisites",
+        "cross_validation_result_and_cycle_close_recommendation"
+      ],
+      "allowed_state_events": [
+        "maturity_classified",
+        "pillar_scores_recorded",
+        "bottleneck_accepted",
+        "bottleneck_rejected",
+        "route_plan_issued",
+        "handoff_issued",
+        "cross_validation_requested",
+        "cross_validation_completed",
+        "scope_violation_reported",
+        "cycle_close_recommended"
+      ],
+      "mandatory_handoff_fields": [
+        "handoff_id",
+        "contract_version",
+        "project_ref",
+        "cycle_id",
+        "state_revision",
+        "from_role",
+        "to_role",
+        "created_at",
+        "objective",
+        "mode",
+        "maturity",
+        "bottleneck_ref",
+        "input_refs",
+        "decisions_to_respect",
+        "scope_boundary_next_does_not_decide",
+        "evidence_refs",
+        "assumptions",
+        "known_gaps",
+        "requested_output",
+        "cross_validation_required",
+        "escalation_conditions"
+      ],
+      "role_specific_handoff_payload": [
+        "pillar_scores",
+        "root_cause_hypothesis",
+        "sequence_position",
+        "dependency_refs"
+      ],
+      "escalation_triggers": [
+        {
+          "when": "Nao ha dados suficientes para comparar pilares.",
+          "to": "refinar",
+          "action": "Solicitar data_gap_plan ou diagnostico minimo; MUST_NOT inventar gargalo."
+        },
+        {
+          "when": "Um especialista propoe mudanca do gargalo global.",
+          "to": "loop_planning",
+          "action": "Reabrir comparacao cross-pillar antes de aceitar."
+        },
+        {
+          "when": "Ha conflito de state_revision, decisao sobreposta ou invasao de escopo.",
+          "to": "lead_or_user_if_unresolvable",
+          "action": "Bloquear integracao automatica e apresentar conflito."
+        }
+      ],
+      "cross_validation_triggers": [
+        "Sempre que dois ou mais papeis produzirem outputs no mesmo ciclo.",
+        "Sempre que uma saida de um pilar restringir ou contradizer outro pilar.",
+        "Sempre que uma recomendacao exceder a maturidade vigente.",
+        "Sempre antes de recomendar fechamento do ciclo, mesmo com um unico especialista."
+      ],
+      "resolution_refs": [
+        "RA-R005",
+        "RA-R006",
+        "RA-R007"
+      ],
+      "source_findings": [
+        "ARCH-003",
+        "ARCH-004",
+        "ARCH-008",
+        "ARCH-010"
+      ],
+      "evidence": [
+        {
+          "path": "commands/loop-planning-agent.md",
+          "line_start": 6,
+          "line_end": 10
+        },
+        {
+          "path": "commands/loop-planning-agent.md",
+          "line_start": 34,
+          "line_end": 111
+        },
+        {
+          "path": "commands/loop-planning-agent.md",
+          "line_start": 143,
+          "line_end": 217
+        },
+        {
+          "path": "commands/loop-planning-agent.md",
+          "line_start": 221,
+          "line_end": 269
+        }
+      ]
+    },
+    {
+      "canonical_role_id": "verbalizar",
+      "display_name": "Verbalizar",
+      "role_type": "message_specialist",
+      "aliases": [
+        "verbalizar-agent",
+        "/verbalizar-agent",
+        "verbalizar",
+        "/verbalizar"
+      ],
+      "purpose": "Decidir o que comunicar e como expressar valor para um segmento e estagio ja delimitados, usando linguagem do cliente, diferenciação, provas e CTA sem redefinir audiencia, distribuicao ou medicao.",
+      "owns": [
+        "value_proposition",
+        "message_hierarchy",
+        "customer_language_and_voice",
+        "pain_desire_objection_framing",
+        "tone_and_proof",
+        "message_adaptation_by_lifecycle_stage",
+        "message_cta"
+      ],
+      "does_not_own": [
+        "segment_definition",
+        "lifecycle_eligibility",
+        "operational_timing_frequency_or_cadence",
+        "channel_selection",
+        "experiment_contract_or_success_metric",
+        "performance_classification",
+        "global_bottleneck"
+      ],
+      "required_inputs": [
+        {
+          "field": "project_ref_state_revision_and_invocation_mode",
+          "requirement": "MUST"
+        },
+        {
+          "field": "maturity_and_bottleneck_ref",
+          "requirement": "MUST; unknown maturity escalates to loop_planning"
+        },
+        {
+          "field": "objective_product_and_current_value_proposition",
+          "requirement": "MUST"
+        },
+        {
+          "field": "target_segment_and_lifecycle_stage",
+          "requirement": "MUST; supplied by Orientar or explicitly marked assumption"
+        },
+        {
+          "field": "customer_language_evidence",
+          "requirement": "SHOULD; absence forces partial mode"
+        },
+        {
+          "field": "competitor_and_existing_message_context",
+          "requirement": "SHOULD"
+        },
+        {
+          "field": "prior_message_experiments_and_performance_evidence",
+          "requirement": "SHOULD"
+        }
+      ],
+      "outputs": [
+        "customer_language_glossary",
+        "prioritized_pains_desires_and_objections",
+        "value_proposition_and_message_hierarchy",
+        "proof_and_differentiation_checks",
+        "message_variant_and_cta_by_stage",
+        "message_decisions_with_confidence_and_evidence",
+        "test_opportunities_not_formal_experiments",
+        "domain_handoff"
+      ],
+      "allowed_state_events": [
+        "message_decision_proposed",
+        "message_contract_published",
+        "test_opportunity_proposed",
+        "bottleneck_observation_emitted",
+        "data_gap_reported",
+        "handoff_issued"
+      ],
+      "mandatory_handoff_fields": [
+        "handoff_id",
+        "contract_version",
+        "project_ref",
+        "cycle_id",
+        "state_revision",
+        "from_role",
+        "to_role",
+        "created_at",
+        "objective",
+        "mode",
+        "maturity",
+        "bottleneck_ref",
+        "input_refs",
+        "decisions_to_respect",
+        "scope_boundary_next_does_not_decide",
+        "evidence_refs",
+        "assumptions",
+        "known_gaps",
+        "requested_output",
+        "cross_validation_required",
+        "escalation_conditions"
+      ],
+      "role_specific_handoff_payload": [
+        "message_hierarchy_ref",
+        "customer_language_ref",
+        "stage_message_map_ref",
+        "cta_map_ref",
+        "proof_gaps"
+      ],
+      "escalation_triggers": [
+        {
+          "when": "Segmento, estagio ou elegibilidade nao estao definidos.",
+          "to": "orientar",
+          "action": "Solicitar decisao de audiencia; MAY operar como hipotese, mas MUST_NOT confirmar segmento."
+        },
+        {
+          "when": "A pergunta exige canal, horario, frequencia ou sequencia de touchpoints.",
+          "to": "ampliar",
+          "action": "Entregar mensagem e restricoes; nao decidir distribuicao."
+        },
+        {
+          "when": "A pergunta exige desenho, metrica ou leitura de experimento.",
+          "to": "refinar",
+          "action": "Emitir test_opportunity_proposed."
+        },
+        {
+          "when": "O achado sugere outro gargalo global.",
+          "to": "loop_planning",
+          "action": "Emitir bottleneck_observation_emitted com evidencia e confidence."
+        }
+      ],
+      "cross_validation_triggers": [
+        "Mensagem ou tom parecem incompatíveis com segmento, estagio ou elegibilidade definidos por Orientar.",
+        "CTA exige canal ou capacidade nao confirmada por Ampliar.",
+        "Evidencia de Refinar contradiz a hierarquia, prova ou CTA propostos.",
+        "Mais de metade da linguagem e inferida ou faltam provas materiais."
+      ],
+      "resolution_refs": [
+        "RA-R003",
+        "RA-R004",
+        "RA-R005",
+        "RA-R006",
+        "RA-R008"
+      ],
+      "source_findings": [
+        "ARCH-003",
+        "ARCH-008",
+        "ARCH-009",
+        "ARCH-015"
+      ],
+      "evidence": [
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 6,
+          "line_end": 10
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 45,
+          "line_end": 56
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 101,
+          "line_end": 149
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 166,
+          "line_end": 230
+        },
+        {
+          "path": "commands/verbalizar-agent.md",
+          "line_start": 246,
+          "line_end": 252
+        }
+      ]
+    },
+    {
+      "canonical_role_id": "orientar",
+      "display_name": "Orientar",
+      "role_type": "lifecycle_and_eligibility_specialist",
+      "aliases": [
+        "orientar-agent",
+        "/orientar-agent",
+        "orientar",
+        "/orientar"
+      ],
+      "purpose": "Decidir para quem uma experiencia e elegivel e em qual contexto de lifecycle, definindo estagios, segmentos, regras observaveis, supressoes, personalizacao e progressao sem decidir mensagem, canal ou cadencia operacional.",
+      "owns": [
+        "lifecycle_stage_model",
+        "segment_definition",
+        "inclusion_and_exclusion_rules",
+        "suppression_and_eligibility_priority",
+        "lifecycle_entry_and_exit_events",
+        "semantic_eligibility_windows",
+        "personalization_context_and_variables",
+        "progression_stagnation_and_regression_rules"
+      ],
+      "does_not_own": [
+        "message_voice_tone_or_cta",
+        "channel_selection",
+        "send_time_wait_retry_frequency_contact_pressure_or_cross_channel_cadence",
+        "experiment_contract_or_success_metric",
+        "performance_diagnosis",
+        "global_bottleneck"
+      ],
+      "required_inputs": [
+        {
+          "field": "project_ref_state_revision_and_invocation_mode",
+          "requirement": "MUST"
+        },
+        {
+          "field": "maturity_and_bottleneck_ref",
+          "requirement": "MUST; unknown maturity escalates to loop_planning"
+        },
+        {
+          "field": "business_goal_and_model",
+          "requirement": "MUST"
+        },
+        {
+          "field": "current_lifecycle_base_and_segment_state",
+          "requirement": "MUST"
+        },
+        {
+          "field": "observable_crm_events_and_data_capability",
+          "requirement": "MUST"
+        },
+        {
+          "field": "technical_capabilities_and_constraints",
+          "requirement": "MUST"
+        },
+        {
+          "field": "message_context_from_verbalizar",
+          "requirement": "SHOULD when personalizing a defined message"
+        }
+      ],
+      "outputs": [
+        "lifecycle_map_with_measurable_entry_and_exit",
+        "behavioral_segment_definitions",
+        "eligibility_inclusion_exclusion_suppression_and_priority",
+        "lifecycle_event_and_semantic_window_rules",
+        "personalization_context_and_feasibility",
+        "progression_stagnation_and_regression_map",
+        "data_and_capability_gaps",
+        "test_opportunities_not_formal_experiments",
+        "domain_handoff"
+      ],
+      "allowed_state_events": [
+        "lifecycle_model_proposed",
+        "segment_definition_proposed",
+        "eligibility_rule_proposed",
+        "lifecycle_event_rule_proposed",
+        "personalization_rule_proposed",
+        "test_opportunity_proposed",
+        "bottleneck_observation_emitted",
+        "data_gap_reported",
+        "handoff_issued"
+      ],
+      "mandatory_handoff_fields": [
+        "handoff_id",
+        "contract_version",
+        "project_ref",
+        "cycle_id",
+        "state_revision",
+        "from_role",
+        "to_role",
+        "created_at",
+        "objective",
+        "mode",
+        "maturity",
+        "bottleneck_ref",
+        "input_refs",
+        "decisions_to_respect",
+        "scope_boundary_next_does_not_decide",
+        "evidence_refs",
+        "assumptions",
+        "known_gaps",
+        "requested_output",
+        "cross_validation_required",
+        "escalation_conditions"
+      ],
+      "role_specific_handoff_payload": [
+        "lifecycle_map_ref",
+        "segment_definitions_ref",
+        "eligibility_rules_ref",
+        "suppression_rules_ref",
+        "lifecycle_event_rules_ref",
+        "technical_gaps"
+      ],
+      "escalation_triggers": [
+        {
+          "when": "E necessario definir mensagem, tom, prova ou CTA.",
+          "to": "verbalizar",
+          "action": "Entregar segmento, estagio e contexto; nao escrever mensagem final."
+        },
+        {
+          "when": "E necessario definir horario, espera, frequencia, intensidade operacional ou cadencia entre canais.",
+          "to": "ampliar",
+          "action": "Entregar elegibilidade, supressao e prioridades como restricoes."
+        },
+        {
+          "when": "E necessario desenhar teste ou diagnosticar performance.",
+          "to": "refinar",
+          "action": "Emitir test_opportunity_proposed com hipotese e dado disponivel."
+        },
+        {
+          "when": "O achado sugere outro gargalo global.",
+          "to": "loop_planning",
+          "action": "Emitir observacao local; nao sobrescrever gargalo."
+        }
+      ],
+      "cross_validation_triggers": [
+        "Segmento ou elegibilidade conflitam com mensagem ou CTA definidos por Verbalizar.",
+        "Cadencia de Ampliar viola exclusao, supressao ou janela semantica de elegibilidade.",
+        "Dados de Refinar contradizem a utilidade ou mensurabilidade do segmento.",
+        "Segmentacao, personalizacao ou numero de estagios excedem maturidade ou capacidade tecnica."
+      ],
+      "resolution_refs": [
+        "RA-R001",
+        "RA-R002",
+        "RA-R004",
+        "RA-R005",
+        "RA-R006",
+        "RA-R008"
+      ],
+      "source_findings": [
+        "ARCH-002",
+        "ARCH-003",
+        "ARCH-008",
+        "ARCH-010"
+      ],
+      "evidence": [
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 6,
+          "line_end": 10
+        },
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 65,
+          "line_end": 118
+        },
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 122,
+          "line_end": 210
+        },
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 214,
+          "line_end": 274
+        },
+        {
+          "path": "commands/orientar-agent.md",
+          "line_start": 294,
+          "line_end": 300
+        }
+      ]
+    },
+    {
+      "canonical_role_id": "ampliar",
+      "display_name": "Ampliar",
+      "role_type": "channel_and_cadence_specialist",
+      "aliases": [
+        "ampliar-agent",
+        "/ampliar-agent",
+        "ampliar",
+        "/ampliar"
+      ],
+      "purpose": "Decidir por quais canais e touchpoints entregar experiencias ja delimitadas, incluindo timing operacional, frequencia, pressao de contato, fallback e cadencia cross-channel sem redefinir mensagem, audiencia ou criterio experimental.",
+      "owns": [
+        "channel_role_and_selection",
+        "touchpoint_inventory_and_coordination",
+        "operational_send_timing",
+        "wait_retry_and_fallback",
+        "per_channel_frequency",
+        "global_contact_pressure_cap",
+        "cross_channel_cadence_and_non_conflict",
+        "channel_allocation_and_amplification_plan",
+        "cross_channel_attribution_requirements"
+      ],
+      "does_not_own": [
+        "message_voice_tone_or_cta",
+        "segment_definition",
+        "lifecycle_stage_or_eligibility",
+        "experiment_contract_success_metric_or_result",
+        "global_bottleneck",
+        "external_campaign_execution_authorization"
+      ],
+      "required_inputs": [
+        {
+          "field": "project_ref_state_revision_and_invocation_mode",
+          "requirement": "MUST"
+        },
+        {
+          "field": "maturity_and_bottleneck_ref",
+          "requirement": "MUST; unknown maturity escalates to loop_planning"
+        },
+        {
+          "field": "segment_stage_eligibility_suppression_and_priority_from_orientar",
+          "requirement": "MUST"
+        },
+        {
+          "field": "message_and_cta_contract_from_verbalizar",
+          "requirement": "MUST before distribution decision"
+        },
+        {
+          "field": "active_channels_touchpoints_costs_capabilities_and_consent_constraints",
+          "requirement": "MUST"
+        },
+        {
+          "field": "channel_performance_and_attribution_evidence",
+          "requirement": "SHOULD; absence forces unknown classification"
+        },
+        {
+          "field": "validated_effectiveness_for_any_amplification_candidate",
+          "requirement": "MUST before amplification"
+        }
+      ],
+      "outputs": [
+        "touchpoint_inventory_and_overlap_map",
+        "channel_classification_with_evidence",
+        "primary_secondary_and_avoid_channel_plan_by_segment_stage",
+        "operational_timing_wait_retry_and_fallback_rules",
+        "per_channel_and_global_frequency_caps",
+        "cross_channel_cadence_and_non_conflict_rules",
+        "channel_allocation_and_amplification_plan",
+        "attribution_measurement_requirements",
+        "test_opportunities_not_formal_experiments",
+        "domain_handoff"
+      ],
+      "allowed_state_events": [
+        "channel_plan_proposed",
+        "touchpoint_rule_proposed",
+        "operational_timing_rule_proposed",
+        "frequency_cap_proposed",
+        "cadence_plan_proposed",
+        "amplification_plan_proposed",
+        "test_opportunity_proposed",
+        "bottleneck_observation_emitted",
+        "data_gap_reported",
+        "handoff_issued"
+      ],
+      "mandatory_handoff_fields": [
+        "handoff_id",
+        "contract_version",
+        "project_ref",
+        "cycle_id",
+        "state_revision",
+        "from_role",
+        "to_role",
+        "created_at",
+        "objective",
+        "mode",
+        "maturity",
+        "bottleneck_ref",
+        "input_refs",
+        "decisions_to_respect",
+        "scope_boundary_next_does_not_decide",
+        "evidence_refs",
+        "assumptions",
+        "known_gaps",
+        "requested_output",
+        "cross_validation_required",
+        "escalation_conditions"
+      ],
+      "role_specific_handoff_payload": [
+        "touchpoint_map_ref",
+        "channel_plan_ref",
+        "operational_timing_rules_ref",
+        "frequency_caps_ref",
+        "cadence_rules_ref",
+        "attribution_gaps"
+      ],
+      "escalation_triggers": [
+        {
+          "when": "Segmento, estagio, elegibilidade ou supressao nao estao definidos.",
+          "to": "orientar",
+          "action": "Bloquear cadencia final ate receber restricoes de audiencia."
+        },
+        {
+          "when": "Mensagem ou CTA nao estao definidos ou canais exigem adaptacao semantica.",
+          "to": "verbalizar",
+          "action": "Solicitar contrato de mensagem; Ampliar decide apenas adaptacao de formato operacional."
+        },
+        {
+          "when": "Canal deve ser classificado, testado, escalado ou parado sem evidencia suficiente.",
+          "to": "refinar",
+          "action": "Solicitar diagnostico ou experimento; nao amplificar item nao validado."
+        },
+        {
+          "when": "O plano implica mutacao externa ou novo canal.",
+          "to": "authorized_operator",
+          "action": "Produzir plano, nao executar; exigir autorizacao P6."
+        },
+        {
+          "when": "O achado sugere outro gargalo global.",
+          "to": "loop_planning",
+          "action": "Emitir observacao local."
+        }
+      ],
+      "cross_validation_triggers": [
+        "Cadencia viola elegibilidade, supressao ou prioridade de Orientar.",
+        "Canal ou formato contradiz mensagem, tom ou CTA de Verbalizar.",
+        "Refinar classifica como parar algo que Ampliar pretende escalar.",
+        "Limite por canal nao cabe no limite global de pressao de contato.",
+        "Novo canal e adicionado sem realocacao de recurso ou capacidade operacional."
+      ],
+      "resolution_refs": [
+        "RA-R001",
+        "RA-R002",
+        "RA-R004",
+        "RA-R005",
+        "RA-R006",
+        "RA-R008"
+      ],
+      "source_findings": [
+        "ARCH-002",
+        "ARCH-003",
+        "ARCH-008",
+        "ARCH-015"
+      ],
+      "evidence": [
+        {
+          "path": "commands/ampliar-agent.md",
+          "line_start": 6,
+          "line_end": 10
+        },
+        {
+          "path": "commands/ampliar-agent.md",
+          "line_start": 59,
+          "line_end": 105
+        },
+        {
+          "path": "commands/ampliar-agent.md",
+          "line_start": 109,
+          "line_end": 157
+        },
+        {
+          "path": "commands/ampliar-agent.md",
+          "line_start": 161,
+          "line_end": 194
+        },
+        {
+          "path": "commands/ampliar-agent.md",
+          "line_start": 246,
+          "line_end": 251
+        }
+      ]
+    },
+    {
+      "canonical_role_id": "refinar",
+      "display_name": "Refinar",
+      "role_type": "performance_experiment_and_learning_specialist",
+      "aliases": [
+        "refinar-agent",
+        "/refinar-agent",
+        "refinar",
+        "/refinar"
+      ],
+      "purpose": "Diagnosticar desempenho com evidencia, formalizar experimentos, definir metricas e criterios antes da execucao, interpretar resultados e devolver aprendizado cross-pillar sem redesenhar os dominios dos outros especialistas.",
+      "owns": [
+        "performance_diagnosis",
+        "benchmark_selection_and_documentation",
+        "testable_hypothesis",
+        "formal_experiment_contract",
+        "experiment_variable_control_sample_duration_and_success_metric",
+        "experiment_evidence_validation",
+        "performance_action_classification",
+        "result_interpretation",
+        "learning_record",
+        "cross_pillar_implications"
+      ],
+      "does_not_own": [
+        "message_creation",
+        "segment_lifecycle_or_eligibility_definition",
+        "channel_or_contact_cadence",
+        "global_bottleneck",
+        "business_approval_or_external_launch_authorization"
+      ],
+      "required_inputs": [
+        {
+          "field": "project_ref_state_revision_and_invocation_mode",
+          "requirement": "MUST"
+        },
+        {
+          "field": "maturity_and_bottleneck_ref",
+          "requirement": "MUST; unknown maturity escalates to loop_planning"
+        },
+        {
+          "field": "diagnostic_or_experiment_objective",
+          "requirement": "MUST"
+        },
+        {
+          "field": "observed_metrics_period_and_data_provenance",
+          "requirement": "MUST; insufficient data forces minimum_viable mode"
+        },
+        {
+          "field": "benchmark_or_explicit_absence_of_benchmark",
+          "requirement": "MUST"
+        },
+        {
+          "field": "relevant_message_segment_lifecycle_channel_and_cadence_contracts",
+          "requirement": "MUST for causal interpretation"
+        },
+        {
+          "field": "prior_experiments_and_learnings",
+          "requirement": "MUST"
+        },
+        {
+          "field": "instrumentation_and_sample_capability",
+          "requirement": "MUST before recommending launch"
+        },
+        {
+          "field": "authorization_and_launch_evidence",
+          "requirement": "MUST for state transitions beyond proposed"
+        }
+      ],
+      "outputs": [
+        "unbiased_data_readout_and_gaps",
+        "performance_diagnosis_by_lifecycle_stage",
+        "ranked_root_cause_hypotheses_with_counterevidence",
+        "performance_action_classification_with_explicit_rule",
+        "formal_experiment_contract",
+        "experiment_transition_evidence_assessment",
+        "result_interpretation_and_learning",
+        "implications_for_verbalizar_orientar_and_ampliar",
+        "domain_handoff"
+      ],
+      "allowed_state_events": [
+        "performance_diagnosis_recorded",
+        "experiment_created_as_proposed",
+        "experiment_transition_evidence_validated",
+        "experiment_transition_rejected",
+        "experiment_result_interpreted",
+        "learning_recorded",
+        "cross_pillar_implication_issued",
+        "bottleneck_observation_emitted",
+        "data_gap_reported",
+        "handoff_issued"
+      ],
+      "mandatory_handoff_fields": [
+        "handoff_id",
+        "contract_version",
+        "project_ref",
+        "cycle_id",
+        "state_revision",
+        "from_role",
+        "to_role",
+        "created_at",
+        "objective",
+        "mode",
+        "maturity",
+        "bottleneck_ref",
+        "input_refs",
+        "decisions_to_respect",
+        "scope_boundary_next_does_not_decide",
+        "evidence_refs",
+        "assumptions",
+        "known_gaps",
+        "requested_output",
+        "cross_validation_required",
+        "escalation_conditions"
+      ],
+      "role_specific_handoff_payload": [
+        "diagnostic_ref",
+        "experiment_ref",
+        "classification_ref",
+        "learning_ref",
+        "cross_pillar_implications",
+        "evidence_gaps"
+      ],
+      "escalation_triggers": [
+        {
+          "when": "Os dados nao permitem diagnostico ou causalidade.",
+          "to": "loop_planning_or_data_owner",
+          "action": "Entregar data_gap_plan; MUST_NOT fabricar diagnostico."
+        },
+        {
+          "when": "A implicacao exige mudar mensagem.",
+          "to": "verbalizar",
+          "action": "Entregar evidencia e restricao; nao escrever mensagem final."
+        },
+        {
+          "when": "A implicacao exige mudar segmento, elegibilidade ou lifecycle.",
+          "to": "orientar",
+          "action": "Entregar evidencia e locus; nao redefinir audiencia."
+        },
+        {
+          "when": "A implicacao exige mudar canal ou cadencia.",
+          "to": "ampliar",
+          "action": "Entregar evidencia de canal; nao reconfigurar touchpoints."
+        },
+        {
+          "when": "A transicao exige aprovacao, instrumentacao ou lancamento externo.",
+          "to": "authorized_operator",
+          "action": "Exigir authorization_ref ou evidence_ref; sem isso o estado nao avanca."
+        },
+        {
+          "when": "O achado sugere outro gargalo global.",
+          "to": "loop_planning",
+          "action": "Emitir observacao local com confidence."
+        }
+      ],
+      "cross_validation_triggers": [
+        "Resultado de mensagem exige decisao de Verbalizar.",
+        "Resultado por segmento ou estagio exige decisao de Orientar.",
+        "Resultado por canal ou conflito de touchpoint exige decisao de Ampliar.",
+        "Hipoteses concorrentes apontam para owners diferentes.",
+        "Benchmark, tendencia, custo e significancia sustentam classificacoes conflitantes.",
+        "Qualquer evidencia sugere mudanca do gargalo global."
+      ],
+      "resolution_refs": [
+        "RA-R004",
+        "RA-R005",
+        "RA-R006",
+        "RA-R007",
+        "RA-R008"
+      ],
+      "source_findings": [
+        "ARCH-003",
+        "ARCH-006",
+        "ARCH-008",
+        "ARCH-011",
+        "ARCH-015"
+      ],
+      "evidence": [
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 6,
+          "line_end": 12
+        },
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 64,
+          "line_end": 139
+        },
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 143,
+          "line_end": 215
+        },
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 219,
+          "line_end": 253
+        },
+        {
+          "path": "commands/refinar-agent.md",
+          "line_start": 302,
+          "line_end": 343
+        }
+      ]
+    }
+  ],
+  "library_preservation": {
+    "rule": "Os 100 prompts canonicos permanecem byte-for-byte no repositorio-fonte. Este contrato define somente papeis, aliases e metadados externos de selecao.",
+    "binding": {
+      "verbalizar": "biblioteca/Verbalizar/INDEX.md",
+      "orientar": "biblioteca/Orientar/INDEX.md",
+      "ampliar": "biblioteca/Ampliar/INDEX.md",
+      "refinar": "biblioteca/Refinar/INDEX.md"
+    },
+    "selection_policy": "Um prompt por padrao. Um segundo prompt MAY ser usado somente com justificativa de dependencia ou lacuna nao coberta, registrada fora do prompt canonico.",
+    "forbidden": [
+      "Editar prompt para caber no contrato do papel.",
+      "Fundir dois prompts e remover os originais.",
+      "Tratar prompt tatico como comando ou owner de decisao.",
+      "Usar alias para esconder remocao, substituicao ou drift do original."
+    ],
+    "source_findings": [
+      "ARCH-009",
+      "ARCH-010",
+      "ARCH-015",
+      "LIB-F003",
+      "LIB-F005",
+      "LIB-F006"
+    ],
+    "evidence": [
+      {
+        "path": "SKILL.md",
+        "line_start": 10,
+        "line_end": 29
+      }
+    ]
+  },
+  "internal_consistency_checks": [
+    {
+      "id": "RA-C001",
+      "check": "Todos os itens de canonical_authority_map possuem exatamente um owner presente em roles.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C002",
+      "check": "Nenhum papel inclui em owns um item listado em does_not_own do mesmo papel.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C003",
+      "check": "Timing semantico de lifecycle e timing operacional de touchpoint estao separados; frequencia e cadencia pertencem somente a Ampliar.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C004",
+      "check": "Somente Verbalizar possui autoridade de mensagem; somente Orientar possui segmentos e elegibilidade; somente Refinar possui contrato formal de experimento; somente Loop Planning aceita gargalo global.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C005",
+      "check": "Todos os cinco papeis exigem o mesmo conjunto de 21 campos obrigatorios de handoff e adicionam payload especifico sem remover fronteira de escopo.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C006",
+      "check": "Nenhum especialista possui evento de aceitar gargalo, emitir plano de rota ou fechar ciclo.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C007",
+      "check": "Nenhum papel fora de Refinar pode criar contrato formal ou interpretar resultado de experimento; especialistas de dominio emitem apenas oportunidade de teste.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C008",
+      "check": "Paralelismo nao permite escrita compartilhada: saidas sao imutaveis, vinculadas a state_revision e integradas por Loop Planning.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C009",
+      "check": "Cada resolucao nao trivial referencia findings P1 e evidencia de arquivo e linha do baseline.",
+      "result": "pass"
+    },
+    {
+      "id": "RA-C010",
+      "check": "A politica de biblioteca preserva os 100 prompts e permite somente metadados e aliases externos.",
+      "result": "pass"
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "id": "RA-Q001",
+      "question": "Qual identidade canonica representa o aprovador e o operador externo nas transicoes de experimento e mutacoes de campanha?",
+      "impact": "Nao altera ownership analitico: Refinar continua owner do contrato e da interpretacao; approved e running permanecem bloqueados sem authority_ref e evidence_ref.",
+      "target_phase_or_workstream": "P4 state contracts e P6 authorization policy"
+    },
+    {
+      "id": "RA-Q002",
+      "question": "Quais intervalos completos, inclusividade e precedencia canonicos fecham ESCALAR, OTIMIZAR, PARAR e TESTAR?",
+      "impact": "Nao altera ownership: a decisao permanece de Refinar, mas a regra numerica deve ser resolvida pelo routing contract antes de implementacao.",
+      "target_phase_or_workstream": "P2 routing-contract"
+    },
+    {
+      "id": "RA-Q003",
+      "question": "Qual schema executavel e reducer aplicara os eventos append-only e resolvera concorrencia por state_revision?",
+      "impact": "A autoridade esta definida, mas persistencia e aplicacao de estado nao devem ser inferidas deste artefato.",
+      "target_phase_or_workstream": "P4 contracts-and-state"
+    }
+  ]
+}

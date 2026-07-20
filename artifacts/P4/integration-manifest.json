@@ -1,0 +1,145 @@
+{
+  "artifact_id": "loop-marketing-p4-integration-manifest",
+  "schema_version": "1.0",
+  "product_version": "2.0.0",
+  "status": "sealed",
+  "source_contracts": [
+    {
+      "path": "artifacts/P2/role-matrix.json",
+      "sha256": "ea027c0e09196c61df645fed41b9268deece6059d646601efb1be3785ced17fd"
+    },
+    {
+      "path": "artifacts/P2/routing-contract.json",
+      "sha256": "cbc3de9af7e526e32ec172dbf2a8f7c016e484c20e8d3a443c7128121e794bf8"
+    },
+    {
+      "path": "artifacts/P2/compatibility-policy.md",
+      "sha256": "7b09538ef50328179328575f3c0b1c94f1e7dea4ce2e0b7123146d040f2820c0"
+    },
+    {
+      "path": "artifacts/P3/catalog-schema.json",
+      "sha256": "25b1319df0f3e54599d5e81fb72fe1b509512fb8905dfe1198ec0055f9c34f25"
+    },
+    {
+      "path": "artifacts/P3/tactic-catalog.json",
+      "sha256": "efd3fba517f57417576dcd89fd1810e44524015a9c510dd48c07551d9fdf9019"
+    },
+    {
+      "path": "artifacts/P3/preservation-report.json",
+      "sha256": "5ddf8e4a8388c9323ff9deef9317cb7c897222f6088cd024f45e81d52968faa1"
+    }
+  ],
+  "workstreams": [
+    {
+      "path": "artifacts/P4/workstreams/state-events.json",
+      "sha256": "e7fa21f078a8ca4e9694faae6e5c425e7cfd3b8613fdfcc7e882079d1db30bd0"
+    },
+    {
+      "path": "artifacts/P4/workstreams/handoff.json",
+      "sha256": "b753b3dced88cd8ab1e5ee5443cd57f98f7bf3f9317b585cd8404534da238856"
+    },
+    {
+      "path": "artifacts/P4/workstreams/migration.json",
+      "sha256": "a2e3ac397befecd219f960965e199bdcce7cd4bbf4ebb73cd8ab49cbd350f0c3"
+    }
+  ],
+  "official_artifacts": [
+    {
+      "path": "artifacts/P4/state-schema.json",
+      "sha256": "6560e4a433a5bffc73267837f288c41b8960f9e33a4b47aaf3c00da5f95f59f0"
+    },
+    {
+      "path": "artifacts/P4/event-schema.json",
+      "sha256": "6360b679f309ad25010d5d15b319e8e0101898b5a94102e3dc89d63b4c508646"
+    },
+    {
+      "path": "artifacts/P4/handoff-schema.json",
+      "sha256": "e8474ca8d0251b5b132563f72b36f893b311c3277e9dba838d1cdecf648e8f09"
+    },
+    {
+      "path": "artifacts/P4/state-event-contract.md",
+      "sha256": "0f8b01f507b94fcb22c47e792da94d850617cb423adb887e84c75c5b73855ef9"
+    },
+    {
+      "path": "artifacts/P4/migration-contract.md",
+      "sha256": "43f4add80432421de4e2dccd2b2a6ade90df88cf2b0fba60f0d380bef0375cbe"
+    },
+    {
+      "path": "artifacts/P4/compatibility-fixtures.json",
+      "sha256": "59ea6bdbdf9e431c094b0ac7fadde88669bd3a89dc5be4b324e923f9a0c54475"
+    }
+  ],
+  "scripts": [
+    {
+      "path": "scripts/p4_integrate.py",
+      "sha256": "755cbb6a6de0aefb033292721fce89615b1d49eadf451eaf031e1a76616b7437"
+    },
+    {
+      "path": "scripts/p4_validate.py",
+      "sha256": "0a0e99b23efb974be1969c06167a39e5d220c347b1e9a39a98c1c9dff3ec4cb1"
+    },
+    {
+      "path": "scripts/p4_regression.py",
+      "sha256": "e45f7a411b64b7cf28668a05c1d9baff0317de1437c58ed191cb3e94a5510df2"
+    },
+    {
+      "path": "scripts/p4_seal.py",
+      "sha256": "9773721c36cdac0eecf9b3b38ffcc58e013c6cb97fb17af4d3515fdefd847d01"
+    }
+  ],
+  "contract_counts": {
+    "handoff_top_level_fields": 22,
+    "roles": 5,
+    "commands": 6,
+    "experiment_states": 7,
+    "experiment_transition_rules": 7,
+    "canonical_prompts": 100,
+    "state_cases": 4,
+    "event_cases": 9,
+    "event_sequence_cases": 5,
+    "transaction_cases": 5,
+    "transaction_sequence_cases": 7,
+    "handoff_cases": 16,
+    "migration_cases": 18,
+    "alias_cases": 12
+  },
+  "invariants": [
+    "canonical namespace is .loop-marketing/ and host-neutral",
+    "event ledger is append-only and authoritative; snapshots are derived",
+    "new events advance exactly one revision after optimistic compare-and-swap",
+    "replays are idempotent only when canonical content is identical",
+    "handoff has exactly the 22 P2 fields and no top-level extension",
+    "experiment transitions preserve RTE-EXP-001 through RTE-EXP-007",
+    "migration is copy-and-verify with dry-run, confirmation, backup and rollback",
+    "all 100 canonical prompts remain referenced by path/hash and unmodified"
+  ],
+  "baseline": {
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  },
+  "sealed_at": "2026-07-18T00:36:59.631124Z",
+  "gate_reports": [
+    {
+      "path": "artifacts/P4/validation-report.json",
+      "sha256": "260d0a36cab79249840fcf928568ccd863db45f84b56f853c0f4659419546e12"
+    },
+    {
+      "path": "artifacts/P4/regression-report.json",
+      "sha256": "77f957e5dd1c82fda653adaf91c37c52604f7d094c1adcb96345fd037417511d"
+    },
+    {
+      "path": "artifacts/P4/final-independent-audit.json",
+      "sha256": "ddf93ebd548462f4fe3865a3a022a2e68676d8faadd6f67344cff6b5c72fd9a4"
+    }
+  ],
+  "gate_summary": {
+    "validator": "PASS",
+    "fixture_count": 76,
+    "negative_regression": "PASS",
+    "negative_regression_scenarios": 20,
+    "independent_audit": "PASS",
+    "independent_exit_criteria": 5,
+    "source_preserved": true
+  }
+}

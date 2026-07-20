@@ -1,0 +1,842 @@
+{
+  "artifact_id": "loop-marketing-p4-final-independent-audit",
+  "schema_version": "1.0",
+  "phase": "P4",
+  "audit_kind": "final_independent_gate_after_sealing",
+  "audited_at_utc": "2026-07-18T00:38:09Z",
+  "audited_bundle_root": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+  "canonical_source_root": "/Users/enorm/Documents/Claude/loop-marketing",
+  "verdict": "PASS",
+  "verdict_basis": "The final sealed snapshot satisfies all five P4 exit criteria. Independent comparisons reproduce the exact 33 P2 event types and role authority map, the exact closed 22-field P2 handoff, all 12 concrete P2 experiment edges and their evidence requirements, the P3 catalog's 100 source paths and hashes, and the canonical aggregate prompt hash. State/CAS/atomic recovery, transaction and event idempotency, migration confirmation/backup/rollback/history/aliases, and no-external-mutation boundaries are explicit and exercised by positive and negative gates. Five blockers found on superseded intermediate seals were corrected, regression-protected, re-sealed, and independently retested before this verdict.",
+  "snapshot": {
+    "manifest_path": "artifacts/P4/integration-manifest.json",
+    "manifest_sha256": "6ffd186bd9eef3c29a46572659ad474f5e1aa0680373d05638aec5c329a17f42",
+    "manifest_status": "sealed",
+    "sealed_at": "2026-07-18T00:36:59.631124Z",
+    "all_manifest_declared_hashes_match": true,
+    "official_fixture_count": 76,
+    "negative_regression_scenarios": 20
+  },
+  "scope": {
+    "normative_exit_criteria_source": {
+      "path": "PROJECT.json",
+      "sha256": "2d05064ee66124e387c822913d5b98c2484707cf092d24eb1428fbfe01c7606b",
+      "phase": "P4"
+    },
+    "comparison_sources": [
+      "artifacts/P2/role-matrix.json",
+      "artifacts/P2/routing-contract.json",
+      "artifacts/P2/compatibility-policy.md",
+      "artifacts/P3/catalog-schema.json",
+      "artifacts/P3/tactic-catalog.json",
+      "artifacts/P3/preservation-report.json",
+      "/Users/enorm/Documents/Claude/loop-marketing"
+    ],
+    "write_boundary": "Only artifacts/P4/final-independent-audit.json was written by this audit. The canonical source and all other control artifacts were read-only."
+  },
+  "command_results": [
+    {
+      "command": "python3 scripts/p4_validate.py",
+      "cwd": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "error_count": 0,
+        "errors": [],
+        "counts": {
+          "canonical_event_types": 33,
+          "handoff_fields": 22,
+          "canonical_prompts": 100,
+          "fixtures": 76
+        }
+      }
+    },
+    {
+      "command": "python3 scripts/p4_regression.py",
+      "cwd": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "baseline": "PASS",
+        "scenario_count": 20,
+        "passed": 20,
+        "failed": 0,
+        "scenario_names": [
+          "state_namespace_drift",
+          "state_schema_open",
+          "state_revision_rule_reverts_to_event",
+          "handoff_required_field_removed",
+          "handoff_schema_open",
+          "handoff_property_extra",
+          "invented_event_authority",
+          "event_authority_owner_swap",
+          "experiment_transition_removed",
+          "negative_coverage_removed",
+          "transaction_replay_coverage_removed",
+          "claimed_hash_cannot_hide_tampered_replay",
+          "claimed_event_hash_cannot_bypass_replay",
+          "alias_semantics_drift",
+          "accepted_transaction_tampered",
+          "migration_confirmation_not_bound",
+          "migration_rollback_contract_removed",
+          "canonical_catalog_incomplete",
+          "handoff_domain_owner_drift",
+          "manifest_detects_unsealed_change"
+        ]
+      }
+    },
+    {
+      "command": "python3 scripts/p4_seal.py verify",
+      "cwd": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "errors": [],
+        "gate_report_count": 2
+      }
+    },
+    {
+      "command": "independent directed tampered-replay probe against P4Validator.transaction_sequence_code",
+      "cwd": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+      "exit_code": 0,
+      "status": "PASS",
+      "mutation": "Change replayed event payload while retaining transaction_id, transaction idempotency_key, event identifiers, and the stale claimed record_hash.",
+      "actual": [
+        "reject",
+        "LM-EVENT-IDEMPOTENCY-CONFLICT"
+      ],
+      "expected": [
+        "reject",
+        "LM-EVENT-IDEMPOTENCY-CONFLICT"
+      ]
+    },
+    {
+      "command": "independent directed tampered-replay probe against P4Validator.sequence_code",
+      "cwd": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+      "exit_code": 0,
+      "status": "PASS",
+      "mutation": "Change replayed event payload while retaining event_id, event idempotency_key, transaction_id, and the stale claimed event_hash.",
+      "actual": [
+        "reject",
+        "LM-EVENT-IDEMPOTENCY-CONFLICT"
+      ],
+      "expected": [
+        "reject",
+        "LM-EVENT-IDEMPOTENCY-CONFLICT"
+      ]
+    }
+  ],
+  "evidence_inventory": [
+    {
+      "section": "P2_source_contract",
+      "path": "artifacts/P2/role-matrix.json",
+      "sha256": "ea027c0e09196c61df645fed41b9268deece6059d646601efb1be3785ced17fd"
+    },
+    {
+      "section": "P2_source_contract",
+      "path": "artifacts/P2/routing-contract.json",
+      "sha256": "cbc3de9af7e526e32ec172dbf2a8f7c016e484c20e8d3a443c7128121e794bf8"
+    },
+    {
+      "section": "P2_source_contract",
+      "path": "artifacts/P2/compatibility-policy.md",
+      "sha256": "7b09538ef50328179328575f3c0b1c94f1e7dea4ce2e0b7123146d040f2820c0"
+    },
+    {
+      "section": "P3_source_contract",
+      "path": "artifacts/P3/catalog-schema.json",
+      "sha256": "25b1319df0f3e54599d5e81fb72fe1b509512fb8905dfe1198ec0055f9c34f25"
+    },
+    {
+      "section": "P3_source_contract",
+      "path": "artifacts/P3/tactic-catalog.json",
+      "sha256": "efd3fba517f57417576dcd89fd1810e44524015a9c510dd48c07551d9fdf9019"
+    },
+    {
+      "section": "P3_source_contract",
+      "path": "artifacts/P3/preservation-report.json",
+      "sha256": "5ddf8e4a8388c9323ff9deef9317cb7c897222f6088cd024f45e81d52968faa1"
+    },
+    {
+      "section": "P4_workstream",
+      "path": "artifacts/P4/workstreams/state-events.json",
+      "sha256": "e7fa21f078a8ca4e9694faae6e5c425e7cfd3b8613fdfcc7e882079d1db30bd0"
+    },
+    {
+      "section": "P4_workstream",
+      "path": "artifacts/P4/workstreams/handoff.json",
+      "sha256": "b753b3dced88cd8ab1e5ee5443cd57f98f7bf3f9317b585cd8404534da238856"
+    },
+    {
+      "section": "P4_workstream",
+      "path": "artifacts/P4/workstreams/migration.json",
+      "sha256": "a2e3ac397befecd219f960965e199bdcce7cd4bbf4ebb73cd8ab49cbd350f0c3"
+    },
+    {
+      "section": "P4_official",
+      "path": "artifacts/P4/state-schema.json",
+      "sha256": "6560e4a433a5bffc73267837f288c41b8960f9e33a4b47aaf3c00da5f95f59f0"
+    },
+    {
+      "section": "P4_official",
+      "path": "artifacts/P4/event-schema.json",
+      "sha256": "6360b679f309ad25010d5d15b319e8e0101898b5a94102e3dc89d63b4c508646"
+    },
+    {
+      "section": "P4_official",
+      "path": "artifacts/P4/handoff-schema.json",
+      "sha256": "e8474ca8d0251b5b132563f72b36f893b311c3277e9dba838d1cdecf648e8f09"
+    },
+    {
+      "section": "P4_official",
+      "path": "artifacts/P4/state-event-contract.md",
+      "sha256": "0f8b01f507b94fcb22c47e792da94d850617cb423adb887e84c75c5b73855ef9"
+    },
+    {
+      "section": "P4_official",
+      "path": "artifacts/P4/migration-contract.md",
+      "sha256": "43f4add80432421de4e2dccd2b2a6ade90df88cf2b0fba60f0d380bef0375cbe"
+    },
+    {
+      "section": "P4_official",
+      "path": "artifacts/P4/compatibility-fixtures.json",
+      "sha256": "59ea6bdbdf9e431c094b0ac7fadde88669bd3a89dc5be4b324e923f9a0c54475"
+    },
+    {
+      "section": "P4_script",
+      "path": "scripts/p4_integrate.py",
+      "sha256": "755cbb6a6de0aefb033292721fce89615b1d49eadf451eaf031e1a76616b7437"
+    },
+    {
+      "section": "P4_script",
+      "path": "scripts/p4_validate.py",
+      "sha256": "0a0e99b23efb974be1969c06167a39e5d220c347b1e9a39a98c1c9dff3ec4cb1"
+    },
+    {
+      "section": "P4_script",
+      "path": "scripts/p4_regression.py",
+      "sha256": "e45f7a411b64b7cf28668a05c1d9baff0317de1437c58ed191cb3e94a5510df2"
+    },
+    {
+      "section": "P4_script",
+      "path": "scripts/p4_seal.py",
+      "sha256": "9773721c36cdac0eecf9b3b38ffcc58e013c6cb97fb17af4d3515fdefd847d01"
+    },
+    {
+      "section": "P4_gate_report",
+      "path": "artifacts/P4/validation-report.json",
+      "sha256": "260d0a36cab79249840fcf928568ccd863db45f84b56f853c0f4659419546e12"
+    },
+    {
+      "section": "P4_gate_report",
+      "path": "artifacts/P4/regression-report.json",
+      "sha256": "77f957e5dd1c82fda653adaf91c37c52604f7d094c1adcb96345fd037417511d"
+    },
+    {
+      "section": "P4_manifest",
+      "path": "artifacts/P4/integration-manifest.json",
+      "sha256": "6ffd186bd9eef3c29a46572659ad474f5e1aa0680373d05638aec5c329a17f42"
+    }
+  ],
+  "source_integrity": {
+    "status": "PASS",
+    "git_head": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "expected_git_head": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "git_head_matches": true,
+    "git_status_short": "",
+    "worktree_clean": true,
+    "catalog_entries": 100,
+    "unique_tactic_ids": 100,
+    "unique_canonical_paths": 100,
+    "per_prompt_hash_mismatches": [],
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "expected_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "aggregate_matches": true
+  },
+  "independent_checks": {
+    "state_cas_atomic_recovery": {
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P4/state-schema.json",
+        "artifacts/P4/state-event-contract.md",
+        "artifacts/P4/compatibility-fixtures.json",
+        "scripts/p4_validate.py"
+      ],
+      "assertions": {
+        "canonical_namespace": ".loop-marketing/",
+        "ledger_source_of_truth": ".loop-marketing/state/projects/<project_id>/events.jsonl",
+        "snapshot_is_derived_and_rebuildable": true,
+        "schema_closed": true,
+        "optimistic_compare_and_swap_on_state_revision": true,
+        "lock_is_per_project_and_cas_is_rechecked_after_lock": true,
+        "stale_revision_rejects_without_write": true,
+        "revision_rule": "Each committed non-duplicate transaction advances exactly one revision; its one or more events share the same expected and resulting revisions.",
+        "same_filesystem_temporary_files": true,
+        "files_and_directories_fsynced": true,
+        "ledger_atomic_rename_is_commit_point": true,
+        "precommit_failure_leaves_state_unchanged": true,
+        "ledger_ahead_rebuilds_snapshot": true,
+        "snapshot_ahead_rejects_as_ERR_STATE_FABRICATION": true,
+        "partial_or_conflicting_tail_is_quarantined_and_blocks_automatic_write": true
+      },
+      "fixture_evidence": {
+        "state_cases": 4,
+        "transaction_cases": 5,
+        "transaction_sequence_cases": 7
+      }
+    },
+    "transaction_event_append_only_idempotency_and_authority": {
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P2/role-matrix.json",
+        "artifacts/P4/event-schema.json",
+        "artifacts/P4/state-event-contract.md",
+        "artifacts/P4/compatibility-fixtures.json",
+        "scripts/p4_validate.py",
+        "scripts/p4_regression.py"
+      ],
+      "p2_unique_event_type_count": 33,
+      "p4_event_enum_count": 33,
+      "event_types_exact": true,
+      "role_authority_map_exact": true,
+      "transaction_schema_closed": true,
+      "event_schema_closed": true,
+      "event_types": [
+        "amplification_plan_proposed",
+        "bottleneck_accepted",
+        "bottleneck_observation_emitted",
+        "bottleneck_rejected",
+        "cadence_plan_proposed",
+        "channel_plan_proposed",
+        "cross_pillar_implication_issued",
+        "cross_validation_completed",
+        "cross_validation_requested",
+        "cycle_close_recommended",
+        "data_gap_reported",
+        "eligibility_rule_proposed",
+        "experiment_created_as_proposed",
+        "experiment_result_interpreted",
+        "experiment_transition_evidence_validated",
+        "experiment_transition_rejected",
+        "frequency_cap_proposed",
+        "handoff_issued",
+        "learning_recorded",
+        "lifecycle_event_rule_proposed",
+        "lifecycle_model_proposed",
+        "maturity_classified",
+        "message_contract_published",
+        "message_decision_proposed",
+        "operational_timing_rule_proposed",
+        "performance_diagnosis_recorded",
+        "personalization_rule_proposed",
+        "pillar_scores_recorded",
+        "route_plan_issued",
+        "scope_violation_reported",
+        "segment_definition_proposed",
+        "test_opportunity_proposed",
+        "touchpoint_rule_proposed"
+      ],
+      "append_only_and_traceability": {
+        "ledger_prefix_preserved_byte_for_byte": true,
+        "transaction_and_event_hash_chains": true,
+        "canonicalization": "RFC 8785 JSON with the hash field excluded from its own hash",
+        "evidence_refs_required": true,
+        "facts_require_source_ref_and_observed_at": true,
+        "hypotheses_require_rationale": true
+      },
+      "idempotency": {
+        "exact_transaction_replay_is_noop": true,
+        "exact_event_replay_is_noop": true,
+        "identifier_or_idempotency_collision_with_different_canonical_content_rejects": "LM-EVENT-IDEMPOTENCY-CONFLICT",
+        "partial_batch_retry_rejects": "LM-EVENT-IDEMPOTENCY-CONFLICT",
+        "broken_record_or_event_chain_rejects": "LM-EVENT-CHAIN-BROKEN",
+        "claimed_stale_record_hash_cannot_hide_tampered_replay": true,
+        "claimed_stale_event_hash_cannot_hide_tampered_replay": true,
+        "directed_transaction_probe_actual": [
+          "reject",
+          "LM-EVENT-IDEMPOTENCY-CONFLICT"
+        ],
+        "directed_event_probe_actual": [
+          "reject",
+          "LM-EVENT-IDEMPOTENCY-CONFLICT"
+        ]
+      },
+      "event_sequence_fixture_ids": [
+        "SEQ-POS-CHAIN",
+        "SEQ-POS-IDEMPOTENT-REPLAY",
+        "SEQ-NEG-TAMPERED-CLAIMED-EVENT-HASH",
+        "SEQ-NEG-IDEMPOTENCY-COLLISION",
+        "SEQ-NEG-BROKEN-CHAIN"
+      ],
+      "transaction_sequence_fixture_ids": [
+        "TXSEQ-POS-CHAIN",
+        "TXSEQ-POS-IDEMPOTENT-REPLAY",
+        "TXSEQ-NEG-TRANSACTION-ID-COLLISION",
+        "TXSEQ-NEG-TAMPERED-CLAIMED-REPLAY",
+        "TXSEQ-NEG-IDEMPOTENCY-KEY-COLLISION",
+        "TXSEQ-NEG-PARTIAL-BATCH-RETRY",
+        "TXSEQ-NEG-BROKEN-RECORD-CHAIN"
+      ]
+    },
+    "experiment_edges_and_evidence": {
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P2/routing-contract.json",
+        "artifacts/P4/event-schema.json",
+        "scripts/p4_validate.py"
+      ],
+      "p2_concrete_edge_count": 12,
+      "p4_concrete_edge_count": 12,
+      "edge_set_exact": true,
+      "evidence_descriptions_exact_by_rule": true,
+      "rules": [
+        {
+          "rule_id": "RTE-EXP-001",
+          "edges": [
+            {
+              "from": null,
+              "to": "proposed"
+            }
+          ],
+          "required_evidence": [
+            "hypothesis with specific change and measurable expected result",
+            "one isolated variable or explicit multivariate design",
+            "control definition",
+            "numeric success metric and target set before launch",
+            "minimum sample rule",
+            "minimum duration and early-stop rule",
+            "post-test decision thresholds",
+            "owner and creation timestamp"
+          ]
+        },
+        {
+          "rule_id": "RTE-EXP-002",
+          "edges": [
+            {
+              "from": "proposed",
+              "to": "approved"
+            }
+          ],
+          "required_evidence": [
+            "approval event ID",
+            "approver identity",
+            "approved scope",
+            "approval timestamp"
+          ]
+        },
+        {
+          "rule_id": "RTE-EXP-003",
+          "edges": [
+            {
+              "from": "approved",
+              "to": "instrumented"
+            }
+          ],
+          "required_evidence": [
+            "instrumentation record ID",
+            "event or metric schema",
+            "assignment mechanism",
+            "QA result",
+            "sample plan"
+          ]
+        },
+        {
+          "rule_id": "RTE-EXP-004",
+          "edges": [
+            {
+              "from": "instrumented",
+              "to": "running"
+            }
+          ],
+          "required_evidence": [
+            "launch event ID",
+            "confirmed start timestamp",
+            "live treatment and control identifiers",
+            "audience allocation"
+          ]
+        },
+        {
+          "rule_id": "RTE-EXP-005",
+          "edges": [
+            {
+              "from": "running",
+              "to": "completed"
+            }
+          ],
+          "required_evidence": [
+            "completion event ID",
+            "observation window or predeclared early-stop trigger",
+            "result dataset reference",
+            "actual sample",
+            "metric result",
+            "quality checks"
+          ]
+        },
+        {
+          "rule_id": "RTE-EXP-006",
+          "edges": [
+            {
+              "from": "proposed",
+              "to": "cancelled"
+            },
+            {
+              "from": "approved",
+              "to": "cancelled"
+            },
+            {
+              "from": "instrumented",
+              "to": "cancelled"
+            },
+            {
+              "from": "running",
+              "to": "cancelled"
+            }
+          ],
+          "required_evidence": [
+            "cancellation event ID",
+            "actor",
+            "reason",
+            "timestamp",
+            "impact on already collected data"
+          ]
+        },
+        {
+          "rule_id": "RTE-EXP-007",
+          "edges": [
+            {
+              "from": "instrumented",
+              "to": "invalidated"
+            },
+            {
+              "from": "running",
+              "to": "invalidated"
+            },
+            {
+              "from": "completed",
+              "to": "invalidated"
+            }
+          ],
+          "required_evidence": [
+            "invalidation event ID",
+            "integrity defect",
+            "affected data",
+            "actor",
+            "timestamp",
+            "remediation or replacement experiment reference"
+          ]
+        }
+      ]
+    },
+    "handoff_exact_closed_owner_scope_revision": {
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P2/role-matrix.json",
+        "artifacts/P4/handoff-schema.json",
+        "artifacts/P4/compatibility-fixtures.json",
+        "scripts/p4_validate.py"
+      ],
+      "p2_field_count": 22,
+      "p4_required_count": 22,
+      "p4_property_count": 22,
+      "required_and_property_order_exact": true,
+      "additional_properties": false,
+      "min_properties": 22,
+      "max_properties": 22,
+      "fields": [
+        "handoff_id",
+        "contract_version",
+        "project_ref",
+        "cycle_id",
+        "state_revision",
+        "from_role",
+        "to_role",
+        "created_at",
+        "objective",
+        "mode",
+        "maturity",
+        "bottleneck_ref",
+        "input_refs",
+        "tactic_refs",
+        "decisions_to_respect",
+        "scope_boundary_next_does_not_decide",
+        "evidence_refs",
+        "assumptions",
+        "known_gaps",
+        "requested_output",
+        "cross_validation_required",
+        "escalation_conditions"
+      ],
+      "semantic_enforcement": {
+        "stale_revision_rejects": "ERR_HANDOFF_STALE_REVISION",
+        "scope_boundary_is_exact_complement_of_target_owned_domains": true,
+        "foreign_owner_decision_domain_rejects": "ERR_HANDOFF_OWNER_SCOPE",
+        "foreign_owner_state_event_rejects": "ERR_HANDOFF_OWNER_SCOPE",
+        "external_execution_authorization_rejects": "ERR_EXTERNAL_MUTATION_UNAUTHORIZED",
+        "unresolved_bottleneck_is_constrained": true,
+        "required_input_revision_must_match": "ERR_SEQUENCE_DEPENDENCY",
+        "provenance_and_assumption_separation_enforced": true
+      },
+      "fixture_count": 16,
+      "positive_role_coverage": [
+        "loop_planning",
+        "verbalizar",
+        "orientar",
+        "ampliar",
+        "refinar"
+      ]
+    },
+    "migration_compatibility_and_safety": {
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P2/compatibility-policy.md",
+        "artifacts/P4/migration-contract.md",
+        "artifacts/P4/compatibility-fixtures.json",
+        "scripts/p4_validate.py",
+        "scripts/p4_regression.py"
+      ],
+      "dry_run": {
+        "required": true,
+        "writes_canonical_state": false,
+        "report_includes_inventory_hashes_mapping_gaps_conflicts_predicted_hashes_validation_and_rollback_plan": true
+      },
+      "confirmation": {
+        "boolean_confirmation_forbidden": true,
+        "bound_fields": [
+          "migration_id",
+          "report_sha256",
+          "source_inventory_sha256",
+          "destination_precondition_sha256",
+          "migrator_version",
+          "project_id",
+          "operation",
+          "confirmed_at"
+        ],
+        "confirmed_at_requires_valid_timezone_timestamp": true,
+        "missing_code": "LM-COMPAT-CONFIRMATION-REQUIRED",
+        "stale_code": "LM-COMPAT-CONFIRMATION-STALE",
+        "source_drift_code": "LM-COMPAT-SOURCE-DRIFT"
+      },
+      "backup": {
+        "required_before_promotion": true,
+        "contains_origin_inventory_dry_run_migrator_manifest_predicted_hashes_prior_destination_and_validation_results": true
+      },
+      "rollback": {
+        "verifies_manifest_and_current_hashes": true,
+        "blocks_when_post_import_events_or_destination_drift_exist": "LM-ROLLBACK-DESTINATION-DRIFT",
+        "removes_only_transaction_created_files": true,
+        "never_deletes_origin_or_evidence_package": true
+      },
+      "history_and_provenance": {
+        "legacy_text_without_v2_field_is_preserved_as_referenced_attachment_or_gap": true,
+        "legacy_imported_is_an_audit_record_not_a_domain_event": true,
+        "origin_remains_untouched": true,
+        "existing_valid_v2_is_never_overwritten": true
+      },
+      "aliases": [
+        {
+          "command_id": "loop.planning",
+          "canonical": "/loop-planning",
+          "legacy": "/loop-planning-agent",
+          "role": "loop_planning"
+        },
+        {
+          "command_id": "loop.verbalizar",
+          "canonical": "/verbalizar",
+          "legacy": "/verbalizar-agent",
+          "role": "verbalizar"
+        },
+        {
+          "command_id": "loop.orientar",
+          "canonical": "/orientar",
+          "legacy": "/orientar-agent",
+          "role": "orientar"
+        },
+        {
+          "command_id": "loop.ampliar",
+          "canonical": "/ampliar",
+          "legacy": "/ampliar-agent",
+          "role": "ampliar"
+        },
+        {
+          "command_id": "loop.refinar",
+          "canonical": "/refinar",
+          "legacy": "/refinar-agent",
+          "role": "refinar"
+        },
+        {
+          "command_id": "loop.projeto",
+          "canonical": "/projeto",
+          "legacy": "/projeto-template",
+          "role": "loop_planning"
+        }
+      ],
+      "alias_fixture_count": 12,
+      "migration_fixture_count": 17,
+      "external_mutation": {
+        "authorized": false,
+        "scope": "Local .loop-marketing state only after confirmed promotion.",
+        "forbidden_examples": [
+          "send_message",
+          "mutate_CRM",
+          "publish_campaign",
+          "configure_channel",
+          "git_push",
+          "call_external_integration"
+        ]
+      }
+    },
+    "canonical_prompt_preservation": {
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P3/tactic-catalog.json",
+        "artifacts/P3/preservation-report.json",
+        "artifacts/P4/integration-manifest.json",
+        "/Users/enorm/Documents/Claude/loop-marketing"
+      ],
+      "catalog_count": 100,
+      "unique_paths": 100,
+      "unique_ids": 100,
+      "source_files_present": 100,
+      "per_file_hash_matches": 100,
+      "per_file_hash_mismatches": 0,
+      "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+      "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+      "source_worktree_clean": true
+    }
+  },
+  "fixture_matrix": {
+    "total": 76,
+    "groups": {
+      "state_cases": 4,
+      "event_cases": 9,
+      "event_sequence_cases": 5,
+      "transaction_cases": 5,
+      "transaction_sequence_cases": 7,
+      "handoff_cases": 16,
+      "migration_cases": 18,
+      "alias_cases": 12
+    },
+    "validator_result": "PASS"
+  },
+  "exit_criterion_matrix": [
+    {
+      "criterion_id": "P4-EXIT-01",
+      "criterion": "Estado canonico versionado usa .loop-marketing/, state_revision e escrita atomica com concorrencia otimista.",
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P4/state-schema.json#x-loop-contract",
+        "artifacts/P4/state-event-contract.md#compare-and-swap-e-commit-recuperavel",
+        "artifacts/P4/compatibility-fixtures.json#state_cases",
+        "artifacts/P4/compatibility-fixtures.json#transaction_cases",
+        "artifacts/P4/compatibility-fixtures.json#transaction_sequence_cases"
+      ]
+    },
+    {
+      "criterion_id": "P4-EXIT-02",
+      "criterion": "Eventos sao append-only, idempotentes, rastreaveis e validam evidencias e transicoes de experimento.",
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P4/event-schema.json",
+        "artifacts/P4/state-event-contract.md",
+        "artifacts/P4/compatibility-fixtures.json#event_cases",
+        "artifacts/P4/compatibility-fixtures.json#event_sequence_cases",
+        "artifacts/P4/compatibility-fixtures.json#transaction_sequence_cases",
+        "scripts/p4_regression.py#claimed_hash_cannot_hide_tampered_replay"
+      ]
+    },
+    {
+      "criterion_id": "P4-EXIT-03",
+      "criterion": "Handoffs materializam exatamente os 22 campos P2 e rejeitam owner, escopo ou revisao divergentes.",
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P2/role-matrix.json#handoff_contract",
+        "artifacts/P4/handoff-schema.json",
+        "artifacts/P4/compatibility-fixtures.json#handoff_cases",
+        "scripts/p4_validate.py#handoff_code"
+      ]
+    },
+    {
+      "criterion_id": "P4-EXIT-04",
+      "criterion": "Migracao v1.x possui dry-run, backup, rollback, aliases e preservacao de historico sem mutacao silenciosa.",
+      "status": "PASS",
+      "evidence": [
+        "artifacts/P4/migration-contract.md",
+        "artifacts/P4/compatibility-fixtures.json#migration_cases",
+        "artifacts/P4/compatibility-fixtures.json#alias_cases",
+        "scripts/p4_validate.py#migration_result",
+        "scripts/p4_regression.py#migration_confirmation_not_bound"
+      ]
+    },
+    {
+      "criterion_id": "P4-EXIT-05",
+      "criterion": "Schemas, fixtures e validadores passam gates positivos e negativos sem alterar a fonte canonica.",
+      "status": "PASS",
+      "evidence": [
+        "python3 scripts/p4_validate.py => PASS, 76 fixtures",
+        "python3 scripts/p4_regression.py => PASS, 20/20",
+        "python3 scripts/p4_seal.py verify => PASS",
+        "/Users/enorm/Documents/Claude/loop-marketing@3cbf0cf84a038f2cd570883b70988889f037c28e",
+        "canonical aggregate 0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+      ]
+    }
+  ],
+  "resolved_findings_during_gate": [
+    {
+      "finding_id": "P4-FINAL-AUD-001",
+      "severity_when_found": "blocker",
+      "snapshot": "superseded_intermediate_seal",
+      "finding": "state-schema revision metadata said each event advanced a revision while the transaction contract and batch fixtures advanced one revision per transaction.",
+      "resolution": "The rule now says one committed non-duplicate transaction advances one revision and one or more nested events share the revisions.",
+      "regression": "state_revision_rule_reverts_to_event",
+      "retest": "PASS"
+    },
+    {
+      "finding_id": "P4-FINAL-AUD-002",
+      "severity_when_found": "blocker",
+      "snapshot": "superseded_intermediate_seal",
+      "finding": "Transaction-level exact replay, collision, partial batch retry, and record-chain behavior were promised but not exercised by the validator.",
+      "resolution": "Seven transaction_sequence_cases now cover chain, exact replay/noop, transaction ID collision, claimed-hash tamper, idempotency-key collision, partial retry, and broken record chain.",
+      "regression": "transaction_replay_coverage_removed",
+      "retest": "PASS"
+    },
+    {
+      "finding_id": "P4-FINAL-AUD-003",
+      "severity_when_found": "blocker",
+      "snapshot": "superseded_intermediate_seal",
+      "finding": "The migration evaluator accepted confirmed=true without binding confirmation to the exact dry-run and source/destination inventories.",
+      "resolution": "Promotion now requires a structured confirmation record bound to migration, report, inventory, destination, migrator, project, operation, and timestamp, with required/stale/source-drift negative cases.",
+      "regression": "migration_confirmation_not_bound",
+      "retest": "PASS"
+    },
+    {
+      "finding_id": "P4-FINAL-AUD-004",
+      "severity_when_found": "blocker",
+      "snapshot": "superseded_intermediate_seal",
+      "finding": "Transaction replay used the claimed record_hash as its fingerprint before recomputing canonical content, allowing changed replay content with a stale claimed hash to be accepted as noop.",
+      "resolution": "Replay fingerprinting now recomputes canonical content and the directed tampered replay is rejected as LM-EVENT-IDEMPOTENCY-CONFLICT.",
+      "regression": "claimed_hash_cannot_hide_tampered_replay",
+      "retest": "PASS"
+    },
+    {
+      "finding_id": "P4-FINAL-AUD-005",
+      "severity_when_found": "blocker",
+      "snapshot": "superseded_intermediate_seal",
+      "finding": "Event replay required the same defense as transaction replay: changed canonical content with a stale claimed event_hash needed an explicit rejection fixture and regression.",
+      "resolution": "Event replay now recomputes canonical content before noop, SEQ-NEG-TAMPERED-CLAIMED-EVENT-HASH rejects the attack, and confirmed_at migration records are also timestamp-validated.",
+      "regression": "claimed_event_hash_cannot_bypass_replay",
+      "retest": "PASS"
+    }
+  ],
+  "blockers": [],
+  "nonblockers": [],
+  "phase_boundary": "P4 defines and tests contracts and compatibility behavior. This PASS does not claim that host adapters, a production persistence runtime, a real v1.x migration, or any external mutation was executed or authorized.",
+  "output_validation": {
+    "json_parse": "PASS",
+    "verdict_assertion": "PASS",
+    "exit_criteria_passed": 5,
+    "exit_criteria_total": 5,
+    "blocker_count": 0,
+    "nonblocker_count": 0,
+    "validation_command": "jq plus independent structural and evidence-hash assertions"
+  }
+}

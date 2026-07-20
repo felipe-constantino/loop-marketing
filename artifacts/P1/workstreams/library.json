@@ -1,0 +1,4054 @@
+{
+  "workstream": "P1_library_tactical_audit",
+  "status": "completed_read_only",
+  "canonical_prompt_count": 100,
+  "aggregate_hash_observed": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+  "indexes_reviewed": [
+    {
+      "path": "biblioteca/Ampliar/INDEX.md",
+      "sha256": "f9e46e1e1ec0cb67ea60a7ad6d81fc27899856bae643e49cd8b541b57913b6c2",
+      "source_index_sha256": "f9e46e1e1ec0cb67ea60a7ad6d81fc27899856bae643e49cd8b541b57913b6c2",
+      "hash_matches_source_index": true,
+      "lines_reviewed": "1-39",
+      "prompt_count": 25
+    },
+    {
+      "path": "biblioteca/Orientar/INDEX.md",
+      "sha256": "3627b3fb5eddcdf6e161317797a9d30227bdcb0d9ddad1c157f616cfdb42054f",
+      "source_index_sha256": "3627b3fb5eddcdf6e161317797a9d30227bdcb0d9ddad1c157f616cfdb42054f",
+      "hash_matches_source_index": true,
+      "lines_reviewed": "1-39",
+      "prompt_count": 25
+    },
+    {
+      "path": "biblioteca/Refinar/INDEX.md",
+      "sha256": "3559cdee7daa300e653a55f935aeaafd03383f66a1370484ffa19c51d6c5e98f",
+      "source_index_sha256": "3559cdee7daa300e653a55f935aeaafd03383f66a1370484ffa19c51d6c5e98f",
+      "hash_matches_source_index": true,
+      "lines_reviewed": "1-39",
+      "prompt_count": 25
+    },
+    {
+      "path": "biblioteca/Verbalizar/INDEX.md",
+      "sha256": "e1646cabef8708af1361a4011087638144337d4250b69b99172c21b55ee22e86",
+      "source_index_sha256": "e1646cabef8708af1361a4011087638144337d4250b69b99172c21b55ee22e86",
+      "hash_matches_source_index": true,
+      "lines_reviewed": "1-39",
+      "prompt_count": 25
+    }
+  ],
+  "prompts": [
+    {
+      "path": "biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+      "sha256": "37d2adfc40c4c4baff204b0e563d36222d13e14ab0494a72266e53aebc37156b",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa distribuir/amplificar thought leadership já definido pelo Verbalizar",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa distribuir/amplificar thought leadership já definido pelo Verbalizar",
+        "context_placeholders_sample": [
+          "CONTEÚDO EXISTENTE DE LIDERANÇA DE PENSAMENTO E TÓPICOS",
+          "ATUAL RECONHECIMENTO DO SETOR E AUTORIDADES",
+          "ATUAL DISCURSO E PRESENÇA MEDIÁTICA",
+          "POSICIONAMENTO ATUAL COMO ESPECIALISTA DO SETOR",
+          "NOME DA EMPRESA",
+          "SUAS VERDADEIRAS ÁREAS DE ESPECIALIZAÇÃO E AUTORIDADES"
+        ]
+      },
+      "output_family": "amplification_plan:da_lideranca_do_pensamento",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 3,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-conteudo-de-video.md",
+      "sha256": "5d85a73ec6b626917a0aa124729ad684e744b67fbf972eae051f474c34d61981",
+      "pillar": "Ampliar",
+      "inferred_function": "o canal prioritário é vídeo",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o canal prioritário é vídeo",
+        "context_placeholders_sample": [
+          "BIBLIOTECA DE CONTEÚDO DE VÍDEO ATUAL E DESEMPENHO",
+          "POSTS, GUIAS, WEBINARS QUE PODEM SE TORNAR VÍDEO",
+          "APRESENTAÇÕES DE VENDAS, APRESENTAÇÕES EM CONFERÊNCIA",
+          "DEPOIMENTOS DE CLIENTES, ESTUDOS DE CASO, HISTÓRIAS DE SUCESSO",
+          "MATERIAIS DE TREINAMENTO, CONTEÚDO DE INSTRUÇÕES, TUTORIAIS",
+          "DESEMPENHO ATUAL DO VÍDEO NAS PLATAFORMAS"
+        ]
+      },
+      "output_family": "amplification_plan:de_conteudo_de_video",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 2,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+      "sha256": "69efeb0501a7beaa0307426904e1ab7328306b4b38e4b20422fecc2b00bc55c5",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa transformar clientes em defensores/advocacy (Passo 5 do agente)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa transformar clientes em defensores/advocacy (Passo 5 do agente)",
+        "context_placeholders_sample": [
+          "CLIENTES QUE ATUALMENTE DEFENDEM SUAS MARCAS",
+          "PADRÕES E FONTES DE REFERÊNCIA DO CLIENTE ATUAL",
+          "TAXA ATUAL DE DEPOIMENTOS E ANÁLISES DE CLIENTES",
+          "CLIENTES QUE PROMOVEM SUAS MARCAS NAS MÍDIAS SOCIAIS",
+          "INFLUÊNCIA ATUAL DE MARKETING DO BOCA-A-BOCA",
+          "CLIENTES COM AS MAIORES PONTUAÇÕES DE SATISFAÇÃO"
+        ]
+      },
+      "output_family": "amplification_plan:de_defesa_do_cliente",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 5,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela alavanca: indicação, advocacy ou conteúdo gerado pelo usuário.",
+          "alias_group": "ampliar_customer_earned",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela alavanca: indicação, advocacy ou conteúdo gerado pelo usuário.",
+          "alias_group": "ampliar_customer_earned",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+      "sha256": "85704f462364ef51024cd3786d5188de9457c23356d41b9cc0c238fe3e7addb1",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa extrair valor de participação em conferências/eventos do setor",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa extrair valor de participação em conferências/eventos do setor",
+        "context_placeholders_sample": [
+          "EVENTOS DO SETOR, CONFERÊNCIAS, FEIRAS COMERCIAIS EM QUE VOCÊ PARTICIPA",
+          "COMO VOCÊ ATUALMENTE PARTICIPA - PARTICIPANTE, PALESTRANTE, PATROCINADOR, EXPOSITOR",
+          "RESULTADOS DA PARTICIPAÇÃO NO EVENTO ATUAL",
+          "ORÇAMENTO E RECURSOS ATUALMENTE INVESTIDOS EM EVENTOS",
+          "ATUAIS COMPROMISSOS E OPORTUNIDADES",
+          "PRINCIPAIS EVENTOS NOS QUAIS VOCÊ DEVE PARTICIPAR"
+        ]
+      },
+      "output_family": "amplification_plan:de_eventos_e_conferencias",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 5,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por tipo: webinar/ao vivo, participação em evento de terceiros ou evento próprio.",
+          "alias_group": "ampliar_events",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por tipo: webinar/ao vivo, participação em evento de terceiros ou evento próprio.",
+          "alias_group": "ampliar_events",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+      "sha256": "2c01285a922a744cf7d8655b3ec57c746e7e8ffe9741e9a38fbbdcace4da1ca2",
+      "pillar": "Ampliar",
+      "inferred_function": "o foco é planejar marketing de eventos próprios",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o foco é planejar marketing de eventos próprios",
+        "context_placeholders_sample": [
+          "EVENTOS DO SETOR, CONFERÊNCIAS, FEIRAS COMERCIAIS EM QUE VOCÊ PARTICIPA",
+          "COMO VOCÊ PARTICIPA ATUALMENTE EM EVENTOS",
+          "RESULTADOS DA PARTICIPAÇÃO NO EVENTO ATUAL",
+          "ORÇAMENTO E RECURSOS ATUALMENTE INVESTIDOS EM EVENTOS",
+          "PRINCIPAIS EVENTOS NOS QUAIS VOCÊ DEVE PARTICIPAR",
+          "ACONTECIMENTOS EM QUE SE PODE FALAR OU APRESENTAR"
+        ]
+      },
+      "output_family": "amplification_plan:de_marketing_de_eventos",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 3,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por tipo: webinar/ao vivo, participação em evento de terceiros ou evento próprio.",
+          "alias_group": "ampliar_events",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por tipo: webinar/ao vivo, participação em evento de terceiros ou evento próprio.",
+          "alias_group": "ampliar_events",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-marketing-local-e-regional.md",
+      "sha256": "805223f79110362e422b0b2a1c95bf700e2ccfde06d51d5285fefc54d1151a86",
+      "pillar": "Ampliar",
+      "inferred_function": "a estratégia é presença local/regional",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a estratégia é presença local/regional",
+        "context_placeholders_sample": [
+          "ATUAIS MERCADOS GEOGRÁFICOS E PRESENÇA",
+          "DESEMPENHO EM DIFERENTES MERCADOS LOCAIS",
+          "ATUAL EMPENHAMENTO E ENVOLVIMENTO DA COMUNIDADE",
+          "PARCERIAS E RELAÇÕES LOCAIS EXISTENTES",
+          "RECONHECIMENTO DE MARCAS EM DIFERENTES MERCADOS REGIONAIS",
+          "MERCADOS REGIONAIS ONDE VOCÊ DESEJA EXPANDIR"
+        ]
+      },
+      "output_family": "amplification_plan:de_marketing_local_e_regional",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/construtor-de-rede-influenciadora.md",
+      "sha256": "ad69e335c9d8cbc969ab80012ef081e1f934e91cf42e6e55e0492e2a45b3d325",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa construir rede de influenciadores",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa construir rede de influenciadores",
+        "context_placeholders_sample": [
+          "PARCERIAS E COLABORAÇÕES DE INFLUENCIADORES ATUAIS",
+          "DESEMPENHO DA COMERCIALIZAÇÃO ATUAL DO INFLUENCER",
+          "QUALIDADE DAS RELAÇÕES ATUAIS INFLUENCIADORAS",
+          "REACH ATUAL ATRAVÉS DE REDES DE INFLUENCIADORES",
+          "NOME DA EMPRESA",
+          "DEMOGRAFIA E PSICOGRAFIA DO CLIENTE-ALVO"
+        ]
+      },
+      "output_family": "framework:de_rede_influenciadora",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/estrategista-de-parceria-creator.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: construção de rede contínua versus parceria pontual com creator.",
+          "alias_group": "ampliar_creator_influencer",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/distribuicao-voltada-para-a-comunidade.md",
+      "sha256": "6181ffec54f2c883931fbe0be24e95f81fc7286afadcae9ce3f34c7dd06263ee",
+      "pillar": "Ampliar",
+      "inferred_function": "o público está em comunidades e a entrada é via contribuição autêntica",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o público está em comunidades e a entrada é via contribuição autêntica",
+        "context_placeholders_sample": [
+          "COMUNIDADES, FÓRUNS, PLATAFORMAS ONDE OS CLIENTES FAZEM PERGUNTAS",
+          "ONDE OS CLIENTES DISCUTEM OS DESAFIOS COM OS COLEGAS",
+          "ONDE OS CLIENTES REALIZAM REDES PROFISSIONALMENTE",
+          "ONDE OS CLIENTES VÃO PARA APRENDER E DESENVOLVER HABILIDADES",
+          "ONDE OS CLIENTES BUSCAM SOLUÇÕES PARA PROBLEMAS ESPECÍFICOS",
+          "TÓPICOS QUE SEUS CLIENTES MAIS DISCUTEM NAS COMUNIDADES"
+        ]
+      },
+      "output_family": "distribution_plan:voltada_para_a_comunidade",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+      "sha256": "3a037b4e8c5971aa4c9c9a66c5957f52a6bef366cbfe6305ba2f068e76d52d86",
+      "pillar": "Ampliar",
+      "inferred_function": "o foco é expandir/diversificar mídia paga com teste de eficiência",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o foco é expandir/diversificar mídia paga com teste de eficiência",
+        "context_placeholders_sample": [
+          "ANÚNCIOS GOOGLE, ANÚNCIOS FACEBOOK, ANÚNCIOS LINKEDIN, ETC.",
+          "MÉTRICAS DE DESEMPENHO ATUAIS POR CANAL",
+          "CUSTO POR AQUISIÇÃO POR CANAL",
+          "EVIDÊNCIA DE SATURAÇÃO DO PÚBLICO OU CUSTOS CRESCENTES",
+          "SINAIS DE FADIGA CRIATIVA OU DECLÍNIO DO DESEMPENHO",
+          "ALOCAÇÃO DE ORÇAMENTO DE MÍDIA PAGA ATUAL"
+        ]
+      },
+      "output_family": "tactical_plan:diversificacao_de_midia_paga",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: portfólio amplo de canais versus testes específicos de mídia paga.",
+          "alias_group": "ampliar_channel_diversification",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+      "sha256": "6a4224482aa555ae5d133ce34aa85a078a6d881b0d788d6515dd843d2cc50156",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa adaptar 1 conteúdo central para várias plataformas mantendo a marca",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa adaptar 1 conteúdo central para várias plataformas mantendo a marca",
+        "context_placeholders_sample": [
+          "SEUS PRINCIPAIS TEMAS DE CONTEÚDO E TÓPICOS",
+          "SUAS MENSAGENS PRINCIPAIS DA MARCA E PROPOSTAS DE VALOR",
+          "SEU CONTEÚDO DE LIDERANÇA DE PENSAMENTO E EXPERIÊNCIA",
+          "SEU CONTEÚDO EDUCACIONAL E DE PROCEDIMENTOS",
+          "SUAS HISTÓRIAS DE SUCESSO DE CLIENTES E ESTUDOS DE CASO",
+          "SUAS CARACTERÍSTICAS DE TOM DE VOZ"
+        ]
+      },
+      "output_family": "strategy:de_conteudo_entre_plataformas",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: repurposing, adaptação por plataforma ou rede própria/ganha/paga.",
+          "alias_group": "ampliar_content_distribution",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: repurposing, adaptação por plataforma ou rede própria/ganha/paga.",
+          "alias_group": "ampliar_content_distribution",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategia-de-podcast-e-audio.md",
+      "sha256": "b9bb93903dd9e596177287971b37fd9a5b3755e4628701460736fee3a916ce88",
+      "pillar": "Ampliar",
+      "inferred_function": "o canal prioritário é podcast/áudio",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o canal prioritário é podcast/áudio",
+        "context_placeholders_sample": [
+          "QUAISQUER APARIÇÕES DE CONVIDADOS EM PODCAST EXISTENTES",
+          "QUALQUER CONTEÚDO OU GRAVAÇÃO DE ÁUDIO EXISTENTE",
+          "PODCAST CONSUMO PELOS MEMBROS DA EQUIPE",
+          "DESEMPENHO DE QUALQUER CONTEÚDO DE ÁUDIO EXISTENTE",
+          "COMPETÊNCIAS DE APRESENTAÇÃO E DE EXPRESSÃO DOS MEMBROS DA EQUIPE",
+          "EXPERIÊNCIA COM A CRIAÇÃO DE CONTEÚDO DE ÁUDIO"
+        ]
+      },
+      "output_family": "strategy:de_podcast_e_audio",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 4,
+          "literal_or_terminology": 2,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategia-viral-em-todas-as-plataformas.md",
+      "sha256": "20059f12410067e5216a28f93097e20f836046f4eca54bf5720ebf3c7e9049fe",
+      "pillar": "Ampliar",
+      "inferred_function": "a meta é amplificação viral com integridade de marca",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a meta é amplificação viral com integridade de marca",
+        "context_placeholders_sample": [
+          "CONTEÚDO QUE ATINGIU ELEVADO ENGAJAMENTO",
+          "CARACTERÍSTICAS DE SEU CONTEÚDO MAIS COMPARTILHADO",
+          "COMO O CONTEÚDO TEM DESEMPENHO DIFERENTE ENTRE AS PLATAFORMAS",
+          "COMO SEU PÚBLICO COMPARTILHA E AMPLIFICA O CONTEÚDO",
+          "NOME DA EMPRESA",
+          "VALORES DA MARCA QUE DEVEM SER MANTIDOS NO CONTEÚDO VIRAL"
+        ]
+      },
+      "output_family": "strategy:viral_em_todas_as_plataformas",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+      "sha256": "782beb73b63a2326c4487afc6fde0083c1270e7392878155eb3f9785909275bd",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa identificar novos canais de alto potencial onde o público está",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa identificar novos canais de alto potencial onde o público está",
+        "context_placeholders_sample": [
+          "LISTE SEUS PRINCIPAIS CANAIS DE MARKETING ATUAIS",
+          "MÉTRICAS DE DESEMPENHO ATUAIS POR CANAL",
+          "COMO O ORÇAMENTO/TEMPO DE MARKETING ESTÁ ATUALMENTE ALOCADO",
+          "QUAIS CANAIS FUNCIONAM MELHOR PARA SUA EMPRESA",
+          "ONDE OS CANAIS ATUAIS ESTÃO CAINDO ABAIXO",
+          "CANAIS EM QUE O DESEMPENHO ESTÁ DIMINUINDO"
+        ]
+      },
+      "output_family": "strategy:de_diversificacao_do_canal",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: portfólio amplo de canais versus testes específicos de mídia paga.",
+          "alias_group": "ampliar_channel_diversification",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategista-de-parceria-creator.md",
+      "sha256": "67d23843936b286fc7126e6f744eab97e659a40b23f433335379174cb6ffa1e7",
+      "pillar": "Ampliar",
+      "inferred_function": "a aposta é parceria com criadores de conteúdo",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a aposta é parceria com criadores de conteúdo",
+        "context_placeholders_sample": [
+          "SUA DEMOGRAFIA E PSICOGRAFIA IDEAIS DOS CLIENTES",
+          "SETORES, FUNÇÕES E CONTEXTO PROFISSIONAL",
+          "COMO SEUS CLIENTES CONSOMEM CONTEÚDO E INFORMAÇÕES",
+          "ONDE SEUS CLIENTES PROCURAM ACONSELHAMENTO CONFIÁVEL",
+          "COMO AS RECOMENDAÇÕES PONTO A PONTO INFLUENCIAM SEUS CLIENTES",
+          "ALINHAMENTO DEMOGRÁFICO NECESSÁRIO COM OS CRIADORES"
+        ]
+      },
+      "output_family": "strategy:de_parceria_creator",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/construtor-de-rede-influenciadora.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: construção de rede contínua versus parceria pontual com creator.",
+          "alias_group": "ampliar_creator_influencer",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+      "sha256": "984b72ca165b607e4282be47fbaf29093d90a242ee351e2b34ab0b074476352a",
+      "pillar": "Ampliar",
+      "inferred_function": "o canal é webinar/evento ao vivo",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o canal é webinar/evento ao vivo",
+        "context_placeholders_sample": [
+          "FREQUÊNCIA E DESEMPENHO ATUAIS DAS WEBINARES",
+          "PARTICIPAÇÃO ATUAL EM EVENTOS AO VIVO E RESULTADOS",
+          "EXPERIÊNCIA COM EVENTOS E PLATAFORMAS VIRTUAIS",
+          "ABORDAGEM ATUAL PARA CONSTRUIR AUDIÊNCIAS DO EVENTO",
+          "NOME DA EMPRESA",
+          "META PARA EVENTOS AO VIVO E MARKETING DE WEBINARES"
+        ]
+      },
+      "output_family": "tactical_plan:evento_ao_vivo_e_amplificador_de_webinar",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por tipo: webinar/ao vivo, participação em evento de terceiros ou evento próprio.",
+          "alias_group": "ampliar_events",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por tipo: webinar/ao vivo, participação em evento de terceiros ou evento próprio.",
+          "alias_group": "ampliar_events",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/identificador-de-parceiro-estrategico.md",
+      "sha256": "3126a78a69dd2ffeb3b1b20bdcb16b79bf5233595c589a22bb0b5944567b1e56",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa identificar e avaliar parceiros estratégicos",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa identificar e avaliar parceiros estratégicos",
+        "context_placeholders_sample": [
+          "ATUAIS PARCERIAS DE MARKETING E NEGÓCIOS",
+          "DESEMPENHO DAS PARCERIAS ATUAIS",
+          "DOMÍNIOS EM QUE AS PARCERIAS PODEM CONTRIBUIR",
+          "RECURSOS DISPONÍVEIS PARA DESENVOLVIMENTO DE PARCERIA",
+          "SEGMENTOS DE CLIENTES QUE VOCÊ DESEJA ALCANÇAR ATRAVÉS DE PARCERIAS",
+          "MERCADOS EM QUE PRETENDE EXPANDIR O REACH"
+        ]
+      },
+      "output_family": "analysis:de_parceiro_estrategico",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 3,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/mecanismo-de-co-marketing-da-parceria.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por estágio: seleção de parceiro versus operação de co-marketing já acordada.",
+          "alias_group": "ampliar_partnership",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+      "sha256": "4c29511b80313c6d93cc3a8bb6a5c4e48d92ba93044c51aad728e0c9cb54ec47",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa de framework de repurposing e distribuição de conteúdo que funciona",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de framework de repurposing e distribuição de conteúdo que funciona",
+        "context_placeholders_sample": [
+          "PEÇAS DE CONTEÚDO COM O MAIOR ENGAJAMENTO/CONVERSÃO",
+          "CONTEÚDO COM VALOR E PERTINÊNCIA DURADOUROS",
+          "CONTEÚDO COM BONS CONCEITOS, MAS POUCO ACESSO",
+          "CONTEÚDO DE VÍDEO E CLIPES EXISTENTES",
+          "POSTS, GUIAS, WHITE PAPERS, ESTUDOS DE CASO",
+          "INFOGRÁFICOS, BARALHOS DE SLIDES, GRÁFICOS, IMAGENS"
+        ]
+      },
+      "output_family": "operating_system:de_amplificacao_de_conteudo",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: repurposing, adaptação por plataforma ou rede própria/ganha/paga.",
+          "alias_group": "ampliar_content_distribution",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: repurposing, adaptação por plataforma ou rede própria/ganha/paga.",
+          "alias_group": "ampliar_content_distribution",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/mecanismo-de-co-marketing-da-parceria.md",
+      "sha256": "c3ecdf0fd7b041ebf15a8d8b3c629f33830c9623991b7b1051558ae0432c2f39",
+      "pillar": "Ampliar",
+      "inferred_function": "já tem parceiro e precisa estruturar co-marketing",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "já tem parceiro e precisa estruturar co-marketing",
+        "context_placeholders_sample": [
+          "PARCEIROS ATUAIS E TIPOS DE COLABORAÇÃO",
+          "DESEMPENHO DAS ATUAIS PARCERIAS DE MARKETING",
+          "EXPERIÊNCIA COM CAMPANHAS DE MARKETING CONJUNTO",
+          "DESAFIOS COM O MARKETING DE PARCERIA ATUAL",
+          "EMPRESAS QUE PODEM SER PARCEIRAS DE MARKETING CONJUNTO",
+          "PARCEIROS COM PÚBLICOS-ALVO SOBREPOSTOS"
+        ]
+      },
+      "output_family": "operating_system:de_co_marketing_da_parceria",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/identificador-de-parceiro-estrategico.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por estágio: seleção de parceiro versus operação de co-marketing já acordada.",
+          "alias_group": "ampliar_partnership",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+      "sha256": "6a65f7da2acb23f23eb5ca2133362023b1b5edba7ad5b8feb06f47396dccc92d",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa montar programa de referral/indicações (Passo 5 do agente)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa montar programa de referral/indicações (Passo 5 do agente)",
+        "context_placeholders_sample": [
+          "PADRÕES E VOLUME DE REFERÊNCIA DO CLIENTE ATUAL",
+          "CLIENTES QUE ATUALMENTE FORNECEM INDICAÇÕES",
+          "TAXAS DE CONVERSÃO DE REMESSAS ATUAIS",
+          "QUAISQUER PROGRAMAS DE REFERÊNCIAS EXISTENTES",
+          "NOME DA EMPRESA",
+          "PONTUAÇÕES DE SATISFAÇÃO DO CLIENTE ATUAL"
+        ]
+      },
+      "output_family": "operating_system:de_referencias_do_cliente",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela alavanca: indicação, advocacy ou conteúdo gerado pelo usuário.",
+          "alias_group": "ampliar_customer_earned",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela alavanca: indicação, advocacy ou conteúdo gerado pelo usuário.",
+          "alias_group": "ampliar_customer_earned",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+      "sha256": "4a055d619de1dff5926f01db0ebc1ba9c2e054e43060e92926f066f061d90b94",
+      "pillar": "Ampliar",
+      "inferred_function": "a alavanca é UGC",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a alavanca é UGC",
+        "context_placeholders_sample": [
+          "DEPOIMENTOS E ANÁLISES DE CLIENTES EXISTENTES",
+          "HISTÓRIAS DE SUCESSO DE CLIENTES E ESTUDOS DE CASO",
+          "MENÇÕES E MARCAS NAS MÍDIAS SOCIAIS DO CLIENTE",
+          "QUALQUER CONTEÚDO QUE OS CLIENTES CRIARAM SOBRE SUA MARCA",
+          "ANÁLISES E COMENTÁRIOS DOS CLIENTES",
+          "CLIENTES COM ALTAS PONTUAÇÕES DE SATISFAÇÃO"
+        ]
+      },
+      "output_family": "amplification_plan:de_conteudo_gerado_pelo_usuario",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela alavanca: indicação, advocacy ou conteúdo gerado pelo usuário.",
+          "alias_group": "ampliar_customer_earned",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela alavanca: indicação, advocacy ou conteúdo gerado pelo usuário.",
+          "alias_group": "ampliar_customer_earned",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Ampliar/orquestrador-de-experiencia-omnicanal.md",
+      "sha256": "331ceedd813ade5c42989cceaa7ac9339ddade8ddae3f12ffea2eec1e90f2111",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa coordenar todos os touchpoints numa experiência coerente (Passo 4 do agente)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa coordenar todos os touchpoints numa experiência coerente (Passo 4 do agente)",
+        "context_placeholders_sample": [
+          "EXPERIÊNCIA ATUAL DO CLIENTE NO SITE",
+          "ENVIAR E-MAIL PARA A EXPERIÊNCIA DO CLIENTE E O ENGAJAMENTO",
+          "SOCIAL MEDIA CUSTOMER INTERACTION EXPERIENCE",
+          "EXPERIÊNCIA DO CLIENTE COM ANÚNCIOS DIGITAL",
+          "EXPERIÊNCIA DO CLIENTE COM A EQUIPE DE VENDAS",
+          "QUALIDADE DA INTERAÇÃO COM O SUPORTE AO CLIENTE"
+        ]
+      },
+      "output_family": "operating_system:de_experiencia_omnicanal",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+      "sha256": "0040caf08361b20b99cd81dde58488d46bdd8d637696685c889f7408e83093da",
+      "pillar": "Ampliar",
+      "inferred_function": "a atribuição é último-clique e precisa de modelo multi-touch",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a atribuição é último-clique e precisa de modelo multi-touch",
+        "context_placeholders_sample": [
+          "PRIMEIRO TOQUE, ÚLTIMO TOQUE, LINEAR, DECAIMENTO TEMPORAL, ETC.",
+          "RECURSOS ATUAIS DE RASTREAMENTO E MEDIÇÃO",
+          "COMO OS DIFERENTES CANAIS DE MARKETING SÃO INTEGRADOS PARA RASTREAMENTO",
+          "QUÃO PRECISA É A ATRIBUIÇÃO ATUAL",
+          "COMO OS DADOS DE ATRIBUIÇÃO INFLUENCIAM AS DECISÕES DE MARKETING",
+          "CAPACIDADE DE RASTREAMENTO PARA CANAIS DIGITAIS"
+        ]
+      },
+      "output_family": "optimization_plan:de_atribuicao_cruzada_de_canal",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/otimizador-de-visibilidade-do-ai-search.md",
+      "sha256": "259a0c955417cd77e2976d9060cc5e25af7c0851e745ebc6a700f769582bdd24",
+      "pillar": "Ampliar",
+      "inferred_function": "o objetivo é ser encontrado/citado por mecanismos de IA (eixo central do Loop Marketing na era da IA)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o objetivo é ser encontrado/citado por mecanismos de IA (eixo central do Loop Marketing na era da IA)",
+        "context_placeholders_sample": [
+          "CONTEÚDO E ESTRUTURA DO SEU SITE ATUAL",
+          "TÓPICOS E PROFUNDIDADE DO CONTEÚDO DO SEU BLOG",
+          "GUIAS, WHITE PAPERS, ESTUDOS DE CASO ETC.",
+          "LIDERANÇA DE PENSAMENTO E CONTEÚDO ESPECIALIZADO",
+          "CONTEÚDO TÉCNICO E DOCUMENTAÇÃO",
+          "COMO O CONTEÚDO ESTÁ VISÍVEL NA PESQUISA"
+        ]
+      },
+      "output_family": "optimization_plan:de_visibilidade_do_ai_search",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 1,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/premios-da-industria-e-amplificador-de-reconhecimento.md",
+      "sha256": "6dd429236c164a75a181946e25428ac953cd04266faf75621392560e44143f90",
+      "pillar": "Ampliar",
+      "inferred_function": "a alavanca é prêmios/reconhecimento do setor",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a alavanca é prêmios/reconhecimento do setor",
+        "context_placeholders_sample": [
+          "QUAISQUER PRÊMIOS, CERTIFICAÇÕES OU RECONHECIMENTO ATUAIS",
+          "ATUAL POSIÇÃO E REPUTAÇÃO NO SETOR",
+          "RECONHECIMENTO DOS CLIENTES ATRAVÉS DE DEPOIMENTOS/ANÁLISES",
+          "COBERTURA E RECONHECIMENTO DA MÍDIA ATUAL",
+          "PRÊMIOS RELEVANTES DO SETOR E PROGRAMAS DE RECONHECIMENTO",
+          "PRÊMIOS E RECONHECIMENTO VOTADOS PELO CLIENTE"
+        ]
+      },
+      "output_family": "tactical_plan:premios_da_industria_e_amplificador_de_reconhecimento",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+      "sha256": "1e2112ea58b4ae4e9625b51c3b61c73229060257bb662f6ae5acd7a5987d96d4",
+      "pillar": "Ampliar",
+      "inferred_function": "precisa estruturar distribuição em mídia própria/ganha/paga",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa estruturar distribuição em mídia própria/ganha/paga",
+        "context_placeholders_sample": [
+          "SITE ATUAL E TRÁFEGO DE BLOG E ENGAJAMENTO",
+          "MÉTRICAS DE TAMANHO E ENGAJAMENTO DA LISTA DE E-MAILS",
+          "CONTAGEM DE SEGUIDORES E ENGAJAMENTO DE MÍDIAS SOCIAIS",
+          "ALCANCE DENTRO DA BASE DE CLIENTES EXISTENTE",
+          "RECURSOS ATUAIS EM PUBLICAÇÕES DO SETOR",
+          "COBERTURA MEDIÁTICA ATUAL E MENÇÕES A MARCAS"
+        ]
+      },
+      "output_family": "distribution_plan:de_distribuicao_de_conteudo",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: repurposing, adaptação por plataforma ou rede própria/ganha/paga.",
+          "alias_group": "ampliar_content_distribution",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por escopo: repurposing, adaptação por plataforma ou rede própria/ganha/paga.",
+          "alias_group": "ampliar_content_distribution",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+      "sha256": "d5baf47dee333e852aa5c4cbd5741a6c2fa89b33ca1cc152f6294d46b294c604",
+      "pillar": "Orientar",
+      "inferred_function": "precisa criar segmentos baseados em comportamento (Passo 2 do agente)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa criar segmentos baseados em comportamento (Passo 2 do agente)",
+        "context_placeholders_sample": [
+          "NAVEGAÇÃO DO CLIENTE E PADRÕES DE CONSUMO DE PÁGINA",
+          "DURAÇÃO, FREQUÊNCIA, PROFUNDIDADE DA SESSÃO",
+          "QUE TIPOS DE CONTEÚDO OS CLIENTES MAIS UTILIZAM",
+          "CAMINHOS TÍPICOS DE VIAGEM DO CLIENTE PARA CONVERSÃO",
+          "QUANTO TEMPO OS CLIENTES DIFERENTES GASTAM NO LOCAL",
+          "COM QUE FREQUÊNCIA OS CLIENTES DIFERENTES COMPRAM"
+        ]
+      },
+      "output_family": "framework:de_segmentacao_comportamental",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 4,
+          "literal_or_terminology": 2,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por maturidade analítica: segmentos observados, sinais de intenção ou scoring preditivo avançado.",
+          "alias_group": "orientar_behavioral_readiness",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Orientar/modelo-de-pontuacao-preditiva.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por maturidade analítica: segmentos observados, sinais de intenção ou scoring preditivo avançado.",
+          "alias_group": "orientar_behavioral_readiness",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/estrategia-de-comunicacao-segmentada.md",
+      "sha256": "33e825fbdb0aed4113103537a34666f9d2d38ec6e99d4fce3685b175cbfce561",
+      "pillar": "Orientar",
+      "inferred_function": "precisa definir a estratégia de comunicação por segmento (handoff com Verbalizar/Ampliar)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa definir a estratégia de comunicação por segmento (handoff com Verbalizar/Ampliar)",
+        "context_placeholders_sample": [
+          "NOME E CARACTERÍSTICAS DO SEGMENTO",
+          "COMO OS SEGMENTOS FORAM DEFINIDOS - COMPORTAMENTAL, DEMOGRÁFICA, ETC.",
+          "O QUE TORNA CADA SEGMENTO DISTINTO",
+          "DIMENSÃO RELATIVA DE CADA SEGMENTO",
+          "RECEITA/CONTRIBUIÇÃO DE VALOR DE CADA SEGMENTO",
+          "COMO OS SEGMENTOS SE COMPORTAM DIFERENTEMENTE"
+        ]
+      },
+      "output_family": "strategy:de_comunicacao_segmentada",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/estrategista-de-enriquecimento-de-dados-do-cliente.md",
+      "sha256": "68c0097a82b6d4feed0f5908afcdb79dbcbc678afc7437d86bfb8c87c6b01a38",
+      "pillar": "Orientar",
+      "inferred_function": "a segmentação esbarra em falta de dados e precisa de plano de enriquecimento",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a segmentação esbarra em falta de dados e precisa de plano de enriquecimento",
+        "context_placeholders_sample": [
+          "LISTAR CAMPOS DE DADOS DO CLIENTE ATUAL COLETADOS",
+          "QUE COMPORTAMENTO DE SITE VOCÊ ACOMPANHA ATUALMENTE",
+          "MÉTRICAS DE E-MAIL QUE VOCÊ CAPTURA",
+          "DADOS DE COMPRA/TRANSAÇÃO DISPONÍVEIS",
+          "DADOS DE INTERAÇÃO DE ATENDIMENTO AO CLIENTE",
+          "COMO OS CLIENTES USAM SEU PRODUTO/SERVIÇO"
+        ]
+      },
+      "output_family": "strategy:de_enriquecimento_de_dados_do_cliente",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 3,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+      "sha256": "a8763bd09a23bafbaaae0e7a4062e2d95267f9332df44026ea55e3975ce68ea0",
+      "pillar": "Orientar",
+      "inferred_function": "precisa definir como a comunicação se adapta a contexto/situação/timing",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa definir como a comunicação se adapta a contexto/situação/timing",
+        "context_placeholders_sample": [
+          "SUA MENSAGEM PRINCIPAL DA MARCA/PROPOSTA DE VALOR",
+          "SUA CHAVE MENSAGENS DE MARCA DE SUPORTE",
+          "SUAS PRINCIPAIS PROVAS E CRIADORES DE CREDIBILIDADE",
+          "SEUS PLANOS DE AÇÃO PRINCIPAL E SECUNDÁRIO",
+          "SEUS PRINCIPAIS SEGMENTOS DE CLIENTES",
+          "FASES DA VIAGEM DO CLIENTE"
+        ]
+      },
+      "output_family": "framework:de_mensagens_contextuais",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/sincronizacao-de-mensagens-entre-canais.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por problema: adaptação ao contexto/timing versus continuidade de contexto entre canais.",
+          "alias_group": "orientar_context_continuity",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+      "sha256": "d5d290842add2c1f3f8d31041a4b00e34bcc41f706bb44ff8bb74f3419e5b17b",
+      "pillar": "Orientar",
+      "inferred_function": "precisa transformar comportamento observável em sinais de intenção/prontidão",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa transformar comportamento observável em sinais de intenção/prontidão",
+        "context_placeholders_sample": [
+          "COLE DADOS DE ANÁLISES EM VISITAS DE PÁGINA DE ALTA INTENÇÃO",
+          "PADRÕES DE EXIBIÇÃO DE CONTEÚDO DE CONVERSORES ANTERIORES",
+          "PADRÕES DE TEMPO DE ENGAJAMENTO",
+          "COMO OS CLIENTES POTENCIAIS REVISITAM ANTES DA CONVERSÃO",
+          "QUAIS RECURSOS PREVEEM COMPRAS",
+          "COMPORTAMENTO DE EMAIL DE CLIENTES POTENCIAIS QUE CONVERTERAM"
+        ]
+      },
+      "output_family": "analysis:de_sinal_de_intencao",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por maturidade analítica: segmentos observados, sinais de intenção ou scoring preditivo avançado.",
+          "alias_group": "orientar_behavioral_readiness",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Orientar/modelo-de-pontuacao-preditiva.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por maturidade analítica: segmentos observados, sinais de intenção ou scoring preditivo avançado.",
+          "alias_group": "orientar_behavioral_readiness",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+      "sha256": "acd9c2872f907186805e9cf188956244b69e0e477ef95437394e941c8d3fed7b",
+      "pillar": "Orientar",
+      "inferred_function": "precisa mapear ou redesenhar os estágios do lifecycle com estratégia por fase",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa mapear ou redesenhar os estágios do lifecycle com estratégia por fase",
+        "context_placeholders_sample": [
+          "COMO OS CLIENTES DESCOBREM E SE COMPROMETEM PRIMEIRO COM VOCÊ",
+          "COMO OS NOVOS CLIENTES COMEÇAM",
+          "COMO O ENVOLVIMENTO DO CLIENTE MUDA COM O TEMPO",
+          "COMO OS CLIENTES AUMENTAM SEU INVESTIMENTO AO LONGO DO TEMPO",
+          "PRINCIPAIS REALIZAÇÕES ALCANÇADAS PELOS CLIENTES",
+          "O QUE MANTÉM OS CLIENTES FIÉIS AO LONGO DO TEMPO"
+        ]
+      },
+      "output_family": "analysis:de_ciclos_de_vida_do_cliente",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/mecanismo-de-hiperpersonalizacao.md",
+      "sha256": "1b606d675e22dcef500438ba0e97a39d7a24806c70ff5100a404bbe70fddde57",
+      "pillar": "Orientar",
+      "inferred_function": "operação madura/avançada com dados comportamentais ricos",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "operação madura/avançada com dados comportamentais ricos",
+        "context_placeholders_sample": [
+          "NOME, FUNÇÃO, PREFERÊNCIAS DE CONTATO, INTERESSES PESSOAIS",
+          "CARGO, DEPARTAMENTO, RESPONSABILIDADES, FASE DE CARREIRA",
+          "DIMENSÃO DAS EMPRESAS, INDÚSTRIA, FASE DE CRESCIMENTO, DESAFIOS",
+          "AQUISIÇÕES PASSADAS, INTERAÇÕES DE SUPORTE, HISTÓRICO DE ENGAJAMENTO",
+          "PADRÕES DE NAVEGAÇÃO, PREFERÊNCIAS DE CONTEÚDO, CARACTERÍSTICAS DA SESSÃO",
+          "PADRÕES DE ABERTURA/CLIQUE, PREFERÊNCIAS DE CONTEÚDO, TEMPO DE RESPOSTA"
+        ]
+      },
+      "output_family": "operating_system:de_hiperpersonalizacao",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/otimizador-de-conteudo-dinamico.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por capacidade: regras de conteúdo dinâmico versus sistema avançado com dados comportamentais ricos.",
+          "alias_group": "orientar_advanced_personalization",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/mecanismo-de-personalizacao-redirecionamento.md",
+      "sha256": "fc825235324ad84aedb77388b40c0e326b372275e37cd608c5c94a1b85eaca5f",
+      "pillar": "Orientar",
+      "inferred_function": "precisa de estratégia de retargeting comportamental",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de estratégia de retargeting comportamental",
+        "context_placeholders_sample": [
+          "PÁGINAS ESPECÍFICAS VISITADAS E PADRÕES DE VISITA",
+          "PEÇAS DE CONTEÚDO CONSUMIDAS E PROFUNDIDADE DO ENGAJAMENTO",
+          "DURAÇÃO, FREQUÊNCIA, PROFUNDIDADE DA SESSÃO",
+          "ATÉ ONDE OS CLIENTES PROGREDEM NAS CONVERSÕES",
+          "ONDE E POR QUE OS CLIENTES DEIXAM O LOCAL",
+          "E-MAIL ABERTO, CLIQUE E PADRÕES DE RESPOSTA"
+        ]
+      },
+      "output_family": "operating_system:de_personalizacao_redirecionamento",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/modelo-de-pontuacao-preditiva.md",
+      "sha256": "b2811b7ba969e3068be1cfb2a33a4f0807f458b2793da94390d4cb4ee99ab1ff",
+      "pillar": "Orientar",
+      "inferred_function": "há dados e capacidade para scoring preditivo",
+      "maturity_marker": "avancado",
+      "input_signals": {
+        "routing_trigger": "há dados e capacidade para scoring preditivo",
+        "context_placeholders_sample": [
+          "EMPRESA, DIMENSÃO, INDÚSTRIA, RENDIMENTO, FASE DE CRESCIMENTO",
+          "PAPEL, ANTIGUIDADE, DEPARTAMENTO, EXPERIÊNCIA",
+          "LOCALIZAÇÃO, CARACTERÍSTICAS DO MERCADO, FATORES REGIONAIS",
+          "TECHNOLOGY STACK, MATURIDADE DIGITAL, PREFERÊNCIAS DE FERRAMENTAS",
+          "VISITAS A PÁGINAS, PADRÕES DE SESSÃO, ENGAJAMENTO DE CONTEÚDO",
+          "TAXAS DE ABERTURA, PADRÕES DE CLIQUE, COMPORTAMENTO DE RESPOSTA"
+        ]
+      },
+      "output_family": "quantitative_model:de_pontuacao_preditiva",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por maturidade analítica: segmentos observados, sinais de intenção ou scoring preditivo avançado.",
+          "alias_group": "orientar_behavioral_readiness",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por maturidade analítica: segmentos observados, sinais de intenção ou scoring preditivo avançado.",
+          "alias_group": "orientar_behavioral_readiness",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/otimizador-de-caminho-de-conversao.md",
+      "sha256": "5a979d726edab63239fa7d3351f40467f74f0c979007cb2a8545cea14fedeef0",
+      "pillar": "Orientar",
+      "inferred_function": "precisa desenhar rotas de conversão distintas por tipo de cliente",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa desenhar rotas de conversão distintas por tipo de cliente",
+        "context_placeholders_sample": [
+          "SEU PROCESSO DE CONVERSÃO PRINCIPAL ATUAL",
+          "QUAISQUER CAMINHOS ALTERNATIVOS ATUALMENTE DISPONÍVEIS",
+          "PASSOS ESPECÍFICOS NO PROCESSO ATUAL DAS CONVERSÕES",
+          "ONDE OS CLIENTES NORMALMENTE ABANDONAM CONVERSÕES",
+          "TAXAS DE CONVERSÃO EM CADA ETAPA",
+          "DESEMPENHO ATUAL DAS CONVERSÕES"
+        ]
+      },
+      "output_family": "optimization_plan:de_caminho_de_conversao",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/otimizador-de-conteudo-dinamico.md",
+      "sha256": "bdd7166104b4d9e7b517144d0ef9c112f9fb002cca240d594bd977342bc59f24",
+      "pillar": "Orientar",
+      "inferred_function": "o CRM suporta conteúdo dinâmico e precisa de regras de entrega",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "o CRM suporta conteúdo dinâmico e precisa de regras de entrega",
+        "context_placeholders_sample": [
+          "EMPRESAS DO CLIENTE E CARACTERÍSTICAS INDIVIDUAIS",
+          "INDÚSTRIA, PAPEL, ANTIGUIDADE, DEPARTAMENTO",
+          "DIMENSÃO DAS EMPRESAS, FASE DE CRESCIMENTO, MATURIDADE TECNOLÓGICA",
+          "LOCALIZAÇÃO, CARACTERÍSTICAS DO MERCADO, FATORES CULTURAIS",
+          "COM QUAL CONTEÚDO OS CLIENTES MAIS SE ENVOLVEM",
+          "PADRÕES DE NAVEGAÇÃO, PROFUNDIDADE DA SESSÃO, PADRÕES DE VISITA DE RETORNO"
+        ]
+      },
+      "output_family": "optimization_plan:de_conteudo_dinamico",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/mecanismo-de-hiperpersonalizacao.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por capacidade: regras de conteúdo dinâmico versus sistema avançado com dados comportamentais ricos.",
+          "alias_group": "orientar_advanced_personalization",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/otimizador-de-personalizacao-de-email.md",
+      "sha256": "58793f873f2d06ff0630e9d02c4f24be5cecc55df784931e209d015e6599e28d",
+      "pillar": "Orientar",
+      "inferred_function": "o foco é melhorar performance de email via personalização",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o foco é melhorar performance de email via personalização",
+        "context_placeholders_sample": [
+          "NÚMERO DE E-MAILS ENVIADOS POR MÊS",
+          "QUE PERSONALIZAÇÃO VOCÊ USA ATUALMENTE",
+          "TAXAS DE ABERTURA ATUAIS, TAXAS DE CLIQUE, TAXAS DE CONVERSÃO",
+          "COMO VOCÊ ATUALMENTE SEGMENTA LISTAS DE E-MAIL",
+          "TECNOLOGIA DE EMAIL MARKETING QUE VOCÊ USA",
+          "COMUNICAÇÃO REGULAR POR E-MAIL QUE VOCÊ ENVIA"
+        ]
+      },
+      "output_family": "optimization_plan:de_personalizacao_de_email",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/personalizacao-de-email-de-ciclo-de-vida.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por objetivo: desenho por fase do lifecycle versus otimização de performance do e-mail.",
+          "alias_group": "orientar_email_personalization",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/personalizacao-baseada-em-conta.md",
+      "sha256": "b3209b69621fbcc857e5c90be3ef230d80ba44f8bad617fcabd8d346149c8120",
+      "pillar": "Orientar",
+      "inferred_function": "o modelo é ABM / contas estratégicas de alto valor",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "o modelo é ABM / contas estratégicas de alto valor",
+        "context_placeholders_sample": [
+          "10-25 PRINCIPAIS CONTAS-ALVO DE VALOR MAIS ALTO",
+          "PRÓXIMAS 25-50 CONTAS-ALVO DE ALTO VALOR",
+          "CONJUNTO MAIS VASTO DE 100-200 CONTAS-ALVO",
+          "PRINCIPAIS CLIENTES EXISTENTES PARA EXPANSÃO",
+          "RECEITA ESPERADA DE CONTAS DE DESTINO",
+          "POR QUE ESTAS CONTAS SÃO ESTRATEGICAMENTE IMPORTANTES"
+        ]
+      },
+      "output_family": "personalization_plan:baseada_em_conta",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/personalizacao-da-jornada-do-cliente.md",
+      "sha256": "2e9826bd8dda6da3fd26eb83a9b101bbbf2a89c4daa6191c76ae113a262d3e61",
+      "pillar": "Orientar",
+      "inferred_function": "precisa personalizar a jornada ponta a ponta por características individuais",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa personalizar a jornada ponta a ponta por características individuais",
+        "context_placeholders_sample": [
+          "DEMOGRAFIA INDIVIDUAL DO CLIENTE, FUNÇÃO, ANTECEDENTES",
+          "TAMANHO DA EMPRESA DO CLIENTE, INDÚSTRIA, SITUAÇÃO",
+          "PADRÕES E PREFERÊNCIAS DE COMPORTAMENTO INDIVIDUAIS",
+          "CANAIS PREFERIDOS, TEMPO, ESTILO",
+          "TIPOS DE CONTEÚDO PREFERENCIAIS, PROFUNDIDADE, FORMATO",
+          "COMO OS CLIENTES INDIVIDUAIS DEFINEM O SUCESSO"
+        ]
+      },
+      "output_family": "personalization_plan:da_jornada_do_cliente",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 2,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/personalizador-de-viagens-baseado-em-persona.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por granularidade: personalização individual ponta a ponta versus trilhas diferenciadas por persona.",
+          "alias_group": "orientar_journey_personalization",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/personalizacao-de-email-de-ciclo-de-vida.md",
+      "sha256": "6c874e8a439a9424ffddc43def0cae34567bf5e021b7b8c263d1fd8aaf9eb29f",
+      "pillar": "Orientar",
+      "inferred_function": "precisa de personalização de email por fase do lifecycle",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de personalização de email por fase do lifecycle",
+        "context_placeholders_sample": [
+          "NOME DA FASE DO CICLO DE VIDA - POR EXEMPLO, \"PROSPECT/SENSIBILIZAÇÃO\"",
+          "NOME DA FASE DO CICLO DE VIDA - P. EX., \"AVALIAÇÃO/CONSIDERAÇÃO\"",
+          "NOME DA FASE DO CICLO DE VIDA - POR EXEMPLO, \"NOVO CLIENTE/ONBOARDING\"",
+          "NOME DA FASE DO CICLO DE VIDA - POR EXEMPLO, \"CLIENTE ATIVO/ÊXITO\"",
+          "NOME DA FASE DO CICLO DE VIDA - P. EX., \"CRESCIMENTO/EXPANSÃO\"",
+          "NOME DA FASE DO CICLO DE VIDA - P. EX., \"ADVOGADO/CAMPEÃO\""
+        ]
+      },
+      "output_family": "personalization_plan:de_email_de_ciclo_de_vida",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/otimizador-de-personalizacao-de-email.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por objetivo: desenho por fase do lifecycle versus otimização de performance do e-mail.",
+          "alias_group": "orientar_email_personalization",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/personalizacao-orientada-por-comentarios.md",
+      "sha256": "2b36f836ec4ff82340229952cfa5519ed07af20b1e17c6a7b217909cc00c8ae3",
+      "pillar": "Orientar",
+      "inferred_function": "quer um loop de melhoria de personalização guiado por feedback",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "quer um loop de melhoria de personalização guiado por feedback",
+        "context_placeholders_sample": [
+          "COMO VOCÊ COLETA FEEDBACK DE CLIENTES ATUALMENTE",
+          "VALOR DE COMENTÁRIOS QUE VOCÊ RECEBE",
+          "QUALIDADE E PROFUNDIDADE DO FEEDBACK ATUAL",
+          "COMO O FEEDBACK ATUALMENTE INFLUENCIA AS DECISÕES DE NEGÓCIOS",
+          "TAXAS DE RESPOSTA DO CLIENTE PARA SOLICITAÇÕES DE FEEDBACK",
+          "ESCOPO ATUAL DOS ESFORÇOS DE PERSONALIZAÇÃO"
+        ]
+      },
+      "output_family": "personalization_plan:orientada_por_comentarios",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-da-experiencia-de-suporte.md",
+      "sha256": "61d140d7e290f1820420db8056ee43d20d0bbeaa9952ea6f0b8f077d8eb6ddf3",
+      "pillar": "Orientar",
+      "inferred_function": "precisa personalizar a experiência de suporte por tipo de cliente",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa personalizar a experiência de suporte por tipo de cliente",
+        "context_placeholders_sample": [
+          "DESEMPENHO DO TEMPO DE RESPOSTA DO SUPORTE ATUAL",
+          "PORCENTAGEM DE PROBLEMAS RESOLVIDOS COM ÊXITO",
+          "PONTUAÇÕES ATUAIS DE SATISFAÇÃO DO SUPORTE",
+          "COM QUE FREQUÊNCIA OS PROBLEMAS AUMENTAM E POR QUÊ",
+          "QUAIS CANAIS DE SUPORTE OS CLIENTES MAIS USAM",
+          "PROBLEMAS DE SUPORTE MAIS FREQUENTES"
+        ]
+      },
+      "output_family": "personalization_plan:da_experiencia_de_suporte",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-experiencia-da-onboarding.md",
+      "sha256": "8b91b2c4699e4141626cfcef7a09e39664833fe0160014643d32253ba598c589",
+      "pillar": "Orientar",
+      "inferred_function": "o gargalo é onboarding e precisa de trilhas personalizadas",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o gargalo é onboarding e precisa de trilhas personalizadas",
+        "context_placeholders_sample": [
+          "PORCENTAGEM DE CLIENTES QUE CONCLUEM A ONBOARDING",
+          "QUANTO TEMPO OS CLIENTES LEVAM PARA OBTER O PRIMEIRO VALOR",
+          "PORCENTAGEM ALCANÇANDO MARCOS DE SUCESSO PRINCIPAIS",
+          "SATISFAÇÃO COM A EXPERIÊNCIA ATUAL DA ONBOARDING",
+          "SOLICITAÇÕES DE SUPORTE DURANTE O ONBOARDING",
+          "CARACTERÍSTICAS DOS CLIENTES BEM-SUCEDIDOS"
+        ]
+      },
+      "output_family": "personalization_plan:de_experiencia_da_onboarding",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-landings-page.md",
+      "sha256": "51a5117655ee794a103cbbdaf3e3ff8934ff305f5e63ef20cc3c67130670fc81",
+      "pillar": "Orientar",
+      "inferred_function": "precisa personalizar landing pages por segmento/comportamento",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "precisa personalizar landing pages por segmento/comportamento",
+        "context_placeholders_sample": [
+          "ABORDAGEM ATUAL DA PÁGINA INICIAL E MÉTRICAS DE CONVERSÕES",
+          "DESEMPENHO DA PÁGINA DE PRODUTO E PERSONALIZAÇÃO ATUAL",
+          "PÁGINAS INICIAIS E DESEMPENHO ESPECÍFICOS DA CAMPANHA",
+          "PÁGINAS DE DOWNLOAD DE CONTEÚDO E RECURSOS",
+          "PÁGINAS DE SOLICITAÇÃO DE DEMONSTRAÇÃO E INSCRIÇÃO DE AVALIAÇÃO",
+          "TAXAS DE CONVERSÃO ATUAIS PARA CADA TIPO DE PÁGINA"
+        ]
+      },
+      "output_family": "personalization_plan:de_landings_page",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-prova-social.md",
+      "sha256": "9d4add03dc4a4580316a4c2914ab9d42a20dfb60e214e4f89a55b3d0a3e81767",
+      "pillar": "Orientar",
+      "inferred_function": "precisa entregar a prova social mais relevante por perfil/contexto",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa entregar a prova social mais relevante por perfil/contexto",
+        "context_placeholders_sample": [
+          "LISTA DE DEPOIMENTOS DE CLIENTES COM CARACTERÍSTICAS DE CLIENTES",
+          "ESTUDOS DE CASO COM O SETOR DO CLIENTE, TAMANHO, DETALHES DE CASO DE USO",
+          "ANÁLISES DE CLIENTES COM CONTEXTO E INFORMAÇÕES DE CLIENTES",
+          "MENÇÕES DE CONTEÚDO CRIADO PELO CLIENTE E MÍDIAS SOCIAIS",
+          "PRÊMIOS, CERTIFICAÇÕES, RECONHECIMENTO DO SETOR",
+          "NÚMEROS DE USUÁRIO, ESTATÍSTICAS DE USO, MÉTRICAS DE ADOÇÃO"
+        ]
+      },
+      "output_family": "personalization_plan:de_prova_social",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-renovacao-e-expansao.md",
+      "sha256": "d5ade892d930b350ebfbf8dfd206beb4e520f105bae85c3061f9cbe6a88640f1",
+      "pillar": "Orientar",
+      "inferred_function": "o foco é retenção, renovação ou expansão (upsell/cross-sell)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o foco é retenção, renovação ou expansão (upsell/cross-sell)",
+        "context_placeholders_sample": [
+          "DIFERENTES TIPOS DE CLIENTES EXISTENTES",
+          "TAXAS DE RENOVAÇÃO ATUAIS POR SEGMENTO/TIPO",
+          "TAXAS DE EXPANSÃO E CARACTERÍSTICAS ATUAIS",
+          "SINAIS DE ALERTA PRECOCE DE POTENCIAIS TAXAS DE CANCELAMENTO DE CLIENTES",
+          "SINAIS DE POTENCIAL DE EXPANSÃO",
+          "COMO OS CLIENTES DIFERENTES USAM SEU PRODUTO/SERVIÇO"
+        ]
+      },
+      "output_family": "personalization_plan:de_renovacao_e_expansao",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-tratamento-de-objecao.md",
+      "sha256": "f14ed4f7a4650c95d8ed9dcdd07e1b1f5dcdb249b0c5efce305e5b6cde5b992c",
+      "pillar": "Orientar",
+      "inferred_function": "precisa mapear e tratar objeções por segmento ao longo do fluxo",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa mapear e tratar objeções por segmento ao longo do fluxo",
+        "context_placeholders_sample": [
+          "OBJEÇÕES COMUNS DA CONVERSAS DE VENDAS",
+          "PREOCUPAÇÕES EXPRESSAS NOS COMENTÁRIOS DOS CLIENTES",
+          "PREOCUPAÇÕES LEVANTADAS EM INTERAÇÕES DE SUPORTE",
+          "HESITAÇÕES EXPRESSAS EM PESQUISAS COM CLIENTES",
+          "MOTIVOS PARA OPORTUNIDADE PERDIDA DE VENDAS",
+          "PREOCUPAÇÕES E OBJEÇÕES RELACIONADAS A PREÇOS"
+        ]
+      },
+      "output_family": "personalization_plan:de_tratamento_de_objecao",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 4
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-viagens-baseado-em-persona.md",
+      "sha256": "762b64b0c183b501faf06287e21125eff36e38b1d84473e3f4686f4e5a273b19",
+      "pillar": "Orientar",
+      "inferred_function": "precisa diferenciar a jornada por persona",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa diferenciar a jornada por persona",
+        "context_placeholders_sample": [
+          "NOME DA PESSOA E DESCRIÇÃO DETALHADA",
+          "QUALQUER PESSOA ADICIONAL A CONSIDERAR",
+          "IDADE, PAPEL, EMPRESA, INDÚSTRIA",
+          "O QUE IMPULSIONA ESTA PERSONA",
+          "PROBLEMAS ESPECÍFICOS QUE ESTA PESSOA ENFRENTA",
+          "COMO ESTA PESSOA TOMA DECISÕES"
+        ]
+      },
+      "output_family": "personalization_plan:de_viagens_baseado_em_persona",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/personalizacao-da-jornada-do-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por granularidade: personalização individual ponta a ponta versus trilhas diferenciadas por persona.",
+          "alias_group": "orientar_journey_personalization",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Orientar/sequencias-de-personalizacao-automatizada.md",
+      "sha256": "19bd418e4af483384a31863fbb32466906b730c7b6e5c36a5ae6b0e21ba24a79",
+      "pillar": "Orientar",
+      "inferred_function": "precisa desenhar sequências automatizadas relevantes (anti-genérico)",
+      "maturity_marker": "em_desenvolvimento_plus",
+      "input_signals": {
+        "routing_trigger": "precisa desenhar sequências automatizadas relevantes (anti-genérico)",
+        "context_placeholders_sample": [
+          "CARACTERÍSTICAS DO CLIENTE DISPONÍVEIS PARA PERSONALIZAÇÃO",
+          "COMPORTAMENTO DO SITE, COMPROMISSO DE E-MAIL, CONSUMO DE CONTEÚDO",
+          "COMPRAS PASSADAS, VALORES DE ORDEM, PADRÕES DE TEMPO",
+          "RESPOSTAS PASSADAS DA CAMPANHA, PADRÕES DE INTERAÇÃO",
+          "PREFERÊNCIAS DE COMUNICAÇÃO, PREFERÊNCIAS DE CONTEÚDO",
+          "AÇÕES ESPECÍFICAS DO SITE QUE GATILHO SEQUÊNCIAS"
+        ]
+      },
+      "output_family": "automation_sequence:de_personalizacao_automatizada",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Orientar/sincronizacao-de-mensagens-entre-canais.md",
+      "sha256": "286c6439a67b25c2855ca57368c32729ecb21e25b2ac0848aa18448aa511bb04",
+      "pillar": "Orientar",
+      "inferred_function": "precisa manter contexto/continuidade de personalização entre canais (coordenar com Ampliar)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa manter contexto/continuidade de personalização entre canais (coordenar com Ampliar)",
+        "context_placeholders_sample": [
+          "CAPACIDADES DE PERSONALIZAÇÃO DE SITE",
+          "PERSONALIZAÇÃO DE E-MAIL NO ESTADO ATUAL",
+          "PRESENÇA E PERSONALIZAÇÃO DE MÍDIAS SOCIAIS",
+          "CANAIS PUBLICITÁRIOS PAGOS E DIRECIONAMENTO",
+          "PERSONALIZAÇÃO DE APLICATIVO MÓVEL, SE APLICÁVEL",
+          "PROCESSO DE VENDAS E ABORDAGEM DE INTERAÇÃO COM O CLIENTE"
+        ]
+      },
+      "output_family": "operating_system:de_mensagens_entre_canais",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 3,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por problema: adaptação ao contexto/timing versus continuidade de contexto entre canais.",
+          "alias_group": "orientar_context_continuity",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/acelerador-de-velocidade-de-marketing.md",
+      "sha256": "54b1d0ac369c7bd04dcbd5727a47dff4cd8d521fe2a68609b715d420d4ab1eb6",
+      "pillar": "Refinar",
+      "inferred_function": "o gargalo é velocidade de execução/ciclo de decisão",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o gargalo é velocidade de execução/ciclo de decisão",
+        "context_placeholders_sample": [
+          "TEMPO ATUAL DA IDEIA DE MARKETING ATÉ A EXECUÇÃO",
+          "TEMPO NECESSÁRIO PARA DESENVOLVER E LANÇAR CAMPANHAS",
+          "VELOCIDADE DE CRIAÇÃO E PUBLICAÇÃO DO CONTEÚDO",
+          "TEMPO NECESSÁRIO PARA CICLOS DE OTIMIZAÇÃO",
+          "VELOCIDADE DOS PROCESSOS DE TOMADA DE DECISÕES DE COMERCIALIZAÇÃO",
+          "PROCESSOS QUE REDUZEM A EXECUÇÃO DO MARKETING"
+        ]
+      },
+      "output_family": "optimization_plan:de_velocidade_de_marketing",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: reduzir ciclo, elevar adaptação do time ou comparar velocidade com o mercado.",
+          "alias_group": "refinar_velocity",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/analise-competitiva-do-velocity.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: reduzir ciclo, elevar adaptação do time ou comparar velocidade com o mercado.",
+          "alias_group": "refinar_velocity",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/analisador-de-desempenho-de-coorte.md",
+      "sha256": "6df274669ed1d9a8f407ac8b19da67de3f4da1f4706aa7e60214bc4c1483d815",
+      "pillar": "Refinar",
+      "inferred_function": "precisa comparar coortes ao longo do tempo (retenção/LTV por safra)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa comparar coortes ao longo do tempo (retenção/LTV por safra)",
+        "context_placeholders_sample": [
+          "CLIENTES ADQUIRIDOS DURANTE PERÍODOS DE TEMPO ESPECÍFICOS",
+          "CLIENTES ADQUIRIDOS ATRAVÉS DE CANAIS DIFERENTES",
+          "CLIENTES ADQUIRIDOS ATRAVÉS DE CAMPANHAS ESPECÍFICAS",
+          "CLIENTES DE DIFERENTES SEGMENTOS DEMOGRÁFICOS OU COMPORTAMENTAIS",
+          "CLIENTES QUE COMPRARAM PRODUTOS/SERVIÇOS DIFERENTES",
+          "RECEITA GERADA POR DIFERENTES COORTES AO LONGO DO TEMPO"
+        ]
+      },
+      "output_family": "analysis:de_desempenho_de_coorte",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/analise-competitiva-do-velocity.md",
+      "sha256": "a8544dcb815e747ef7eabc9ca024f99e986ee1968dd9e2b83d45c14f2539ea87",
+      "pillar": "Refinar",
+      "inferred_function": "precisa comparar sua velocidade de execução com a do mercado",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa comparar sua velocidade de execução com a do mercado",
+        "context_placeholders_sample": [
+          "nome da sua empresa",
+          "inserir",
+          "descrever o setor/vertical",
+          "por exemplo, média de 4 a 6 semanas desde a ideia da campanha até o lançamento",
+          "inserir se relevante",
+          "listar nomes de concorrentes"
+        ]
+      },
+      "output_family": "analysis:competitiva_do_velocity",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/acelerador-de-velocidade-de-marketing.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: reduzir ciclo, elevar adaptação do time ou comparar velocidade com o mercado.",
+          "alias_group": "refinar_velocity",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: reduzir ciclo, elevar adaptação do time ou comparar velocidade com o mercado.",
+          "alias_group": "refinar_velocity",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/calculadora-de-otimizacao.md",
+      "sha256": "98072946c2da87fb9f325baf3e0c5aa05c16c7bacc7fd0583be5e1854623ebd7",
+      "pillar": "Refinar",
+      "inferred_function": "precisa priorizar otimizações ao longo do funil completo",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa priorizar otimizações ao longo do funil completo",
+        "context_placeholders_sample": [
+          "COM QUE FREQUÊNCIA VOCÊ CALCULA E ANALISA O ROI DE MARKETING",
+          "DESAFIOS NA ATRIBUIÇÃO DE RESULTADOS A ATIVIDADES DE MARKETING",
+          "DESAFIOS NA IMPUTAÇÃO DOS CUSTOS ÀS ATIVIDADES DE COMERCIALIZAÇÃO",
+          "DESAFIOS QUE MEDEM OS BENEFÍCIOS INDIRETOS DO MARKETING",
+          "ALOCAÇÃO DE ORÇAMENTO ENTRE CANAIS DE MARKETING",
+          "INVESTIMENTO EM CAMPANHAS E INICIATIVAS ESPECÍFICAS"
+        ]
+      },
+      "output_family": "quantitative_model:de_otimizacao",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 5
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+      "sha256": "d4207b9bee18c8e03a08e73d72909ff1180db45d144cdd62152cd053338bb653",
+      "pillar": "Refinar",
+      "inferred_function": "precisa de uma estrutura de experimentação rápida/MVP",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de uma estrutura de experimentação rápida/MVP",
+        "context_placeholders_sample": [
+          "seu produto/serviço",
+          "nome da sua empresa",
+          "inserir",
+          "descrever categoria + principais concorrentes",
+          "inserir tempo médio para lançar → medida → ciclo de otimização",
+          "limites de orçamento, largura de banda criativa, conformidade, disponibilidade de dados"
+        ]
+      },
+      "output_family": "framework:de_estrutura_de_experimentacao_rapida",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por operação: framework sistemático, estrutura MVP ou cadência de muitos testes pequenos.",
+          "alias_group": "refinar_testing_frameworks",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/mecanismo-de-experimentacao-rapida.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por operação: framework sistemático, estrutura MVP ou cadência de muitos testes pequenos.",
+          "alias_group": "refinar_testing_frameworks",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+      "sha256": "d0496e2d444cbb0171a8a81ec7f01cb4a7b55eadfe3f0ead1a57e4401c163e7a",
+      "pillar": "Refinar",
+      "inferred_function": "há testes simultâneos em vários canais que podem conflitar",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "há testes simultâneos em vários canais que podem conflitar",
+        "context_placeholders_sample": [
+          "FREQUÊNCIA ATUAL DO TESTE DE E-MAIL, SOFISTICAÇÃO, RESULTADOS",
+          "ABORDAGEM E DESEMPENHO ATUAIS DE TESTE DE MÍDIAS SOCIAIS",
+          "TESTE DE PUBLICIDADE PAGA ATUAL E OTIMIZAÇÃO",
+          "SÍTIO WEB ATUAL E TESTES DAS LANDINGS PAGE",
+          "TESTE E OTIMIZAÇÃO DE MARKETING DE CONTEÚDO ATUAIS",
+          "CONFLITOS ATUAIS ENTRE TESTES DE CANAL"
+        ]
+      },
+      "output_family": "operating_system:de_testes_entre_canais",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 5,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+      "sha256": "384e0e5d305c707ed1f0e17d18bfbabadf9ecd0d80375ee4982e8ccca0d1453f",
+      "pillar": "Refinar",
+      "inferred_function": "precisa montar um framework de testes estruturados (Passo 5 do agente)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa montar um framework de testes estruturados (Passo 5 do agente)",
+        "context_placeholders_sample": [
+          "COM QUE FREQUÊNCIA VOCÊ EXECUTA TESTES DE MARKETING ATUALMENTE",
+          "SOFISTICAÇÃO DAS ABORDAGENS DE TESTE ATUAIS",
+          "QUE ÁREAS DE MARKETING VOCÊ TESTA ATUALMENTE",
+          "TAXA DE ÊXITO DOS ESFORÇOS DE TESTE ATUAIS",
+          "COMO OS INSIGHTS DE TESTE SÃO IMPLEMENTADOS",
+          "RESTRIÇÕES DE RECURSOS QUE AFETAM OS TESTES"
+        ]
+      },
+      "output_family": "framework:de_estrutura_de_teste_sistematica",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por operação: framework sistemático, estrutura MVP ou cadência de muitos testes pequenos.",
+          "alias_group": "refinar_testing_frameworks",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/mecanismo-de-experimentacao-rapida.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por operação: framework sistemático, estrutura MVP ou cadência de muitos testes pequenos.",
+          "alias_group": "refinar_testing_frameworks",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/diagnostico-da-entrega-da-viagem-do-cliente.md",
+      "sha256": "308f1290bbe860ed78a457048a987a46d4fb230a3441f3150ae6ceac4c6bcdec",
+      "pillar": "Refinar",
+      "inferred_function": "precisa avaliar se a jornada está sendo entregue como desenhada",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa avaliar se a jornada está sendo entregue como desenhada",
+        "context_placeholders_sample": [
+          "seu produto/serviço",
+          "nome da sua empresa",
+          "inserir",
+          "Consciência, Consideração, Conversão, Retenção",
+          "por exemplo, gerações de leads, inscrições de demonstração, compras, renovações",
+          "inserir descrição"
+        ]
+      },
+      "output_family": "analysis:da_entrega_da_viagem_do_cliente",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por foco: atrito/conversão na jornada versus aderência entre jornada desenhada e entregue.",
+          "alias_group": "refinar_journey_diagnostic",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+      "sha256": "eec9aa911b0e6138e576d4928e1f39c1e273029051ebc2d9214dfa5c8db28fa5",
+      "pillar": "Refinar",
+      "inferred_function": "precisa diagnosticar por que uma campanha performou como performou (Passo 3 do agente)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa diagnosticar por que uma campanha performou como performou (Passo 3 do agente)",
+        "context_placeholders_sample": [
+          "LISTAR CAMPANHAS RECENTES COM DADOS BÁSICOS DE DESEMPENHO",
+          "DIFERENTES TIPOS DE CAMPANHAS - E-MAIL, SOCIAL, PAGO, CONTEÚDO, ETC.",
+          "O QUE CADA CAMPANHA FOI PROJETADA PARA ALCANÇAR",
+          "MÉTRICAS DE DESEMPENHO PARA CADA CAMPANHA",
+          "ORÇAMENTO E INVESTIMENTO DE RECURSOS PARA CADA CAMPANHA",
+          "TAXAS DE ABERTURA, TAXAS DE CLIQUE, ENGAJAMENTO SOCIAL, ETC."
+        ]
+      },
+      "output_family": "analysis:de_desempenho_de_campanha",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/estrategista-de-teste-multi-variate.md",
+      "sha256": "a8f7833def8bc18b79db83936383c3a3e5b1039c0789fe52e94eff7ad663de37",
+      "pillar": "Refinar",
+      "inferred_function": "precisa testar múltiplas variáveis com design multivariado",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "precisa testar múltiplas variáveis com design multivariado",
+        "context_placeholders_sample": [
+          "TECNOLOGIA DISPONÍVEL PARA TESTES MULTIVARIADOS",
+          "EXPERIÊNCIA DA EQUIPE COM TESTES MULTIVARIADOS",
+          "TAMANHO DO PÚBLICO DISPONÍVEL PARA TESTE",
+          "FLEXIBILIDADE NA DURAÇÃO DO TESTE",
+          "QUAIS ELEMENTOS DE MARKETING SÃO PRIORIDADE PARA OTIMIZAÇÃO",
+          "MELHORIAS DE DESEMPENHO ESPECÍFICAS DESEJADAS"
+        ]
+      },
+      "output_family": "strategy:de_teste_multi_variate",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/gerador-de-relatorios-de-otimizacao-continua.md",
+      "sha256": "c8b3517a5c145b1a92a0ab0d9af9ca21c2478e4a9c4e19b6423e0e5c75bda90e",
+      "pillar": "Refinar",
+      "inferred_function": "precisa consolidar resultados num relatório de otimização recorrente",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa consolidar resultados num relatório de otimização recorrente",
+        "context_placeholders_sample": [
+          "seu produto/serviço",
+          "nome da sua empresa",
+          "inserir",
+          "por exemplo, conversões, inscrições de demonstração, crescimento da receita",
+          "conscientização, consideração, conversão, retenção",
+          "por exemplo, últimas 2 semanas, último mês"
+        ]
+      },
+      "output_family": "creative_blueprint:de_relatorios_de_otimizacao_continua",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+      "sha256": "9aca0cf5326e11714de6ce211b0bf8de04f7e94be076f2c77acc6ea917b0c9c5",
+      "pillar": "Refinar",
+      "inferred_function": "o diagnóstico é por atrito/conversão ao longo da jornada",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o diagnóstico é por atrito/conversão ao longo da jornada",
+        "context_placeholders_sample": [
+          "TRÁFEGO, ENGAJAMENTO DE CONTEÚDO, MÉTRICAS DE INTERAÇÃO INICIAL",
+          "COMPORTAMENTO DE AVALIAÇÃO, CONSUMO DE CONTEÚDO, PROFUNDIDADE DO ENGAJAMENTO",
+          "SINAIS DE INTENÇÃO DE COMPRA, INTERAÇÃO DE VENDAS, COMPORTAMENTO DE CONVERSÃO",
+          "ONBOARDING, CONQUISTA DE SUCESSO, PONTUAÇÕES DE SATISFAÇÃO",
+          "INDICAÇÕES, DEPOIMENTOS, COMPORTAMENTO DE ADVOCACIA",
+          "PORCENTAGEM DE PROGRESSÃO DE CLIENTES ENTRE ESTÁGIOS"
+        ]
+      },
+      "output_family": "analysis:de_analises_da_jornada_do_cliente",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 4,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/diagnostico-da-entrega-da-viagem-do-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por foco: atrito/conversão na jornada versus aderência entre jornada desenhada e entregue.",
+          "alias_group": "refinar_journey_diagnostic",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/mecanismo-de-experimentacao-rapida.md",
+      "sha256": "909ef0df43b186ac0164e6eb245e12cb9105ddb0d13d23a8897db9e4038baba6",
+      "pillar": "Refinar",
+      "inferred_function": "precisa rodar muitos testes pequenos com critério de escalonamento",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa rodar muitos testes pequenos com critério de escalonamento",
+        "context_placeholders_sample": [
+          "QUÃO RÁPIDO VOCÊ PODE TESTAR ATUALMENTE AS IDEIAS DE MARKETING",
+          "RECURSOS NECESSÁRIOS ATUALMENTE PARA TESTE",
+          "QUANTO TEMPO OS TESTES ATUAIS LEVAM PARA FORNECER RESULTADOS",
+          "TAXAS DE SUCESSO DAS ABORDAGENS DE TESTE ATUAIS",
+          "IDEIAS DE MARKETING E CONCEITOS QUE PRECISAM DE TESTE",
+          "NOVOS CANAIS OU ABORDAGENS DE ENSAIO"
+        ]
+      },
+      "output_family": "operating_system:de_experimentacao_rapida",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por operação: framework sistemático, estrutura MVP ou cadência de muitos testes pequenos.",
+          "alias_group": "refinar_testing_frameworks",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por operação: framework sistemático, estrutura MVP ou cadência de muitos testes pequenos.",
+          "alias_group": "refinar_testing_frameworks",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/mecanismo-de-otimizacao-em-tempo-real.md",
+      "sha256": "af92c70b43a8f9111db20ab6a985ab95c237e3f04efce4582b89e4bff3207f3a",
+      "pillar": "Refinar",
+      "inferred_function": "campanha está rodando e precisa de otimização ao vivo",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "campanha está rodando e precisa de otimização ao vivo",
+        "context_placeholders_sample": [
+          "COMO VOCÊ ATUALMENTE MONITORA O DESEMPENHO DA CAMPANHA",
+          "COM QUE FREQUÊNCIA VOCÊ VERIFICA O DESEMPENHO DA CAMPANHA",
+          "COM QUE RAPIDEZ VOCÊ PODE FAZER AJUSTES DE CAMPANHA",
+          "PROCESSO ATUAL DE TOMADA DE DECISÕES DE OTIMIZAÇÃO",
+          "TECNOLOGIA DISPONÍVEL PARA MONITORAMENTO EM TEMPO REAL",
+          "ONDE VOCÊ NÃO TEM VISIBILIDADE DE DESEMPENHO EM TEMPO REAL"
+        ]
+      },
+      "output_family": "operating_system:de_otimizacao_em_tempo_real",
+      "translation_risk": {
+        "level": "low",
+        "signals": [
+          "no_heuristic_signal_detected"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 0
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por foco: ajuste ao vivo versus detecção precoce que alimenta ajuste ao vivo.",
+          "alias_group": "refinar_realtime_optimization",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/mecanismo-de-previsao-de-desempenho.md",
+      "sha256": "f0e41015831963006c5239177a0ec31a52d4f88ee4a21da856dc43deb3c27c6c",
+      "pillar": "Refinar",
+      "inferred_function": "precisa projetar tendência/desempenho futuro",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "precisa projetar tendência/desempenho futuro",
+        "context_placeholders_sample": [
+          "TENDÊNCIAS NO DESEMPENHO DE MARKETING AO LONGO DO TEMPO",
+          "COMO O DESEMPENHO DE MARKETING VARIA POR ESTAÇÃO",
+          "TENDÊNCIAS NO CRESCIMENTO E DESENVOLVIMENTO DA COMERCIALIZAÇÃO",
+          "PADRÕES CÍCLICOS NO DESEMPENHO DE MARKETING",
+          "COMO O DESEMPENHO SE CORRELACIONA COM AS CONDIÇÕES DE MERCADO",
+          "DESEMPENHO DE MARKETING DE LINHA DE BASE ATUAL ENTRE CANAIS"
+        ]
+      },
+      "output_family": "operating_system:de_previsao_de_desempenho",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: tendência futura, modelo decisório avançado ou estimativa pré-lançamento.",
+          "alias_group": "refinar_prediction",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: tendência futura, modelo decisório avançado ou estimativa pré-lançamento.",
+          "alias_group": "refinar_prediction",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/modelador-de-combinacao-de-marketing.md",
+      "sha256": "24211a8f357f7d43292483986ae4b83c2cf3920eeb500f79bda9692ff4b9e805",
+      "pillar": "Refinar",
+      "inferred_function": "precisa entender interação/sinergia entre atividades (marketing mix)",
+      "maturity_marker": "avancado",
+      "input_signals": {
+        "routing_trigger": "precisa entender interação/sinergia entre atividades (marketing mix)",
+        "context_placeholders_sample": [
+          "RP, EVENTOS, MALA DIRETA, PUBLICIDADE IMPRESSA, RÁDIO/TV",
+          "BLOG, VÍDEO, PODCASTS, WEBINARS, WHITEPAPERS",
+          "PARCERIAS, INDICAÇÕES, DEFESA DO CLIENTE, NETWORKING",
+          "CONTEÚDO DE VENDAS, FERRAMENTAS, FORMAÇÃO, APOIO",
+          "MÉTRICAS DE DESEMPENHO PARA CADA ATIVIDADE DE MARKETING",
+          "ATUAL ALOCAÇÃO DE ORÇAMENTO ENTRE ATIVIDADES DE MARKETING"
+        ]
+      },
+      "output_family": "quantitative_model:de_combinacao_de_marketing",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+      "sha256": "a2bf3d68b1c1afc404bbd7c46ca742dffd260118934b10f4c9a2ec911d382854",
+      "pillar": "Refinar",
+      "inferred_function": "precisa de modelagem preditiva de desempenho para suporte à decisão",
+      "maturity_marker": "avancado",
+      "input_signals": {
+        "routing_trigger": "precisa de modelagem preditiva de desempenho para suporte à decisão",
+        "context_placeholders_sample": [
+          "DADOS DE DESEMPENHO DA CAMPANHA HISTÓRICA POR TIPO, CANAL, PÚBLICO",
+          "TENDÊNCIAS NO DESEMPENHO DA CAMPANHA AO LONGO DO TEMPO",
+          "COMO O DESEMPENHO DA CAMPANHA VARIA POR ESTAÇÃO",
+          "COMO AS CONDIÇÕES DE MERCADO SE CORRELACIONAM COM O DESEMPENHO DA CAMPANHA",
+          "COMO A ATIVIDADE COMPETITIVA AFETA O DESEMPENHO DA CAMPANHA",
+          "COMPORTAMENTO HISTÓRICO DO CLIENTE E PADRÕES DE RESPOSTA"
+        ]
+      },
+      "output_family": "quantitative_model:de_desempenho_previsivel",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/mecanismo-de-previsao-de-desempenho.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: tendência futura, modelo decisório avançado ou estimativa pré-lançamento.",
+          "alias_group": "refinar_prediction",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: tendência futura, modelo decisório avançado ou estimativa pré-lançamento.",
+          "alias_group": "refinar_prediction",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+      "sha256": "557dc09cbd9de4177dea0129823efc7c0268ea40672047a4de9f4b96c7e369d9",
+      "pillar": "Refinar",
+      "inferred_function": "precisa detectar sinais precoces antes do resultado consolidar",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "precisa detectar sinais precoces antes do resultado consolidar",
+        "context_placeholders_sample": [
+          "seu produto/serviço",
+          "seu público",
+          "insira o período de tempo, por exemplo, 7 dias",
+          "nome da sua empresa",
+          "inserir",
+          "inserir meta principal, por exemplo, conversões, inscrições de demonstração, compras"
+        ]
+      },
+      "output_family": "tactical_plan:monitoramento_antecipado_de_sinais_e_otimizacao_em_tempo_real",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/mecanismo-de-otimizacao-em-tempo-real.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por foco: ajuste ao vivo versus detecção precoce que alimenta ajuste ao vivo.",
+          "alias_group": "refinar_realtime_optimization",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md",
+      "sha256": "24c8bba74dce870795566cf3c6fc5788927e074bc41de0856c7daeb9e2517158",
+      "pillar": "Refinar",
+      "inferred_function": "o foco é capacidade de resposta/adaptação do time",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o foco é capacidade de resposta/adaptação do time",
+        "context_placeholders_sample": [
+          "COM QUE RAPIDEZ VOCÊ ATUALMENTE RESPONDE ÀS MUDANÇAS DO MERCADO",
+          "CAPACIDADE PARA ADAPTAR A ESTRATÉGIA DE COMERCIALIZAÇÃO",
+          "VELOCIDADE DE REGULAÇÃO DAS CAMPANHAS EM FUNÇÃO DAS CONDIÇÕES DE MUDANÇA",
+          "AGILIDADE NA REALOCAÇÃO DE RECURSOS DE MARKETING",
+          "VELOCIDADE DE ADOÇÃO DE NOVAS TECNOLOGIAS DE MARKETING",
+          "PROCESSOS QUE IMPEDEM A RÁPIDA ADAPTAÇÃO"
+        ]
+      },
+      "output_family": "optimization_plan:de_agilidade_de_marketing",
+      "translation_risk": {
+        "level": "low",
+        "signals": [
+          "no_heuristic_signal_detected"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 0
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/acelerador-de-velocidade-de-marketing.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: reduzir ciclo, elevar adaptação do time ou comparar velocidade com o mercado.",
+          "alias_group": "refinar_velocity",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/analise-competitiva-do-velocity.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: reduzir ciclo, elevar adaptação do time ou comparar velocidade com o mercado.",
+          "alias_group": "refinar_velocity",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+      "sha256": "dad237af53a8e11d6a933e459af7c1100c3a1a804b3a5aebfad0276a62951ad5",
+      "pillar": "Refinar",
+      "inferred_function": "precisa de modelo de atribuição para medir contribuição real por toque",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de modelo de atribuição para medir contribuição real por toque",
+        "context_placeholders_sample": [
+          "MODELO DE PRIMEIRO TOQUE, ÚLTIMO TOQUE, LINEAR, DE DECAIMENTO NO TEMPO OU PERSONALIZADO",
+          "QUÃO PRECISA É A ATRIBUIÇÃO ATUAL",
+          "A QUE ATIVIDADES DE MARKETING SÃO ATRIBUÍDAS ATUALMENTE",
+          "COMO A ATRIBUIÇÃO ATUALMENTE INFLUENCIA AS DECISÕES DE MARKETING",
+          "COMO A ATRIBUIÇÃO AFETA A ALOCAÇÃO DO ORÇAMENTO",
+          "ATIVIDADES DE MARKETING NÃO BEM ATRIBUÍDAS"
+        ]
+      },
+      "output_family": "optimization_plan:de_atribuicao_de_marketing",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 1,
+          "literal_or_terminology": 2,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/otimizador-de-testes-sequenciais.md",
+      "sha256": "c16e645b0130c91e1ec3a72921c7161d01a4df2cc7b2c88bfb52185fea462ce9",
+      "pillar": "Refinar",
+      "inferred_function": "precisa de testes sequenciais / inteligência competitiva contínua",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de testes sequenciais / inteligência competitiva contínua",
+        "context_placeholders_sample": [
+          "ENUMERAR OS PRINCIPAIS CONCORRENTES DIRETOS",
+          "EMPRESAS QUE RESOLVEM PROBLEMAS SEMELHANTES DE FORMA DIFERENTE",
+          "NOVOS OPERADORES OU AMEAÇAS CONCORRENCIAIS CRESCENTES",
+          "SOLUÇÕES ALTERNATIVAS QUE OS CLIENTES PODEM ESCOLHER",
+          "COMO VOCÊ ATUALMENTE MONITORA OS CONCORRENTES",
+          "FONTES DE INFORMAÇÕES SOBRE A CONCORRÊNCIA"
+        ]
+      },
+      "output_family": "optimization_plan:de_testes_sequenciais",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/otimizador-de-valor-do-ciclo-de-vida-do-cliente.md",
+      "sha256": "07de759efc23636163d9a75b631fc81011e3ade7547221cdc0bbcb9560f7c828",
+      "pillar": "Refinar",
+      "inferred_function": "o foco é otimizar LTV e alocação de investimento por segmento",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o foco é otimizar LTV e alocação de investimento por segmento",
+        "context_placeholders_sample": [
+          "COMO VOCÊ CALCULA ATUALMENTE O VALOR DO CICLO DE VIDA DO CLIENTE",
+          "LTV DIFERENÇAS ENTRE SEGMENTOS DE CLIENTE",
+          "DIFERENÇAS LTV POR COMO OS CLIENTES FORAM ADQUIRIDOS",
+          "COMO O LTV DO CLIENTE MUDOU AO LONGO DO TEMPO",
+          "QUÃO PRECISAS SÃO AS PREVISÕES ATUAIS LTV",
+          "TAXAS DE RETENÇÃO POR SEGMENTO, CANAL, PERÍODO"
+        ]
+      },
+      "output_family": "optimization_plan:de_valor_do_ciclo_de_vida_do_cliente",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+      "sha256": "c500944d35ff8e30ea81a7ed2a0a81ae6776e4485ee6e3fd823cf93b0be65dc4",
+      "pillar": "Refinar",
+      "inferred_function": "quer estimar resultado de uma campanha antes de lançar",
+      "maturity_marker": "maduro_plus",
+      "input_signals": {
+        "routing_trigger": "quer estimar resultado de uma campanha antes de lançar",
+        "context_placeholders_sample": [
+          "seu produto/serviço",
+          "meta primário, por exemplo, inscrições de demonstração, SQLs, compras",
+          "canais: por exemplo, social pago, pesquisa, email, social orgânico, amplificação de parceiro/criador, conteúdo AEO, chatbot no local",
+          "inserir orçamento",
+          "data inicial → data final",
+          "lista 2 - 3 opções de mensagem/ângulo"
+        ]
+      },
+      "output_family": "tactical_plan:resultados_previsiveis_da_campanha_antes_do_lancamento",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/mecanismo-de-previsao-de-desempenho.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: tendência futura, modelo decisório avançado ou estimativa pré-lançamento.",
+          "alias_group": "refinar_prediction",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por pergunta: tendência futura, modelo decisório avançado ou estimativa pré-lançamento.",
+          "alias_group": "refinar_prediction",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/sintese-de-aprendizado-multi-loop.md",
+      "sha256": "9fef25519e43b4f3c20841bc30965da9ae8ff244a270e7ee6a0287466c16b04a",
+      "pillar": "Refinar",
+      "inferred_function": "precisa consolidar aprendizado acumulado de vários ciclos (alimenta Seção 6 do projeto)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa consolidar aprendizado acumulado de vários ciclos (alimenta Seção 6 do projeto)",
+        "context_placeholders_sample": [
+          "seu produto/serviço",
+          "nome da sua empresa",
+          "inserir",
+          "lista 3-5 campanhas passadas",
+          "por exemplo, intensidade competitiva, clima econômico",
+          "inserir - conscientização, engajamento, conversões, receita"
+        ]
+      },
+      "output_family": "analysis:de_aprendizado_multi_loop",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 2,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por estágio: síntese de ciclos já ocorridos versus processo contínuo de captura e reaplicação.",
+          "alias_group": "refinar_learning",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+      "sha256": "0db489b2b7b1717eaaf079187401d0882d9abff2cd9de0b5981ed470d5bb3ade",
+      "pillar": "Refinar",
+      "inferred_function": "precisa de processo para capturar e reaplicar aprendizado de forma sistemática",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de processo para capturar e reaplicar aprendizado de forma sistemática",
+        "context_placeholders_sample": [
+          "COMO VOCÊ CAPTURA ATUALMENTE INFORMAÇÕES DAS ATIVIDADES DE MARKETING",
+          "COMO O CONHECIMENTO DE MARKETING ESTÁ ATUALMENTE DOCUMENTADO",
+          "COMO O APRENDIZADO É COMPARTILHADO ENTRE A EQUIPE DE MARKETING",
+          "COMO AS INFORMAÇÕES SÃO APLICADAS AO MARKETING FUTURO",
+          "COMO O APRENDIZADO DE MARKETING É MANTIDO AO LONGO DO TEMPO",
+          "INSIGHTS QUE NÃO ESTÃO SENDO CAPTURADOS"
+        ]
+      },
+      "output_family": "operating_system:de_integracao_de_aprendizagem",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 8,
+          "literal_or_terminology": 5,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Refinar/sintese-de-aprendizado-multi-loop.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por estágio: síntese de ciclos já ocorridos versus processo contínuo de captura e reaplicação.",
+          "alias_group": "refinar_learning",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+      "sha256": "7818ba7124e11ec18dcb881252d90e10fd1aa63aaf56cc38f6396124e72e7c8e",
+      "pillar": "Verbalizar",
+      "inferred_function": "a mensagem falhou no teste de diferenciação e precisa de posicionamento distinto",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a mensagem falhou no teste de diferenciação e precisa de posicionamento distinto",
+        "context_placeholders_sample": [
+          "COLE SUAS PRINCIPAIS 10-15 HISTÓRIAS DE SUCESSO DE CLIENTES/ESTUDOS DE CASO",
+          "COLAR DEPOIMENTOS/ANÁLISES DE CLIENTES",
+          "COLE QUAISQUER DADOS DE FEEDBACK DE GANHOS/PERDAS",
+          "NOME DA SUA EMPRESA",
+          "SUAS PRINCIPAIS OFERTAS",
+          "SEU PRINCIPAL MERCADO-ALVO"
+        ]
+      },
+      "output_family": "analysis:de_diferenciacao_de_marcas",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela evidência: diferenciais próprios, linguagem concorrente ou lacunas de posicionamento.",
+          "alias_group": "verbalizar_competitive_positioning",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela evidência: diferenciais próprios, linguagem concorrente ou lacunas de posicionamento.",
+          "alias_group": "verbalizar_competitive_positioning",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/analisador-de-padroes-de-sucesso-do-cliente.md",
+      "sha256": "2250184819e963511bdd3309ba6127de4e715966394c29d4e96acae57a71c48b",
+      "pillar": "Verbalizar",
+      "inferred_function": "quer identificar padrões dos clientes bem-sucedidos para replicar na mensagem",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "quer identificar padrões dos clientes bem-sucedidos para replicar na mensagem",
+        "context_placeholders_sample": [
+          "COLE DADOS NOS CLIENTES MAIS VALIOSOS/BEM-SUCEDIDOS",
+          "COLAR DADOS DE DESEMPENHO - USO, RESULTADOS, RETENÇÃO, EXPANSÃO",
+          "COLAR PADRÕES DE SUCESSO DO ONBOARDING",
+          "COLE OS PADRÕES DE TÍQUETE DE SUPORTE PARA CLIENTES BEM-SUCEDIDOS",
+          "COLE HISTÓRIAS DE SUCESSO E FEEDBACK POSITIVO",
+          "COLE DADOS SOBRE OS CLIENTES QUE CRESCERAM COM VOCÊ"
+        ]
+      },
+      "output_family": "analysis:de_padroes_de_sucesso_do_cliente",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/analise-de-interruptores-do-setor.md",
+      "sha256": "af1fde3073921f4d1348ff1f8b50825d72f42c2f124985f98cbc434684a35227",
+      "pillar": "Verbalizar",
+      "inferred_function": "a tese é contrariar práticas do setor (disrupção de mensagem)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a tese é contrariar práticas do setor (disrupção de mensagem)",
+        "context_placeholders_sample": [
+          "DESCREVA AS MANEIRAS TÍPICAS DE OPERAÇÃO DO SEU SETOR",
+          "SOBRE O QUE OS CLIENTES RECLAMAM CONSISTENTEMENTE EM SEU SETOR",
+          "PRÁTICAS DO SETOR QUE NÃO ATENDEM MAIS BEM AOS CLIENTES",
+          "REGULAMENTAÇÕES DO SETOR QUE AFETAM A FORMA COMO AS EMPRESAS OPERAM",
+          "LIMITAÇÕES TÉCNICAS QUE LIMITAM A INOVAÇÃO DO SETOR",
+          "O QUE OS CLIENTES DIZEM ODIAR SOBRE O SEU SETOR"
+        ]
+      },
+      "output_family": "analysis:de_interruptores_do_setor",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+      "sha256": "d1f1600f041687b1553a4c8642f90ac442e1bdafe194a2ff157f37fbb1c74e80",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa mapear como os concorrentes se comunicam para achar espaço de voz",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa mapear como os concorrentes se comunicam para achar espaço de voz",
+        "context_placeholders_sample": [
+          "NOME DO CONCORRENTE",
+          "COLE SUA CÓPIA DO SITE, MENSAGENS DE MARKETING, CONTEÚDO SOCIAL",
+          "PRINCIPAIS ATORES DO SETOR, MESMO QUE NÃO SEJAM CONCORRENTES DIRETOS",
+          "NOVOS OPERADORES QUE ENTRAM NO MERCADO",
+          "EMPRESAS QUE RESOLVEM PROBLEMAS SEMELHANTES DE FORMA DIFERENTE",
+          "NOME DA EMPRESA"
+        ]
+      },
+      "output_family": "analysis:de_voz_competitiva",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela evidência: diferenciais próprios, linguagem concorrente ou lacunas de posicionamento.",
+          "alias_group": "verbalizar_competitive_positioning",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela evidência: diferenciais próprios, linguagem concorrente ou lacunas de posicionamento.",
+          "alias_group": "verbalizar_competitive_positioning",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/arquiteto-de-historias-de-marcas.md",
+      "sha256": "9f65a87f8b92badcfd2184b05f14d78b6d1fbfcf6ef33686ecdd66a0229a9b05",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa de narrativa/storytelling de marca (consideração/awareness)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de narrativa/storytelling de marca (consideração/awareness)",
+        "context_placeholders_sample": [
+          "NOME DA SUA EMPRESA",
+          "COMO/POR QUE A EMPRESA FOI FUNDADA",
+          "DECISÕES/EVENTOS PRÉVIOS FUNDAMENTAIS",
+          "O QUE LEVOU OS FUNDADORES A INICIAR ISSO",
+          "QUE PROBLEMA VOCÊ ESTAVA TENTANDO RESOLVER",
+          "PRINCIPAIS REALIZAÇÕES/PONTOS DE VIRAGEM NA HISTÓRIA DAS EMPRESAS"
+        ]
+      },
+      "output_family": "framework:de_historias_de_marcas",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 0
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+      "sha256": "76fe5b6f5556383fb31aa9cdd882f646312077802f2cf9f060a17d7b18c17b59",
+      "pillar": "Verbalizar",
+      "inferred_function": "existe biblioteca de conteúdo a auditar e alinhar à marca/jornada",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "existe biblioteca de conteúdo a auditar e alinhar à marca/jornada",
+        "context_placeholders_sample": [
+          "POSICIONAMENTO DA SUA MARCA ATUAL",
+          "SUA PROPOSTA DE VALOR PRINCIPAL",
+          "SUAS CARACTERÍSTICAS DE TOM DE VOZ",
+          "SUAS MENSAGENS PRINCIPAIS DA MARCA",
+          "SEUS PERFIS DE CLIENTE IDEAIS",
+          "NOME DA EMPRESA"
+        ]
+      },
+      "output_family": "analysis:e_estrategia_de_conteudo",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 0
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por resultado: conceito criativo, temas derivados da mensagem ou auditoria da biblioteca existente.",
+          "alias_group": "verbalizar_content_creative",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por resultado: conceito criativo, temas derivados da mensagem ou auditoria da biblioteca existente.",
+          "alias_group": "verbalizar_content_creative",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/buyer-persona-validador.md",
+      "sha256": "95f7ff363cdd37e5aa84686fe9a6dfa754e22a6495015b09e20716f7546eceee",
+      "pillar": "Verbalizar",
+      "inferred_function": "já existe persona e precisa validá-la contra dados reais do cliente",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "já existe persona e precisa validá-la contra dados reais do cliente",
+        "context_placeholders_sample": [
+          "COLE SUAS DESCRIÇÕES BUYER PERSONAS ATUAIS - INCLUA DEMOGRAFIA, META, DESAFIOS, COMPORTAMENTOS ETC.",
+          "COLAR DADOS DEMOGRÁFICOS/FIRMOGRÁFICOS REAIS DO CLIENTE",
+          "COLE AS RESPOSTAS DA PESQUISA SOBRE META, DESAFIOS, PREFERÊNCIAS",
+          "COLE TEMAS DE CHAMADAS DE VENDAS REAIS",
+          "COLE O COMPORTAMENTO DO SITE, O COMPROMISSO DO E-MAIL, ETC.",
+          "COLAR TEMAS DE SUPORTE AO CLIENTE"
+        ]
+      },
+      "output_family": "tactical_plan:buyer_persona_validador",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por estado: construir ICP ausente versus validar persona já existente com dados.",
+          "alias_group": "verbalizar_audience_model",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+      "sha256": "c00d4b6ded5608e1408f5a10454718ac35c637bde10e94908329c6360946148e",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa estruturar a hierarquia L1 → L2 → L3 com mensagens de suporte e provas",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa estruturar a hierarquia L1 → L2 → L3 com mensagens de suporte e provas",
+        "context_placeholders_sample": [
+          "NOME DA EMPRESA",
+          "SUA DECLARAÇÃO DE POSICIONAMENTO",
+          "VALOR PRINCIPAL QUE VOCÊ FORNECE",
+          "PROPÓSITO DA SUA MARCA",
+          "O QUE O TORNA ÚNICO - 3-5 PONTOS",
+          "DESCRIÇÃO DETALHADA"
+        ]
+      },
+      "output_family": "framework:de_hierarquia_de_mensagens",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 2,
+          "literal_or_terminology": 1,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/criador-de-perfil-de-personalidade-da-marca.md",
+      "sha256": "4335945b84a642d26dc8cd7fd4a233c15c119419c4cebd80270d71f569616b89",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa definir personalidade/voz consistente da marca",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa definir personalidade/voz consistente da marca",
+        "context_placeholders_sample": [
+          "COLAR CÓPIA DO SITE, EXEMPLOS DE E-MAIL, ANÚNCIOS",
+          "COLE EXEMPLOS DE CONVERSAS DE SUPORTE",
+          "COLE CONTEÚDO RECENTE DE MÍDIA SOCIAL",
+          "COLE EXEMPLOS DE MENSAGENS DE VENDAS",
+          "COLE EXEMPLOS DE COMUNICAÇÕES INTERNAS, SE DISPONÍVEIS",
+          "NOME DA EMPRESA"
+        ]
+      },
+      "output_family": "creative_blueprint:de_perfil_de_personalidade_da_marca",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/identificador-do-arquetipo-da-marca.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por artefato: perfil de personalidade/voz versus arquétipo como âncora.",
+          "alias_group": "verbalizar_brand_identity",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/decodificador-de-idioma-do-cliente.md",
+      "sha256": "f78cdbb6d9480328ac8d1d6946c0b7d2f7a862b5e1aa9f96b30ce94317c6f1da",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa extrair a linguagem real do cliente e montar guia de tom de voz (Passo 1 do agente)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa extrair a linguagem real do cliente e montar guia de tom de voz (Passo 1 do agente)",
+        "context_placeholders_sample": [
+          "COLE MAIS DE 50-100 AVALIAÇÕES DE CLIENTES DE VÁRIAS FONTES",
+          "COLAR DEPOIMENTOS DE CLIENTES",
+          "COLAR COMENTÁRIOS DA PESQUISA, SE DISPONÍVEIS",
+          "COLAR INTERAÇÕES DE SUPORTE POSITIVAS",
+          "COLAR EXCERTOS DE CONVERSA COM O CLIENTE",
+          "NOME DA EMPRESA"
+        ]
+      },
+      "output_family": "analysis:de_idioma_do_cliente",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/voz-do-sintetizador-de-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por corpus: extração de linguagem e tom versus síntese ampla de conversas e feedback.",
+          "alias_group": "verbalizar_customer_voice",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/definidor-de-categoria-de-mercado.md",
+      "sha256": "5c934184c4889946d0c24bdd5fa451deee598acaf79ae983579a5a1de5bc82cb",
+      "pillar": "Verbalizar",
+      "inferred_function": "o problema é a categoria de mercado em que a marca se coloca",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o problema é a categoria de mercado em que a marca se coloca",
+        "context_placeholders_sample": [
+          "NOME/DESCRIÇÃO DA CATEGORIA DO MERCADO ATUAL",
+          "DIMENSÃO DO MERCADO, TAXA DE CRESCIMENTO, TENDÊNCIAS",
+          "PRINCIPAIS CONCORRENTES E LÍDERES DE MERCADO",
+          "PROBLEMAS COM A DEFINIÇÃO DE CATEGORIA ATUAL",
+          "EMPRESAS COM AS QUAIS VOCÊ CONCORRE DIRETAMENTE",
+          "CONSIDERAR OS CLIENTES DE SOLUÇÕES ALTERNATIVAS"
+        ]
+      },
+      "output_family": "strategy:de_categoria_de_mercado",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 0
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/desenvolvedor-de-estrategia-sazonal.md",
+      "sha256": "20674c413d3fd56fc2d4694171b6e9bc8cc77c6faff448fc2d108cb5305ab920",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa de calendário/eixo sazonal de mensagem",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de calendário/eixo sazonal de mensagem",
+        "context_placeholders_sample": [
+          "NOME DA EMPRESA",
+          "POSICIONAMENTO DA SUA MARCA",
+          "CARACTERÍSTICAS DE PERSONALIDADE DA MARCA",
+          "VALORES DA SUA MARCA",
+          "SUAS MENSAGENS PRINCIPAIS DA MARCA",
+          "O QUE VOCÊ OFERECE"
+        ]
+      },
+      "output_family": "strategy:de_estrategia_sazonal",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 2,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/esclarecimento-de-objetivo-e-missao.md",
+      "sha256": "42ed31881eb8dd7462929a1b2877e0f8d17dccbfd83de0e54a365062ec3e2d06",
+      "pillar": "Verbalizar",
+      "inferred_function": "o propósito/missão não está claro e contamina a mensagem",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o propósito/missão não está claro e contamina a mensagem",
+        "context_placeholders_sample": [
+          "DESCREVER COMO/POR QUE A EMPRESA FOI FUNDADA",
+          "GRANDES REALIZAÇÕES DAS EMPRESAS/MOMENTOS CRUCIAIS",
+          "EXEMPLOS DE COMO VOCÊ MUDOU A VIDA/OS NEGÓCIOS DOS CLIENTES",
+          "POR QUE OS MEMBROS DA EQUIPE DIZEM QUE TRABALHAM AQUI",
+          "PROBLEMAS EM SEU SETOR QUE VOCÊ ESTÁ TENTANDO RESOLVER",
+          "NOME DA EMPRESA"
+        ]
+      },
+      "output_family": "strategy:de_objetivo_e_missao",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+      "sha256": "76efba501dc90bfe2b8f64c8d066c4c86c4b1d49c6d71eb096795db8b977dfbb",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa de conceitos criativos de campanha sobre a mensagem definida",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de conceitos criativos de campanha sobre a mensagem definida",
+        "context_placeholders_sample": [
+          "NOME DA EMPRESA",
+          "DECLARAÇÃO DE POSICIONAMENTO DA SUA MARCA",
+          "CARACTERÍSTICAS DE PERSONALIDADE DA MARCA",
+          "SEU TOM DE VOZ E TOM",
+          "SUAS MENSAGENS PRINCIPAIS SOBRE MARCAS",
+          "SEUS PERFIS DE CLIENTE IDEAIS"
+        ]
+      },
+      "output_family": "creative_blueprint:de_conceito_de_campanha",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por resultado: conceito criativo, temas derivados da mensagem ou auditoria da biblioteca existente.",
+          "alias_group": "verbalizar_content_creative",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por resultado: conceito criativo, temas derivados da mensagem ou auditoria da biblioteca existente.",
+          "alias_group": "verbalizar_content_creative",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+      "sha256": "e14009f0530bc7fe87e933082e9709c226e0ba59ab567bc62701153bb05fc030",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa de temas/eixos de conteúdo derivados da hierarquia de mensagens",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de temas/eixos de conteúdo derivados da hierarquia de mensagens",
+        "context_placeholders_sample": [
+          "DECLARAÇÃO DE POSICIONAMENTO DA SUA MARCA",
+          "SUAS CARACTERÍSTICAS DE TOM DE VOZ",
+          "O QUE O TORNA DIFERENTE",
+          "SEU PROPÓSITO MAIS PROFUNDO",
+          "SEUS PERFIS DE CLIENTE IDEAIS",
+          "PRINCIPAIS ASPECTOS COM OS QUAIS SEUS CLIENTES SE PREOCUPAM"
+        ]
+      },
+      "output_family": "creative_blueprint:de_tema_de_conteudo",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 1,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por resultado: conceito criativo, temas derivados da mensagem ou auditoria da biblioteca existente.",
+          "alias_group": "verbalizar_content_creative",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por resultado: conceito criativo, temas derivados da mensagem ou auditoria da biblioteca existente.",
+          "alias_group": "verbalizar_content_creative",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/identificador-do-arquetipo-da-marca.md",
+      "sha256": "9715aa7f709a7133627a000587fba22dc4f377f2248d40a72bc294d41515ec58",
+      "pillar": "Verbalizar",
+      "inferred_function": "quer ancorar a voz num arquétipo de marca (12 arquétipos)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "quer ancorar a voz num arquétipo de marca (12 arquétipos)",
+        "context_placeholders_sample": [
+          "COLE SUAS MENSAGENS ATUAIS DA MARCA E COPIE",
+          "DESCREVA SUA MARCA VISUAL ATUAL - CORES, FONTES, ESTILO DE IMAGEM",
+          "COMO VOCÊ SE COMUNICA ATUALMENTE - FORMAL, CASUAL, AMIGÁVEL, ETC.",
+          "COMO VOCÊ NORMALMENTE INTERAGE COM OS CLIENTES",
+          "O QUE OS CLIENTES DIZEM SOBRE A PERSONALIDADE DAS MARCAS",
+          "COMO OS CLIENTES DESCREVEM O TRABALHO COM VOCÊ"
+        ]
+      },
+      "output_family": "analysis:do_arquetipo_da_marca",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/criador-de-perfil-de-personalidade-da-marca.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por artefato: perfil de personalidade/voz versus arquétipo como âncora.",
+          "alias_group": "verbalizar_brand_identity",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+      "sha256": "c841a794f1e7cc0ee790a9438b64c6bb356091c66dcb3bfa9db543675635845a",
+      "pillar": "Verbalizar",
+      "inferred_function": "busca lacunas de posicionamento que os concorrentes deixam aberto",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "busca lacunas de posicionamento que os concorrentes deixam aberto",
+        "context_placeholders_sample": [
+          "LISTA 5-7 PRINCIPAIS CONCORRENTES",
+          "COLAR CÓPIA DO SITE DO CONCORRENTE, SLOGANS, PROPÓSITOS DE VALOR",
+          "DESCREVA O SEU SETOR - B2B/B2C, DIMENSÃO DO MERCADO, TENDÊNCIAS",
+          "NOME DA EMPRESA",
+          "SEU PERFIL DE CLIENTE IDEAL",
+          "SEUS PRINCIPAIS PONTOS FORTES/CAPACIDADES"
+        ]
+      },
+      "output_family": "analysis:de_lacunas_do_concorrente",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela evidência: diferenciais próprios, linguagem concorrente ou lacunas de posicionamento.",
+          "alias_group": "verbalizar_competitive_positioning",
+          "preservation": "preserve_both_as_canonical"
+        },
+        {
+          "path": "biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie pela evidência: diferenciais próprios, linguagem concorrente ou lacunas de posicionamento.",
+          "alias_group": "verbalizar_competitive_positioning",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/mapeador-da-jornada-do-cliente.md",
+      "sha256": "2222dde62185d4a963c0abeddbcfe4a4cf9c54f004e513889c40d4c3b7781504",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa mapear emoções, perguntas e pontos de contato por estágio da jornada",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa mapear emoções, perguntas e pontos de contato por estágio da jornada",
+        "context_placeholders_sample": [
+          "COLAR COMENTÁRIOS SOBRE A JORNADA DO CLIENTE",
+          "COLAR DADOS DE COMPORTAMENTO DE SITE/APLICATIVO",
+          "COLE OS COMENTÁRIOS DA EQUIPE DE VENDAS SOBRE O COMPORTAMENTO DO CLIENTE",
+          "COLAR TEMAS DE CONVERSA DE SUPORTE",
+          "COLAR DADOS DA PESQUISA RELACIONADOS À VIAGEM",
+          "NOME DA EMPRESA"
+        ]
+      },
+      "output_family": "analysis:da_jornada_do_cliente",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 2
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/otimizador-de-proposta-de-valor.md",
+      "sha256": "08b698eb9eb37f6ed30385c9935bebf944c406cb9ebab3628f16af1801fe5e05",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa criar ou refinar a proposta de valor central (L1)",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa criar ou refinar a proposta de valor central (L1)",
+        "context_placeholders_sample": [
+          "COLE SUA PROPOSTA DE VALOR ATUAL",
+          "SUAS MENSAGENS ATUAIS DE MARKETING",
+          "COMO VOCÊ SE POSICIONA ATUALMENTE",
+          "QUEM SÃO SEUS ALVOS DE PROP DE VALOR",
+          "TAXAS DE CONVERSÃO ATUAIS, MÉTRICAS DE ENGAJAMENTO",
+          "O QUE OS CLIENTES DIZEM SOBRE O SEU VALOR"
+        ]
+      },
+      "output_family": "optimization_plan:de_proposta_de_valor",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "untranslated_english_fragment",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 4,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+      "sha256": "811d802018adaeca8346d9955ac89706a9278d0a04c1fcedbd056d0ec86b8de6",
+      "pillar": "Verbalizar",
+      "inferred_function": "o ICP está indefinido ou genérico e precisa ser construído a partir de dados",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "o ICP está indefinido ou genérico e precisa ser construído a partir de dados",
+        "context_placeholders_sample": [
+          "COLAR REGISTROS DO CLIENTE, DEMOGRÁFICOS, FIRMOGRÁFICOS",
+          "COLE DADOS NOS MELHORES CLIENTES",
+          "COLE OS DADOS DA PESQUISA, SE DISPONÍVEIS",
+          "COLE TEMAS COMUNS DE CHAMADAS DE VENDAS",
+          "COLE EXEMPLOS DE RESULTADOS BEM-SUCEDIDOS DE CLIENTES",
+          "NOME DA EMPRESA"
+        ]
+      },
+      "output_family": "tactical_plan:perfil_do_cliente_ideal",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/buyer-persona-validador.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por estado: construir ICP ausente versus validar persona já existente com dados.",
+          "alias_group": "verbalizar_audience_model",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    },
+    {
+      "path": "biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md",
+      "sha256": "92c9805ef3b5500ed7bed657b3d0a18c9e6f896bd36082b6662a2379a89e6db9",
+      "pillar": "Verbalizar",
+      "inferred_function": "há lançamento/rebranding e precisa de plano de ativação",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "há lançamento/rebranding e precisa de plano de ativação",
+        "context_placeholders_sample": [
+          "LANÇAMENTO DE NOVAS MARCAS / ATUALIZAÇÃO DE MARCAS / REBRAND / REPOSICIONAMENTO",
+          "REVISÃO COMPLETA / EVOLUÇÃO / MENSAGENS ATUALIZAR / ATUALIZAÇÃO VISUAL",
+          "POR QUE VOCÊ ESTÁ ATIVANDO NOVAS MARCAS - CRESCIMENTO, EVOLUÇÃO, MUDANÇA DE MERCADO, ETC.",
+          "NÍVEL ATUAL DE CONSCIÊNCIA DA MARCA",
+          "COMO OS CLIENTES ATUALMENTE VEEM SUAS MARCAS",
+          "POSIÇÃO CONCORRENCIAL ATUAL"
+        ]
+      },
+      "output_family": "plan_or_roadmap:de_ativacao_de_marcas",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 5,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+      "sha256": "4cf90136d087759b4cbfc25a90c5ab9c876ed0effe25c4c298b027c0720510a6",
+      "pillar": "Verbalizar",
+      "inferred_function": "a estratégia pede autoridade/thought leadership",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "a estratégia pede autoridade/thought leadership",
+        "context_placeholders_sample": [
+          "NA QUAL VOCÊ É VERDADEIRAMENTE ESPECIALISTA",
+          "ABORDAGENS OU ESTRUTURAS PROPRIETÁRIAS DESENVOLVIDAS",
+          "ANOS NOS NEGÓCIOS, GRANDES REALIZAÇÕES, PERSPECTIVAS ÚNICAS",
+          "O QUE VOCÊ APRENDEU COM A AJUDA AOS CLIENTES",
+          "TENDÊNCIAS E MUDANÇAS QUE VOCÊ TESTEMUNHOU",
+          "EXPERIÊNCIA E CREDENCIAIS DO FUNDADOR/EXECUTIVO"
+        ]
+      },
+      "output_family": "strategy:de_lideranca_de_pensamento",
+      "translation_risk": {
+        "level": "high",
+        "signals": [
+          "literal_translation_or_terminology",
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 4,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/posicionamento-da-parceria.md",
+      "sha256": "448b34e68c76692ada81c51422ba52ae4702454fc78e28463b2e22c4cb2541a0",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa posicionar parcerias ou co-branding",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa posicionar parcerias ou co-branding",
+        "context_placeholders_sample": [
+          "NOME DA EMPRESA",
+          "POSICIONAMENTO DA SUA MARCA PRINCIPAL",
+          "VALORES FUNDAMENTAIS DA SUA MARCA",
+          "CARACTERÍSTICAS DE PERSONALIDADE DA MARCA",
+          "ELEMENTOS DE MARCA QUE DEVEM PERMANECER CONSISTENTES",
+          "PRINCIPAIS ELEMENTOS VISUAIS DA MARCA"
+        ]
+      },
+      "output_family": "strategy:da_parceria",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 1
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/roteiro-de-evolucao-das-marcas.md",
+      "sha256": "19656f394e0b00ad57fc01cf2053bd0f5b54bca9bb9167e4734be1eca38c50b4",
+      "pillar": "Verbalizar",
+      "inferred_function": "precisa de roadmap de evolução de marca de longo prazo",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "precisa de roadmap de evolução de marca de longo prazo",
+        "context_placeholders_sample": [
+          "NOME DA EMPRESA",
+          "POSICIONAMENTO ATUAL DA SUA MARCA",
+          "START-UP, CRESCIMENTO, ESTABELECIDO, MADURO",
+          "RECONHECIMENTO E VALOR ATUAIS DAS MARCAS",
+          "SUA POSIÇÃO COMPETITIVA ATUAL",
+          "DESAFIOS OU DEFICIÊNCIAS ATUAIS DAS MARCAS"
+        ]
+      },
+      "output_family": "plan_or_roadmap:de_evolucao_das_marcas",
+      "translation_risk": {
+        "level": "low",
+        "signals": [
+          "no_heuristic_signal_detected"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 0
+        }
+      },
+      "duplicate_candidates": []
+    },
+    {
+      "path": "biblioteca/Verbalizar/voz-do-sintetizador-de-cliente.md",
+      "sha256": "44d276d89d444c74e24b0ac509efde60ab1660f0522bb0f344ddc86fbf993931",
+      "pillar": "Verbalizar",
+      "inferred_function": "tem transcrições/conversas de clientes e precisa sintetizá-las em insights de mensagem",
+      "maturity_marker": "base_sem_marcador_explicito",
+      "input_signals": {
+        "routing_trigger": "tem transcrições/conversas de clientes e precisa sintetizá-las em insights de mensagem",
+        "context_placeholders_sample": [
+          "COLAR EXCERTOS DE CONVERSAS DE VENDAS",
+          "COLAR EXEMPLOS DE CONVERSA DE SUPORTE",
+          "COLAR COMENTÁRIOS DA PESQUISA",
+          "COLAR TRANSCRIÇÕES DA ENTREVISTA, SE DISPONÍVEL",
+          "COLE REVISÕES E COMENTÁRIOS DE CLIENTES",
+          "NOME DA EMPRESA"
+        ]
+      },
+      "output_family": "analysis:de_cliente",
+      "translation_risk": {
+        "level": "medium",
+        "signals": [
+          "source_heading_marker_artifact"
+        ],
+        "signal_counts": {
+          "untranslated_english": 0,
+          "literal_or_terminology": 0,
+          "heading_marker": 3
+        }
+      },
+      "duplicate_candidates": [
+        {
+          "path": "biblioteca/Verbalizar/decodificador-de-idioma-do-cliente.md",
+          "relationship": "functional_overlap_candidate",
+          "suggested_alias_or_route": "Roteie por corpus: extração de linguagem e tom versus síntese ampla de conversas e feedback.",
+          "alias_group": "verbalizar_customer_voice",
+          "preservation": "preserve_both_as_canonical"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "LIB-F001",
+      "category": "integrity",
+      "severity": "info",
+      "finding": "A biblioteca canônica contém 100 caminhos únicos, distribuídos igualmente em 25 prompts por pilar; todos os hashes observados coincidem com SOURCE_INDEX.json.",
+      "evidence": [
+        {
+          "path": "biblioteca/Ampliar/INDEX.md",
+          "line_start": 15,
+          "line_end": 39
+        },
+        {
+          "path": "biblioteca/Orientar/INDEX.md",
+          "line_start": 15,
+          "line_end": 39
+        },
+        {
+          "path": "biblioteca/Refinar/INDEX.md",
+          "line_start": 15,
+          "line_end": 39
+        },
+        {
+          "path": "biblioteca/Verbalizar/INDEX.md",
+          "line_start": 15,
+          "line_end": 39
+        }
+      ],
+      "disposition": "Preservar integralmente os 100 prompts canônicos."
+    },
+    {
+      "id": "LIB-F002",
+      "category": "routing_contract",
+      "severity": "info",
+      "finding": "Os prompts são insumos táticos sob demanda, não comandos invocáveis; a decisão e o formato final permanecem sob o contrato de cada agente.",
+      "evidence": [
+        {
+          "path": "biblioteca/Ampliar/INDEX.md",
+          "line_start": 3,
+          "line_end": 11
+        },
+        {
+          "path": "biblioteca/Orientar/INDEX.md",
+          "line_start": 3,
+          "line_end": 11
+        },
+        {
+          "path": "biblioteca/Refinar/INDEX.md",
+          "line_start": 3,
+          "line_end": 11
+        },
+        {
+          "path": "biblioteca/Verbalizar/INDEX.md",
+          "line_start": 3,
+          "line_end": 11
+        }
+      ],
+      "disposition": "Manter roteamento por necessidade e limite de 1-2 prompts por ciclo."
+    },
+    {
+      "id": "LIB-F003",
+      "category": "maturity_gating",
+      "severity": "medium",
+      "finding": "Marcadores explícitos de maturidade aparecem em 13 prompts; os demais 87 dependem apenas do gating geral do agente.",
+      "evidence": [
+        {
+          "path": "biblioteca/Orientar/INDEX.md",
+          "line_start": 11,
+          "line_end": 38
+        },
+        {
+          "path": "biblioteca/Refinar/INDEX.md",
+          "line_start": 22,
+          "line_end": 33
+        },
+        {
+          "path": "biblioteca/Ampliar/INDEX.md",
+          "line_start": 11,
+          "line_end": 39
+        },
+        {
+          "path": "biblioteca/Verbalizar/INDEX.md",
+          "line_start": 11,
+          "line_end": 39
+        }
+      ],
+      "disposition": "Preservar os prompts e registrar eventual maturidade futura como metadado de catálogo, sem reescrever a fonte."
+    },
+    {
+      "id": "LIB-F004",
+      "category": "translation_quality",
+      "severity": "high",
+      "finding": "A heurística detectou risco de tradução alto em 38, médio em 59 e baixo em 3 prompts, incluindo fragmentos em inglês, marcadores de heading e traduções literais.",
+      "evidence": [
+        {
+          "path": "biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+          "line_start": 17,
+          "line_end": 27
+        },
+        {
+          "path": "biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+          "line_start": 24,
+          "line_end": 34
+        },
+        {
+          "path": "biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+          "line_start": 11,
+          "line_end": 16
+        },
+        {
+          "path": "biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+          "line_start": 9,
+          "line_end": 21
+        }
+      ],
+      "disposition": "Somente sinalizar para revisão humana futura; nenhuma correção ou sobrescrita é autorizada em P1."
+    },
+    {
+      "id": "LIB-F005",
+      "category": "overlap_and_alias_routing",
+      "severity": "medium",
+      "finding": "Foram identificados 22 grupos de sobreposição funcional, cobrindo 53 prompts e 80 relações direcionadas; os escopos continuam distinguíveis pelo 'use quando'.",
+      "evidence": [
+        {
+          "path": "biblioteca/Ampliar/INDEX.md",
+          "line_start": 15,
+          "line_end": 39
+        },
+        {
+          "path": "biblioteca/Orientar/INDEX.md",
+          "line_start": 15,
+          "line_end": 39
+        },
+        {
+          "path": "biblioteca/Refinar/INDEX.md",
+          "line_start": 15,
+          "line_end": 39
+        },
+        {
+          "path": "biblioteca/Verbalizar/INDEX.md",
+          "line_start": 15,
+          "line_end": 39
+        }
+      ],
+      "disposition": "Criar apenas aliases/grupos de roteamento em catálogo futuro; preservar todos os arquivos canônicos."
+    },
+    {
+      "id": "LIB-F006",
+      "category": "cross_pillar_boundary",
+      "severity": "info",
+      "finding": "Alguns temas reaparecem em pilares diferentes como handoff legítimo, não como duplicidade; thought leadership é posicionado em Verbalizar e distribuído em Ampliar.",
+      "evidence": [
+        {
+          "path": "biblioteca/Verbalizar/INDEX.md",
+          "line_start": 31,
+          "line_end": 31
+        },
+        {
+          "path": "biblioteca/Ampliar/INDEX.md",
+          "line_start": 34,
+          "line_end": 34
+        }
+      ],
+      "disposition": "Roteie por fase do Loop e preserve ambos como componentes complementares."
+    }
+  ],
+  "coverage": {
+    "canonical_paths_in_source_index": 100,
+    "unique_canonical_paths": 100,
+    "actual_prompt_files_excluding_indexes": 100,
+    "paths_classified": 100,
+    "source_index_hash_matches": 100,
+    "hash_mismatches": [],
+    "missing_paths": [],
+    "extra_paths": [],
+    "aggregate_hash_expected": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "aggregate_hash_matches": true,
+    "index_prompt_counts": {
+      "Ampliar": 25,
+      "Orientar": 25,
+      "Refinar": 25,
+      "Verbalizar": 25
+    },
+    "indexes_hash_match_source_index": true,
+    "classification_fields_complete": true,
+    "maturity_marker_distribution": {
+      "avancado": 3,
+      "base_sem_marcador_explicito": 87,
+      "em_desenvolvimento_plus": 1,
+      "maduro_plus": 9
+    },
+    "translation_risk_distribution": {
+      "high": 38,
+      "low": 3,
+      "medium": 59
+    },
+    "output_family_category_distribution": {
+      "amplification_plan": 7,
+      "analysis": 19,
+      "automation_sequence": 1,
+      "creative_blueprint": 4,
+      "distribution_plan": 2,
+      "framework": 7,
+      "operating_system": 12,
+      "optimization_plan": 11,
+      "personalization_plan": 11,
+      "plan_or_roadmap": 2,
+      "quantitative_model": 4,
+      "strategy": 13,
+      "tactical_plan": 7
+    },
+    "duplicate_candidate_prompt_count": 53,
+    "duplicate_candidate_directed_relations": 80,
+    "source_worktree_status_at_audit": "clean",
+    "classification_method": {
+      "function": "Descrição 'use quando' do INDEX.md correspondente.",
+      "input_signals": "Trigger do índice mais amostra determinística dos primeiros placeholders antes do formato de saída.",
+      "output_family": "Regra determinística por prefixo funcional do slug, acrescida do tópico.",
+      "maturity": "Marcador explícito do índice; ausência registrada como base_sem_marcador_explicito.",
+      "translation_risk": {
+        "high": "Fragmento em inglês detectado ou pelo menos dois sinais de tradução literal/terminologia.",
+        "medium": "Um sinal de tradução literal/terminologia ou marcador estrutural 'Nº'.",
+        "low": "Nenhum sinal heurístico detectado."
+      },
+      "duplicate_candidates": "Clusters conservadores de sobreposição baseados nos gatilhos dos quatro índices; ação limitada a alias/roteamento."
+    }
+  },
+  "unresolved": [
+    {
+      "id": "LIB-U001",
+      "status": "open_for_P3_catalog",
+      "topic": "Formalizar os grupos de alias/roteamento sem remover, fundir, reescrever ou descanonicalizar prompts."
+    },
+    {
+      "id": "LIB-U002",
+      "status": "open_for_human_semantic_review",
+      "topic": "Separar empréstimos técnicos aceitáveis de erros reais de tradução; qualquer mudança futura exige trilha própria e preservação do original."
+    },
+    {
+      "id": "LIB-U003",
+      "status": "open_for_P3_catalog",
+      "topic": "Decidir se os 87 prompts sem marcador explícito recebem apenas metadado externo de maturidade."
+    }
+  ]
+}
+

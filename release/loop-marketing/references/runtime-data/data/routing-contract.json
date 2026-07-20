@@ -1,0 +1,1852 @@
+{
+  "artifact_id": "P2-ROUTING-RULES",
+  "canonical_enums": {
+    "claim_kind": [
+      "fact",
+      "user_interpretation",
+      "symptom",
+      "hypothesis"
+    ],
+    "confidence": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "experiment_state": [
+      "proposed",
+      "approved",
+      "instrumented",
+      "running",
+      "completed",
+      "cancelled",
+      "invalidated"
+    ],
+    "maturity": [
+      "nascente",
+      "em_desenvolvimento",
+      "maduro",
+      "avancado",
+      "unknown"
+    ],
+    "operation_mode": [
+      "completo",
+      "parcial",
+      "minimo_viavel"
+    ],
+    "pillars": [
+      "verbalizar",
+      "orientar",
+      "ampliar",
+      "refinar"
+    ],
+    "refinar_classification": [
+      "ESCALAR",
+      "OTIMIZAR",
+      "PARAR",
+      "TESTAR"
+    ],
+    "roles": [
+      "loop_planning",
+      "verbalizar",
+      "orientar",
+      "ampliar",
+      "refinar"
+    ],
+    "route_status": [
+      "ready",
+      "needs_evidence",
+      "blocked",
+      "rejected"
+    ],
+    "validation_outcome": [
+      "pass",
+      "warning",
+      "block",
+      "reject"
+    ]
+  },
+  "decision_rules": {
+    "bottleneck_selection": {
+      "authority_rule": {
+        "evidence_refs": [
+          "EV-ROUTE-003",
+          "EV-ROUTE-004"
+        ],
+        "id": "RTE-BOT-008",
+        "kind": "decision_rule",
+        "on_failure": "ERR_BOTTLENECK_OWNER_VIOLATION",
+        "rule": "Only loop_planning may accept or replace primary_bottleneck. Specialists may emit bottleneck_change_proposal with evidence but MUST NOT write the accepted bottleneck."
+      },
+      "scoring_model": {
+        "ampliar": [
+          {
+            "signal": "same_message_all_channels",
+            "weight": 3
+          },
+          {
+            "signal": "cross_touchpoint_coordination_missing",
+            "weight": 3
+          },
+          {
+            "signal": "attribution_last_click_or_missing",
+            "weight": 2
+          },
+          {
+            "signal": "channels_added_without_reallocation",
+            "weight": 2
+          }
+        ],
+        "orientar": [
+          {
+            "signal": "segmentation_only_product_plan_or_demographic",
+            "weight": 3
+          },
+          {
+            "signal": "lifecycle_missing_transition_criteria",
+            "weight": 3
+          },
+          {
+            "signal": "eligibility_logic_missing",
+            "weight": 2
+          },
+          {
+            "signal": "churn_or_stagnation_detection_missing",
+            "weight": 2
+          }
+        ],
+        "refinar": [
+          {
+            "signal": "no_performance_diagnosis_by_lifecycle_stage",
+            "weight": 3
+          },
+          {
+            "signal": "no_structured_tests",
+            "weight": 3
+          },
+          {
+            "signal": "optimization_only_reactive",
+            "weight": 2
+          },
+          {
+            "signal": "learning_not_recorded_between_cycles",
+            "weight": 2
+          }
+        ],
+        "verbalizar": [
+          {
+            "signal": "icp_undefined_or_generic",
+            "weight": 3
+          },
+          {
+            "signal": "value_proposition_not_differentiated",
+            "weight": 3
+          },
+          {
+            "signal": "language_differs_from_customer_language",
+            "weight": 2
+          },
+          {
+            "signal": "message_not_adapted_by_lifecycle",
+            "weight": 2
+          }
+        ]
+      },
+      "selection_precedence": [
+        {
+          "id": "RTE-BOT-001",
+          "kind": "decision_rule",
+          "on_failure": "ERR_OUTSIDE_LOOP_PREREQUISITE",
+          "priority": 1,
+          "result": "route_status=blocked; primary_bottleneck=null; emit outside_loop_prerequisite",
+          "when": "a necessary RevOps, data engineering, migration, instrumentation or workflow prerequisite is absent"
+        },
+        {
+          "id": "RTE-BOT-002",
+          "kind": "decision_rule",
+          "priority": 2,
+          "result": "loop_planning accepts its owner pillar as primary_bottleneck after reconciling any score mismatch",
+          "when": "root_cause_candidate has medium or high confidence, at least one supporting fact and no unresolved stronger counter-evidence"
+        },
+        {
+          "id": "RTE-BOT-003",
+          "kind": "decision_rule",
+          "priority": 3,
+          "result": "select that pillar as primary_bottleneck",
+          "when": "one pillar confirmed_score is greater than every other pillar possible_score"
+        },
+        {
+          "id": "RTE-BOT-004",
+          "kind": "decision_rule",
+          "priority": 4,
+          "result": "select the unique top pillar; pillars with confirmed_score >= 5 are secondary",
+          "when": "confirmed top score is unique and all top-score signals are known"
+        },
+        {
+          "id": "RTE-BOT-005",
+          "kind": "decision_rule",
+          "priority": 5,
+          "result": "select Refinar as diagnostic checkpoint, then reroute",
+          "when": "tie includes Refinar and the failure locus is unknown and measurable data exists"
+        },
+        {
+          "id": "RTE-BOT-006",
+          "kind": "decision_rule",
+          "priority": 6,
+          "result": "select the structural owner; schedule Refinar after minimum instrumentation exists",
+          "when": "failure locus is already factually localized to a structural pillar and measurement readiness is false"
+        },
+        {
+          "id": "RTE-BOT-007",
+          "kind": "decision_rule",
+          "on_failure": "ERR_BOTTLENECK_AMBIGUOUS",
+          "priority": 7,
+          "result": "route_status=needs_evidence; primary_bottleneck=null; next_action=Refinar in minimo_viavel data-audit mode",
+          "when": "no prior rule selects one pillar and evidence is insufficient or tied"
+        }
+      ]
+    },
+    "collision_resolution": {
+      "decision_table": [
+        {
+          "collision": "two roles decide the same owned field",
+          "id": "RTE-COL-001",
+          "resolution": "retain the canonical owner's value; convert the non-owner value to a proposal; block if it cannot be represented as a proposal"
+        },
+        {
+          "collision": "two parallel outputs write the same state field",
+          "id": "RTE-COL-002",
+          "resolution": "do not merge; return both to loop_planning with ERR_PARALLEL_WRITE_COLLISION"
+        },
+        {
+          "collision": "multiple communications target one contact",
+          "id": "RTE-COL-003",
+          "resolution_order": [
+            "Orientar exclusion or suppression blocks the contact",
+            "Refinar experiment assignment isolates an eligible sample but cannot bypass suppression",
+            "Ampliar applies spacing, fallback and the global delivery cap",
+            "Ampliar delivery priority chooses among still-eligible touchpoints while preserving Orientar business-priority metadata"
+          ]
+        },
+        {
+          "collision": "new recommendation contradicts an accepted decision",
+          "id": "RTE-COL-004",
+          "resolution": "accepted decision remains active unless the canonical owner submits explicit superseding evidence and loop_planning records the supersession"
+        },
+        {
+          "collision": "fact-backed output conflicts with hypothesis-only output",
+          "id": "RTE-COL-005",
+          "resolution": "fact-backed output prevails; preserve the hypothesis as unresolved counter-hypothesis"
+        },
+        {
+          "collision": "same-owner recommendations conflict with equally ranked evidence",
+          "id": "RTE-COL-006",
+          "resolution": "route_status=needs_evidence; no arbitrary winner; request discriminating evidence or a Refinar test"
+        },
+        {
+          "collision": "two simultaneous tests share audience and may interact",
+          "id": "RTE-COL-007",
+          "resolution": "serialize them or require Refinar to define a multivariate interaction design and allocation plan"
+        }
+      ],
+      "evidence_refs": [
+        "EV-OWNER-001",
+        "EV-COLLISION-001",
+        "EV-COLLISION-002",
+        "EV-ROUTE-006"
+      ],
+      "on_unresolved": "ERR_COLLISION_UNRESOLVED",
+      "owner_matrix": {
+        "audience_segment_lifecycle_eligibility_exclusion_and_suppression": "orientar",
+        "experiment_design_success_metric_benchmark_analysis_and_performance_classification": "refinar",
+        "message_positioning_voice_and_claim_wording": "verbalizar",
+        "operational_channel_timing_cadence_cross_channel_coordination_and_global_delivery_cap": "ampliar",
+        "primary_bottleneck_sequence_and_integration": "loop_planning"
+      }
+    },
+    "cross_validation": {
+      "always_required_checks": [
+        {
+          "block_when": "a decision or experiment state advanced without the transition evidence required by this contract",
+          "check": "state_non_fabrication",
+          "id": "RTE-XVAL-001"
+        },
+        {
+          "block_when": "a factual claim lacks a source reference or an inference lacks an explicit hypothesis marker",
+          "check": "claim_provenance",
+          "id": "RTE-XVAL-002"
+        },
+        {
+          "block_when": "an output decides a field owned by another role",
+          "check": "owner_scope",
+          "id": "RTE-XVAL-003"
+        },
+        {
+          "block_when": "a recommendation exceeds evidenced maturity or available implementation capability",
+          "check": "maturity_viability",
+          "id": "RTE-XVAL-004"
+        },
+        {
+          "block_when": "the route changes prompt count, canonical path or canonical content hash",
+          "check": "library_integrity",
+          "id": "RTE-XVAL-005"
+        }
+      ],
+      "evidence_refs": [
+        "EV-ROUTE-006"
+      ],
+      "multi_output_checks": [
+        {
+          "check": "semantic_consistency",
+          "id": "RTE-XVAL-006",
+          "result": "warning when outputs are compatible but create a material tension; block when they cannot both be executed"
+        },
+        {
+          "check": "accepted_decision_consistency",
+          "id": "RTE-XVAL-007",
+          "result": "block silent contradiction; allow only an explicit supersession event"
+        },
+        {
+          "check": "sequence_dependency",
+          "id": "RTE-XVAL-008",
+          "result": "block a consumer whose producer handoff did not pass validation"
+        }
+      ],
+      "result_contract": {
+        "close_cycle_condition": "All always-required checks pass and no multi-output check is block or reject. Warnings must be recorded in the integrated route.",
+        "required_fields": [
+          "check_id",
+          "outcome",
+          "subject_refs",
+          "evidence_refs",
+          "message",
+          "required_action"
+        ]
+      }
+    },
+    "experiment_state_machine": {
+      "creation_rule": {
+        "from": null,
+        "id": "RTE-EXP-001",
+        "kind": "decision_rule",
+        "required_evidence": [
+          "hypothesis with specific change and measurable expected result",
+          "one isolated variable or explicit multivariate design",
+          "control definition",
+          "numeric success metric and target set before launch",
+          "minimum sample rule",
+          "minimum duration and early-stop rule",
+          "post-test decision thresholds",
+          "owner and creation timestamp"
+        ],
+        "to": "proposed"
+      },
+      "evidence_refs": [
+        "EV-EXPERIMENT-001",
+        "EV-EXPERIMENT-002",
+        "EV-ROUTE-006"
+      ],
+      "on_invalid_transition": "ERR_EXPERIMENT_TRANSITION_INVALID",
+      "on_missing_evidence": "ERR_EXPERIMENT_EVIDENCE_MISSING",
+      "transition_invariants": [
+        "No forward state may be skipped.",
+        "Restarting or rerouting the loop never changes experiment state.",
+        "Approval text without actor, scope and timestamp is not an approval event.",
+        "Instrumentation plans are not instrumentation evidence.",
+        "A planned launch is not a launch event.",
+        "A completed state requires evidence that the experiment actually ran; cancellation is not completion.",
+        "Backward mutation is forbidden; corrections append an invalidation or create a new experiment with derived_from.",
+        "Every transition is an append-only event with event_id, experiment_id, from, to, actor, occurred_at and evidence_refs.",
+        "Only Refinar owns experiment design and success metrics; external execution still requires its own explicit authorization."
+      ],
+      "transitions": [
+        {
+          "from": "proposed",
+          "id": "RTE-EXP-002",
+          "required_evidence": [
+            "approval event ID",
+            "approver identity",
+            "approved scope",
+            "approval timestamp"
+          ],
+          "to": "approved"
+        },
+        {
+          "from": "approved",
+          "id": "RTE-EXP-003",
+          "required_evidence": [
+            "instrumentation record ID",
+            "event or metric schema",
+            "assignment mechanism",
+            "QA result",
+            "sample plan"
+          ],
+          "to": "instrumented"
+        },
+        {
+          "from": "instrumented",
+          "id": "RTE-EXP-004",
+          "required_evidence": [
+            "launch event ID",
+            "confirmed start timestamp",
+            "live treatment and control identifiers",
+            "audience allocation"
+          ],
+          "to": "running"
+        },
+        {
+          "from": "running",
+          "id": "RTE-EXP-005",
+          "required_evidence": [
+            "completion event ID",
+            "observation window or predeclared early-stop trigger",
+            "result dataset reference",
+            "actual sample",
+            "metric result",
+            "quality checks"
+          ],
+          "to": "completed"
+        },
+        {
+          "from_any": [
+            "proposed",
+            "approved",
+            "instrumented",
+            "running"
+          ],
+          "id": "RTE-EXP-006",
+          "required_evidence": [
+            "cancellation event ID",
+            "actor",
+            "reason",
+            "timestamp",
+            "impact on already collected data"
+          ],
+          "to": "cancelled"
+        },
+        {
+          "from_any": [
+            "instrumented",
+            "running",
+            "completed"
+          ],
+          "id": "RTE-EXP-007",
+          "required_evidence": [
+            "invalidation event ID",
+            "integrity defect",
+            "affected data",
+            "actor",
+            "timestamp",
+            "remediation or replacement experiment reference"
+          ],
+          "to": "invalidated"
+        }
+      ]
+    },
+    "handoff_validation": {
+      "canonical_contract_source": "role-matrix.json#handoff_contract",
+      "evidence_refs": [
+        "EV-HANDOFF-001",
+        "EV-HANDOFF-002",
+        "EV-HANDOFF-003",
+        "EV-HANDOFF-004"
+      ],
+      "required_fields": [
+        "handoff_id",
+        "contract_version",
+        "project_ref",
+        "cycle_id",
+        "state_revision",
+        "from_role",
+        "to_role",
+        "created_at",
+        "objective",
+        "mode",
+        "maturity",
+        "bottleneck_ref",
+        "input_refs",
+        "tactic_refs",
+        "decisions_to_respect",
+        "scope_boundary_next_does_not_decide",
+        "evidence_refs",
+        "assumptions",
+        "known_gaps",
+        "requested_output",
+        "cross_validation_required",
+        "escalation_conditions"
+      ],
+      "validation_rules": [
+        {
+          "id": "RTE-HO-001",
+          "kind": "decision_rule",
+          "on_failure": "ERR_HANDOFF_FIELD_MISSING",
+          "rule": "Every canonical handoff field MUST be present. tactic_refs, assumptions and known_gaps are arrays and may be empty; evidence_refs may be empty only when assumptions is non-empty and every unsupported claim remains a hypothesis."
+        },
+        {
+          "id": "RTE-HO-002",
+          "kind": "decision_rule",
+          "on_failure": "ERR_HANDOFF_STALE_REVISION",
+          "rule": "The state revision MUST equal the revision the target will read; otherwise revalidate or regenerate the handoff."
+        },
+        {
+          "id": "RTE-HO-003",
+          "kind": "decision_rule",
+          "on_failure": "ERR_HANDOFF_SCOPE_BOUNDARY",
+          "rule": "The scope boundary MUST include every owner field not controlled by the target role."
+        },
+        {
+          "id": "RTE-HO-004",
+          "kind": "decision_rule",
+          "on_failure": "ERR_HANDOFF_OWNER_SCOPE",
+          "rule": "The objective and expected output MUST fit the target owner matrix and MUST NOT instruct the target to overwrite the bottleneck."
+        },
+        {
+          "id": "RTE-HO-005",
+          "kind": "decision_rule",
+          "on_failure": "ERR_HANDOFF_PROVENANCE",
+          "rule": "Every factual input MUST have provenance; every unsupported interpretation MUST remain a hypothesis."
+        },
+        {
+          "id": "RTE-HO-006",
+          "kind": "decision_rule",
+          "on_failure": "ERR_SEQUENCE_DEPENDENCY",
+          "rule": "A target may start only after all declared dependencies have a validated handoff or are explicitly marked not_applicable."
+        }
+      ]
+    },
+    "maturity_gating": {
+      "classification_precedence": [
+        {
+          "id": "RTE-MAT-001",
+          "kind": "decision_rule",
+          "result": "reuse the recorded classification",
+          "when": "an evidenced maturity classification is at most 30 days old and no structural-change event is recorded"
+        },
+        {
+          "id": "RTE-MAT-002",
+          "kind": "decision_rule",
+          "result": "recompute from the maturity decision table",
+          "when": "the maturity reuse condition in RTE-MAT-001 is false"
+        }
+      ],
+      "decision_table": [
+        {
+          "all_conditions": [
+            "attribution_level == multi_touch",
+            "prediction_capability == active",
+            "realtime_optimization == active",
+            "accumulated_learning == true"
+          ],
+          "classification": "avancado",
+          "order": 1
+        },
+        {
+          "all_conditions": [
+            "lifecycle_level == mapped_with_transition_criteria",
+            "scoring_level == active",
+            "personalization_level >= by_stage",
+            "structured_testing_level == regular"
+          ],
+          "classification": "maduro",
+          "order": 2
+        },
+        {
+          "classification": "em_desenvolvimento",
+          "conditions": [
+            "lifecycle_level == partial",
+            "segmentation_level >= behavioral_basic",
+            "scoring_level == rudimentary",
+            "automated_flow_count >= 3",
+            "structured_testing_level == occasional"
+          ],
+          "minimum_true_conditions": 2,
+          "order": 3
+        },
+        {
+          "classification": "unknown",
+          "order": 4,
+          "when": "one or more required_classification_dimensions are unknown after evaluating rows 1 through 3"
+        },
+        {
+          "classification": "nascente",
+          "order": 5,
+          "when": "all required_classification_dimensions are evidenced and none of rows 1 through 3 match"
+        }
+      ],
+      "required_classification_dimensions": [
+        "lifecycle_level",
+        "segmentation_level",
+        "scoring_level",
+        "automated_flow_count",
+        "structured_testing_level",
+        "personalization_level",
+        "attribution_level",
+        "prediction_capability",
+        "realtime_optimization",
+        "accumulated_learning"
+      ],
+      "tactic_gate_rules": [
+        {
+          "id": "RTE-MAT-003",
+          "kind": "decision_rule",
+          "on_failure": "ERR_MATURITY_GATE",
+          "rule": "A tactic is eligible only when project maturity rank is greater than or equal to the tactic minimum_maturity rank and every tactic prerequisite is evidenced."
+        },
+        {
+          "evidence_refs": [
+            "EV-TACTIC-002",
+            "EV-MATURITY-001"
+          ],
+          "id": "RTE-MAT-004",
+          "kind": "decision_rule",
+          "on_attempted_selection_without_metadata": "ERR_TACTIC_METADATA_MISSING",
+          "rule": "Existing [EM DESENVOLVIMENTO+], [MADURO+] and [AVANÇADO] index markers map to minimum ranks 1, 2 and 3. Absence of a marker is not proof of universal applicability; missing P3 metadata prevents that tactic from being selected but does not prevent use of the specialist base method."
+        },
+        {
+          "id": "RTE-MAT-005",
+          "kind": "decision_rule",
+          "on_failure": "ERR_MATURITY_GATE",
+          "rule": "Aggregate maturity unknown blocks tactic selection and falls back to the specialist base method until the missing dimensions are evidenced."
+        }
+      ],
+      "unknown_policy": "If any required classification dimension is unknown and the known values do not already prove a higher row, aggregate maturity is unknown; missing data MUST NOT be coerced to nascente."
+    },
+    "normalization": [
+      {
+        "evidence_refs": [
+          "EV-ROUTE-002",
+          "EV-ROUTE-006"
+        ],
+        "id": "RTE-NORM-001",
+        "kind": "decision_rule",
+        "on_failure": "ERR_CLAIM_PROVENANCE_MISSING",
+        "priority": 1,
+        "rule": "Every observation MUST be normalized as fact, user_interpretation, symptom or hypothesis before scoring."
+      },
+      {
+        "evidence_refs": [
+          "EV-ROUTE-002",
+          "EV-ROUTE-004"
+        ],
+        "id": "RTE-NORM-002",
+        "kind": "decision_rule",
+        "on_failure": "ERR_DIAGNOSIS_USES_UNPROVEN_CLAIM",
+        "priority": 2,
+        "rule": "Only facts may directly set a scoring signal to true or false; interpretations and hypotheses may create a data request but cannot add score."
+      },
+      {
+        "evidence_refs": [
+          "EV-ROUTE-006"
+        ],
+        "id": "RTE-NORM-003",
+        "kind": "decision_rule",
+        "on_failure": "ERR_STATE_REVISION_STALE",
+        "priority": 3,
+        "rule": "A route MUST preserve the input state revision; any accepted state write uses compare-and-swap against that revision."
+      }
+    ],
+    "refinar_benchmark_intervals": {
+      "benchmark_resolution_order": [
+        "documented_market_benchmark with source and comparable definition",
+        "best comparable own historical period",
+        "best comparable own campaign or flow",
+        "none"
+      ],
+      "classification_precedence": [
+        {
+          "classification": "TESTAR",
+          "order": 1,
+          "subtype": "insufficient_or_invalid_evidence",
+          "when_any": [
+            "no comparable benchmark can be resolved",
+            "fewer than 2 comparable periods",
+            "sample is below a predeclared minimum",
+            "the causal variable was not isolated and no explicit multivariate design exists",
+            "metric definition, direction or denominator is invalid",
+            "observed or benchmark values fall outside the declared non-negative ratio domain and no predeclared metric-specific transformation or direct threshold exists"
+          ]
+        },
+        {
+          "all_additional_conditions": [
+            "positive trend for at least 2 consecutive comparable periods",
+            "cost per result is stable or decreasing"
+          ],
+          "classification": "ESCALAR",
+          "interval": "performance_index > 1.00",
+          "order": 2
+        },
+        {
+          "all_additional_conditions": [
+            "below threshold for at least 2 consecutive comparable periods",
+            "opportunity cost exceeds maintenance cost",
+            "at least 1 isolated optimization attempt completed without material improvement"
+          ],
+          "classification": "PARAR",
+          "interval": "0.00 <= performance_index < 0.50",
+          "order": 3
+        },
+        {
+          "classification": "OTIMIZAR",
+          "interval": "0.00 <= performance_index < 0.50",
+          "order": 4,
+          "subtype": "rescue_or_collect_stop_evidence",
+          "when": "PARAR prerequisites are not all satisfied"
+        },
+        {
+          "classification": "OTIMIZAR",
+          "interval": "0.50 <= performance_index < 0.60",
+          "note": "This row closes the P1-R013 gap without weakening the stricter PARAR evidence requirements.",
+          "order": 5,
+          "subtype": "critical_recovery"
+        },
+        {
+          "classification": "OTIMIZAR",
+          "interval": "0.60 <= performance_index <= 1.00",
+          "order": 6,
+          "subtype": "partial_performance"
+        },
+        {
+          "classification": "OTIMIZAR",
+          "interval": "performance_index > 1.00",
+          "order": 7,
+          "subtype": "above_benchmark_not_yet_sustained",
+          "when": "one or more ESCALAR additional conditions are not satisfied"
+        }
+      ],
+      "evidence_refs": [
+        "EV-REFINAR-001",
+        "EV-REFINAR-002"
+      ],
+      "normalization": {
+        "higher_is_better": "performance_index = observed_value / benchmark_value",
+        "lower_is_better": "performance_index = benchmark_value / observed_value",
+        "requirements": [
+          "metric direction MUST be declared",
+          "observed and benchmark MUST use the same definition, cohort and window",
+          "required denominators MUST be positive",
+          "non-comparable or missing benchmark produces TESTAR rather than an invented index",
+          "the ratio classifier accepts only a non-negative metric domain",
+          "for higher_is_better, observed_value MUST be >= 0 and benchmark_value MUST be > 0",
+          "for lower_is_better, observed_value MUST be > 0 and benchmark_value MUST be >= 0",
+          "a negative value or an unsupported zero denominator requires a predeclared metric-specific transformation or direct threshold; without it classify TESTAR and do not calculate performance_index"
+        ]
+      },
+      "on_failure": "ERR_BENCHMARK_CLASSIFICATION_INVALID",
+      "output_requirements": [
+        "classification",
+        "subtype",
+        "metric_name",
+        "metric_direction",
+        "observed_value",
+        "benchmark_value",
+        "benchmark_source_ref",
+        "performance_index",
+        "period_count",
+        "sample_size",
+        "applied_rule_order",
+        "evidence_refs",
+        "confidence",
+        "next_action"
+      ]
+    },
+    "sequence_and_parallelism": {
+      "decision_table": [
+        {
+          "condition": "ampliar is requested and message_validated == false",
+          "id": "RTE-SEQ-001",
+          "required_order": [
+            "verbalizar",
+            "ampliar"
+          ],
+          "result_if_unsatisfied": "block ampliar"
+        },
+        {
+          "condition": "ampliar is requested and audience_eligibility_defined == false",
+          "id": "RTE-SEQ-002",
+          "required_order": [
+            "orientar",
+            "ampliar"
+          ],
+          "result_if_unsatisfied": "block ampliar"
+        },
+        {
+          "allowed_execution": "parallel",
+          "condition": "verbalizar and orientar are both selected, share only read inputs and neither requires the other's new output",
+          "id": "RTE-SEQ-003",
+          "integration": "loop_planning validates and merges staged outputs"
+        },
+        {
+          "allowed_execution": "sequential",
+          "condition": "verbalizar needs newly defined segments or orientar needs newly defined message hierarchy",
+          "id": "RTE-SEQ-004",
+          "required_order": "the producer of the explicitly required input runs first"
+        },
+        {
+          "condition": "measurable historical or live output exists and failure locus is unknown",
+          "id": "RTE-SEQ-005",
+          "required_order": [
+            "refinar",
+            "loop_planning",
+            "selected_structural_or_distribution_pillar"
+          ]
+        },
+        {
+          "condition": "new work from verbalizar, orientar or ampliar must be evaluated",
+          "id": "RTE-SEQ-006",
+          "required_order": [
+            "producing_pillar",
+            "refinar"
+          ]
+        },
+        {
+          "allowed_execution": "none for dependent route nodes",
+          "condition": "an outside-loop prerequisite is unresolved",
+          "id": "RTE-SEQ-007",
+          "result_if_unsatisfied": "blocked"
+        }
+      ],
+      "evidence_refs": [
+        "EV-ROUTE-005",
+        "EV-ROUTE-006"
+      ],
+      "on_violation": "ERR_PARALLELISM_UNSAFE",
+      "parallelism_invariants": [
+        "Parallel nodes MUST read the same immutable state_revision.",
+        "Parallel nodes MUST have non-overlapping decision owners and staged write sets.",
+        "No specialist may directly integrate another specialist's output.",
+        "The orchestrator MUST cross-validate all staged outputs before one compare-and-swap integration.",
+        "Simultaneous experiments MUST use disjoint audiences, disjoint isolated variables or an explicit multivariate interaction design owned by Refinar.",
+        "A parallel node whose handoff becomes stale MUST be revalidated; it cannot silently replay on a newer revision."
+      ]
+    },
+    "tactic_selection": {
+      "cardinality_rules": [
+        {
+          "behavior": "run the base method; do not force a tactic",
+          "id": "RTE-TAC-001",
+          "kind": "decision_rule",
+          "result_count": 0,
+          "when": "the specialist base method is sufficient, no exact catalog match exists, metadata is incomplete or every match is gated"
+        },
+        {
+          "behavior": "default",
+          "id": "RTE-TAC-002",
+          "kind": "decision_rule",
+          "result_count": 1,
+          "when": "one eligible tactic covers the requested tactical output"
+        },
+        {
+          "id": "RTE-TAC-003",
+          "kind": "decision_rule",
+          "result_count": 2,
+          "when_all": [
+            "two distinct required outputs remain after the first selection OR the first tactic declares the second as a dependency",
+            "both tactics pass maturity, prerequisite and contraindication gates",
+            "their declared outputs and write sets do not collide",
+            "the second is not merely a semantic duplicate of the first"
+          ]
+        },
+        {
+          "id": "RTE-TAC-004",
+          "kind": "decision_rule",
+          "on_failure": "ERR_TACTIC_CARDINALITY",
+          "result_count": "reject",
+          "when": "more than two tactics are requested for one specialist route_node"
+        }
+      ],
+      "catalog_fields_required_for_selection": [
+        "canonical_tactic_id",
+        "pillar",
+        "path",
+        "need_tags",
+        "required_inputs",
+        "output_contract",
+        "minimum_maturity",
+        "prerequisites",
+        "contraindications",
+        "declared_dependencies",
+        "declared_collisions"
+      ],
+      "evidence_refs": [
+        "EV-TACTIC-001",
+        "EV-TACTIC-002",
+        "EV-TACTIC-003",
+        "EV-PRESERVE-001"
+      ],
+      "library_invariant": "The router references canonical tactic IDs and paths only. It MUST preserve all 100 prompts and MUST NOT delete, merge, rewrite, rename or treat two overlapping prompts as one.",
+      "ranking": [
+        "eligible exact output_contract match before partial match",
+        "more required need_tags matched before fewer",
+        "fewer missing optional inputs before more",
+        "fewer declared collisions before more",
+        "canonical_tactic_id ascending as a stable non-semantic final tie-break"
+      ],
+      "selection_unit": "One specialist route node identified by route_node_id. A repeated specialist in the same loop cycle is a new node with its own declared objective and dependencies."
+    }
+  },
+  "examples": [
+    {
+      "expected": {
+        "parallel_wave_1": [
+          "verbalizar",
+          "orientar"
+        ],
+        "rules": [
+          "RTE-SEQ-001",
+          "RTE-SEQ-002",
+          "RTE-SEQ-003",
+          "RTE-SEQ-006"
+        ],
+        "wave_2": [
+          "loop_planning cross-validation",
+          "ampliar"
+        ],
+        "wave_3": [
+          "refinar"
+        ]
+      },
+      "id": "EX-001",
+      "input": {
+        "audience_eligibility_defined": false,
+        "facts": [
+          "message is not differentiated",
+          "lifecycle eligibility is undefined",
+          "new channel expansion is requested"
+        ],
+        "maturity": "em_desenvolvimento",
+        "message_validated": false
+      },
+      "name": "parallel message and audience foundations before amplification"
+    },
+    {
+      "expected": {
+        "code": "ERR_BOTTLENECK_AMBIGUOUS",
+        "next_action": {
+          "mode": "minimo_viavel",
+          "objective": "audit available data and define collection requirements",
+          "role": "refinar"
+        },
+        "primary_bottleneck": null,
+        "route_status": "needs_evidence"
+      },
+      "id": "EX-002",
+      "input": {
+        "facts": [],
+        "pillar_score_ranges_overlap": true,
+        "user_interpretation": "the emails are bad"
+      },
+      "name": "insufficient evidence does not invent a bottleneck"
+    },
+    {
+      "expected": {
+        "action": "use Orientar base method and recommend prerequisites",
+        "canonical_prompt_preserved": true,
+        "code": "ERR_MATURITY_GATE",
+        "selected_tactics": []
+      },
+      "id": "EX-003",
+      "input": {
+        "maturity": "nascente",
+        "minimum_maturity": "avancado",
+        "requested_tactic": "biblioteca/Orientar/modelo-de-pontuacao-preditiva.md"
+      },
+      "name": "advanced tactic is maturity-gated without deleting it"
+    },
+    {
+      "expected": {
+        "applied_rule_order": 5,
+        "classification": "OTIMIZAR",
+        "performance_index": 0.55,
+        "subtype": "critical_recovery"
+      },
+      "id": "EX-004",
+      "input": {
+        "benchmark_value": 100,
+        "metric_direction": "higher_is_better",
+        "observed_value": 55,
+        "period_count": 3,
+        "sample_sufficient": true,
+        "variable_isolated": true
+      },
+      "name": "complete Refinar 50-to-60 percent interval"
+    },
+    {
+      "expected": {
+        "code": "ERR_EXPERIMENT_EVIDENCE_MISSING",
+        "outcome": "block",
+        "state_after_validation": "instrumented"
+      },
+      "id": "EX-005",
+      "input": {
+        "experiment_state": "instrumented",
+        "launch_event_id": null,
+        "launch_plan": true,
+        "requested_state": "running"
+      },
+      "name": "experiment launch cannot be narrated"
+    },
+    {
+      "expected": {
+        "deliveries": 0,
+        "reason": "Orientar suppression precedes experiment allocation and delivery priority",
+        "rule": "RTE-COL-003"
+      },
+      "id": "EX-006",
+      "input": {
+        "ampliar_scheduled_touchpoints": 2,
+        "orientar_suppressed": true,
+        "refinar_sample_assignment": true
+      },
+      "name": "contact collision respects suppression before cadence"
+    },
+    {
+      "expected": {
+        "condition": "distinct non-overlapping outputs and catalog collision check pass",
+        "rule": "RTE-TAC-003",
+        "selected_count": 2
+      },
+      "id": "EX-007",
+      "input": {
+        "eligible_matches": [
+          "designer-de-estrutura-de-teste-sistematica",
+          "coordenador-de-testes-entre-canais"
+        ],
+        "need_outputs": [
+          "systematic test design",
+          "cross-channel simultaneous-test collision plan"
+        ],
+        "pillar": "refinar"
+      },
+      "name": "second tactic requires a distinct output"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "HYP-ROUTE-001",
+      "kind": "hypothesis",
+      "normative_effect": "none",
+      "statement": "The conjunctive advanced and mature gates plus a two-signal developing gate will reduce over-routing without under-serving most historical projects.",
+      "validation_needed": "replay against representative old project states in P7 and measure false blocks and unsafe recommendations"
+    },
+    {
+      "id": "HYP-ROUTE-002",
+      "kind": "hypothesis",
+      "normative_effect": "none beyond the proposed P2 decision table",
+      "statement": "Classifying the 0.50-to-0.60 performance interval as OTIMIZAR with critical_recovery will be more useful than TESTAR while preserving the evidence burden for PARAR.",
+      "validation_needed": "benchmark against historical decisions and review opportunity-cost outcomes"
+    },
+    {
+      "id": "HYP-ROUTE-003",
+      "kind": "hypothesis",
+      "normative_effect": "none",
+      "statement": "Failing closed to the specialist base method when tactic metadata is absent will preserve quality better than treating unmarked tactics as universally eligible.",
+      "validation_needed": "P3 catalog coverage test across all 100 prompts and P7 route-recall evaluation"
+    },
+    {
+      "id": "HYP-ROUTE-004",
+      "kind": "hypothesis",
+      "normative_effect": "none",
+      "statement": "Returning an ambiguous bottleneck to Refinar minimum-viable data audit will produce fewer arbitrary routes than a fixed pillar tie-break order.",
+      "validation_needed": "compare deterministic fallback outcomes on ambiguous multi-pillar scenarios"
+    }
+  ],
+  "input_contract": {
+    "claim_contract": {
+      "provenance": {
+        "forbidden_behavior": "A hypothesis MUST NOT be copied into facts merely because it was repeated by a user or agent.",
+        "required_for_fact": [
+          "source_ref",
+          "observed_at"
+        ],
+        "required_for_hypothesis": [
+          "rationale"
+        ]
+      },
+      "required_fields": [
+        "claim_id",
+        "kind",
+        "text",
+        "provenance",
+        "confidence"
+      ]
+    },
+    "field_rules": {
+      "authorization_context": "read and write permissions by operation; routing never upgrades authorization",
+      "available_capabilities": "declared data, tools and implementation capabilities; absence means unavailable, not false",
+      "observations": "array of claims conforming to claim_contract",
+      "project_id": "canonical identifier independent of display name and host path",
+      "request_id": "non-empty stable identifier",
+      "state_revision": "non-negative integer used for optimistic concurrency",
+      "user_goal": "one explicit outcome sentence; multiple goals MUST be split or ranked"
+    },
+    "optional_structured_context": [
+      "maturity_profile",
+      "prior_diagnosis",
+      "active_experiments",
+      "accepted_decisions",
+      "known_learnings",
+      "tactic_catalog_revision",
+      "outside_loop_prerequisites"
+    ],
+    "required_fields": [
+      "request_id",
+      "project_id",
+      "state_revision",
+      "user_goal",
+      "observations",
+      "available_capabilities",
+      "authorization_context"
+    ]
+  },
+  "invariants": [
+    {
+      "id": "INV-001",
+      "on_failure": "ERR_CANONICAL_LIBRARY_DRIFT",
+      "rule": "All 100 canonical prompts remain present, individually identifiable and unchanged; routing changes only references and external metadata."
+    },
+    {
+      "id": "INV-002",
+      "on_failure": "ERR_PRIMARY_BOTTLENECK_CARDINALITY",
+      "rule": "Exactly one accepted primary bottleneck exists when route_status is ready; zero exists when status is needs_evidence, blocked or rejected."
+    },
+    {
+      "id": "INV-003",
+      "on_failure": "ERR_ORCHESTRATOR_AUTHORITY",
+      "rule": "Only loop_planning accepts bottleneck, sequence, integrated route and supersession decisions."
+    },
+    {
+      "id": "INV-004",
+      "on_failure": "ERR_OWNER_SCOPE_VIOLATION",
+      "rule": "A role never decides a field outside the owner matrix; it may only submit a sourced proposal to the owner."
+    },
+    {
+      "id": "INV-005",
+      "on_failure": "ERR_CLAIM_PROVENANCE_MISSING",
+      "rule": "No factual output lacks provenance and no hypothesis is serialized as fact."
+    },
+    {
+      "id": "INV-006",
+      "on_failure": "ERR_STATE_FABRICATION",
+      "rule": "No state transition occurs without a valid event and required evidence."
+    },
+    {
+      "id": "INV-007",
+      "on_failure": "ERR_EXTERNAL_MUTATION_UNAUTHORIZED",
+      "rule": "Routing, planning and handoff never imply authorization for an external write."
+    },
+    {
+      "id": "INV-008",
+      "on_failure": "ERR_CROSS_VALIDATION_BLOCKED",
+      "rule": "A route cannot close until cross-validation passes for state, provenance, owner scope, maturity and library integrity."
+    },
+    {
+      "id": "INV-009",
+      "on_failure": "ERR_HYPOTHESIS_USED_AS_RULE",
+      "rule": "Decision rules are normative and versioned; hypotheses are non-normative and cannot alter routing until promoted by an explicit decision."
+    }
+  ],
+  "lead_resolutions": {
+    "UQ-001": "Deferred to P3; fail closed to the specialist base method until complete tactic metadata exists.",
+    "UQ-003": "Deferred to P7; TESTAR is mandatory when statistical sufficiency cannot be proven by a predeclared method.",
+    "UQ-004": "Deferred to P7; conservative maturity gates remain proposed and must be replay-evaluated before release.",
+    "UQ-005": "Deferred to P4; staged outputs and one compare-and-swap integration remain the safe contract."
+  },
+  "normalized_diagnosis_contract": {
+    "pillar_score_shape": {
+      "confirmed_score": "integer 0..10 from true signals",
+      "pillar": "canonical pillar enum",
+      "possible_score": "integer confirmed_score..10 including unknown signals",
+      "signals": "four weighted true, false or unknown observations with evidence refs"
+    },
+    "primary_bottleneck_shape": {
+      "accepted_by": "loop_planning",
+      "evidence_refs": "array",
+      "pillar": "exactly one pillar or null when route_status is needs_evidence or blocked",
+      "selection_rule_id": "rule that selected or withheld it"
+    },
+    "required_fields": [
+      "diagnosis_id",
+      "request_id",
+      "project_id",
+      "based_on_state_revision",
+      "scenario_summary",
+      "maturity",
+      "facts",
+      "user_interpretations",
+      "symptoms",
+      "hypotheses",
+      "pillar_scores",
+      "root_cause_candidate",
+      "primary_bottleneck",
+      "secondary_pillars",
+      "data_gaps",
+      "outside_loop_prerequisites",
+      "confidence"
+    ],
+    "root_cause_shape": {
+      "causal_chain": "three explicit why steps or a recorded data gap",
+      "confidence": "low, medium or high",
+      "counter_evidence_refs": "array",
+      "kind": "hypothesis until accepted by loop_planning",
+      "pillar": "canonical pillar enum or null",
+      "supporting_evidence_refs": "array"
+    }
+  },
+  "normative_language": {
+    "MAY": "optional behavior that does not change ownership or invariants",
+    "MUST": "mandatory; violation rejects or blocks the route",
+    "SHOULD": "default that may be overridden only by a recorded decision with evidence"
+  },
+  "phase": "P2",
+  "product_version": "2.0.0",
+  "rejection_codes": [
+    {
+      "code": "ERR_INPUT_REQUIRED",
+      "meaning": "required route input is missing",
+      "remedy": "supply the named field",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_CLAIM_PROVENANCE_MISSING",
+      "meaning": "fact lacks source or hypothesis lacks rationale",
+      "remedy": "attach provenance or relabel as hypothesis",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_DIAGNOSIS_USES_UNPROVEN_CLAIM",
+      "meaning": "score or bottleneck relies on interpretation or hypothesis as fact",
+      "remedy": "obtain evidence or remove the score contribution",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_STATE_REVISION_STALE",
+      "meaning": "route or write is based on an obsolete project revision",
+      "remedy": "rehydrate and rerun validation",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_OUTSIDE_LOOP_PREREQUISITE",
+      "meaning": "required RevOps or data foundation is absent",
+      "remedy": "record and satisfy the prerequisite outside the pillar route",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_BOTTLENECK_AMBIGUOUS",
+      "meaning": "available evidence cannot select one bottleneck",
+      "remedy": "run Refinar minimum-viable data audit or collect discriminating evidence",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_BOTTLENECK_OWNER_VIOLATION",
+      "meaning": "a specialist attempted to accept a bottleneck change",
+      "remedy": "convert the change to a proposal for loop_planning",
+      "retryable": false,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_PRIMARY_BOTTLENECK_CARDINALITY",
+      "meaning": "ready route has zero or multiple accepted bottlenecks",
+      "remedy": "apply bottleneck precedence or mark needs_evidence",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_ORCHESTRATOR_AUTHORITY",
+      "meaning": "a non-orchestrator accepted sequence, integration or supersession",
+      "remedy": "revert the acceptance and submit a proposal to loop_planning",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_MATURITY_GATE",
+      "meaning": "method or tactic exceeds evidenced maturity or prerequisites",
+      "remedy": "select a viable alternative or satisfy prerequisites",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_TACTIC_METADATA_MISSING",
+      "meaning": "tactic lacks required external catalog metadata",
+      "remedy": "use the base method or complete P3 metadata without editing the prompt",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_TACTIC_CARDINALITY",
+      "meaning": "more than two tactics were selected for one specialist route_node",
+      "remedy": "retain at most two eligible complementary tactics or decompose the objective into another route node",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_CANONICAL_LIBRARY_DRIFT",
+      "meaning": "canonical prompt count, path or content changed",
+      "remedy": "restore the anchored 100-prompt baseline before routing",
+      "retryable": false,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_SEQUENCE_DEPENDENCY",
+      "meaning": "consumer started before a required validated producer handoff",
+      "remedy": "complete and validate the dependency",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_PARALLELISM_UNSAFE",
+      "meaning": "parallel tasks share ownership, dependencies or write sets",
+      "remedy": "serialize or isolate the work",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_PARALLEL_WRITE_COLLISION",
+      "meaning": "parallel outputs target the same state field",
+      "remedy": "return both proposals to loop_planning for owner-based resolution",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_COLLISION_UNRESOLVED",
+      "meaning": "decision table cannot resolve equally supported conflict",
+      "remedy": "collect discriminating evidence or design a Refinar test",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_OWNER_SCOPE_VIOLATION",
+      "meaning": "role decided a field owned by another role",
+      "remedy": "revert the field and issue a proposal to its owner",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_HANDOFF_FIELD_MISSING",
+      "meaning": "handoff lacks a required field",
+      "remedy": "complete the handoff contract",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_HANDOFF_STALE_REVISION",
+      "meaning": "handoff targets an obsolete revision",
+      "remedy": "regenerate or revalidate against current state",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_HANDOFF_SCOPE_BOUNDARY",
+      "meaning": "handoff omits required next-role non-decisions",
+      "remedy": "populate scope boundary from the owner matrix",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_HANDOFF_OWNER_SCOPE",
+      "meaning": "handoff objective asks target to decide outside its ownership",
+      "remedy": "split or reroute the objective",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_HANDOFF_PROVENANCE",
+      "meaning": "handoff contains unsourced fact or unmarked hypothesis",
+      "remedy": "attach provenance or relabel",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_CROSS_VALIDATION_BLOCKED",
+      "meaning": "one or more required cross-validation checks failed",
+      "remedy": "perform each check's required action and rerun",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_BENCHMARK_CLASSIFICATION_INVALID",
+      "meaning": "Refinar classification lacks comparable benchmark, complete interval or required evidence",
+      "remedy": "apply precedence table or classify TESTAR",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_EXPERIMENT_EVIDENCE_MISSING",
+      "meaning": "experiment transition lacks required event evidence",
+      "remedy": "retain current state until the event is proven",
+      "retryable": true,
+      "severity": "block"
+    },
+    {
+      "code": "ERR_EXPERIMENT_TRANSITION_INVALID",
+      "meaning": "transition skips, reverses or leaves the state machine",
+      "remedy": "use the next allowed transition or append invalidation/new experiment",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_STATE_FABRICATION",
+      "meaning": "state was advanced by narration rather than event evidence",
+      "remedy": "restore the last evidenced state and append an audit correction",
+      "retryable": false,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_EXTERNAL_MUTATION_UNAUTHORIZED",
+      "meaning": "route was treated as permission for external mutation",
+      "remedy": "obtain operation-specific authorization or remain read-only",
+      "retryable": true,
+      "severity": "reject"
+    },
+    {
+      "code": "ERR_HYPOTHESIS_USED_AS_RULE",
+      "meaning": "non-normative hypothesis altered a route",
+      "remedy": "remove it from execution or promote it through a recorded decision",
+      "retryable": true,
+      "severity": "reject"
+    }
+  ],
+  "resolved_questions": [
+    {
+      "id": "UQ-002",
+      "resolution": "cancelled and invalidated are canonical v2 terminal dispositions; invalidated may supersede completed by append-only evidence without rewriting history.",
+      "resolved_in": [
+        "canonical_enums.experiment_state",
+        "decision_rules.experiment_state_machine"
+      ]
+    }
+  ],
+  "schema_version": "1.0.0",
+  "scope": {
+    "host_neutrality": "Rules use canonical role IDs, project IDs, state revisions and evidence references; no rule depends on Claude, Codex, a host-specific memory path or a host-specific command name.",
+    "in_scope": [
+      "normalize route inputs and diagnosis",
+      "select one current bottleneck or a deterministic diagnostic fallback",
+      "gate work by maturity and available evidence",
+      "plan specialist sequence and safe parallelism",
+      "select zero to two preserved canonical tactics per invoked pillar",
+      "resolve ownership, state, delivery and recommendation collisions",
+      "validate cross-pillar outputs and handoffs",
+      "classify Refinar results over complete benchmark intervals",
+      "validate evidence-backed experiment state transitions"
+    ],
+    "out_of_scope": [
+      "editing or semantically merging any canonical prompt",
+      "implementing runtime, persistence, security adapters or provider integrations",
+      "defining the final 100-item tactic catalog that belongs to P3",
+      "performing external mutations or inferring authorization from a route"
+    ]
+  },
+  "source_baseline": {
+    "canonical_library_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "canonical_prompt_count": 100,
+    "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "repo": "bundled:references/library"
+  },
+  "source_workstream": {
+    "path": "artifacts/P2/workstreams/routing-rules.json",
+    "sha256": "b0381ef0d1522cf9780fab4a538e8385e3a8acb21dc276e4c505e1e95ec14168"
+  },
+  "status": "integrated",
+  "title": "Host-neutral deterministic routing rules for Loop Marketing v2",
+  "traceability": {
+    "evidence_catalog": [
+      {
+        "id": "EV-ROUTE-001",
+        "line_end": 54,
+        "line_start": 34,
+        "p1_refs": [
+          "P1-R012",
+          "ARCH-010"
+        ],
+        "path": "commands/loop-planning-agent.md",
+        "supports": [
+          "maturity dimensions and four ordered levels"
+        ]
+      },
+      {
+        "id": "EV-ROUTE-002",
+        "line_end": 71,
+        "line_start": 58,
+        "p1_refs": [
+          "P1-R005",
+          "SR-004"
+        ],
+        "path": "commands/loop-planning-agent.md",
+        "supports": [
+          "facts, user interpretations and symptoms are distinct"
+        ]
+      },
+      {
+        "id": "EV-ROUTE-003",
+        "line_end": 112,
+        "line_start": 75,
+        "p1_refs": [
+          "P1-R015",
+          "ARCH-008"
+        ],
+        "path": "commands/loop-planning-agent.md",
+        "supports": [
+          "four-pillar weighted scoring and secondary threshold"
+        ]
+      },
+      {
+        "id": "EV-ROUTE-004",
+        "line_end": 139,
+        "line_start": 115,
+        "p1_refs": [
+          "P1-R015",
+          "ARCH-008"
+        ],
+        "path": "commands/loop-planning-agent.md",
+        "supports": [
+          "root-cause check may override an unreconciled symptom score"
+        ]
+      },
+      {
+        "id": "EV-ROUTE-005",
+        "line_end": 192,
+        "line_start": 143,
+        "p1_refs": [
+          "P1-R006",
+          "P1-R008",
+          "ARCH-002",
+          "ARCH-005"
+        ],
+        "path": "commands/loop-planning-agent.md",
+        "supports": [
+          "sequence, parallelism, Refinar checkpoint and planner handoff inputs"
+        ]
+      },
+      {
+        "id": "EV-ROUTE-006",
+        "line_end": 217,
+        "line_start": 196,
+        "p1_refs": [
+          "P1-R005",
+          "P1-R006",
+          "P1-R008",
+          "SR-004",
+          "SR-005"
+        ],
+        "path": "commands/loop-planning-agent.md",
+        "supports": [
+          "cross-validation, state evidence, claim provenance and scope reversion"
+        ]
+      },
+      {
+        "id": "EV-ROUTE-007",
+        "line_end": 259,
+        "line_start": 221,
+        "p1_refs": [
+          "P1-R005",
+          "SR-013"
+        ],
+        "path": "commands/loop-planning-agent.md",
+        "supports": [
+          "normalized diagnosis, route output and outside-loop prerequisites"
+        ]
+      },
+      {
+        "id": "EV-ROUTE-008",
+        "line_end": 289,
+        "line_start": 273,
+        "p1_refs": [
+          "P1-R005",
+          "P1-R012",
+          "SR-013"
+        ],
+        "path": "commands/loop-planning-agent.md",
+        "supports": [
+          "failure modes for diagnosis, sequence, maturity, evidence and external prerequisites"
+        ]
+      },
+      {
+        "id": "EV-TACTIC-001",
+        "line_end": 11,
+        "line_start": 5,
+        "p1_refs": [
+          "P1-R019",
+          "ARCH-009"
+        ],
+        "path": "biblioteca/Verbalizar/INDEX.md",
+        "supports": [
+          "index-first progressive disclosure and one-to-two tactic wording"
+        ]
+      },
+      {
+        "id": "EV-TACTIC-002",
+        "line_end": 11,
+        "line_start": 5,
+        "p1_refs": [
+          "P1-R012",
+          "P1-R017",
+          "LIB-F003",
+          "LIB-F005"
+        ],
+        "path": "biblioteca/Orientar/INDEX.md",
+        "supports": [
+          "maturity gating and no forced tactic match"
+        ]
+      },
+      {
+        "id": "EV-TACTIC-003",
+        "line_end": 24,
+        "line_start": 5,
+        "p1_refs": [
+          "P1-R012",
+          "P1-R017",
+          "P1-R019",
+          "LIB-F003",
+          "LIB-F006"
+        ],
+        "path": "biblioteca/Refinar/INDEX.md",
+        "supports": [
+          "index-first tactic selection, no repeated tests and explicit simultaneous-test coordinator"
+        ]
+      },
+      {
+        "id": "EV-MATURITY-001",
+        "line_end": 97,
+        "line_start": 65,
+        "p1_refs": [
+          "P1-R012",
+          "ARCH-010"
+        ],
+        "path": "commands/orientar-agent.md",
+        "supports": [
+          "maturity prerequisites and blocked advanced methods"
+        ]
+      },
+      {
+        "id": "EV-OWNER-001",
+        "line_end": 180,
+        "line_start": 147,
+        "p1_refs": [
+          "P1-R008",
+          "ARCH-002",
+          "SR-010"
+        ],
+        "path": "commands/orientar-agent.md",
+        "supports": [
+          "eligibility, exclusions and historical timing ownership conflict"
+        ]
+      },
+      {
+        "id": "EV-COLLISION-001",
+        "line_end": 81,
+        "line_start": 59,
+        "p1_refs": [
+          "P1-R008",
+          "SR-010"
+        ],
+        "path": "commands/ampliar-agent.md",
+        "supports": [
+          "touchpoint overlap, orphan and ownership detection"
+        ]
+      },
+      {
+        "id": "EV-COLLISION-002",
+        "line_end": 157,
+        "line_start": 133,
+        "p1_refs": [
+          "P1-R008",
+          "ARCH-002",
+          "SR-010"
+        ],
+        "path": "commands/ampliar-agent.md",
+        "supports": [
+          "delivery spacing, fallback, global frequency cap and delivery priority"
+        ]
+      },
+      {
+        "id": "EV-HANDOFF-001",
+        "line_end": 230,
+        "line_start": 204,
+        "p1_refs": [
+          "P1-R009",
+          "ARCH-003"
+        ],
+        "path": "commands/verbalizar-agent.md",
+        "supports": [
+          "handoff inputs, respected decisions and mandatory scope boundary"
+        ]
+      },
+      {
+        "id": "EV-HANDOFF-002",
+        "line_end": 274,
+        "line_start": 248,
+        "p1_refs": [
+          "P1-R009",
+          "ARCH-003"
+        ],
+        "path": "commands/orientar-agent.md",
+        "supports": [
+          "handoff inputs, respected decisions and mandatory scope boundary"
+        ]
+      },
+      {
+        "id": "EV-HANDOFF-003",
+        "line_end": 194,
+        "line_start": 180,
+        "p1_refs": [
+          "P1-R009",
+          "ARCH-003"
+        ],
+        "path": "commands/ampliar-agent.md",
+        "supports": [
+          "handoff inputs, respected decisions and mandatory scope boundary"
+        ]
+      },
+      {
+        "id": "EV-HANDOFF-004",
+        "line_end": 321,
+        "line_start": 302,
+        "p1_refs": [
+          "P1-R009",
+          "ARCH-003"
+        ],
+        "path": "commands/refinar-agent.md",
+        "supports": [
+          "handoff inputs, respected decisions and mandatory scope boundary"
+        ]
+      },
+      {
+        "id": "EV-REFINAR-001",
+        "line_end": 103,
+        "line_start": 91,
+        "p1_refs": [
+          "P1-R013",
+          "ARCH-011"
+        ],
+        "path": "commands/refinar-agent.md",
+        "supports": [
+          "benchmark source priority and no-benchmark behavior"
+        ]
+      },
+      {
+        "id": "EV-REFINAR-002",
+        "line_end": 182,
+        "line_start": 143,
+        "p1_refs": [
+          "P1-R013",
+          "ARCH-011"
+        ],
+        "path": "commands/refinar-agent.md",
+        "supports": [
+          "baseline Refinar thresholds and the 50-to-60 percent gap"
+        ]
+      },
+      {
+        "id": "EV-EXPERIMENT-001",
+        "line_end": 215,
+        "line_start": 186,
+        "p1_refs": [
+          "P1-R006",
+          "P1-R014",
+          "ARCH-006",
+          "ARCH-014",
+          "SR-011"
+        ],
+        "path": "commands/refinar-agent.md",
+        "supports": [
+          "test design, canonical baseline states and evidence-only advancement"
+        ]
+      },
+      {
+        "id": "EV-EXPERIMENT-002",
+        "line_end": 100,
+        "line_start": 82,
+        "p1_refs": [
+          "P1-R006",
+          "P1-R014",
+          "ARCH-006",
+          "ARCH-014"
+        ],
+        "path": "commands/projeto-template.md",
+        "supports": [
+          "project test fields, state list and learned-result record"
+        ]
+      },
+      {
+        "id": "EV-PRESERVE-001",
+        "line_end": 140,
+        "line_start": 129,
+        "p1_refs": [
+          "P1-R017",
+          "P1-R019",
+          "LIB-F005",
+          "LIB-F006"
+        ],
+        "path": "LEIAME.md",
+        "supports": [
+          "100 prompts remain a separate execution layer selected through indexes"
+        ]
+      }
+    ],
+    "p1_risk_ids": [
+      "P1-R004",
+      "P1-R005",
+      "P1-R006",
+      "P1-R008",
+      "P1-R009",
+      "P1-R012",
+      "P1-R013",
+      "P1-R014",
+      "P1-R015",
+      "P1-R017",
+      "P1-R019"
+    ],
+    "p1_source_finding_ids": [
+      "ARCH-002",
+      "ARCH-003",
+      "ARCH-004",
+      "ARCH-005",
+      "ARCH-006",
+      "ARCH-008",
+      "ARCH-009",
+      "ARCH-010",
+      "ARCH-011",
+      "ARCH-014",
+      "LIB-F003",
+      "LIB-F005",
+      "LIB-F006",
+      "SR-004",
+      "SR-005",
+      "SR-008",
+      "SR-010",
+      "SR-011",
+      "SR-013"
+    ]
+  },
+  "unresolved_questions": [
+    {
+      "id": "UQ-001",
+      "owner_phase": "P3",
+      "question": "Will P3 provide complete minimum_maturity, prerequisite, contraindication, dependency and collision metadata for all 100 tactics?",
+      "safe_default_until_resolved": "select no tactic with incomplete metadata and run the pillar base method"
+    },
+    {
+      "id": "UQ-003",
+      "owner_phase": "P7",
+      "question": "Which statistical method and metric-specific defaults determine minimum viable sample and material improvement?",
+      "safe_default_until_resolved": "require a predeclared method and classify TESTAR when sufficiency cannot be proven"
+    },
+    {
+      "id": "UQ-004",
+      "owner_phase": "P7",
+      "question": "Does the project corpus support the proposed deterministic maturity thresholds without excessive false gating?",
+      "safe_default_until_resolved": "apply the proposed conservative gates and record every maturity block for evaluation"
+    },
+    {
+      "id": "UQ-005",
+      "owner_phase": "P4",
+      "question": "What exact state fields and merge semantics will P4 expose for compare-and-swap integration?",
+      "safe_default_until_resolved": "parallel outputs remain staged and loop_planning performs a single integration against an unchanged revision"
+    }
+  ]
+}

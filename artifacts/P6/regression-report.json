@@ -1,0 +1,93 @@
+{
+  "artifact_id": "loop-marketing-p6-regression-report",
+  "generated_at": "2026-07-20T15:40:36.477223Z",
+  "command": "python3 scripts/p6_regression.py",
+  "result": {
+    "status": "PASS",
+    "scenario_count": 16,
+    "passed": 16,
+    "failed": 0,
+    "results": [
+      {
+        "scenario": "hostile_json_types_and_budgets",
+        "test": "test_security.JsonBoundaryTests.test_rejects_non_json_values_without_invoking_custom_protocols",
+        "status": "PASS"
+      },
+      {
+        "scenario": "depth_nodes_and_numeric_limits",
+        "test": "test_security.JsonBoundaryTests.test_rejects_non_finite_numbers_cycles_and_every_budget",
+        "status": "PASS"
+      },
+      {
+        "scenario": "permission_deny_default",
+        "test": "test_security.PermissionGuardTests.test_default_policy_allows_only_declared_local_and_read_operations",
+        "status": "PASS"
+      },
+      {
+        "scenario": "external_mutation_hard_deny",
+        "test": "test_security.PermissionGuardTests.test_external_mutation_is_unconditionally_denied",
+        "status": "PASS"
+      },
+      {
+        "scenario": "recursive_redaction",
+        "test": "test_security.SanitizationTests.test_key_and_pattern_redaction_in_nested_telemetry",
+        "status": "PASS"
+      },
+      {
+        "scenario": "redaction_idempotence",
+        "test": "test_security.SanitizationTests.test_message_redaction_is_deterministic_and_idempotent",
+        "status": "PASS"
+      },
+      {
+        "scenario": "safe_error",
+        "test": "test_security.SanitizationTests.test_safe_error_never_exposes_secret_in_message_or_details",
+        "status": "PASS"
+      },
+      {
+        "scenario": "concurrent_determinism",
+        "test": "test_security.SanitizationTests.test_thread_safety_and_determinism_under_shared_input",
+        "status": "PASS"
+      },
+      {
+        "scenario": "sensitive_payload_reject",
+        "test": "test_secure_runtime.SecureRuntimeTests.test_sensitive_control_payload_is_rejected_without_echo",
+        "status": "PASS"
+      },
+      {
+        "scenario": "read_only_no_repair",
+        "test": "test_secure_runtime.SecureRuntimeTests.test_resolve_initialize_and_read_use_closed_permissions",
+        "status": "PASS"
+      },
+      {
+        "scenario": "no_orchestrator_bypass",
+        "test": "test_secure_runtime.SecureRuntimeTests.test_wrapped_orchestrator_is_not_publicly_exposed",
+        "status": "PASS"
+      },
+      {
+        "scenario": "strict_cli_input",
+        "test": "test_secure_runtime.SecureRuntimeTests.test_cli_parser_rejects_duplicates_oversize_and_symlinks",
+        "status": "PASS"
+      },
+      {
+        "scenario": "bounded_cli_output",
+        "test": "test_secure_runtime.SecureRuntimeTests.test_cli_stdin_remains_open_and_output_is_bounded",
+        "status": "PASS"
+      },
+      {
+        "scenario": "safe_unknown_failure",
+        "test": "test_secure_runtime.SecureRuntimeTests.test_secure_cli_unknown_failure_has_no_trace_or_secret",
+        "status": "PASS"
+      },
+      {
+        "scenario": "canonical_prompt_hash_drift",
+        "test": "test_catalog_router.CatalogTests.test_hash_drift_rejects_progressive_loading",
+        "status": "PASS"
+      },
+      {
+        "scenario": "state_symlink_boundary",
+        "test": "test_state_store.ProjectStateStoreTests.test_symlink_state_root_is_rejected_before_any_write",
+        "status": "PASS"
+      }
+    ]
+  }
+}

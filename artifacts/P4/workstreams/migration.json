@@ -1,0 +1,1732 @@
+{
+  "workstream": "p4_migration_compatibility",
+  "status": "completed",
+  "phase": "P4",
+  "artifact_version": "1.0.0",
+  "product_version": "2.0.0",
+  "contract_inputs": [
+    {
+      "path": "artifacts/P2/compatibility-policy.md",
+      "sha256": "7b09538ef50328179328575f3c0b1c94f1e7dea4ce2e0b7123146d040f2820c0",
+      "read_completely": true
+    },
+    {
+      "path": "artifacts/P2/canonical-spec.md",
+      "sha256": "d78ff1ce52fdfa882dae52058e1d894f93d63e18ccc747f0afcd8388b7b08371",
+      "read_completely": true
+    },
+    {
+      "path": "artifacts/P2/routing-contract.json",
+      "sha256": "cbc3de9af7e526e32ec172dbf2a8f7c016e484c20e8d3a443c7128121e794bf8",
+      "relevant_contracts": [
+        "project_id",
+        "state_revision",
+        "provenance",
+        "library_integrity",
+        "no_external_mutation"
+      ]
+    },
+    {
+      "path": "artifacts/P2/role-matrix.json",
+      "sha256": "ea027c0e09196c61df645fed41b9268deece6059d646601efb1be3785ced17fd",
+      "relevant_contracts": [
+        "canonical command IDs and aliases",
+        "host-neutral state",
+        "append-only history",
+        "library preservation"
+      ]
+    }
+  ],
+  "baseline": {
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "canonical_library_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "state_schema_target": "2.0",
+    "source_index_schema_version": "1.0"
+  },
+  "scope": {
+    "in_scope": [
+      "read-only discovery and deterministic classification of canonical and legacy local project state",
+      "safe parsing and dry-run mapping of recognized v1.x sources",
+      "human-confirmed copy-and-verify import into host-neutral .loop-marketing state",
+      "transaction journal, staging, validation, atomic promotion and drift-safe rollback",
+      "command alias compatibility, history/provenance preservation and canonical library references"
+    ],
+    "out_of_scope": [
+      "moving, rewriting or deleting legacy sources",
+      "editing canonical prompt bodies or P2/P3 artifacts",
+      "network access, CRM/API mutation, campaign execution or host-specific state",
+      "automatic merge of divergent namespaces",
+      "automatic active-project switch",
+      "public redistribution clearance for the canonical library"
+    ],
+    "external_mutation_authorized": false,
+    "real_migration_performed_by_this_workstream": false
+  },
+  "product_identity": {
+    "product_name": "Loop Marketing",
+    "product_id": "loop-marketing",
+    "product_type": "composite skill with orchestrated workflow and local decision runtime",
+    "canonical_state_root": ".loop-marketing",
+    "host_state_namespace": "none",
+    "principle": "Host files are installation/discovery adapters and never the project source of truth."
+  },
+  "canonical_state_layout": {
+    "root": ".loop-marketing/",
+    "entries": [
+      {
+        "path": "manifest.json",
+        "kind": "file",
+        "purpose": "product/state schema identity and supported version"
+      },
+      {
+        "path": "state/active-project.json",
+        "kind": "file",
+        "purpose": "optional validated pointer; never silently replaced"
+      },
+      {
+        "path": "state/projects/<project_id>/project.json",
+        "kind": "file",
+        "purpose": "current project materialized state"
+      },
+      {
+        "path": "state/projects/<project_id>/events.jsonl",
+        "kind": "file",
+        "purpose": "append-only event history"
+      },
+      {
+        "path": "state/projects/<project_id>/snapshots/latest.json",
+        "kind": "file",
+        "purpose": "derived snapshot with derived_from_revision"
+      },
+      {
+        "path": "migrations/transactions/<transaction_id>/",
+        "kind": "directory",
+        "purpose": "journal, backup manifest, staging/recovery evidence"
+      },
+      {
+        "path": "migrations/reports/<report_id>.json",
+        "kind": "file",
+        "purpose": "sanitized dry-run/import report when local report persistence is authorized"
+      },
+      {
+        "path": "quarantine/",
+        "kind": "directory",
+        "purpose": "references or sanitized artifacts blocked from accepted state"
+      }
+    ],
+    "permissions": {
+      "directories": "0700",
+      "files": "0600",
+      "follow_symlinks": false
+    },
+    "version_control_default": "ignored; migration MUST NOT edit .gitignore automatically",
+    "export_policy": "sanitized export is a separate explicit operation"
+  },
+  "command_alias_mapping": {
+    "support_window": "all 2.x releases; removal requires a new major version",
+    "event_identity_field": "command_id",
+    "rules": [
+      "canonical and legacy invocation resolve to the same command_id, role, state root and output contract",
+      "an alias never changes semantics, authorization or owner",
+      "new documentation uses canonical names and lists aliases only as compatibility information",
+      "hosts without slash commands preserve command_id and the same contract"
+    ],
+    "commands": [
+      {
+        "command_id": "loop.planning",
+        "canonical": "/loop-planning",
+        "legacy_alias": "/loop-planning-agent",
+        "role": "loop_planning"
+      },
+      {
+        "command_id": "loop.verbalizar",
+        "canonical": "/verbalizar",
+        "legacy_alias": "/verbalizar-agent",
+        "role": "verbalizar"
+      },
+      {
+        "command_id": "loop.orientar",
+        "canonical": "/orientar",
+        "legacy_alias": "/orientar-agent",
+        "role": "orientar"
+      },
+      {
+        "command_id": "loop.ampliar",
+        "canonical": "/ampliar",
+        "legacy_alias": "/ampliar-agent",
+        "role": "ampliar"
+      },
+      {
+        "command_id": "loop.refinar",
+        "canonical": "/refinar",
+        "legacy_alias": "/refinar-agent",
+        "role": "refinar"
+      },
+      {
+        "command_id": "loop.projeto",
+        "canonical": "/projeto",
+        "legacy_alias": "/projeto-template",
+        "role": "project_lifecycle"
+      }
+    ]
+  },
+  "source_discovery": {
+    "precedence": [
+      {
+        "rank": 1,
+        "source": "explicit canonical project_id or explicit contained path",
+        "behavior": "Validate exact target and shape. Explicit choice wins discovery order but never authorizes overwrite, import, merge, activation or external mutation."
+      },
+      {
+        "rank": 2,
+        "source": ".loop-marketing/state/active-project.json",
+        "behavior": "Use only when schema, target existence, project_id, revision and containment all validate."
+      },
+      {
+        "rank": 3,
+        "source": "exactly one valid v2 project",
+        "behavior": "Return as a suggestion only. Never change active-project.json silently."
+      },
+      {
+        "rank": 4,
+        "source": "recognized legacy roots",
+        "behavior": "Read-only inventory and migration report only; no legacy source becomes active v2 state."
+      }
+    ],
+    "recognized_roots": [
+      {
+        "pattern": "<project_root>/.loop-marketing/",
+        "classification": "canonical_v2",
+        "automatic": true,
+        "write_behavior": "canonical local writes only after operation-specific confirmation"
+      },
+      {
+        "pattern": "<project_root>/.claude/loop-marketing/",
+        "classification": "legacy_v1",
+        "automatic": true,
+        "write_behavior": "never"
+      },
+      {
+        "pattern": "<project_root>/.Codex/loop-marketing/",
+        "classification": "legacy_v1_namespace_drift",
+        "automatic": true,
+        "write_behavior": "never"
+      },
+      {
+        "pattern": "<project_root>/.codex/loop-marketing/",
+        "classification": "legacy_explicit_only",
+        "automatic": false,
+        "write_behavior": "never",
+        "absence_code": "LM-COMPAT-EXPLICIT-PATH-REQUIRED"
+      },
+      {
+        "pattern": "<project_root>/.claude/projects/",
+        "classification": "pre_v1_1_explicit_only",
+        "automatic": false,
+        "write_behavior": "never",
+        "absence_code": "LM-COMPAT-EXPLICIT-PATH-REQUIRED"
+      }
+    ],
+    "explicit_path_rules": [
+      "canonicalize project_root first and resolve every candidate component with lstat/openat-style no-follow checks",
+      "require the explicit path to match a recognized shape and remain contained in project_root",
+      "an invalid explicit target fails deterministically; it never falls through to another namespace",
+      "explicit legacy selection still requires dry-run and confirmation and imports to a new v2 project_id",
+      "explicit canonical project selection does not change the active pointer unless activation is separately confirmed"
+    ],
+    "v2_precedence_rule": "A valid v2 state is always source of truth; legacy candidates cannot overwrite or silently supersede it.",
+    "legacy_conflict_resolution": {
+      "byte_identical": "Collapse to one candidate with both provenance roots.",
+      "verified_subset": "Show exact sanitized difference and block automatic choice; require base selection.",
+      "semantic_divergence": "Emit LM-COMPAT-NAMESPACE-CONFLICT and import nothing.",
+      "recency": "Never wins by itself.",
+      "assisted_merge": "Creates a third staged result with both origins preserved; never edits either origin and requires a separate dry-run/confirmation."
+    }
+  },
+  "project_identity_and_path_safety": {
+    "project_id_pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+    "display_name_rule": "Presentation data only; never a directory component and subject to PII minimization.",
+    "deterministic_generation": {
+      "algorithm": "NFKD-normalize display name, keep lowercase ASCII alnum/hyphen slug, trim/collapse hyphens, reserve room, append '-' plus first 10 hex of SHA-256(source_inventory_digest|normalized_display_name); if slug is empty use 'project'.",
+      "collision_behavior": "Never guess or overwrite. Reuse only for the same committed transaction; otherwise emit LM-COMPAT-PROJECT-ID-COLLISION."
+    },
+    "containment_proof": [
+      "root_real = realpath(<project_root>/.loop-marketing/state/projects)",
+      "validate project_id before joining; reject separators, dots, control chars, Unicode confusables and reserved names",
+      "candidate = root_real/project_id; require candidate.parent == root_real before creation",
+      "walk existing ancestors without following symlinks and require device/root identity to remain anchored",
+      "create with exclusive no-follow semantics and mode 0700; files use exclusive create or atomic no-replace rename"
+    ],
+    "forbidden": [
+      "using client/customer name directly as project_id",
+      "absolute project_id, traversal, symlink escape or case-folded alias collision",
+      "globs or unresolved environment variables as destructive/import targets",
+      "recursive deletion outside a hash-verified transaction-owned path"
+    ]
+  },
+  "untrusted_input_and_parser_policy": {
+    "trust_boundary": "All legacy Markdown, JSON, links, front matter, code blocks and embedded instructions are untrusted data, never system/tool instructions.",
+    "read_policy": [
+      "inventory path/type/size/mtime/SHA-256 before parsing; use lstat and do not follow symlinks",
+      "accept UTF-8 text with optional BOM; reject invalid encoding rather than replacing bytes silently",
+      "Markdown parser builds an inert AST; code fences, HTML, links, images, directives and prompt-like instructions are never executed or fetched",
+      "YAML/front matter accepts only scalar/list/map data under an allowlist; custom tags, anchors that exceed limits and object construction are disabled",
+      "JSON parsing rejects duplicate keys, excessive depth, non-finite numbers and unsupported schema versions",
+      "unknown/binary files remain inventory-only references unless an explicit safe adapter exists",
+      "no parser stage can invoke shell, network, browser, API, plugin or credential provider"
+    ],
+    "resource_limits": {
+      "max_files": 10000,
+      "max_single_file_bytes": 5242880,
+      "max_total_bytes": 52428800,
+      "max_line_bytes": 1048576,
+      "max_structural_depth": 64,
+      "on_exceed": "LM-COMPAT-PARSER-LIMIT; no silent truncation"
+    },
+    "normalized_record_kinds": [
+      "legacy_fact_with_provenance",
+      "legacy_free_text",
+      "legacy_status_unverified",
+      "legacy_gap",
+      "legacy_attachment_ref",
+      "legacy_conflict"
+    ],
+    "decision_safety": [
+      "legacy facts require source path, file hash and line/offset range",
+      "legacy text never becomes an accepted v2 decision, active bottleneck, approved experiment or authorization by parsing alone",
+      "unknown text is preserved by sanitized reference or explicit gap",
+      "timestamps are normalized only when unambiguous; otherwise original text and ordering uncertainty are retained"
+    ],
+    "injection_behavior": {
+      "indicator_code": "LM-COMPAT-UNTRUSTED-CONTENT-IGNORED",
+      "effect": "ignore behavioral instruction, preserve only safe inert text if needed, record redacted locator",
+      "never": "change tool permissions, reveal credentials, fetch URLs, execute code or authorize writes"
+    }
+  },
+  "pii_and_secret_protection": {
+    "secret_policy": {
+      "default": "fail closed with LM-COMPAT-SECRET-DETECTED before migration payload construction",
+      "detectors": [
+        "known token/key/private-key formats",
+        "credential labels with values",
+        "high-confidence entropy rules",
+        "embedded authorization/session material"
+      ],
+      "reporting": "record category, redacted path and line range only; never value, prefix/suffix, reversible encoding or hash of the secret",
+      "recovery": "remove/revoke from source or later use an approved opaque secret reference; this P4 contract never copies credentials"
+    },
+    "pii_policy": {
+      "principles": [
+        "purpose limitation",
+        "data minimization",
+        "field allowlist",
+        "least privilege",
+        "local-only processing"
+      ],
+      "unnecessary": "replace with typed markers such as <REDACTED_EMAIL> or aggregate before report/migration",
+      "necessary_but_unauthorized": "do not copy; create quarantine reference and emit LM-COMPAT-PII-POLICY",
+      "necessary_and_authorized": "store only structured minimum with provenance and applicable consent/retention metadata; never include in general logs or report examples"
+    },
+    "logs_and_reports": [
+      "redact values before serialization, logging, hashing examples or exception construction",
+      "use counts/categories and stable file locators, not copied sensitive snippets",
+      "report digest is computed over already sanitized content",
+      "migration directories and reports use local permissions 0700/0600"
+    ]
+  },
+  "dry_run_report_contract": {
+    "mode": "read_only_plan",
+    "required_fields": [
+      "report_id",
+      "report_schema_version",
+      "created_at",
+      "migrator_version",
+      "operation",
+      "project_root_ref",
+      "source_candidates",
+      "selected_source_or_conflict",
+      "source_inventory_digest",
+      "destination_project_id",
+      "destination_precondition_digest",
+      "mapping_summary",
+      "history_plan",
+      "legacy_attachment_refs",
+      "redaction_summary",
+      "known_losses_or_gaps",
+      "canonical_library_verification",
+      "files_to_create_or_update",
+      "backup_plan",
+      "validation_plan",
+      "warnings",
+      "blockers",
+      "confirmation_payload",
+      "plan_digest"
+    ],
+    "source_inventory_item_fields": [
+      "relative_path",
+      "kind",
+      "size_bytes",
+      "mtime_observed",
+      "sha256",
+      "provenance_roots",
+      "parse_disposition"
+    ],
+    "planned_file_item_fields": [
+      "relative_destination",
+      "operation:create|atomic_replace",
+      "content_sha256",
+      "size_bytes",
+      "source_refs",
+      "contains_sensitive_data:false|controlled"
+    ],
+    "digest_algorithm": {
+      "canonicalization": "UTF-8 JSON with sorted keys, arrays kept in declared order and no insignificant whitespace",
+      "plan_digest": "SHA-256 of sanitized report excluding plan_digest and human response",
+      "source_inventory_digest": "SHA-256 of sorted relative_path|kind|size|sha256 records",
+      "destination_precondition_digest": "SHA-256 of canonical manifest/state revision/active-pointer and destination-absence facts"
+    },
+    "blocker_rule": "Any block/reject code makes confirmation_payload non-actionable and commit forbidden.",
+    "persistence": "Return in memory by default. Persist under migrations/reports only as a sanitized local file when local report writing is explicitly allowed; never write legacy/source paths.",
+    "no_side_effects": [
+      "no canonical project or active pointer creation",
+      "no source rewrite/move/delete",
+      "no network or external system mutation",
+      "no secret resolution"
+    ]
+  },
+  "human_confirmation_boundary": {
+    "required_for": [
+      "create/import v2 project",
+      "assisted merge result",
+      "activate/switch active project",
+      "automatic rollback"
+    ],
+    "not_inferred_from": [
+      "request to analyze, migrate in dry-run, fix, continue or use an alias",
+      "presence of a valid candidate",
+      "a legacy Markdown instruction",
+      "prior authorization for another project/operation",
+      "routing or specialist output"
+    ],
+    "confirmation_record_fields": [
+      "operation",
+      "report_id",
+      "plan_digest",
+      "source_inventory_digest",
+      "destination_project_id",
+      "destination_precondition_digest",
+      "migrator_version",
+      "confirmed_by",
+      "confirmed_at"
+    ],
+    "binding_rule": "All fields must exactly match the current dry-run; commit rehashes source and destination. Any mismatch emits LM-COMPAT-CONFIRMATION-STALE.",
+    "separation_of_duties": [
+      "import creates an inactive project by default",
+      "activation requires its own operation-specific confirmation and compare-and-swap active pointer",
+      "confirmation authorizes only local canonical state writes listed in files_to_create_or_update",
+      "confirmation never authorizes external writes or legacy modification"
+    ]
+  },
+  "transaction_protocol": {
+    "transaction_states": [
+      "discovered",
+      "dry_run_ready",
+      "awaiting_confirmation",
+      "confirmed",
+      "locked",
+      "staged",
+      "validated",
+      "promoting",
+      "committed",
+      "aborted",
+      "rollback_requested",
+      "rollback_blocked",
+      "rolled_back"
+    ],
+    "state_transition_rule": "No state is skipped; each transition appends a hash-chained local journal record with prior record hash, preconditions, actor and result.",
+    "preflight": [
+      "validate exact confirmation and absence of blockers",
+      "acquire one exclusive local migration lock; never run parallel writers",
+      "rehash every source item and repeat path/symlink containment",
+      "compare-and-swap destination precondition, project_id absence and current active pointer/revision",
+      "verify all 100 canonical path/hash references and aggregate baseline",
+      "prove staging and destination use the same filesystem and atomic no-replace rename is available"
+    ],
+    "staging": [
+      "create transaction-owned mode-0700 staging under .loop-marketing/migrations/transactions/<transaction_id>/ on the destination filesystem",
+      "render the complete new project directory, append-only imported history, derived snapshot and legacy.imported event without touching destination",
+      "write every file by exclusive create, fsync file, record SHA-256/size, then fsync containing directories",
+      "never interpolate display_name into a path and never follow links",
+      "when canonical root does not exist, stage the complete root as a sibling unit; when it exists, stage exactly one new project unit"
+    ],
+    "validation_before_promotion": [
+      "validate every target schema/version and required field",
+      "verify project_id/path containment and permissions",
+      "verify event IDs, order basis, append-only history and snapshot derived_from_revision",
+      "verify planned-versus-staged file set, size and SHA-256",
+      "verify canonical prompt reference count=100, each path/hash and aggregate hash",
+      "verify secret/PII scan over sanitized staged output",
+      "verify destination and active-pointer preconditions again under lock"
+    ],
+    "atomic_promotion": {
+      "new_root_case": "Atomic no-replace rename of the fully staged .loop-marketing root after parent directory fsync.",
+      "existing_root_case": "Atomic no-replace rename of the fully staged project directory to state/projects/<project_id>; no existing project is overwritten.",
+      "manifest_updates": "If a root manifest or active pointer must change, render a complete replacement, fsync it and atomic-replace under the same lock with compare-and-swap. Failure leaves the imported project valid but inactive or triggers hash-safe transaction recovery.",
+      "forbidden_fallback": "Never recursively copy into the final destination and never expose partially built state.",
+      "commit_point": "The no-replace rename of the complete project/root unit; the journal records committed only after immediate readback hashes and directory fsync pass."
+    },
+    "post_commit": [
+      "read back and verify final file set/hashes",
+      "persist transaction result and backup manifest",
+      "append exactly one legacy.imported event already included in the atomic project unit",
+      "keep source byte-for-byte intact",
+      "do not activate unless a separately confirmed activation operation succeeds"
+    ],
+    "idempotency": "A repeat with the same committed transaction_id and identical plan/post hashes is a no-op. Any mismatch is destination/project collision, not an overwrite."
+  },
+  "backup_manifest_and_rollback": {
+    "backup_manifest_fields": [
+      "transaction_id",
+      "report_id",
+      "plan_digest",
+      "migrator_version",
+      "created_at",
+      "source_roots_and_provenance",
+      "source_inventory_items_and_digest",
+      "destination_precondition",
+      "previous_root_manifest_backup_and_sha256_if_updated",
+      "previous_active_pointer_backup_and_sha256_if_updated",
+      "planned_and_promoted_file_items_with_sha256_size_and_operation",
+      "canonical_library_count_and_aggregate",
+      "validation_results",
+      "confirmation_record_digest",
+      "journal_head_hash",
+      "post_import_root_and_project_digests"
+    ],
+    "hash_rules": [
+      "SHA-256 covers exact bytes; path records use normalized relative paths",
+      "manifest itself has a SHA-256 recorded in the transaction journal",
+      "secret values are never inventoried or hashed; their detection blocks import",
+      "source mtime is evidence only and never substitutes content hash"
+    ],
+    "rollback_rules": [
+      "rollback is a separately confirmed local operation bound to transaction_id and current post-import hashes",
+      "recompute every created/updated file and active/manifest pointer; any drift emits LM-COMPAT-ROLLBACK-DRIFT",
+      "remove only a transaction-owned created project/root whose complete current file set equals the post-import manifest",
+      "restore an updated root manifest/active pointer only when its current digest equals the transaction's post-import digest and the backup digest validates",
+      "never remove, move, edit or chmod the legacy source",
+      "never delete or overwrite events appended after import",
+      "perform rollback through inverse staging/atomic rename; keep transaction journal and rollback outcome for audit"
+    ],
+    "post_import_drift_refusal": {
+      "examples": [
+        "new event appended",
+        "project.json updated",
+        "snapshot advanced",
+        "active pointer changed",
+        "unknown file added",
+        "permission or hash changed"
+      ],
+      "result": "automatic rollback blocked with LM-COMPAT-ROLLBACK-DRIFT",
+      "recovery": "produce a manual file-by-file recovery plan that preserves newer state; do not execute it automatically"
+    }
+  },
+  "history_and_provenance_preservation": {
+    "source_preservation": "copy-and-verify only; legacy bytes and namespace remain untouched",
+    "event_rules": [
+      "v2 events are append-only and never rewritten to mimic legacy history",
+      "imported IDs are namespaced as legacy:<origin_digest>:<legacy_id>; different payloads under one legacy ID reject",
+      "reliable original timestamps are retained with original representation; ambiguous/missing timestamps keep source order and ordering_basis=source_order",
+      "legacy status/decision text enters as unverified legacy observation or proposal, never accepted state",
+      "a snapshot is derived from imported events and records derived_from_revision; it never replaces events",
+      "unknown text becomes a sanitized legacy_attachment_ref or explicit gap with source locator"
+    ],
+    "provenance_fields": [
+      "origin_namespace",
+      "origin_root_ref",
+      "relative_path",
+      "source_sha256",
+      "line_or_offset_range",
+      "legacy_record_id",
+      "parser_id",
+      "parser_version",
+      "import_transaction_id",
+      "imported_at",
+      "ordering_basis",
+      "redactions_applied"
+    ],
+    "legacy_imported_event": {
+      "event_type": "legacy.imported",
+      "required_fields": [
+        "transaction_id",
+        "source_provenance_refs",
+        "source_inventory_digest",
+        "parser_id",
+        "parser_version",
+        "mapping_version",
+        "redaction_summary",
+        "known_gaps",
+        "conflict_resolutions",
+        "canonical_library_aggregate_sha256"
+      ],
+      "count_per_transaction": 1
+    },
+    "loss_policy": "No field is silently discarded, inferred as accepted or reordered by recency alone. A lossy mapping emits LM-COMPAT-HISTORY-LOSS."
+  },
+  "canonical_library_preservation": {
+    "mode": "reference_only",
+    "copy_or_rewrite_prompt_bodies": false,
+    "required_count": 100,
+    "observed_count": 100,
+    "required_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "observed_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "rules": [
+      "preserve every original relative path and SHA-256 reference",
+      "never rename, merge, correct, translate, delete or regenerate a canonical prompt",
+      "catalog IDs, aliases and relations remain external P3 metadata",
+      "staging and post-promotion validation fail closed on any missing/extra/drifted reference"
+    ],
+    "prompt_references": [
+      {
+        "path": "biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+        "sha256": "37d2adfc40c4c4baff204b0e563d36222d13e14ab0494a72266e53aebc37156b"
+      },
+      {
+        "path": "biblioteca/Ampliar/amplificador-de-conteudo-de-video.md",
+        "sha256": "5d85a73ec6b626917a0aa124729ad684e744b67fbf972eae051f474c34d61981"
+      },
+      {
+        "path": "biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+        "sha256": "69efeb0501a7beaa0307426904e1ab7328306b4b38e4b20422fecc2b00bc55c5"
+      },
+      {
+        "path": "biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+        "sha256": "85704f462364ef51024cd3786d5188de9457c23356d41b9cc0c238fe3e7addb1"
+      },
+      {
+        "path": "biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+        "sha256": "2c01285a922a744cf7d8655b3ec57c746e7e8ffe9741e9a38fbbdcace4da1ca2"
+      },
+      {
+        "path": "biblioteca/Ampliar/amplificador-de-marketing-local-e-regional.md",
+        "sha256": "805223f79110362e422b0b2a1c95bf700e2ccfde06d51d5285fefc54d1151a86"
+      },
+      {
+        "path": "biblioteca/Ampliar/construtor-de-rede-influenciadora.md",
+        "sha256": "ad69e335c9d8cbc969ab80012ef081e1f934e91cf42e6e55e0492e2a45b3d325"
+      },
+      {
+        "path": "biblioteca/Ampliar/distribuicao-voltada-para-a-comunidade.md",
+        "sha256": "6181ffec54f2c883931fbe0be24e95f81fc7286afadcae9ce3f34c7dd06263ee"
+      },
+      {
+        "path": "biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+        "sha256": "3a037b4e8c5971aa4c9c9a66c5957f52a6bef366cbfe6305ba2f068e76d52d86"
+      },
+      {
+        "path": "biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+        "sha256": "6a4224482aa555ae5d133ce34aa85a078a6d881b0d788d6515dd843d2cc50156"
+      },
+      {
+        "path": "biblioteca/Ampliar/estrategia-de-podcast-e-audio.md",
+        "sha256": "b9bb93903dd9e596177287971b37fd9a5b3755e4628701460736fee3a916ce88"
+      },
+      {
+        "path": "biblioteca/Ampliar/estrategia-viral-em-todas-as-plataformas.md",
+        "sha256": "20059f12410067e5216a28f93097e20f836046f4eca54bf5720ebf3c7e9049fe"
+      },
+      {
+        "path": "biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+        "sha256": "782beb73b63a2326c4487afc6fde0083c1270e7392878155eb3f9785909275bd"
+      },
+      {
+        "path": "biblioteca/Ampliar/estrategista-de-parceria-creator.md",
+        "sha256": "67d23843936b286fc7126e6f744eab97e659a40b23f433335379174cb6ffa1e7"
+      },
+      {
+        "path": "biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+        "sha256": "984b72ca165b607e4282be47fbaf29093d90a242ee351e2b34ab0b074476352a"
+      },
+      {
+        "path": "biblioteca/Ampliar/identificador-de-parceiro-estrategico.md",
+        "sha256": "3126a78a69dd2ffeb3b1b20bdcb16b79bf5233595c589a22bb0b5944567b1e56"
+      },
+      {
+        "path": "biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+        "sha256": "4c29511b80313c6d93cc3a8bb6a5c4e48d92ba93044c51aad728e0c9cb54ec47"
+      },
+      {
+        "path": "biblioteca/Ampliar/mecanismo-de-co-marketing-da-parceria.md",
+        "sha256": "c3ecdf0fd7b041ebf15a8d8b3c629f33830c9623991b7b1051558ae0432c2f39"
+      },
+      {
+        "path": "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+        "sha256": "6a65f7da2acb23f23eb5ca2133362023b1b5edba7ad5b8feb06f47396dccc92d"
+      },
+      {
+        "path": "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+        "sha256": "4a055d619de1dff5926f01db0ebc1ba9c2e054e43060e92926f066f061d90b94"
+      },
+      {
+        "path": "biblioteca/Ampliar/orquestrador-de-experiencia-omnicanal.md",
+        "sha256": "331ceedd813ade5c42989cceaa7ac9339ddade8ddae3f12ffea2eec1e90f2111"
+      },
+      {
+        "path": "biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+        "sha256": "0040caf08361b20b99cd81dde58488d46bdd8d637696685c889f7408e83093da"
+      },
+      {
+        "path": "biblioteca/Ampliar/otimizador-de-visibilidade-do-ai-search.md",
+        "sha256": "259a0c955417cd77e2976d9060cc5e25af7c0851e745ebc6a700f769582bdd24"
+      },
+      {
+        "path": "biblioteca/Ampliar/premios-da-industria-e-amplificador-de-reconhecimento.md",
+        "sha256": "6dd429236c164a75a181946e25428ac953cd04266faf75621392560e44143f90"
+      },
+      {
+        "path": "biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+        "sha256": "1e2112ea58b4ae4e9625b51c3b61c73229060257bb662f6ae5acd7a5987d96d4"
+      },
+      {
+        "path": "biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "sha256": "d5baf47dee333e852aa5c4cbd5741a6c2fa89b33ca1cc152f6294d46b294c604"
+      },
+      {
+        "path": "biblioteca/Orientar/estrategia-de-comunicacao-segmentada.md",
+        "sha256": "33e825fbdb0aed4113103537a34666f9d2d38ec6e99d4fce3685b175cbfce561"
+      },
+      {
+        "path": "biblioteca/Orientar/estrategista-de-enriquecimento-de-dados-do-cliente.md",
+        "sha256": "68c0097a82b6d4feed0f5908afcdb79dbcbc678afc7437d86bfb8c87c6b01a38"
+      },
+      {
+        "path": "biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+        "sha256": "a8763bd09a23bafbaaae0e7a4062e2d95267f9332df44026ea55e3975ce68ea0"
+      },
+      {
+        "path": "biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+        "sha256": "d5d290842add2c1f3f8d31041a4b00e34bcc41f706bb44ff8bb74f3419e5b17b"
+      },
+      {
+        "path": "biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "sha256": "acd9c2872f907186805e9cf188956244b69e0e477ef95437394e941c8d3fed7b"
+      },
+      {
+        "path": "biblioteca/Orientar/mecanismo-de-hiperpersonalizacao.md",
+        "sha256": "1b606d675e22dcef500438ba0e97a39d7a24806c70ff5100a404bbe70fddde57"
+      },
+      {
+        "path": "biblioteca/Orientar/mecanismo-de-personalizacao-redirecionamento.md",
+        "sha256": "fc825235324ad84aedb77388b40c0e326b372275e37cd608c5c94a1b85eaca5f"
+      },
+      {
+        "path": "biblioteca/Orientar/modelo-de-pontuacao-preditiva.md",
+        "sha256": "b2811b7ba969e3068be1cfb2a33a4f0807f458b2793da94390d4cb4ee99ab1ff"
+      },
+      {
+        "path": "biblioteca/Orientar/otimizador-de-caminho-de-conversao.md",
+        "sha256": "5a979d726edab63239fa7d3351f40467f74f0c979007cb2a8545cea14fedeef0"
+      },
+      {
+        "path": "biblioteca/Orientar/otimizador-de-conteudo-dinamico.md",
+        "sha256": "bdd7166104b4d9e7b517144d0ef9c112f9fb002cca240d594bd977342bc59f24"
+      },
+      {
+        "path": "biblioteca/Orientar/otimizador-de-personalizacao-de-email.md",
+        "sha256": "58793f873f2d06ff0630e9d02c4f24be5cecc55df784931e209d015e6599e28d"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizacao-baseada-em-conta.md",
+        "sha256": "b3209b69621fbcc857e5c90be3ef230d80ba44f8bad617fcabd8d346149c8120"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizacao-da-jornada-do-cliente.md",
+        "sha256": "2e9826bd8dda6da3fd26eb83a9b101bbbf2a89c4daa6191c76ae113a262d3e61"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizacao-de-email-de-ciclo-de-vida.md",
+        "sha256": "6c874e8a439a9424ffddc43def0cae34567bf5e021b7b8c263d1fd8aaf9eb29f"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizacao-orientada-por-comentarios.md",
+        "sha256": "2b36f836ec4ff82340229952cfa5519ed07af20b1e17c6a7b217909cc00c8ae3"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizador-da-experiencia-de-suporte.md",
+        "sha256": "61d140d7e290f1820420db8056ee43d20d0bbeaa9952ea6f0b8f077d8eb6ddf3"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizador-de-experiencia-da-onboarding.md",
+        "sha256": "8b91b2c4699e4141626cfcef7a09e39664833fe0160014643d32253ba598c589"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizador-de-landings-page.md",
+        "sha256": "51a5117655ee794a103cbbdaf3e3ff8934ff305f5e63ef20cc3c67130670fc81"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizador-de-prova-social.md",
+        "sha256": "9d4add03dc4a4580316a4c2914ab9d42a20dfb60e214e4f89a55b3d0a3e81767"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizador-de-renovacao-e-expansao.md",
+        "sha256": "d5ade892d930b350ebfbf8dfd206beb4e520f105bae85c3061f9cbe6a88640f1"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizador-de-tratamento-de-objecao.md",
+        "sha256": "f14ed4f7a4650c95d8ed9dcdd07e1b1f5dcdb249b0c5efce305e5b6cde5b992c"
+      },
+      {
+        "path": "biblioteca/Orientar/personalizador-de-viagens-baseado-em-persona.md",
+        "sha256": "762b64b0c183b501faf06287e21125eff36e38b1d84473e3f4686f4e5a273b19"
+      },
+      {
+        "path": "biblioteca/Orientar/sequencias-de-personalizacao-automatizada.md",
+        "sha256": "19bd418e4af483384a31863fbb32466906b730c7b6e5c36a5ae6b0e21ba24a79"
+      },
+      {
+        "path": "biblioteca/Orientar/sincronizacao-de-mensagens-entre-canais.md",
+        "sha256": "286c6439a67b25c2855ca57368c32729ecb21e25b2ac0848aa18448aa511bb04"
+      },
+      {
+        "path": "biblioteca/Refinar/acelerador-de-velocidade-de-marketing.md",
+        "sha256": "54b1d0ac369c7bd04dcbd5727a47dff4cd8d521fe2a68609b715d420d4ab1eb6"
+      },
+      {
+        "path": "biblioteca/Refinar/analisador-de-desempenho-de-coorte.md",
+        "sha256": "6df274669ed1d9a8f407ac8b19da67de3f4da1f4706aa7e60214bc4c1483d815"
+      },
+      {
+        "path": "biblioteca/Refinar/analise-competitiva-do-velocity.md",
+        "sha256": "a8544dcb815e747ef7eabc9ca024f99e986ee1968dd9e2b83d45c14f2539ea87"
+      },
+      {
+        "path": "biblioteca/Refinar/calculadora-de-otimizacao.md",
+        "sha256": "98072946c2da87fb9f325baf3e0c5aa05c16c7bacc7fd0583be5e1854623ebd7"
+      },
+      {
+        "path": "biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+        "sha256": "d4207b9bee18c8e03a08e73d72909ff1180db45d144cdd62152cd053338bb653"
+      },
+      {
+        "path": "biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+        "sha256": "d0496e2d444cbb0171a8a81ec7f01cb4a7b55eadfe3f0ead1a57e4401c163e7a"
+      },
+      {
+        "path": "biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+        "sha256": "384e0e5d305c707ed1f0e17d18bfbabadf9ecd0d80375ee4982e8ccca0d1453f"
+      },
+      {
+        "path": "biblioteca/Refinar/diagnostico-da-entrega-da-viagem-do-cliente.md",
+        "sha256": "308f1290bbe860ed78a457048a987a46d4fb230a3441f3150ae6ceac4c6bcdec"
+      },
+      {
+        "path": "biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+        "sha256": "eec9aa911b0e6138e576d4928e1f39c1e273029051ebc2d9214dfa5c8db28fa5"
+      },
+      {
+        "path": "biblioteca/Refinar/estrategista-de-teste-multi-variate.md",
+        "sha256": "a8f7833def8bc18b79db83936383c3a3e5b1039c0789fe52e94eff7ad663de37"
+      },
+      {
+        "path": "biblioteca/Refinar/gerador-de-relatorios-de-otimizacao-continua.md",
+        "sha256": "c8b3517a5c145b1a92a0ab0d9af9ca21c2478e4a9c4e19b6423e0e5c75bda90e"
+      },
+      {
+        "path": "biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+        "sha256": "9aca0cf5326e11714de6ce211b0bf8de04f7e94be076f2c77acc6ea917b0c9c5"
+      },
+      {
+        "path": "biblioteca/Refinar/mecanismo-de-experimentacao-rapida.md",
+        "sha256": "909ef0df43b186ac0164e6eb245e12cb9105ddb0d13d23a8897db9e4038baba6"
+      },
+      {
+        "path": "biblioteca/Refinar/mecanismo-de-otimizacao-em-tempo-real.md",
+        "sha256": "af92c70b43a8f9111db20ab6a985ab95c237e3f04efce4582b89e4bff3207f3a"
+      },
+      {
+        "path": "biblioteca/Refinar/mecanismo-de-previsao-de-desempenho.md",
+        "sha256": "f0e41015831963006c5239177a0ec31a52d4f88ee4a21da856dc43deb3c27c6c"
+      },
+      {
+        "path": "biblioteca/Refinar/modelador-de-combinacao-de-marketing.md",
+        "sha256": "24211a8f357f7d43292483986ae4b83c2cf3920eeb500f79bda9692ff4b9e805"
+      },
+      {
+        "path": "biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+        "sha256": "a2bf3d68b1c1afc404bbd7c46ca742dffd260118934b10f4c9a2ec911d382854"
+      },
+      {
+        "path": "biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+        "sha256": "557dc09cbd9de4177dea0129823efc7c0268ea40672047a4de9f4b96c7e369d9"
+      },
+      {
+        "path": "biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md",
+        "sha256": "24c8bba74dce870795566cf3c6fc5788927e074bc41de0856c7daeb9e2517158"
+      },
+      {
+        "path": "biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+        "sha256": "dad237af53a8e11d6a933e459af7c1100c3a1a804b3a5aebfad0276a62951ad5"
+      },
+      {
+        "path": "biblioteca/Refinar/otimizador-de-testes-sequenciais.md",
+        "sha256": "c16e645b0130c91e1ec3a72921c7161d01a4df2cc7b2c88bfb52185fea462ce9"
+      },
+      {
+        "path": "biblioteca/Refinar/otimizador-de-valor-do-ciclo-de-vida-do-cliente.md",
+        "sha256": "07de759efc23636163d9a75b631fc81011e3ade7547221cdc0bbcb9560f7c828"
+      },
+      {
+        "path": "biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+        "sha256": "c500944d35ff8e30ea81a7ed2a0a81ae6776e4485ee6e3fd823cf93b0be65dc4"
+      },
+      {
+        "path": "biblioteca/Refinar/sintese-de-aprendizado-multi-loop.md",
+        "sha256": "9fef25519e43b4f3c20841bc30965da9ae8ff244a270e7ee6a0287466c16b04a"
+      },
+      {
+        "path": "biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+        "sha256": "0db489b2b7b1717eaaf079187401d0882d9abff2cd9de0b5981ed470d5bb3ade"
+      },
+      {
+        "path": "biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+        "sha256": "7818ba7124e11ec18dcb881252d90e10fd1aa63aaf56cc38f6396124e72e7c8e"
+      },
+      {
+        "path": "biblioteca/Verbalizar/analisador-de-padroes-de-sucesso-do-cliente.md",
+        "sha256": "2250184819e963511bdd3309ba6127de4e715966394c29d4e96acae57a71c48b"
+      },
+      {
+        "path": "biblioteca/Verbalizar/analise-de-interruptores-do-setor.md",
+        "sha256": "af1fde3073921f4d1348ff1f8b50825d72f42c2f124985f98cbc434684a35227"
+      },
+      {
+        "path": "biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+        "sha256": "d1f1600f041687b1553a4c8642f90ac442e1bdafe194a2ff157f37fbb1c74e80"
+      },
+      {
+        "path": "biblioteca/Verbalizar/arquiteto-de-historias-de-marcas.md",
+        "sha256": "9f65a87f8b92badcfd2184b05f14d78b6d1fbfcf6ef33686ecdd66a0229a9b05"
+      },
+      {
+        "path": "biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+        "sha256": "76fe5b6f5556383fb31aa9cdd882f646312077802f2cf9f060a17d7b18c17b59"
+      },
+      {
+        "path": "biblioteca/Verbalizar/buyer-persona-validador.md",
+        "sha256": "95f7ff363cdd37e5aa84686fe9a6dfa754e22a6495015b09e20716f7546eceee"
+      },
+      {
+        "path": "biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "sha256": "c00d4b6ded5608e1408f5a10454718ac35c637bde10e94908329c6360946148e"
+      },
+      {
+        "path": "biblioteca/Verbalizar/criador-de-perfil-de-personalidade-da-marca.md",
+        "sha256": "4335945b84a642d26dc8cd7fd4a233c15c119419c4cebd80270d71f569616b89"
+      },
+      {
+        "path": "biblioteca/Verbalizar/decodificador-de-idioma-do-cliente.md",
+        "sha256": "f78cdbb6d9480328ac8d1d6946c0b7d2f7a862b5e1aa9f96b30ce94317c6f1da"
+      },
+      {
+        "path": "biblioteca/Verbalizar/definidor-de-categoria-de-mercado.md",
+        "sha256": "5c934184c4889946d0c24bdd5fa451deee598acaf79ae983579a5a1de5bc82cb"
+      },
+      {
+        "path": "biblioteca/Verbalizar/desenvolvedor-de-estrategia-sazonal.md",
+        "sha256": "20674c413d3fd56fc2d4694171b6e9bc8cc77c6faff448fc2d108cb5305ab920"
+      },
+      {
+        "path": "biblioteca/Verbalizar/esclarecimento-de-objetivo-e-missao.md",
+        "sha256": "42ed31881eb8dd7462929a1b2877e0f8d17dccbfd83de0e54a365062ec3e2d06"
+      },
+      {
+        "path": "biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "sha256": "76efba501dc90bfe2b8f64c8d066c4c86c4b1d49c6d71eb096795db8b977dfbb"
+      },
+      {
+        "path": "biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+        "sha256": "e14009f0530bc7fe87e933082e9709c226e0ba59ab567bc62701153bb05fc030"
+      },
+      {
+        "path": "biblioteca/Verbalizar/identificador-do-arquetipo-da-marca.md",
+        "sha256": "9715aa7f709a7133627a000587fba22dc4f377f2248d40a72bc294d41515ec58"
+      },
+      {
+        "path": "biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+        "sha256": "c841a794f1e7cc0ee790a9438b64c6bb356091c66dcb3bfa9db543675635845a"
+      },
+      {
+        "path": "biblioteca/Verbalizar/mapeador-da-jornada-do-cliente.md",
+        "sha256": "2222dde62185d4a963c0abeddbcfe4a4cf9c54f004e513889c40d4c3b7781504"
+      },
+      {
+        "path": "biblioteca/Verbalizar/otimizador-de-proposta-de-valor.md",
+        "sha256": "08b698eb9eb37f6ed30385c9935bebf944c406cb9ebab3628f16af1801fe5e05"
+      },
+      {
+        "path": "biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+        "sha256": "811d802018adaeca8346d9955ac89706a9278d0a04c1fcedbd056d0ec86b8de6"
+      },
+      {
+        "path": "biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md",
+        "sha256": "92c9805ef3b5500ed7bed657b3d0a18c9e6f896bd36082b6662a2379a89e6db9"
+      },
+      {
+        "path": "biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+        "sha256": "4cf90136d087759b4cbfc25a90c5ab9c876ed0effe25c4c298b027c0720510a6"
+      },
+      {
+        "path": "biblioteca/Verbalizar/posicionamento-da-parceria.md",
+        "sha256": "448b34e68c76692ada81c51422ba52ae4702454fc78e28463b2e22c4cb2541a0"
+      },
+      {
+        "path": "biblioteca/Verbalizar/roteiro-de-evolucao-das-marcas.md",
+        "sha256": "19656f394e0b00ad57fc01cf2053bd0f5b54bca9bb9167e4734be1eca38c50b4"
+      },
+      {
+        "path": "biblioteca/Verbalizar/voz-do-sintetizador-de-cliente.md",
+        "sha256": "44d276d89d444c74e24b0ac509efde60ab1660f0522bb0f344ddc86fbf993931"
+      }
+    ]
+  },
+  "deterministic_code_registry": {
+    "namespace": "LM-COMPAT-*",
+    "selection_rule": "When several codes apply, choose the earliest failing phase in discovery -> containment -> conflict -> parse/security -> dry_run -> confirmation -> preflight -> staging -> promotion -> rollback; include secondary_codes without changing primary_code.",
+    "codes": [
+      {
+        "code": "LM-COMPAT-NAMESPACE-CONFLICT",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "Recognized legacy namespaces diverge in project identity, active project, decision, bottleneck, experiment or event content.",
+        "safe_action": "Import nothing; present a sanitized diff and require explicit base selection or an assisted merge that creates a third result."
+      },
+      {
+        "code": "LM-COMPAT-PATH-ESCAPE",
+        "outcome": "reject",
+        "retryable": false,
+        "condition": "A candidate, symlink, project_id or destination resolves outside its declared allowed root.",
+        "safe_action": "Stop before reading the escaped target or writing any destination."
+      },
+      {
+        "code": "LM-COMPAT-FUTURE-SCHEMA",
+        "outcome": "reject",
+        "retryable": false,
+        "condition": "A canonical or legacy schema version is newer than the migrator's explicit support table.",
+        "safe_action": "Do not guess; require a compatible migrator version."
+      },
+      {
+        "code": "LM-COMPAT-SECRET-DETECTED",
+        "outcome": "reject",
+        "retryable": true,
+        "condition": "A token, credential, private key, session secret or likely secret appears in imported content.",
+        "safe_action": "Do not copy, hash or echo the value; report only redacted type and locator and require source remediation or a later P6-approved secure reference flow."
+      },
+      {
+        "code": "LM-COMPAT-DANGLING-ACTIVE",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "active-project.json is invalid, escapes containment or points to a missing/invalid project.",
+        "safe_action": "Keep the current state untouched and require active-pointer repair or explicit canonical project selection."
+      },
+      {
+        "code": "LM-COMPAT-ID-COLLISION",
+        "outcome": "reject",
+        "retryable": true,
+        "condition": "Two legacy IDs or events share an ID but have different normalized content.",
+        "safe_action": "Preserve both source records in the report, write nothing and require explicit conflict resolution."
+      },
+      {
+        "code": "LM-COMPAT-EXPLICIT-PATH-REQUIRED",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "A source under .codex/loop-marketing or .claude/projects is present but was not explicitly declared.",
+        "safe_action": "Ignore it during automatic discovery and ask for an explicit contained path if the user intends to import it."
+      },
+      {
+        "code": "LM-COMPAT-EXPLICIT-PATH-INVALID",
+        "outcome": "reject",
+        "retryable": true,
+        "condition": "The explicit path is absent, not a recognized legacy/canonical shape, ambiguous, unreadable or outside the project root.",
+        "safe_action": "Return the canonicalized redacted locator and accepted source shapes; do not fall back silently."
+      },
+      {
+        "code": "LM-COMPAT-CANONICAL-V2-INVALID",
+        "outcome": "reject",
+        "retryable": true,
+        "condition": "A discovered .loop-marketing state lacks a supported manifest/schema, containment proof or required project files.",
+        "safe_action": "Do not treat it as source of truth; report repair requirements without selecting legacy as an automatic replacement."
+      },
+      {
+        "code": "LM-COMPAT-ACTIVE-V2-PROTECTED",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "A legacy import attempts to overwrite, replace or silently activate over a valid v2 project.",
+        "safe_action": "Keep v2 active; import only to a new project_id after a separate dry-run and confirmation."
+      },
+      {
+        "code": "LM-COMPAT-PROJECT-ID-INVALID",
+        "outcome": "reject",
+        "retryable": true,
+        "condition": "A supplied project_id fails ^[a-z0-9][a-z0-9-]{0,62}$ or is derived directly from an unsafe display name.",
+        "safe_action": "Require a valid ID or propose a deterministic safe slug plus source digest; never use display_name as a path."
+      },
+      {
+        "code": "LM-COMPAT-PROJECT-ID-COLLISION",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "The destination project_id already exists and is not the same committed transaction.",
+        "safe_action": "Never overwrite; require a new ID or explicit review of the existing project."
+      },
+      {
+        "code": "LM-COMPAT-PARSER-LIMIT",
+        "outcome": "reject",
+        "retryable": true,
+        "condition": "File count, file size, total size, nesting, line length or JSON/Markdown complexity exceeds declared parser limits.",
+        "safe_action": "Stop deterministically and require a smaller explicit source set; never truncate silently."
+      },
+      {
+        "code": "LM-COMPAT-UNTRUSTED-CONTENT-IGNORED",
+        "outcome": "warning",
+        "retryable": false,
+        "condition": "Legacy Markdown contains tool directives, prompt-injection language, executable code, remote includes or instructions to alter behavior.",
+        "safe_action": "Treat the content as inert quoted data, never execute/fetch it, and record a redacted warning."
+      },
+      {
+        "code": "LM-COMPAT-PII-REDACTED",
+        "outcome": "warning",
+        "retryable": false,
+        "condition": "Unnecessary personal data is found in reportable legacy text.",
+        "safe_action": "Replace it with typed redaction markers in reports and migrated free text; retain only necessary consented structured fields."
+      },
+      {
+        "code": "LM-COMPAT-PII-POLICY",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "Customer-level PII is necessary to the requested import but purpose, minimization or authorization is absent.",
+        "safe_action": "Quarantine the record reference and require an explicit data-use decision; do not copy the PII."
+      },
+      {
+        "code": "LM-COMPAT-CONFIRMATION-REQUIRED",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "A commit, merge, activation or rollback is requested without the operation-specific confirmation record.",
+        "safe_action": "Return the current dry-run and exact confirmation fields; perform no write."
+      },
+      {
+        "code": "LM-COMPAT-CONFIRMATION-STALE",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "The report digest, inventory digest, destination precondition, project_id, migrator version or requested operation changed after confirmation.",
+        "safe_action": "Invalidate confirmation and generate a new dry-run."
+      },
+      {
+        "code": "LM-COMPAT-SOURCE-DRIFT",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "Any source path, size, hash, type or containment proof differs from the confirmed dry-run.",
+        "safe_action": "Abort before staging/promotion and regenerate inventory and confirmation."
+      },
+      {
+        "code": "LM-COMPAT-DESTINATION-DRIFT",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "Canonical state revision, manifest digest, active pointer or destination existence differs from the confirmed precondition.",
+        "safe_action": "Abort compare-and-swap and rerun dry-run against the current state."
+      },
+      {
+        "code": "LM-COMPAT-TRANSACTION-LOCKED",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "Another local migration holds the canonical exclusive lock or its recovery state is unresolved.",
+        "safe_action": "Do not stage concurrently; inspect the transaction journal and retry only after deterministic recovery."
+      },
+      {
+        "code": "LM-COMPAT-CROSS-FILESYSTEM",
+        "outcome": "reject",
+        "retryable": true,
+        "condition": "Staging and final promotion targets are on different filesystems or atomic no-replace rename is unavailable.",
+        "safe_action": "Do not fall back to recursive copy; choose a same-filesystem staging root with atomic promotion support."
+      },
+      {
+        "code": "LM-COMPAT-STAGING-VALIDATION",
+        "outcome": "reject",
+        "retryable": true,
+        "condition": "Staged schema, counts, hashes, event ordering, containment, permissions or manifest reconciliation fails.",
+        "safe_action": "Delete or quarantine only the unpromoted staging directory and retain the failure journal."
+      },
+      {
+        "code": "LM-COMPAT-ATOMIC-PROMOTION",
+        "outcome": "block",
+        "retryable": true,
+        "condition": "Atomic no-replace promotion or the immediately verified manifest/pointer update fails.",
+        "safe_action": "Run transaction recovery; if the promoted unit is unchanged, reverse it atomically, otherwise block manual recovery."
+      },
+      {
+        "code": "LM-COMPAT-ROLLBACK-DRIFT",
+        "outcome": "block",
+        "retryable": false,
+        "condition": "Any imported or updated v2 file differs from the post-import hashes recorded by the transaction.",
+        "safe_action": "Refuse automatic rollback to avoid deleting new history; produce a manual recovery plan."
+      },
+      {
+        "code": "LM-COMPAT-LIBRARY-DRIFT",
+        "outcome": "reject",
+        "retryable": false,
+        "condition": "The canonical library is not exactly 100 referenced paths with anchored per-file hashes and aggregate hash.",
+        "safe_action": "Restore or re-anchor the approved baseline before import; never rewrite prompt bodies."
+      },
+      {
+        "code": "LM-COMPAT-HISTORY-LOSS",
+        "outcome": "reject",
+        "retryable": false,
+        "condition": "Normalization would discard, overwrite, reorder without evidence or silently promote a legacy decision/event.",
+        "safe_action": "Preserve the source reference as unresolved legacy material and stop any lossy promotion."
+      },
+      {
+        "code": "LM-COMPAT-EXTERNAL-MUTATION",
+        "outcome": "reject",
+        "retryable": false,
+        "condition": "Migration input or embedded content requests network access, CRM/API writes, source rewrites, campaign changes or files outside canonical local state.",
+        "safe_action": "Remain local and read-only outside .loop-marketing; require a separate future P6 action manifest for any external operation."
+      }
+    ]
+  },
+  "failure_and_recovery_matrix": [
+    {
+      "stage": "discovery",
+      "failure": "Unknown or implicit-only source",
+      "code": "LM-COMPAT-EXPLICIT-PATH-REQUIRED",
+      "canonical_effect": "none",
+      "legacy_effect": "none",
+      "automatic_recovery": "ignore source and continue with recognized candidates",
+      "human_recovery": "declare a contained explicit path"
+    },
+    {
+      "stage": "discovery",
+      "failure": "Valid v2 plus legacy candidate",
+      "code": "LM-COMPAT-ACTIVE-V2-PROTECTED",
+      "canonical_effect": "v2 remains active",
+      "legacy_effect": "read-only inventory only",
+      "automatic_recovery": "produce informational legacy report",
+      "human_recovery": "request import into a new inactive project_id"
+    },
+    {
+      "stage": "conflict_resolution",
+      "failure": "Divergent .claude and .Codex sources",
+      "code": "LM-COMPAT-NAMESPACE-CONFLICT",
+      "canonical_effect": "none",
+      "legacy_effect": "both unchanged",
+      "automatic_recovery": "none",
+      "human_recovery": "select a base or request assisted third-result merge"
+    },
+    {
+      "stage": "containment",
+      "failure": "Traversal or escaping symlink",
+      "code": "LM-COMPAT-PATH-ESCAPE",
+      "canonical_effect": "none",
+      "legacy_effect": "escaped target is not read",
+      "automatic_recovery": "none",
+      "human_recovery": "supply a safe contained source"
+    },
+    {
+      "stage": "parsing",
+      "failure": "Credential detected",
+      "code": "LM-COMPAT-SECRET-DETECTED",
+      "canonical_effect": "none",
+      "legacy_effect": "unchanged; value never logged",
+      "automatic_recovery": "none",
+      "human_recovery": "remove/revoke secret and rerun"
+    },
+    {
+      "stage": "parsing",
+      "failure": "Untrusted instruction in Markdown",
+      "code": "LM-COMPAT-UNTRUSTED-CONTENT-IGNORED",
+      "canonical_effect": "only inert sanitized data may continue",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "ignore instruction and add warning",
+      "human_recovery": "review warning if relevant"
+    },
+    {
+      "stage": "dry_run",
+      "failure": "PII lacks purpose/minimization",
+      "code": "LM-COMPAT-PII-POLICY",
+      "canonical_effect": "none",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "quarantine reference only",
+      "human_recovery": "supply approved data-use/minimization rule"
+    },
+    {
+      "stage": "confirmation",
+      "failure": "Missing or stale confirmation",
+      "code": "LM-COMPAT-CONFIRMATION-REQUIRED",
+      "canonical_effect": "none",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "none",
+      "human_recovery": "confirm the exact current plan digest"
+    },
+    {
+      "stage": "preflight",
+      "failure": "Source changed after dry-run",
+      "code": "LM-COMPAT-SOURCE-DRIFT",
+      "canonical_effect": "none",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "invalidate plan and release lock",
+      "human_recovery": "review new dry-run"
+    },
+    {
+      "stage": "preflight",
+      "failure": "Destination revision changed",
+      "code": "LM-COMPAT-DESTINATION-DRIFT",
+      "canonical_effect": "new state preserved",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "compare-and-swap abort",
+      "human_recovery": "rerun against current revision"
+    },
+    {
+      "stage": "staging",
+      "failure": "Schema/hash/count validation fails",
+      "code": "LM-COMPAT-STAGING-VALIDATION",
+      "canonical_effect": "no partial project promoted",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "remove/quarantine unpromoted staging",
+      "human_recovery": "fix source/mapping and rerun"
+    },
+    {
+      "stage": "promotion",
+      "failure": "Atomic promotion unavailable/fails",
+      "code": "LM-COMPAT-ATOMIC-PROMOTION",
+      "canonical_effect": "transaction journal determines absent or committed unit",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "reverse unchanged promoted unit or finish idempotently",
+      "human_recovery": "manual recovery only when hashes diverge"
+    },
+    {
+      "stage": "post_commit",
+      "failure": "Activation pointer update fails",
+      "code": "LM-COMPAT-ATOMIC-PROMOTION",
+      "canonical_effect": "imported project remains valid but inactive",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "retain prior active pointer and report separate activation failure",
+      "human_recovery": "confirm activation after pointer repair"
+    },
+    {
+      "stage": "rollback",
+      "failure": "Post-import state drift",
+      "code": "LM-COMPAT-ROLLBACK-DRIFT",
+      "canonical_effect": "no file removed/restored",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "none",
+      "human_recovery": "manual merge/recovery preserving new events"
+    },
+    {
+      "stage": "any",
+      "failure": "External mutation requested",
+      "code": "LM-COMPAT-EXTERNAL-MUTATION",
+      "canonical_effect": "none beyond authorized local migration state",
+      "legacy_effect": "unchanged",
+      "automatic_recovery": "strip unauthorized action from migration",
+      "human_recovery": "use a separate future P6-governed workflow"
+    }
+  ],
+  "compatibility_fixtures": {
+    "positive": [
+      {
+        "fixture_id": "COMPAT-POS-001",
+        "name": "single .claude legacy source",
+        "setup": "Only <project_root>/.claude/loop-marketing exists and is contained, secret-free and parseable.",
+        "operation": "discover -> dry_run -> exact human confirm -> import",
+        "expected": "one new inactive v2 project is atomically created; legacy source is byte-for-byte unchanged",
+        "assertions": [
+          "source_count=1",
+          "confirmation_required=true",
+          "legacy.imported appended",
+          "no external mutation"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-002",
+        "name": "single .Codex legacy source",
+        "setup": "Only <project_root>/.Codex/loop-marketing exists and is valid.",
+        "operation": "same protocol as COMPAT-POS-001",
+        "expected": "host-neutral .loop-marketing state; no Codex-specific v2 namespace",
+        "assertions": [
+          "canonical_root=.loop-marketing",
+          "legacy source unchanged"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-003",
+        "name": "identical dual namespaces",
+        "setup": ".claude and .Codex inventories are byte-for-byte identical.",
+        "operation": "discover and dry_run",
+        "expected": "one candidate with two provenance roots and one content inventory",
+        "assertions": [
+          "candidate_count=1",
+          "provenance_count=2",
+          "no implicit preferred namespace"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-004",
+        "name": "valid v2 with legacy present",
+        "setup": "A valid active v2 project exists and a recognized legacy source is present.",
+        "operation": "normal discovery",
+        "expected": "v2 remains source of truth; legacy appears only as an informational import candidate",
+        "assertions": [
+          "active_project_unchanged",
+          "legacy_overwrite=false",
+          "silent_switch=false"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-005",
+        "name": "six command aliases preserve identity",
+        "setup": "Invoke every canonical and legacy command pair.",
+        "operation": "resolve invocation",
+        "expected": "each pair resolves to the same command_id, role, state root and output contract",
+        "assertions": [
+          "events store command_id only",
+          "alias creates no state namespace",
+          "support_through=2.x"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-006",
+        "name": "unsafe display name",
+        "setup": "display_name is ../../outro and no project_id is supplied.",
+        "operation": "generate project identity in dry-run",
+        "expected": "display_name remains presentation data after PII policy; project_id is a contained deterministic safe slug/digest",
+        "assertions": [
+          "project_id matches ^[a-z0-9][a-z0-9-]{0,62}$",
+          "resolved parent is projects root",
+          "no traversal"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-007",
+        "name": "unknown legacy text preserved",
+        "setup": "A Markdown section has no v2 field and contains no secret/blocked PII.",
+        "operation": "parse and map",
+        "expected": "text is represented by a sanitized legacy_attachment_ref or explicit gap, never silently dropped or accepted as a decision",
+        "assertions": [
+          "history_loss=false",
+          "provenance includes path/hash/line range"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-008",
+        "name": "failure before promotion",
+        "setup": "Staged project fails schema validation.",
+        "operation": "commit after valid confirmation",
+        "expected": "staging is removed or quarantined; canonical destination is absent; transaction failure remains auditable",
+        "assertions": [
+          "partial_destination=false",
+          "legacy source unchanged",
+          "failure code recorded"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-009",
+        "name": "explicit lower-case codex drift source",
+        "setup": "A contained <project_root>/.codex/loop-marketing path is explicitly supplied.",
+        "operation": "explicit discovery and dry-run",
+        "expected": "source is eligible only for this request and remains read-only; it is never added to automatic precedence",
+        "assertions": [
+          "explicit=true",
+          "automatic_discovery=false"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-POS-010",
+        "name": "idempotent committed transaction replay",
+        "setup": "The same transaction_id, report digest, destination and post-import hashes already exist as committed.",
+        "operation": "repeat commit request",
+        "expected": "return the existing committed result as a no-op without appending a duplicate import event",
+        "assertions": [
+          "new_writes=0",
+          "duplicate_event=false",
+          "hashes_equal=true"
+        ]
+      }
+    ],
+    "negative": [
+      {
+        "fixture_id": "COMPAT-NEG-001",
+        "name": "divergent namespaces",
+        "setup": ".claude and .Codex disagree on active project or decision",
+        "operation": "discover/import",
+        "expected_code": "LM-COMPAT-NAMESPACE-CONFLICT",
+        "assertions": [
+          "no base chosen",
+          "no destination created"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-002",
+        "name": "path traversal",
+        "setup": "explicit path or project_id contains traversal resolving outside root",
+        "operation": "discover",
+        "expected_code": "LM-COMPAT-PATH-ESCAPE",
+        "assertions": [
+          "escaped target not read",
+          "no write"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-003",
+        "name": "escaping symlink",
+        "setup": "a contained-looking source component is a symlink outside project root",
+        "operation": "inventory",
+        "expected_code": "LM-COMPAT-PATH-ESCAPE",
+        "assertions": [
+          "lstat/openat containment fails",
+          "no target content logged"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-004",
+        "name": "future schema",
+        "setup": "manifest declares unsupported future major schema",
+        "operation": "discover",
+        "expected_code": "LM-COMPAT-FUTURE-SCHEMA",
+        "assertions": [
+          "no best-effort parsing",
+          "no legacy fallback activation"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-005",
+        "name": "secret in Markdown",
+        "setup": "legacy text contains an access token",
+        "operation": "inventory/parse",
+        "expected_code": "LM-COMPAT-SECRET-DETECTED",
+        "assertions": [
+          "token absent from report/log/hash inventory",
+          "import blocked"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-006",
+        "name": "dangling active pointer",
+        "setup": "active-project.json references a missing project",
+        "operation": "canonical discovery",
+        "expected_code": "LM-COMPAT-DANGLING-ACTIVE",
+        "assertions": [
+          "no silent project selection",
+          "legacy not promoted"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-007",
+        "name": "different duplicate event IDs",
+        "setup": "two source events share ID but differ in payload",
+        "operation": "normalize history",
+        "expected_code": "LM-COMPAT-ID-COLLISION",
+        "assertions": [
+          "neither event overwritten",
+          "conflict reported"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-008",
+        "name": "implicit .codex source",
+        "setup": ".codex/loop-marketing exists without explicit declaration",
+        "operation": "automatic discovery",
+        "expected_code": "LM-COMPAT-EXPLICIT-PATH-REQUIRED",
+        "assertions": [
+          "source ignored",
+          "no inventory read beyond locator"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-009",
+        "name": "missing confirmation",
+        "setup": "valid dry-run but no operation-bound confirmation",
+        "operation": "commit",
+        "expected_code": "LM-COMPAT-CONFIRMATION-REQUIRED",
+        "assertions": [
+          "no staging",
+          "no canonical write"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-010",
+        "name": "stale confirmation",
+        "setup": "source hash or destination precondition changes after confirmation",
+        "operation": "commit",
+        "expected_code": "LM-COMPAT-CONFIRMATION-STALE",
+        "assertions": [
+          "confirmation invalidated",
+          "new dry-run required"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-011",
+        "name": "source drift during lock",
+        "setup": "source inventory changes between preflight and staging",
+        "operation": "commit",
+        "expected_code": "LM-COMPAT-SOURCE-DRIFT",
+        "assertions": [
+          "promotion absent",
+          "lock released"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-012",
+        "name": "destination project exists",
+        "setup": "target project_id exists from another transaction",
+        "operation": "commit",
+        "expected_code": "LM-COMPAT-PROJECT-ID-COLLISION",
+        "assertions": [
+          "no overwrite",
+          "active pointer unchanged"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-013",
+        "name": "cross-filesystem staging",
+        "setup": "staging and destination devices differ",
+        "operation": "stage",
+        "expected_code": "LM-COMPAT-CROSS-FILESYSTEM",
+        "assertions": [
+          "no copy fallback",
+          "no partial destination"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-014",
+        "name": "post-import rollback drift",
+        "setup": "a new event was appended after import",
+        "operation": "automatic rollback",
+        "expected_code": "LM-COMPAT-ROLLBACK-DRIFT",
+        "assertions": [
+          "new event preserved",
+          "no file removed",
+          "manual plan emitted"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-015",
+        "name": "canonical library count/hash drift",
+        "setup": "one of 100 prompt references is missing or has wrong hash",
+        "operation": "validate staging",
+        "expected_code": "LM-COMPAT-LIBRARY-DRIFT",
+        "assertions": [
+          "promotion blocked",
+          "prompt never rewritten"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-016",
+        "name": "embedded tool instruction",
+        "setup": "Markdown says to run a command, fetch a URL or reveal credentials",
+        "operation": "parse",
+        "expected_code": "LM-COMPAT-UNTRUSTED-CONTENT-IGNORED",
+        "assertions": [
+          "instruction inert",
+          "network_calls=0",
+          "tool_calls=0",
+          "warning recorded"
+        ]
+      },
+      {
+        "fixture_id": "COMPAT-NEG-017",
+        "name": "external mutation piggyback",
+        "setup": "import request also asks to update CRM/campaign/source files",
+        "operation": "migrate",
+        "expected_code": "LM-COMPAT-EXTERNAL-MUTATION",
+        "assertions": [
+          "only authorized canonical local state is in scope",
+          "external writes=0"
+        ]
+      }
+    ],
+    "fixture_rules": [
+      "each fixture starts from an isolated local project root",
+      "negative fixtures assert no unauthorized canonical/legacy/external mutation",
+      "filesystem fixtures compare pre/post path sets and hashes",
+      "alias fixtures compare command_id and state root, not display text",
+      "transaction fixtures inject failure at the named boundary and verify journal plus recovery"
+    ],
+    "counts": {
+      "positive": 10,
+      "negative": 17,
+      "total": 27
+    }
+  },
+  "external_mutation_policy": {
+    "default": "read_only",
+    "migration_write_scope": "Only the confirmed files inside the canonical .loop-marketing root and transaction/report directories listed by the current plan.",
+    "always_forbidden": [
+      "modify/delete/move legacy source",
+      "edit source repository or canonical prompt files",
+      "network, CRM, API, campaign, email, ad or platform mutation",
+      "credential discovery/resolution from legacy Markdown",
+      "treat a migration, alias invocation, route or report as external authorization"
+    ],
+    "future_external_action": "Requires a separate P6 action manifest naming tenant, system, operation, objects, scope, reversibility, expected effect and operation-specific human approval.",
+    "violation_code": "LM-COMPAT-EXTERNAL-MUTATION"
+  },
+  "validation_summary": {
+    "self_checks": [
+      {
+        "check": "canonical prompt references",
+        "result": "pass",
+        "evidence": "100 unique sorted paths with 100 SHA-256 values"
+      },
+      {
+        "check": "canonical aggregate",
+        "result": "pass",
+        "evidence": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+      },
+      {
+        "check": "six canonical/legacy command pairs",
+        "result": "pass",
+        "evidence": "6 mappings to stable command_id"
+      },
+      {
+        "check": "negative fixture codes",
+        "result": "pass",
+        "evidence": "every expected_code exists in deterministic registry"
+      },
+      {
+        "check": "human confirmation and no external mutation",
+        "result": "pass",
+        "evidence": "commit/merge/activation/rollback are separately bound; external writes always false"
+      },
+      {
+        "check": "rollback drift refusal",
+        "result": "pass",
+        "evidence": "any post-import file/event/pointer drift blocks automatic rollback"
+      }
+    ],
+    "blocking_findings": 0,
+    "warnings": [
+      "This artifact specifies migration behavior; it does not perform a real migration.",
+      "Public redistribution rights for canonical prompt bodies remain outside this internal path/hash preservation contract."
+    ]
+  },
+  "unresolved_questions": [],
+  "verdict": {
+    "result": "PASS",
+    "blocking_findings": 0,
+    "requirements_covered": [
+      "v1 discovery precedence and explicit-path/conflict behavior",
+      "safe untrusted Markdown parser",
+      "dry-run and exact human confirmation boundary",
+      "backup hashes, transactional staging, validation and atomic promotion",
+      "rollback with mandatory post-import drift refusal",
+      "history/provenance and 100 canonical path/hash references",
+      "six command alias pairs and host-neutral state",
+      "project_id containment and path safety",
+      "PII/secret protection",
+      "positive/negative fixtures, deterministic codes and recovery matrix",
+      "no external mutation"
+    ],
+    "external_mutation_performed": false,
+    "files_modified_by_workstream": [
+      "artifacts/P4/workstreams/migration.json"
+    ]
+  }
+}

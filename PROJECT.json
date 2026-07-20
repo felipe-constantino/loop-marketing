@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0",
+  "project_id": "loop-marketing-v2",
+  "created_at": "2026-07-17",
+  "checkpoint_id": "CP-0018",
+  "status": "completed",
+  "authorization": {
+    "implementation_start_received": true,
+    "received_at": "2026-07-17",
+    "user_phrase": "pode iniciar"
+  },
+  "objective": "Evoluir o Loop Marketing para uma nova versao executavel, testavel, segura e auditavel, preservando integralmente a biblioteca tatica canonica.",
+  "source": {
+    "repo": "/Users/enorm/Documents/Claude/loop-marketing",
+    "branch_at_baseline": "main",
+    "baseline_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "clean_at_baseline": true,
+    "file_count_at_baseline": 117,
+    "canonical_prompt_count": 100,
+    "baseline_library_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "baseline_library_hash_algorithm": "sha256 of sorted relative_path + NUL + sha256(file) records joined by newline"
+  },
+  "control_workspace": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+  "distribution": {
+    "scope": "internal_restricted",
+    "audience": "owner_leaders_and_team_members",
+    "public_release": false
+  },
+  "recovery": {
+    "local_git": "/Users/enorm/Documents/Claude/loop-marketing-v2-control/.git",
+    "offline_bundle": "/Users/enorm/Documents/Claude/loop-marketing-v2-control-backup.bundle",
+    "remote": null,
+    "remote_policy": "Nao configurar ou enviar sem autorizacao explicita do usuario."
+  },
+  "constraints": [
+    "Preservar os 100 prompts canonicos; nao excluir nem sobrescrever silenciosamente nenhum deles.",
+    "A implementacao da nova versao foi autorizada em 2026-07-17 pela mensagem 'pode iniciar'.",
+    "Manter fatos, hipoteses, decisoes e acoes como categorias distintas.",
+    "Manter leitura externa como padrao e exigir autorizacao para mutacoes fora do repositorio.",
+    "Nao armazenar credenciais, tokens ou PII nos artefatos de controle.",
+    "Usar o agente principal como arquiteto e integrador; subagentes recebem escopo e arquivos nao sobrepostos.",
+    "Atualizar o checkpoint e o snapshot de fontes apos cada unidade material de trabalho.",
+    "Nao depender do historico da conversa para retomar o projeto."
+  ],
+  "execution_model": {
+    "lead": "root",
+    "max_parallel_subagents": 3,
+    "subagent_rule": "Delegar somente tarefas independentes, com contrato, entradas, saidas, arquivos sob responsabilidade e criterio de aceite explicitos.",
+    "integration_rule": "Somente o agente principal altera o checkpoint canonico, integra entregas e declara um gate concluido.",
+    "waves": [
+      "Arquitetura e especificacao canonica",
+      "Catalogo da biblioteca, schemas e plano de avaliacoes",
+      "Estado, migracao e orquestrador",
+      "Seguranca, testes ponta a ponta e red team",
+      "Release candidate, compatibilidade e documentacao essencial"
+    ]
+  },
+  "phases": [
+    {"id": "P0", "name": "Continuidade de contexto", "status": "completed"},
+    {
+      "id": "P1",
+      "name": "Auditoria e baseline",
+      "status": "completed",
+      "mode": "read_only",
+      "deliverables": [
+        "artifacts/P1/audit.json",
+        "artifacts/P1/architecture-map.md",
+        "artifacts/P1/risk-register.json"
+      ],
+      "exit_criteria": [
+        "Todos os 117 arquivos do baseline foram classificados por funcao.",
+        "Contradicoes, duplicidades, riscos de seguranca e drift de versao foram registrados com evidencia de arquivo e linha.",
+        "Os 100 prompts canonicos permanecem com o hash agregado ancorado.",
+        "Nenhum arquivo do repositorio-fonte foi alterado durante P1.",
+        "O agente principal revisou e integrou os artefatos de auditoria."
+      ]
+    },
+    {
+      "id": "P2",
+      "name": "Especificacao canonica",
+      "status": "completed",
+      "deliverables": [
+        "artifacts/P2/canonical-spec.md",
+        "artifacts/P2/role-matrix.json",
+        "artifacts/P2/routing-contract.json",
+        "artifacts/P2/compatibility-policy.md"
+      ],
+      "exit_criteria": [
+        "Existe uma terminologia e uma versao canonica unicas, independentes do host.",
+        "Planner e quatro pilares possuem owner, entradas, saidas, nao-objetivos e fronteiras sem sobreposicao decisoria.",
+        "Roteamento, ordem, paralelismo, handoff, thresholds e conflitos possuem regras completas e deterministicas.",
+        "Compatibilidade com projetos e comandos anteriores possui politica explicita de aliases e migracao.",
+        "Todos os artefatos passam validacao cruzada e nenhuma alteracao foi feita nos 100 prompts canonicos."
+      ]
+    },
+    {
+      "id": "P3",
+      "name": "Preservacao e catalogacao da biblioteca",
+      "status": "completed",
+      "deliverables": [
+        "artifacts/P3/catalog-schema.json",
+        "artifacts/P3/tactic-catalog.json",
+        "artifacts/P3/relationship-map.json",
+        "artifacts/P3/preservation-report.json"
+      ],
+      "exit_criteria": [
+        "O catalogo contem exatamente uma entrada para cada um dos 100 prompts canonicos e reproduz paths, hashes e distribuicao por pilar do baseline.",
+        "Cada tatica possui ID estavel, funcao, necessidades, inputs, output, maturidade minima justificada, pre-requisitos e contraindicacoes suficientes para o roteador.",
+        "Dependencias, complementaridades, sobreposicoes, aliases e colisoes vivem em metadados externos e nunca removem ou fundem um prompt.",
+        "Qualidade editorial, traducao e proveniencia sao flags auditaveis; nenhuma heuristica e apresentada como erro comprovado.",
+        "Schemas e validadores rejeitam catalogo incompleto, referencia inexistente, relacao invalida ou drift da biblioteca, mantendo a fonte inalterada."
+      ]
+    },
+    {
+      "id": "P4",
+      "name": "Contratos, estado e migracao",
+      "status": "completed",
+      "deliverables": [
+        "artifacts/P4/state-schema.json",
+        "artifacts/P4/event-schema.json",
+        "artifacts/P4/handoff-schema.json",
+        "artifacts/P4/state-event-contract.md",
+        "artifacts/P4/migration-contract.md",
+        "artifacts/P4/compatibility-fixtures.json",
+        "artifacts/P4/integration-manifest.json",
+        "artifacts/P4/final-independent-audit.json"
+      ],
+      "exit_criteria": [
+        "Estado canonico versionado usa .loop-marketing/, state_revision e escrita atomica com concorrencia otimista.",
+        "Eventos sao append-only, idempotentes, rastreaveis e validam evidencias e transicoes de experimento.",
+        "Handoffs materializam exatamente os 22 campos P2 e rejeitam owner, escopo ou revisao divergentes.",
+        "Migracao v1.x possui dry-run, backup, rollback, aliases e preservacao de historico sem mutacao silenciosa.",
+        "Schemas, fixtures e validadores passam gates positivos e negativos sem alterar a fonte canonica."
+      ]
+    },
+    {
+      "id": "P5",
+      "name": "Orquestrador e adaptadores",
+      "status": "completed",
+      "deliverables": [
+        "artifacts/P5/runtime-contract.json",
+        "candidate/loop-marketing-v2/src/loop_marketing_runtime/",
+        "candidate/loop-marketing-v2/adapters/",
+        "artifacts/P5/runtime-fixtures.json",
+        "artifacts/P5/integration-manifest.json",
+        "artifacts/P5/validation-report.json",
+        "artifacts/P5/regression-report.json",
+        "artifacts/P5/final-independent-audit.json"
+      ],
+      "exit_criteria": [
+        "Loader progressivo verifica catalogo, paths e hashes e aplica cardinalidade zero, um ou dois sem carregar a biblioteca inteira.",
+        "Roteador aplica owner, maturidade, evidencias, relacoes confirmadas, dependencias e rejeicoes P2/P3 de forma deterministica.",
+        "Orquestrador transforma snapshot imutavel em rota, handoff fechado e transaction batch validos sem elevar autorizacao externa.",
+        "State store implementa CAS, lock, commit atomico, hash-chain, replay idempotente e recovery P4 em projetos locais isolados.",
+        "Adaptadores resolvem os seis comandos canonicos e aliases para o mesmo command_id e estado, sem namespace de host.",
+        "Testes positivos, negativos, concorrentes e de retomada passam sem alterar a fonte canonica."
+      ]
+    },
+    {
+      "id": "P6",
+      "name": "Seguranca e permissoes operacionais",
+      "status": "completed",
+      "deliverables": [
+        "artifacts/P6/security-contract.json",
+        "artifacts/P6/security-fixtures.json",
+        "candidate/loop-marketing-v2/src/loop_marketing_runtime/security.py",
+        "candidate/loop-marketing-v2/tests/test_security.py",
+        "artifacts/P6/integration-manifest.json",
+        "artifacts/P6/final-independent-audit.json"
+      ],
+      "exit_criteria": [
+        "Entradas, saidas, erros e telemetria aplicam limites e redaction deterministas sem gravar segredos ou PII sensivel.",
+        "Permissoes operacionais distinguem preparacao read-only, estado local e mutacao externa; nenhuma mutacao externa e exposta no release interno.",
+        "Paths, symlinks, payloads recursivos, tipos hostis e conteudo de prompt nao atravessam fronteiras confiaveis.",
+        "Falhas de seguranca sao fail-closed, auditaveis e nao revelam traceback, token, credencial ou payload integral.",
+        "Testes positivos, negativos e concorrentes de seguranca passam sem alterar a fonte canonica."
+      ]
+    },
+    {
+      "id": "P7",
+      "name": "Avaliacoes, observabilidade e red team",
+      "status": "completed",
+      "deliverables": [
+        "artifacts/P7/evaluation-contract.json",
+        "artifacts/P7/evaluation-cases.json",
+        "artifacts/P7/evaluation-report.json",
+        "artifacts/P7/red-team-report.json",
+        "artifacts/P7/integration-manifest.json"
+      ],
+      "exit_criteria": [
+        "A rubrica fechada cobre os quatro pilares, todos os estados de maturidade e os estados ready, needs_evidence, blocked e rejected.",
+        "A avaliacao executada exige o SecureLoopRuntime exato, estado read-only inalterado e trilhas de auditoria exatas por caso.",
+        "Topologia, hashes, rede, processo e primitivas de filesystem fazem parte da atestacao fail-closed.",
+        "Red team independente aprova os gates nominais e as regressoes adversariais sem blockers.",
+        "P6 permanece selada e a fonte canonica permanece limpa."
+      ]
+    },
+    {
+      "id": "P8",
+      "name": "Empacotamento e release interno",
+      "status": "completed",
+      "deliverables": [
+        "release/loop-marketing/SKILL.md",
+        "release/loop-marketing/agents/openai.yaml",
+        "release/loop-marketing/scripts/",
+        "release/loop-marketing/references/",
+        "artifacts/P8/forward-test-report.json",
+        "artifacts/P8/release-manifest.json",
+        "artifacts/P8/final-release-audit.json",
+        "release/loop-marketing-internal-v2.0.0.tar.gz"
+      ],
+      "exit_criteria": [
+        "A skill passa o validador oficial e possui interface, referencias e wrapper portaveis.",
+        "Os 100 prompts e quatro indices sao empacotados integralmente, com hashes e agregado canonico preservados.",
+        "O runtime suportado exclui modulos legados de bypass e passa fluxo ponta a ponta, avaliacao e gates de seguranca.",
+        "Agentes novos aprovam analise sem estado, rota ready e recusa de segredo ou mutacao externa apos correcoes documentadas.",
+        "Auditoria final independente aprova higiene, documentacao, portabilidade e fonte preservada.",
+        "O arquivo interno e deterministico, reproduzivel e verificavel pelo manifesto de release."
+      ]
+    }
+  ],
+  "acceptance_criteria": [
+    "Os 100 prompts originais permanecem presentes, identificaveis e rastreaveis.",
+    "Um agente novo consegue retomar o projeto lendo apenas o protocolo, o projeto, o checkpoint e os logs indicados.",
+    "Nenhuma transicao de experimento e aceita sem evidencia valida.",
+    "Nenhum output factual e aceito sem fonte ou marcacao explicita de hipotese.",
+    "Nenhuma invasao de escopo e aceita pelo validador.",
+    "Projetos antigos podem ser migrados sem perda de historico.",
+    "Acoes externas de escrita exigem autorizacao explicita.",
+    "A suite de regressao, seguranca e cadeia passa integralmente."
+  ]
+}

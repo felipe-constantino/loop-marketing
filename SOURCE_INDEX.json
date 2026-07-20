@@ -1,0 +1,479 @@
+{
+  "branch": "main",
+  "canonical_library_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+  "canonical_prompt_count": 100,
+  "canonical_prompts": [
+    {
+      "path": "biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+      "sha256": "37d2adfc40c4c4baff204b0e563d36222d13e14ab0494a72266e53aebc37156b"
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-conteudo-de-video.md",
+      "sha256": "5d85a73ec6b626917a0aa124729ad684e744b67fbf972eae051f474c34d61981"
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+      "sha256": "69efeb0501a7beaa0307426904e1ab7328306b4b38e4b20422fecc2b00bc55c5"
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+      "sha256": "85704f462364ef51024cd3786d5188de9457c23356d41b9cc0c238fe3e7addb1"
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+      "sha256": "2c01285a922a744cf7d8655b3ec57c746e7e8ffe9741e9a38fbbdcace4da1ca2"
+    },
+    {
+      "path": "biblioteca/Ampliar/amplificador-de-marketing-local-e-regional.md",
+      "sha256": "805223f79110362e422b0b2a1c95bf700e2ccfde06d51d5285fefc54d1151a86"
+    },
+    {
+      "path": "biblioteca/Ampliar/construtor-de-rede-influenciadora.md",
+      "sha256": "ad69e335c9d8cbc969ab80012ef081e1f934e91cf42e6e55e0492e2a45b3d325"
+    },
+    {
+      "path": "biblioteca/Ampliar/distribuicao-voltada-para-a-comunidade.md",
+      "sha256": "6181ffec54f2c883931fbe0be24e95f81fc7286afadcae9ce3f34c7dd06263ee"
+    },
+    {
+      "path": "biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+      "sha256": "3a037b4e8c5971aa4c9c9a66c5957f52a6bef366cbfe6305ba2f068e76d52d86"
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+      "sha256": "6a4224482aa555ae5d133ce34aa85a078a6d881b0d788d6515dd843d2cc50156"
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategia-de-podcast-e-audio.md",
+      "sha256": "b9bb93903dd9e596177287971b37fd9a5b3755e4628701460736fee3a916ce88"
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategia-viral-em-todas-as-plataformas.md",
+      "sha256": "20059f12410067e5216a28f93097e20f836046f4eca54bf5720ebf3c7e9049fe"
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+      "sha256": "782beb73b63a2326c4487afc6fde0083c1270e7392878155eb3f9785909275bd"
+    },
+    {
+      "path": "biblioteca/Ampliar/estrategista-de-parceria-creator.md",
+      "sha256": "67d23843936b286fc7126e6f744eab97e659a40b23f433335379174cb6ffa1e7"
+    },
+    {
+      "path": "biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+      "sha256": "984b72ca165b607e4282be47fbaf29093d90a242ee351e2b34ab0b074476352a"
+    },
+    {
+      "path": "biblioteca/Ampliar/identificador-de-parceiro-estrategico.md",
+      "sha256": "3126a78a69dd2ffeb3b1b20bdcb16b79bf5233595c589a22bb0b5944567b1e56"
+    },
+    {
+      "path": "biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+      "sha256": "4c29511b80313c6d93cc3a8bb6a5c4e48d92ba93044c51aad728e0c9cb54ec47"
+    },
+    {
+      "path": "biblioteca/Ampliar/mecanismo-de-co-marketing-da-parceria.md",
+      "sha256": "c3ecdf0fd7b041ebf15a8d8b3c629f33830c9623991b7b1051558ae0432c2f39"
+    },
+    {
+      "path": "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+      "sha256": "6a65f7da2acb23f23eb5ca2133362023b1b5edba7ad5b8feb06f47396dccc92d"
+    },
+    {
+      "path": "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+      "sha256": "4a055d619de1dff5926f01db0ebc1ba9c2e054e43060e92926f066f061d90b94"
+    },
+    {
+      "path": "biblioteca/Ampliar/orquestrador-de-experiencia-omnicanal.md",
+      "sha256": "331ceedd813ade5c42989cceaa7ac9339ddade8ddae3f12ffea2eec1e90f2111"
+    },
+    {
+      "path": "biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+      "sha256": "0040caf08361b20b99cd81dde58488d46bdd8d637696685c889f7408e83093da"
+    },
+    {
+      "path": "biblioteca/Ampliar/otimizador-de-visibilidade-do-ai-search.md",
+      "sha256": "259a0c955417cd77e2976d9060cc5e25af7c0851e745ebc6a700f769582bdd24"
+    },
+    {
+      "path": "biblioteca/Ampliar/premios-da-industria-e-amplificador-de-reconhecimento.md",
+      "sha256": "6dd429236c164a75a181946e25428ac953cd04266faf75621392560e44143f90"
+    },
+    {
+      "path": "biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+      "sha256": "1e2112ea58b4ae4e9625b51c3b61c73229060257bb662f6ae5acd7a5987d96d4"
+    },
+    {
+      "path": "biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+      "sha256": "d5baf47dee333e852aa5c4cbd5741a6c2fa89b33ca1cc152f6294d46b294c604"
+    },
+    {
+      "path": "biblioteca/Orientar/estrategia-de-comunicacao-segmentada.md",
+      "sha256": "33e825fbdb0aed4113103537a34666f9d2d38ec6e99d4fce3685b175cbfce561"
+    },
+    {
+      "path": "biblioteca/Orientar/estrategista-de-enriquecimento-de-dados-do-cliente.md",
+      "sha256": "68c0097a82b6d4feed0f5908afcdb79dbcbc678afc7437d86bfb8c87c6b01a38"
+    },
+    {
+      "path": "biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+      "sha256": "a8763bd09a23bafbaaae0e7a4062e2d95267f9332df44026ea55e3975ce68ea0"
+    },
+    {
+      "path": "biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+      "sha256": "d5d290842add2c1f3f8d31041a4b00e34bcc41f706bb44ff8bb74f3419e5b17b"
+    },
+    {
+      "path": "biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+      "sha256": "acd9c2872f907186805e9cf188956244b69e0e477ef95437394e941c8d3fed7b"
+    },
+    {
+      "path": "biblioteca/Orientar/mecanismo-de-hiperpersonalizacao.md",
+      "sha256": "1b606d675e22dcef500438ba0e97a39d7a24806c70ff5100a404bbe70fddde57"
+    },
+    {
+      "path": "biblioteca/Orientar/mecanismo-de-personalizacao-redirecionamento.md",
+      "sha256": "fc825235324ad84aedb77388b40c0e326b372275e37cd608c5c94a1b85eaca5f"
+    },
+    {
+      "path": "biblioteca/Orientar/modelo-de-pontuacao-preditiva.md",
+      "sha256": "b2811b7ba969e3068be1cfb2a33a4f0807f458b2793da94390d4cb4ee99ab1ff"
+    },
+    {
+      "path": "biblioteca/Orientar/otimizador-de-caminho-de-conversao.md",
+      "sha256": "5a979d726edab63239fa7d3351f40467f74f0c979007cb2a8545cea14fedeef0"
+    },
+    {
+      "path": "biblioteca/Orientar/otimizador-de-conteudo-dinamico.md",
+      "sha256": "bdd7166104b4d9e7b517144d0ef9c112f9fb002cca240d594bd977342bc59f24"
+    },
+    {
+      "path": "biblioteca/Orientar/otimizador-de-personalizacao-de-email.md",
+      "sha256": "58793f873f2d06ff0630e9d02c4f24be5cecc55df784931e209d015e6599e28d"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizacao-baseada-em-conta.md",
+      "sha256": "b3209b69621fbcc857e5c90be3ef230d80ba44f8bad617fcabd8d346149c8120"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizacao-da-jornada-do-cliente.md",
+      "sha256": "2e9826bd8dda6da3fd26eb83a9b101bbbf2a89c4daa6191c76ae113a262d3e61"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizacao-de-email-de-ciclo-de-vida.md",
+      "sha256": "6c874e8a439a9424ffddc43def0cae34567bf5e021b7b8c263d1fd8aaf9eb29f"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizacao-orientada-por-comentarios.md",
+      "sha256": "2b36f836ec4ff82340229952cfa5519ed07af20b1e17c6a7b217909cc00c8ae3"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-da-experiencia-de-suporte.md",
+      "sha256": "61d140d7e290f1820420db8056ee43d20d0bbeaa9952ea6f0b8f077d8eb6ddf3"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-experiencia-da-onboarding.md",
+      "sha256": "8b91b2c4699e4141626cfcef7a09e39664833fe0160014643d32253ba598c589"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-landings-page.md",
+      "sha256": "51a5117655ee794a103cbbdaf3e3ff8934ff305f5e63ef20cc3c67130670fc81"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-prova-social.md",
+      "sha256": "9d4add03dc4a4580316a4c2914ab9d42a20dfb60e214e4f89a55b3d0a3e81767"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-renovacao-e-expansao.md",
+      "sha256": "d5ade892d930b350ebfbf8dfd206beb4e520f105bae85c3061f9cbe6a88640f1"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-tratamento-de-objecao.md",
+      "sha256": "f14ed4f7a4650c95d8ed9dcdd07e1b1f5dcdb249b0c5efce305e5b6cde5b992c"
+    },
+    {
+      "path": "biblioteca/Orientar/personalizador-de-viagens-baseado-em-persona.md",
+      "sha256": "762b64b0c183b501faf06287e21125eff36e38b1d84473e3f4686f4e5a273b19"
+    },
+    {
+      "path": "biblioteca/Orientar/sequencias-de-personalizacao-automatizada.md",
+      "sha256": "19bd418e4af483384a31863fbb32466906b730c7b6e5c36a5ae6b0e21ba24a79"
+    },
+    {
+      "path": "biblioteca/Orientar/sincronizacao-de-mensagens-entre-canais.md",
+      "sha256": "286c6439a67b25c2855ca57368c32729ecb21e25b2ac0848aa18448aa511bb04"
+    },
+    {
+      "path": "biblioteca/Refinar/acelerador-de-velocidade-de-marketing.md",
+      "sha256": "54b1d0ac369c7bd04dcbd5727a47dff4cd8d521fe2a68609b715d420d4ab1eb6"
+    },
+    {
+      "path": "biblioteca/Refinar/analisador-de-desempenho-de-coorte.md",
+      "sha256": "6df274669ed1d9a8f407ac8b19da67de3f4da1f4706aa7e60214bc4c1483d815"
+    },
+    {
+      "path": "biblioteca/Refinar/analise-competitiva-do-velocity.md",
+      "sha256": "a8544dcb815e747ef7eabc9ca024f99e986ee1968dd9e2b83d45c14f2539ea87"
+    },
+    {
+      "path": "biblioteca/Refinar/calculadora-de-otimizacao.md",
+      "sha256": "98072946c2da87fb9f325baf3e0c5aa05c16c7bacc7fd0583be5e1854623ebd7"
+    },
+    {
+      "path": "biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+      "sha256": "d4207b9bee18c8e03a08e73d72909ff1180db45d144cdd62152cd053338bb653"
+    },
+    {
+      "path": "biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+      "sha256": "d0496e2d444cbb0171a8a81ec7f01cb4a7b55eadfe3f0ead1a57e4401c163e7a"
+    },
+    {
+      "path": "biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+      "sha256": "384e0e5d305c707ed1f0e17d18bfbabadf9ecd0d80375ee4982e8ccca0d1453f"
+    },
+    {
+      "path": "biblioteca/Refinar/diagnostico-da-entrega-da-viagem-do-cliente.md",
+      "sha256": "308f1290bbe860ed78a457048a987a46d4fb230a3441f3150ae6ceac4c6bcdec"
+    },
+    {
+      "path": "biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+      "sha256": "eec9aa911b0e6138e576d4928e1f39c1e273029051ebc2d9214dfa5c8db28fa5"
+    },
+    {
+      "path": "biblioteca/Refinar/estrategista-de-teste-multi-variate.md",
+      "sha256": "a8f7833def8bc18b79db83936383c3a3e5b1039c0789fe52e94eff7ad663de37"
+    },
+    {
+      "path": "biblioteca/Refinar/gerador-de-relatorios-de-otimizacao-continua.md",
+      "sha256": "c8b3517a5c145b1a92a0ab0d9af9ca21c2478e4a9c4e19b6423e0e5c75bda90e"
+    },
+    {
+      "path": "biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+      "sha256": "9aca0cf5326e11714de6ce211b0bf8de04f7e94be076f2c77acc6ea917b0c9c5"
+    },
+    {
+      "path": "biblioteca/Refinar/mecanismo-de-experimentacao-rapida.md",
+      "sha256": "909ef0df43b186ac0164e6eb245e12cb9105ddb0d13d23a8897db9e4038baba6"
+    },
+    {
+      "path": "biblioteca/Refinar/mecanismo-de-otimizacao-em-tempo-real.md",
+      "sha256": "af92c70b43a8f9111db20ab6a985ab95c237e3f04efce4582b89e4bff3207f3a"
+    },
+    {
+      "path": "biblioteca/Refinar/mecanismo-de-previsao-de-desempenho.md",
+      "sha256": "f0e41015831963006c5239177a0ec31a52d4f88ee4a21da856dc43deb3c27c6c"
+    },
+    {
+      "path": "biblioteca/Refinar/modelador-de-combinacao-de-marketing.md",
+      "sha256": "24211a8f357f7d43292483986ae4b83c2cf3920eeb500f79bda9692ff4b9e805"
+    },
+    {
+      "path": "biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+      "sha256": "a2bf3d68b1c1afc404bbd7c46ca742dffd260118934b10f4c9a2ec911d382854"
+    },
+    {
+      "path": "biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+      "sha256": "557dc09cbd9de4177dea0129823efc7c0268ea40672047a4de9f4b96c7e369d9"
+    },
+    {
+      "path": "biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md",
+      "sha256": "24c8bba74dce870795566cf3c6fc5788927e074bc41de0856c7daeb9e2517158"
+    },
+    {
+      "path": "biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+      "sha256": "dad237af53a8e11d6a933e459af7c1100c3a1a804b3a5aebfad0276a62951ad5"
+    },
+    {
+      "path": "biblioteca/Refinar/otimizador-de-testes-sequenciais.md",
+      "sha256": "c16e645b0130c91e1ec3a72921c7161d01a4df2cc7b2c88bfb52185fea462ce9"
+    },
+    {
+      "path": "biblioteca/Refinar/otimizador-de-valor-do-ciclo-de-vida-do-cliente.md",
+      "sha256": "07de759efc23636163d9a75b631fc81011e3ade7547221cdc0bbcb9560f7c828"
+    },
+    {
+      "path": "biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+      "sha256": "c500944d35ff8e30ea81a7ed2a0a81ae6776e4485ee6e3fd823cf93b0be65dc4"
+    },
+    {
+      "path": "biblioteca/Refinar/sintese-de-aprendizado-multi-loop.md",
+      "sha256": "9fef25519e43b4f3c20841bc30965da9ae8ff244a270e7ee6a0287466c16b04a"
+    },
+    {
+      "path": "biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+      "sha256": "0db489b2b7b1717eaaf079187401d0882d9abff2cd9de0b5981ed470d5bb3ade"
+    },
+    {
+      "path": "biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+      "sha256": "7818ba7124e11ec18dcb881252d90e10fd1aa63aaf56cc38f6396124e72e7c8e"
+    },
+    {
+      "path": "biblioteca/Verbalizar/analisador-de-padroes-de-sucesso-do-cliente.md",
+      "sha256": "2250184819e963511bdd3309ba6127de4e715966394c29d4e96acae57a71c48b"
+    },
+    {
+      "path": "biblioteca/Verbalizar/analise-de-interruptores-do-setor.md",
+      "sha256": "af1fde3073921f4d1348ff1f8b50825d72f42c2f124985f98cbc434684a35227"
+    },
+    {
+      "path": "biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+      "sha256": "d1f1600f041687b1553a4c8642f90ac442e1bdafe194a2ff157f37fbb1c74e80"
+    },
+    {
+      "path": "biblioteca/Verbalizar/arquiteto-de-historias-de-marcas.md",
+      "sha256": "9f65a87f8b92badcfd2184b05f14d78b6d1fbfcf6ef33686ecdd66a0229a9b05"
+    },
+    {
+      "path": "biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+      "sha256": "76fe5b6f5556383fb31aa9cdd882f646312077802f2cf9f060a17d7b18c17b59"
+    },
+    {
+      "path": "biblioteca/Verbalizar/buyer-persona-validador.md",
+      "sha256": "95f7ff363cdd37e5aa84686fe9a6dfa754e22a6495015b09e20716f7546eceee"
+    },
+    {
+      "path": "biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+      "sha256": "c00d4b6ded5608e1408f5a10454718ac35c637bde10e94908329c6360946148e"
+    },
+    {
+      "path": "biblioteca/Verbalizar/criador-de-perfil-de-personalidade-da-marca.md",
+      "sha256": "4335945b84a642d26dc8cd7fd4a233c15c119419c4cebd80270d71f569616b89"
+    },
+    {
+      "path": "biblioteca/Verbalizar/decodificador-de-idioma-do-cliente.md",
+      "sha256": "f78cdbb6d9480328ac8d1d6946c0b7d2f7a862b5e1aa9f96b30ce94317c6f1da"
+    },
+    {
+      "path": "biblioteca/Verbalizar/definidor-de-categoria-de-mercado.md",
+      "sha256": "5c934184c4889946d0c24bdd5fa451deee598acaf79ae983579a5a1de5bc82cb"
+    },
+    {
+      "path": "biblioteca/Verbalizar/desenvolvedor-de-estrategia-sazonal.md",
+      "sha256": "20674c413d3fd56fc2d4694171b6e9bc8cc77c6faff448fc2d108cb5305ab920"
+    },
+    {
+      "path": "biblioteca/Verbalizar/esclarecimento-de-objetivo-e-missao.md",
+      "sha256": "42ed31881eb8dd7462929a1b2877e0f8d17dccbfd83de0e54a365062ec3e2d06"
+    },
+    {
+      "path": "biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+      "sha256": "76efba501dc90bfe2b8f64c8d066c4c86c4b1d49c6d71eb096795db8b977dfbb"
+    },
+    {
+      "path": "biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+      "sha256": "e14009f0530bc7fe87e933082e9709c226e0ba59ab567bc62701153bb05fc030"
+    },
+    {
+      "path": "biblioteca/Verbalizar/identificador-do-arquetipo-da-marca.md",
+      "sha256": "9715aa7f709a7133627a000587fba22dc4f377f2248d40a72bc294d41515ec58"
+    },
+    {
+      "path": "biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+      "sha256": "c841a794f1e7cc0ee790a9438b64c6bb356091c66dcb3bfa9db543675635845a"
+    },
+    {
+      "path": "biblioteca/Verbalizar/mapeador-da-jornada-do-cliente.md",
+      "sha256": "2222dde62185d4a963c0abeddbcfe4a4cf9c54f004e513889c40d4c3b7781504"
+    },
+    {
+      "path": "biblioteca/Verbalizar/otimizador-de-proposta-de-valor.md",
+      "sha256": "08b698eb9eb37f6ed30385c9935bebf944c406cb9ebab3628f16af1801fe5e05"
+    },
+    {
+      "path": "biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+      "sha256": "811d802018adaeca8346d9955ac89706a9278d0a04c1fcedbd056d0ec86b8de6"
+    },
+    {
+      "path": "biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md",
+      "sha256": "92c9805ef3b5500ed7bed657b3d0a18c9e6f896bd36082b6662a2379a89e6db9"
+    },
+    {
+      "path": "biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+      "sha256": "4cf90136d087759b4cbfc25a90c5ab9c876ed0effe25c4c298b027c0720510a6"
+    },
+    {
+      "path": "biblioteca/Verbalizar/posicionamento-da-parceria.md",
+      "sha256": "448b34e68c76692ada81c51422ba52ae4702454fc78e28463b2e22c4cb2541a0"
+    },
+    {
+      "path": "biblioteca/Verbalizar/roteiro-de-evolucao-das-marcas.md",
+      "sha256": "19656f394e0b00ad57fc01cf2053bd0f5b54bca9bb9167e4734be1eca38c50b4"
+    },
+    {
+      "path": "biblioteca/Verbalizar/voz-do-sintetizador-de-cliente.md",
+      "sha256": "44d276d89d444c74e24b0ac509efde60ab1660f0522bb0f344ddc86fbf993931"
+    }
+  ],
+  "changed_paths": [],
+  "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+  "critical_files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "8d3e110ce805a8d2124e492e48c3de4914da932d4d60b09fbc4fe9dca0b0e093"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "a68e8c08aabb1d5c0a45977e149ba52b323d7a38c2aa1e0280d8261c868ba4d0"
+    },
+    {
+      "path": "LEIAME.md",
+      "sha256": "e99d685c7ca9722859cd222ec939f5f206cedce1199a8e9ca841d975483d4500"
+    },
+    {
+      "path": "README.md",
+      "sha256": "3534dc2eb1d14ea0a6491a2fe762cf7b911d5684cb14f49329018c1a916720a1"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "b3d91874bfa2c3ecf0ab837c7df7314cb6107782132f9595d465b1ef320f4e5e"
+    },
+    {
+      "path": "SOBRE.md",
+      "sha256": "398332401194df844016857f532379684949305b6f45342de2a65544908f10ca"
+    },
+    {
+      "path": "biblioteca/Ampliar/INDEX.md",
+      "sha256": "f9e46e1e1ec0cb67ea60a7ad6d81fc27899856bae643e49cd8b541b57913b6c2"
+    },
+    {
+      "path": "biblioteca/Orientar/INDEX.md",
+      "sha256": "3627b3fb5eddcdf6e161317797a9d30227bdcb0d9ddad1c157f616cfdb42054f"
+    },
+    {
+      "path": "biblioteca/Refinar/INDEX.md",
+      "sha256": "3559cdee7daa300e653a55f935aeaafd03383f66a1370484ffa19c51d6c5e98f"
+    },
+    {
+      "path": "biblioteca/Verbalizar/INDEX.md",
+      "sha256": "e1646cabef8708af1361a4011087638144337d4250b69b99172c21b55ee22e86"
+    },
+    {
+      "path": "commands/ampliar-agent.md",
+      "sha256": "017ffbefe16929490eda15337843ea7cd76a7e9b5cb43ab422cfde53116657bc"
+    },
+    {
+      "path": "commands/loop-planning-agent.md",
+      "sha256": "2f5861e7e10028bb0210607ada69f72ad5ad4feda473ebe6da00a0f835cd6cec"
+    },
+    {
+      "path": "commands/orientar-agent.md",
+      "sha256": "52fe5c252e7c7a88853adef361ca8af4b15c349f7ada19b40419dfd082040217"
+    },
+    {
+      "path": "commands/projeto-template.md",
+      "sha256": "97ff2b1fbe3ca46f3b3c928aa5f7ecb6f4b918d2ca3b35b5f6b040ae14a92628"
+    },
+    {
+      "path": "commands/refinar-agent.md",
+      "sha256": "d2d9f335b0a809c02f5b2d80dec3d4dfcf7824753c503426d43b35d3a20af0a5"
+    },
+    {
+      "path": "commands/verbalizar-agent.md",
+      "sha256": "956d566efd94abe5a6b90a93b5f7a9cef61ee1c44857df0c84439f687e522a4d"
+    }
+  ],
+  "repo": "/Users/enorm/Documents/Claude/loop-marketing",
+  "schema_version": "1.0",
+  "total_source_files": 117,
+  "worktree_clean": true
+}

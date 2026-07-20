@@ -1,0 +1,531 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://loop-marketing.local/schemas/catalog-bundle-1.0.json",
+  "title": "Loop Marketing v2 tactic catalog bundle",
+  "description": "Schema bundle for the non-destructive tactic catalog and relationship map.",
+  "oneOf": [
+    {"$ref": "#/$defs/tacticCatalog"},
+    {"$ref": "#/$defs/relationshipMap"}
+  ],
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "tacticId": {
+      "type": "string",
+      "pattern": "^lm\\.(verbalizar|orientar|ampliar|refinar)\\.[a-z0-9][a-z0-9-]*$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "pillar": {
+      "type": "string",
+      "enum": ["Verbalizar", "Orientar", "Ampliar", "Refinar"]
+    },
+    "stage": {
+      "type": "string",
+      "enum": ["Express", "Tailor", "Amplify", "Evolve"]
+    },
+    "roleId": {
+      "type": "string",
+      "enum": ["verbalizar", "orientar", "ampliar", "refinar"]
+    },
+    "authorityId": {
+      "type": "string",
+      "enum": [
+        "loop_planning", "verbalizar", "orientar", "ampliar", "refinar",
+        "security_review", "authorized_operator"
+      ]
+    },
+    "decisionDomain": {
+      "type": "string",
+      "enum": [
+        "global_orchestration", "message_and_copy",
+        "lifecycle_segmentation_and_eligibility", "channel_timing_and_cadence",
+        "experiment_performance_and_learning", "security_privacy_and_data_use",
+        "external_execution_authorization"
+      ]
+    },
+    "maturity": {
+      "type": "string",
+      "enum": ["nascente", "em_desenvolvimento", "maduro", "avancado"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "jobTag": {
+      "type": "string",
+      "enum": [
+        "analyze", "audit", "classify", "coordinate", "design", "diagnose",
+        "distribute", "forecast", "generate", "identify", "map", "measure",
+        "model", "optimize", "personalize", "plan", "prioritize", "research",
+        "score", "segment", "synthesize", "test", "validate"
+      ]
+    },
+    "objectTag": {
+      "type": "string",
+      "enum": [
+        "account", "ai-search", "attribution", "audience", "benchmark", "brand",
+        "campaign", "category", "channel", "cohort", "community", "competitor",
+        "content", "conversion-path", "creator", "customer-advocacy", "customer-data",
+        "customer-journey", "customer-value", "customer-voice", "email", "event",
+        "experiment", "forecast", "intent", "landing-page", "learning", "lifecycle",
+        "local-market", "marketing-mix", "message", "objection", "onboarding",
+        "optimization", "partnership", "persona-icp", "podcast-audio", "positioning",
+        "predictive-model", "referral", "renewal-expansion", "reporting", "scoring",
+        "segmentation", "social-proof", "support", "test-portfolio", "thought-leadership",
+        "touchpoint", "ugc", "value-proposition", "video", "viral-distribution", "voice-tone"
+      ]
+    },
+    "inputRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_id", "description", "required", "evidence_types", "sensitivity"],
+      "properties": {
+        "input_id": {"$ref": "#/$defs/slug"},
+        "description": {"$ref": "#/$defs/nonEmptyString"},
+        "required": {"type": "boolean"},
+        "evidence_types": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "user_brief", "first_party_document", "crm_aggregate", "crm_record",
+              "analytics", "experiment_record", "interview_or_transcript", "market_source",
+              "brand_asset", "channel_inventory", "technical_capability", "prior_decision"
+            ]
+          }
+        },
+        "sensitivity": {
+          "type": "string",
+          "enum": ["public", "internal", "confidential", "customer_aggregate", "customer_level_pii"]
+        }
+      }
+    },
+    "outputContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["output_type", "description", "required_sections", "decision_owner"],
+      "properties": {
+        "output_type": {
+          "type": "string",
+          "enum": [
+            "analysis", "audit", "brief", "campaign_system", "channel_plan", "diagnostic",
+            "experiment_design", "forecast", "framework", "journey_map", "learning_system",
+            "lifecycle_model", "matrix", "message_system", "model", "optimization_plan",
+            "playbook", "report", "scorecard", "segmentation_model", "strategy"
+          ]
+        },
+        "description": {"$ref": "#/$defs/nonEmptyString"},
+        "required_sections": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/slug"}
+        },
+        "decision_owner": {"$ref": "#/$defs/roleId"}
+      }
+    },
+    "prerequisite": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prerequisite_id", "description", "required"],
+      "properties": {
+        "prerequisite_id": {"$ref": "#/$defs/slug"},
+        "description": {"$ref": "#/$defs/nonEmptyString"},
+        "required": {"type": "boolean"}
+      }
+    },
+    "contraindication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["condition", "reason", "fallback"],
+      "properties": {
+        "condition": {"$ref": "#/$defs/nonEmptyString"},
+        "reason": {"$ref": "#/$defs/nonEmptyString"},
+        "fallback": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["semantic_review_status", "translation_risk", "flags", "assessment_note"],
+      "properties": {
+        "semantic_review_status": {
+          "type": "string",
+          "enum": ["reviewed_no_blocking_issue", "reviewed_with_flags", "needs_editorial_review"]
+        },
+        "translation_risk": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "flags": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "ambiguous_instruction", "duplicate_like", "mixed_language", "none",
+              "pii_sensitive", "security_sensitive", "terminology_inconsistent",
+              "unidiomatic_translation", "unverified_external_claim"
+            ]
+          }
+        },
+        "assessment_note": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_commit", "collection_origin", "collection_reference",
+        "individual_source_verified", "redistribution_review"
+      ],
+      "properties": {
+        "baseline_commit": {
+          "type": "string",
+          "const": "3cbf0cf84a038f2cd570883b70988889f037c28e"
+        },
+        "collection_origin": {
+          "type": "string",
+          "const": "user_reported_hubspot_loop_marketing_prompt_library"
+        },
+        "collection_reference": {
+          "type": "string",
+          "format": "uri",
+          "const": "https://www.hubspot.com/loop-marketing"
+        },
+        "individual_source_verified": {"type": "boolean"},
+        "redistribution_review": {
+          "type": "string",
+          "enum": ["not_reviewed", "verified_for_intended_distribution"]
+        }
+      }
+    },
+    "canonicalScopeConflict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conflict_id", "conflict_type", "source_line_start", "source_line_end",
+        "canonical_request", "decision_domain", "destination_authority",
+        "safe_handling"
+      ],
+      "properties": {
+        "conflict_id": {"$ref": "#/$defs/slug"},
+        "conflict_type": {
+          "type": "string",
+          "enum": [
+            "owner_boundary", "sensitive_data", "external_execution",
+            "editorial_integrity", "unverifiable_claim"
+          ]
+        },
+        "source_line_start": {"type": "integer", "minimum": 1},
+        "source_line_end": {"type": "integer", "minimum": 1},
+        "canonical_request": {"$ref": "#/$defs/nonEmptyString"},
+        "decision_domain": {"$ref": "#/$defs/decisionDomain"},
+        "destination_authority": {"$ref": "#/$defs/authorityId"},
+        "safe_handling": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "mandatoryHandoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "handoff_id", "target_authority", "decision_domain", "trigger",
+        "requested_output", "required"
+      ],
+      "properties": {
+        "handoff_id": {"$ref": "#/$defs/slug"},
+        "target_authority": {"$ref": "#/$defs/authorityId"},
+        "decision_domain": {"$ref": "#/$defs/decisionDomain"},
+        "trigger": {"$ref": "#/$defs/nonEmptyString"},
+        "requested_output": {"$ref": "#/$defs/nonEmptyString"},
+        "required": {"type": "boolean"}
+      }
+    },
+    "executionPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "execution_mode", "automatic_selection", "runtime_overlay_required",
+        "owner_domain", "allowed_output_sections", "excluded_output_sections",
+        "prohibited_decisions", "canonical_scope_conflicts",
+        "mandatory_handoffs", "fallback"
+      ],
+      "properties": {
+        "execution_mode": {
+          "type": "string",
+          "enum": ["canonical_safe", "sidecar_constrained", "base_method_only"]
+        },
+        "automatic_selection": {
+          "type": "string",
+          "enum": ["allowed", "planner_review_required", "forbidden"]
+        },
+        "runtime_overlay_required": {"type": "boolean"},
+        "owner_domain": {"$ref": "#/$defs/decisionDomain"},
+        "allowed_output_sections": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/slug"}
+        },
+        "excluded_output_sections": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/slug"}
+        },
+        "prohibited_decisions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/decisionDomain"}
+        },
+        "canonical_scope_conflicts": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/canonicalScopeConflict"}
+        },
+        "mandatory_handoffs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/mandatoryHandoff"}
+        },
+        "fallback": {"$ref": "#/$defs/nonEmptyString"}
+      }
+    },
+    "tactic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tactic_id", "canonical_path", "canonical_sha256", "canonical_immutable",
+        "pillar", "methodology_stage", "display_name", "summary", "aliases",
+        "job_tags", "object_tags", "need_tags", "input_requirements", "output_contract",
+        "execution_policy",
+        "minimum_maturity", "maturity_rationale", "prerequisites", "contraindications",
+        "use_when", "do_not_use_when", "selection_confidence", "quality", "provenance",
+        "review_evidence"
+      ],
+      "properties": {
+        "tactic_id": {"$ref": "#/$defs/tacticId"},
+        "canonical_path": {
+          "type": "string",
+          "pattern": "^biblioteca/(Verbalizar|Orientar|Ampliar|Refinar)/[^/]+\\.md$"
+        },
+        "canonical_sha256": {"$ref": "#/$defs/sha256"},
+        "canonical_immutable": {"type": "boolean", "const": true},
+        "pillar": {"$ref": "#/$defs/pillar"},
+        "methodology_stage": {"$ref": "#/$defs/stage"},
+        "display_name": {"$ref": "#/$defs/nonEmptyString"},
+        "summary": {"$ref": "#/$defs/nonEmptyString"},
+        "aliases": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/nonEmptyString"}
+        },
+        "job_tags": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/jobTag"}
+        },
+        "object_tags": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/objectTag"}
+        },
+        "need_tags": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "input_requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/inputRequirement"}
+        },
+        "output_contract": {"$ref": "#/$defs/outputContract"},
+        "execution_policy": {"$ref": "#/$defs/executionPolicy"},
+        "minimum_maturity": {"$ref": "#/$defs/maturity"},
+        "maturity_rationale": {"$ref": "#/$defs/nonEmptyString"},
+        "prerequisites": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/prerequisite"}
+        },
+        "contraindications": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/contraindication"}
+        },
+        "use_when": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/nonEmptyString"}
+        },
+        "do_not_use_when": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/nonEmptyString"}
+        },
+        "selection_confidence": {"$ref": "#/$defs/confidence"},
+        "quality": {"$ref": "#/$defs/quality"},
+        "provenance": {"$ref": "#/$defs/provenance"},
+        "review_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reviewed_full_source", "source_line_count", "review_notes"],
+          "properties": {
+            "reviewed_full_source": {"type": "boolean", "const": true},
+            "source_line_count": {"type": "integer", "minimum": 1},
+            "review_notes": {"$ref": "#/$defs/nonEmptyString"}
+          }
+        }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_commit", "canonical_prompt_count", "aggregate_sha256"],
+      "properties": {
+        "source_commit": {
+          "type": "string",
+          "const": "3cbf0cf84a038f2cd570883b70988889f037c28e"
+        },
+        "canonical_prompt_count": {"type": "integer", "const": 100},
+        "aggregate_sha256": {
+          "type": "string",
+          "const": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+        }
+      }
+    },
+    "tacticCatalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_type", "schema_version", "product_version", "catalog_version",
+        "status", "baseline", "tactics"
+      ],
+      "properties": {
+        "artifact_type": {"type": "string", "const": "tactic_catalog"},
+        "schema_version": {"type": "string", "const": "1.0"},
+        "product_version": {"type": "string", "const": "2.0.0"},
+        "catalog_version": {"type": "string", "const": "1.0.0"},
+        "status": {"type": "string", "enum": ["draft", "integrated"]},
+        "baseline": {"$ref": "#/$defs/baseline"},
+        "tactics": {
+          "type": "array",
+          "minItems": 100,
+          "maxItems": 100,
+          "items": {"$ref": "#/$defs/tactic"}
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relation_id", "relation_type", "from_tactic_id", "to_tactic_id",
+        "directional", "rationale", "routing_effect", "confidence", "review_status"
+      ],
+      "properties": {
+        "relation_id": {
+          "type": "string",
+          "pattern": "^rel-[a-z0-9][a-z0-9-]*$"
+        },
+        "relation_type": {
+          "type": "string",
+          "enum": ["depends_on", "complements", "overlaps", "alternative_to", "collides_with"]
+        },
+        "from_tactic_id": {"$ref": "#/$defs/tacticId"},
+        "to_tactic_id": {"$ref": "#/$defs/tacticId"},
+        "directional": {"type": "boolean"},
+        "rationale": {"$ref": "#/$defs/nonEmptyString"},
+        "routing_effect": {
+          "type": "string",
+          "enum": ["require_order", "allow_together", "never_auto_co_select", "prefer_more_specific", "inform_only"]
+        },
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "review_status": {"type": "string", "enum": ["proposed", "confirmed"]}
+      }
+    },
+    "relationshipMap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_type", "schema_version", "product_version", "status",
+        "routing_policy", "review_evidence", "relations"
+      ],
+      "properties": {
+        "artifact_type": {"type": "string", "const": "relationship_map"},
+        "schema_version": {"type": "string", "const": "1.0"},
+        "product_version": {"type": "string", "const": "2.0.0"},
+        "status": {"type": "string", "enum": ["draft", "integrated"]},
+        "routing_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "normative_review_status", "proposed_relation_effect",
+            "dependency_failure", "collision_effect", "cardinality_guard"
+          ],
+          "properties": {
+            "normative_review_status": {"type": "string", "const": "confirmed"},
+            "proposed_relation_effect": {"type": "string", "const": "audit_only"},
+            "dependency_failure": {"type": "string", "const": "reject_route_node"},
+            "collision_effect": {"type": "string", "const": "block_automatic_co_selection"},
+            "cardinality_guard": {
+              "type": "string",
+              "const": "relations_do_not_override_zero_one_or_two_tactics_per_route_node"
+            }
+          }
+        },
+        "review_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reviewer", "review_artifact", "all_candidates_replayed",
+            "confirmed_relation_count", "proposed_relation_count",
+            "rejected_candidate_count", "evidence_basis"
+          ],
+          "properties": {
+            "reviewer": {
+              "type": "string",
+              "const": "independent_relation_reviewer"
+            },
+            "review_artifact": {
+              "type": "string",
+              "const": "artifacts/P3/workstreams/relation-review.json"
+            },
+            "all_candidates_replayed": {"type": "boolean", "const": true},
+            "confirmed_relation_count": {"type": "integer", "minimum": 0},
+            "proposed_relation_count": {"type": "integer", "minimum": 0},
+            "rejected_candidate_count": {"type": "integer", "minimum": 0},
+            "evidence_basis": {
+              "type": "array",
+              "const": [
+                "canonical_prompt_bodies",
+                "p2_role_authority",
+                "p2_routing_contract",
+                "p3_tactic_metadata"
+              ]
+            }
+          }
+        },
+        "relations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/relation"}
+        }
+      }
+    }
+  }
+}
