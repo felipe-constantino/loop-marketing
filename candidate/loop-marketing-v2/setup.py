@@ -11,7 +11,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages("src"),
     install_requires=[],
-    entry_points={"console_scripts": ["loop-marketing=loop_marketing_runtime.cli:main"]},
+    entry_points={"console_scripts": ["loop-marketing=loop_marketing_runtime.secure_cli:main"]},
     data_files=[
         ("share/loop-marketing-runtime/contracts", [
             "contracts/state-schema.json",
