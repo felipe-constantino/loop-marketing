@@ -1,216 +1,71 @@
-# Checkpoint CP-0015
+# Checkpoint CP-0018
 
-Atualizado em: 2026-07-19
+Atualizado em: 2026-07-20
 
 ## Objetivo
 
-Implementar P6 sobre o runtime P5 selado: segurança técnica, privacidade, redaction e permissões operacionais.
+Entregar Loop Marketing v2.0 como skill interna executável, testável, segura, auditável e portátil, preservando integralmente a biblioteca tática canônica.
 
-## Estado atual
+## Estado final
 
-- Repositório-fonte: `/Users/enorm/Documents/Claude/loop-marketing`
-- Branch de baseline: `main`
-- Commit de baseline: `3cbf0cf84a038f2cd570883b70988889f037c28e`
-- Worktree no baseline: limpo
-- Biblioteca canônica: 100 prompts
-- Autorização do usuário: recebida em 2026-07-17 (`pode iniciar`)
-- Implementação v2: P1, P2, P3, P4 e P5 concluídas; P6 em andamento
-- Distribuição final: interna e restrita ao usuário, seus líderes e liderados
-- Validação determinística: aprovada, sem erros
-- Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
-- Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
-- Histórico dos arquivos de controle: ancorado em Git local, sem reescrita
-- Commit inicial da âncora de controle: `ad3e04c61c89cc08a77089714f96d99fb15bbbfc`
-- Validação dos logs: estrutura, campos, sequência, status, evidência e prefixo append-only
-- Bundle de recuperação: `/Users/enorm/Documents/Claude/loop-marketing-v2-control-backup.bundle`
-- Remoto: não configurado; requer autorização explícita
-- Cobertura P1: 117/117 arquivos classificados; três frentes integradas
-- Achados P1: 34 achados brutos consolidados em 19 riscos priorizados
-- Critérios de saída P1: 5/5 comprovados por validação determinística
-- Fonte após P1: limpa e no commit de baseline
-- P2: quatro artefatos oficiais + manifesto de integração concluídos
-- P2: dois gates independentes aprovaram; último gate com zero achados bloqueantes e não bloqueantes
-- Contrato P2: cinco papéis, um owner por decisão, 22 campos de handoff e 30 códigos de rejeição
-- Compatibilidade P2: comandos curtos canônicos, aliases v1.x e estado único em `.loop-marketing/`
-- Schema P3: válido e com política confirmed-only para efeito normativo
-- Workstreams P3: 4/4 válidos, 100 entradas únicas e 100/100 prompts preservados
-- Revisão integral registrada: 17.454 linhas nos 100 corpos canônicos
-- Políticas de execução: 100/100 válidas, com 323 conflitos de linha e 278 handoffs
-- Modos: 3 canonical_safe, 91 sidecar_constrained e 6 base_method_only
-- Seleção: 3 allowed, 91 planner_review_required e 6 forbidden
-- Relações: 106/106 hipóteses reproduzidas; 91 confirmadas e 12 rejeitadas após consolidação
-- Metadados: 55 táticas em desenvolvimento, 37 maduras, 5 nascentes e 3 avançadas
-- Qualidade: 38 entradas precisam de revisão editorial; flags não alteram o canônico
-- Proveniência: individual_source_verified=false e redistribution_review=not_reviewed em 100/100
-- Red-team semântico: primeiro gate FAIL, segundo gate FAIL e reteste final PASS com histórico preservado
-- Regressão negativa: baselines PASS e 16/16 mutações inseguras corretamente rejeitadas
-- Artefatos oficiais P3: catálogo 100, mapa 91 relações, relatório de preservação e manifesto selado
-- Gate final P3: validator PASS, auditoria PASS, regressão 16/16 e selo verificável
-- P4: schemas de estado, transação/evento e handoff integrados em JSON Schema 2020-12
-- P4: ledger por transaction batch, CAS, lock, hash-chain, replay idempotente e recovery fail-closed
-- P4: 33 tipos de evento canônicos, sem inventar autoridade de domínio
-- P4: 12 arestas concretas da máquina de experimento, todas evidence-gated
-- P4: handoff fechado com exatamente 22 campos e fronteira por complemento de domínio
-- P4: migração v1 com dry-run, confirmation record vinculado, backup, promoção atômica e rollback
-- P4: validador PASS em 76 fixtures; regressão negativa 20/20
-- P4: gate independente PASS em 5/5 critérios, zero achados finais
-- P4: quatro blockers encontrados pelo auditor foram corrigidos e preservados como regressão
-- P4: manifesto selado com três relatórios verificáveis
-- Commit selado de P4: `7a5f9929a77575bc3a6c38a688d02e347a09f777`
-- Bundle offline atualizado e verificado nesse commit
-- P5: runtime Python 3.9+ sem dependências, wheel instalável e CLI `loop-marketing`
-- P5: loader progressivo verifica 100 paths/hashes e carrega somente táticas selecionadas
-- P5: roteador deriva maturidade de perfil completo com evidência; enum cru não eleva capacidade
-- P5: route plan reproduzível, handoff fechado e receipt vinculam rota, tática, gargalo, revisão e evento
-- P5: state store com identity imutável, ledger autoritativo, double CAS, lock, fsync, recovery e noop exato após reinício
-- P5: evidência estrita exige registry externo e vínculo claim-event, inclusive em eventos de experimento
-- P5: dois blockers independentes de evidência foram corrigidos e preservados como regressão
-- P5: 50/50 testes, 19/19 regressões negativas, QA independente PASS e selo verificável
-- P5: fonte canônica limpa no baseline e 100/100 prompts preservados
-- Gate atual: `G7 — implementar e validar segurança e permissões operacionais P6`
+- Projeto: concluído; P0 a P8 com status `completed`.
+- Fonte canônica: `/Users/enorm/Documents/Claude/loop-marketing`, commit `3cbf0cf84a038f2cd570883b70988889f037c28e`, worktree limpa.
+- Biblioteca: 100 prompts canônicos + 4 `INDEX.md`; agregado `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`.
+- Release interno: `release/loop-marketing/`.
+- Arquivo distribuível: `release/loop-marketing-internal-v2.0.0.tar.gz`.
+- SHA-256 do arquivo: `d6a2b9a2b889ea63c946cf39ea292dc6f0cd24dd9504cbf82d5dd9c488eb29a6`.
+- Manifesto: `artifacts/P8/release-manifest.json`, status `sealed`.
+- Público: uso interno restrito; nenhuma publicação pública executada.
+
+## Arquitetura entregue
+
+- Planner mantém gargalo global, sequência, integração e conflitos.
+- Verbalizar, Orientar, Ampliar e Refinar possuem autoridade fechada e handoff de 22 campos.
+- Biblioteca completa permanece imutável; seleção progressiva carrega zero, uma ou no máximo duas táticas por especialista.
+- Estado local usa ledger append-only, CAS, lock, hash-chain, replay, commit atômico e recovery fail-closed.
+- Superfície suportada usa `SecureLoopRuntime` e wrapper P8; módulos legados de bypass não entram no pacote.
+- Operações distinguem read-only e estado local; mutação externa não é exposta.
+- Avaliação release-attested exige runtime exato, integridade de módulos, estado inalterado e auditoria exata por caso.
+
+## Gates finais
+
+- P6: `PASS`; 29 testes de segurança, 16 regressões negativas e auditoria independente sem blockers.
+- P7: `PASS`; 10/10 casos, 13 testes P7, 22 registros auditados, determinismo e red team sem blockers.
+- Suíte completa: 92/92 testes `PASS`.
+- Stress do pacote: 100/100 cadeias `init → route → integrate → read` `PASS`.
+- Skill oficial: `quick_validate.py` `PASS`.
+- P8: 100 prompts, 104 arquivos de biblioteca, 4 índices, 14 módulos e 12 invocações/aliases.
+- Forward tests: rodada inicial `FAIL` preservada; três cenários novos finais `PASS` após correções.
+- Auditoria final: `PASS`, paths locais=0, segredos de alta confiança=0, caches=0, symlinks=0.
+- Arquivo reproduzível: selo e verificação `PASS`; extração independente e alias legado `PASS`.
+
+## Correções encontradas pelos gates
+
+- Auditoria ausente em rejeições de input sensível.
+- Manifestos P6/P7 inicialmente fail-open para topologia vazia.
+- Primitivas alternativas de rede, processo e filesystem fora da atestação.
+- Falso positivo raro de CPF dentro de fingerprint SHA-256 legítimo.
+- Exemplos com `python`, ambiguidade entre slug e `project:<slug>` e fluxo `needs_evidence` insuficientemente explicado.
+- Contrato de `evaluate` incompleto para um operador novo.
+- Dois paths absolutos locais em metadados empacotados.
+
+Todos foram corrigidos, convertidos em validação ou regressão e retestados antes do selo.
 
 ## Decisões vigentes
 
-- Preservar integralmente a biblioteca tática canônica.
-- Usar uma pasta de controle externa ao repositório da skill.
-- Usar o agente principal como arquiteto e integrador.
-- Executar subagentes em ondas, com arquivos e contratos não sobrepostos.
-- Controlar fatos, decisões, estado e evidências em artefatos persistentes.
-- P1 permaneceu read-only e foi concluída antes de abrir a especificação da v2.
-- Fixar contratos e fronteiras canônicas antes de implementar runtime, estado ou segurança.
-- Tratar aliases e metadados como camadas sobre a biblioteca; não fundir ou remover prompts canônicos.
-- Usar zero táticas quando não houver match seguro; uma por padrão e no máximo duas por `route_node_id`.
-- Tratar maturidade ausente como `unknown`, nunca como `nascente` por fallback.
-- Permitir efeito normativo no roteador somente para relações confirmadas; relações propostas são audit-only.
-- Tratar revisão jurídica de redistribuição como restrição de release, não como autorização implícita de P3.
-- Aplicar um de três modos por tática: canonical_safe, sidecar_constrained ou base_method_only.
-- Exigir fail-closed quando overlay, revisão do planner ou handoff obrigatório não estiver disponível.
-- Avançar uma revisão por transaction batch comprometido, não por evento individual.
-- Tratar event e transaction replay como noop somente quando o conteúdo canônico recomputado e os hashes declarados coincidirem.
-- Vincular confirmação de migração ao migration_id, digests, precondição de destino, versão, projeto, operação e timestamp.
-- Manter recovery, rollback e legacy.imported como auditoria fora da autoridade de eventos de domínio até contrato posterior explícito.
-- Derivar maturidade de dimensões completas vinculadas a fatos; ignorar classificação crua não comprovada.
-- Exigir que toda factual claim resolva no evidence registry e pertença a `event.evidence_refs` no caminho estrito.
-- Vincular cada transaction record ao receipt e fingerprint produzidos pelo orquestrador; somente retry idêntico já persistido sobrevive a reinício.
-- Usar "permissão" em P6 apenas no sentido técnico-operacional; certificados, parceria e justificativa jurídica ficam fora do produto.
-- Empacotar P8 somente para distribuição interna restrita, sem release público.
-
-## Artefatos de continuidade
-
-- `PROJECT.json`: objetivo, restrições, fases e critérios de aceite.
-- `CONTEXT_PROTOCOL.md`: regras de reidratação, checkpoint e delegação.
-- `DECISIONS.jsonl`: log append-only de decisões.
-- `WORKLOG.jsonl`: log append-only de execução e verificações.
-- `SOURCE_INDEX.json`: snapshot gerado dos arquivos-fonte e hashes.
-- `CONTEXT_INDEX.json`: selo dos arquivos de controle e prefixos append-only dos logs.
-- `scripts/context_guard.py`: snapshot e validação determinística.
-
-## Resultado de P1
-
-P1 foi concluída em modo read-only. Os 117 arquivos estão classificados; os achados possuem evidência; os três entregáveis oficiais foram integrados; e os 100 prompts mantêm o hash agregado do baseline.
-
-## Entregáveis oficiais de P1
-
-- `artifacts/P1/audit.json`
-- `artifacts/P1/architecture-map.md`
-- `artifacts/P1/risk-register.json`
-- `artifacts/P1/inventory.json` e `artifacts/P1/workstreams/*.json` como evidências auxiliares
-
-## Contrato de P2
-
-- Definir a versão e a terminologia canônicas, independentes de Claude ou Codex.
-- Definir autoridade, entradas, saídas e não-objetivos do planner e dos quatro pilares.
-- Resolver ordem, paralelismo, colisões, handoffs, thresholds, enums e nomes de comandos.
-- Definir aliases e migração compatível para o produto anterior.
-- Não implementar sobre uma decisão ambígua e não alterar os 100 prompts durante a especificação.
-
-## Resultado de P2
-
-- `artifacts/P2/canonical-spec.md`: definição, camadas, invariantes e fluxo canônicos.
-- `artifacts/P2/role-matrix.json`: owners, fronteiras, escalonamentos e handoff único.
-- `artifacts/P2/routing-contract.json`: roteamento, maturidade, táticas, thresholds, estados e rejeições.
-- `artifacts/P2/compatibility-policy.md`: comandos, aliases, namespace, migração e rollback.
-- `artifacts/P2/integration-manifest.json`: hashes dos artefatos, workstreams e scripts.
-- `artifacts/P2/workstreams/final-cross-audit.json` e `final-gate.json`: gates independentes aprovados.
-
-## Contrato de P3
-
-- Criar uma entrada sidecar para cada prompt, sem editar o arquivo canônico.
-- Fixar IDs, tags funcionais, inputs, outputs, maturidade, pré-requisitos e contraindicações.
-- Modelar dependência, complemento, sobreposição, alias e colisão como relações auditáveis.
-- Registrar risco editorial/tradução como flag de revisão, não como prova automática de erro.
-- Provar 100/100 paths e hashes antes de fechar a fase.
-
-## Resultado intermediário de P3
-
-- `artifacts/P3/catalog-schema.json`: schema sidecar e política relacional definidos.
-- `artifacts/P3/workstreams/verbalizar.json`: 25/25 entradas e 14 relações internas.
-- `artifacts/P3/workstreams/orientar.json`: 25/25 entradas e 28 relações internas.
-- `artifacts/P3/workstreams/ampliar.json`: 25/25 entradas e 16 relações internas.
-- `artifacts/P3/workstreams/refinar.json`: 25/25 entradas e 20 relações internas.
-- `scripts/p3_validate.py`: valida schema, cada pilar, cobertura agregada, replay relacional e artefatos finais.
-- `scripts/p3_integrate.py`: integração determinística preparada; só executa após workstreams e relações válidos.
-- `scripts/p3_regression.py`: 16 casos negativos em sandbox temporário, todos aprovados.
-- `scripts/p3_seal.py`: selo e verificação do conjunto de evidências após os gates finais.
-- `artifacts/P3/workstreams/catalog-cross-audit-3pillars.json`: gate inicial FAIL, preservado.
-- `artifacts/P3/workstreams/catalog-final-audit.json`: reteste final PASS, blockers=0 e FAIL anterior preservado.
-- Gate agregado atual: `python3 scripts/p3_validate.py workstreams` aprovado com zero erros.
-- Fonte canônica: limpa e ancorada no baseline após as quatro revisões.
-
-## Resultado final de P3
-
-- `artifacts/P3/tactic-catalog.json`: 100 táticas, paths/hashes e políticas de execução.
-- `artifacts/P3/relationship-map.json`: 91 relações confirmadas; zero propostas normativas.
-- `artifacts/P3/preservation-report.json`: cobertura, qualidade, proveniência e integridade comprovadas.
-- `artifacts/P3/workstreams/relation-review.json`: replay de 106/106 inputs, 94 confirm e 12 reject.
-- `artifacts/P3/integration-manifest.json`: 15 arquivos de evidência selados e verificados.
-- `python3 scripts/p3_validate.py final`: PASS.
-- `python3 scripts/p3_regression.py`: PASS, 16/16 casos negativos.
-- `python3 scripts/p3_seal.py verify`: PASS.
-
-## Contrato de P4
-
-- Definir state schema, event ledger e atomicidade sem implementar ainda adaptadores de host.
-- Materializar o handoff P2 de 22 campos e validar owner, revisão e scope boundary.
-- Tornar transições de experimento evidence-gated e imutáveis no histórico.
-- Definir migração v1.x com dry-run, backup, rollback e aliases completos.
-- Manter `/Users/enorm/Documents/Claude/loop-marketing` read-only durante P4.
-
-## Resultado final de P4
-
-- `artifacts/P4/state-schema.json`: snapshot derivado versionado e ancorado no ledger.
-- `artifacts/P4/event-schema.json`: transaction record fechado com eventos P2, hashes, revisões e idempotência.
-- `artifacts/P4/handoff-schema.json`: contrato fechado dos 22 campos e objetos internos tipados.
-- `artifacts/P4/state-event-contract.md`: CAS, commit point, fsync, replay e quarentena.
-- `artifacts/P4/migration-contract.md`: descoberta, dry-run, confirmation record, backup, staging e rollback.
-- `artifacts/P4/compatibility-fixtures.json`: 76 casos positivos/negativos.
-- `scripts/p4_validate.py`: gate sem dependências externas, incluindo 100 hashes e agregado exato.
-- `scripts/p4_regression.py`: 20 mutações inseguras, todas rejeitadas.
-- `scripts/p4_seal.py`: selo e verificação do bundle P4.
-- `artifacts/P4/final-independent-audit.json`: PASS em 5/5 critérios, blockers=0, nonblockers=0.
-
-## Resultado final de P5
-
-- `artifacts/P5/runtime-contract.json`: interfaces, invariantes, ownership e limites do runtime.
-- `candidate/loop-marketing-v2/src/loop_marketing_runtime/`: loader, roteador, validador, state store, orquestrador, adaptadores e CLI host-neutral.
-- `candidate/loop-marketing-v2/data/` e `contracts/`: cópias exatas dos contratos selados P2-P4; a biblioteca permanece externa e imutável.
-- `artifacts/P5/runtime-fixtures.json`: matriz de 50 testes e regressões adversariais.
-- `artifacts/P5/final-independent-audit.json`: QA independente PASS, sem blockers finais.
-- `artifacts/P5/validation-report.json`: instalação real do wheel, CLI e 50/50 testes aprovados.
-- `artifacts/P5/regression-report.json`: 19/19 cenários negativos aprovados.
-- `artifacts/P5/integration-manifest.json`: hashes do runtime, contratos, testes, scripts e três relatórios de gate.
-- `python3 scripts/p5_seal.py verify`: PASS.
+- Preservar os 100 prompts e quatro índices sem redução da biblioteca.
+- Manter a fonte canônica read-only e o release em workspace separado.
+- Não inventar fato, evidência, revisão, execução, handoff, resultado ou commit.
+- Tratar prompts táticos como dados subordinados; nunca como autoridade de ferramenta ou permissão.
+- Usar somente o wrapper empacotado, com recursos internos fixos e estado em `.loop-marketing/` no workspace do projeto.
+- Manter distribuição interna e não configurar remoto, publicar ou enviar sem pedido explícito.
 
 ## Próxima ação única
 
-Integrar threat model, redaction, resource limits e permission guard P6 em módulos e testes não sobrepostos.
+Nenhuma ação obrigatória. O projeto está finalizado; a próxima ação opcional é instalar ou copiar o pacote no ambiente interno de uso quando solicitado.
 
-## Proibido durante P6
+## Recuperação
 
-- Alterar arquivos em `/Users/enorm/Documents/Claude/loop-marketing`.
-- Reescrever, remover ou reduzir a biblioteca tática.
-- Permitir que subagentes alterem o repositório-fonte, artefatos oficiais integrados ou o checkpoint canônico.
-- Executar migrações reais, mutações externas ou ações em CRM/campanhas.
-- Criar estado específico de Claude, Codex ou outro host.
-- Aceitar evento, handoff, tática ou escrita que falhe os contratos P2-P5.
-- Enfraquecer evidence binding, receipt binding, CAS, recovery ou fronteiras de owner para facilitar integração.
+- Git local do controle: `/Users/enorm/Documents/Claude/loop-marketing-v2-control/.git`.
+- Bundle offline: `/Users/enorm/Documents/Claude/loop-marketing-v2-control-backup.bundle`.
+- Fonte canônica não foi alterada.

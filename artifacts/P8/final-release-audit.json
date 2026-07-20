@@ -1,0 +1,71 @@
+{
+  "artifact_id": "loop-marketing-p8-final-release-audit",
+  "schema_version": "1.0",
+  "product_version": "2.0.0",
+  "auditor": "/root/p8_final_audit",
+  "audit_mode": "independent_read_only_release_qa",
+  "verdict": "PASS",
+  "confidence": "high",
+  "blockers": [],
+  "readiness_for_seal": {
+    "ready": true,
+    "reason": "Todos os gates obrigatórios passaram e o blocker de caminhos locais foi corrigido deterministicamente."
+  },
+  "results": {
+    "p8_validate": {
+      "status": "PASS",
+      "executions": 2,
+      "canonical_prompts": 100,
+      "library_files": 104,
+      "navigation_indexes": 4,
+      "runtime_modules": 14,
+      "command_invocations": 12,
+      "portable_path_hygiene": true
+    },
+    "official_quick_validate": {"status": "PASS"},
+    "full_suite": {"status": "PASS", "tests": 92, "failures": 0, "errors": 0},
+    "p6_seal_verify": {"status": "PASS"},
+    "p7_seal_verify": {"status": "PASS"},
+    "evaluation_contract_example": {
+      "status": "PASS",
+      "case_id": "EVAL-900",
+      "score": "5/5",
+      "runtime_attested": false,
+      "state_modified": false
+    },
+    "portable_json_parity": {
+      "status": "PASS",
+      "replacement": "bundled:references/library",
+      "only_intended_fields_transformed": true
+    },
+    "package_hygiene": {
+      "status": "PASS",
+      "local_path_markers_found": 0,
+      "high_confidence_secret_signatures_found": 0,
+      "generated_cache_found": false,
+      "symlinks_found": false,
+      "legacy_cli_present": false,
+      "legacy_adapters_present": false
+    },
+    "external_mutation_denial": {
+      "status": "PASS",
+      "public_capability_exposed": false,
+      "permission_denied": true,
+      "state_unchanged": true
+    },
+    "forward_test_report": {
+      "status": "PASS",
+      "initial_failures_disclosed": true,
+      "corrections_disclosed": true,
+      "final_round_pass_disclosed": true
+    },
+    "canonical_source": {
+      "status": "PASS",
+      "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+      "clean": true,
+      "preserved": true
+    }
+  },
+  "audit_read_only": true,
+  "files_modified_by_audit": []
+}

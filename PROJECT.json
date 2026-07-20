@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0015",
-  "status": "p6_security_in_progress",
+  "checkpoint_id": "CP-0018",
+  "status": "completed",
   "authorization": {
     "implementation_start_received": true,
     "received_at": "2026-07-17",
@@ -159,7 +159,7 @@
     {
       "id": "P6",
       "name": "Seguranca e permissoes operacionais",
-      "status": "in_progress",
+      "status": "completed",
       "deliverables": [
         "artifacts/P6/security-contract.json",
         "artifacts/P6/security-fixtures.json",
@@ -179,26 +179,43 @@
     {
       "id": "P7",
       "name": "Avaliacoes, observabilidade e red team",
-      "status": "pending",
+      "status": "completed",
       "deliverables": [
         "artifacts/P7/evaluation-contract.json",
         "artifacts/P7/evaluation-cases.json",
         "artifacts/P7/evaluation-report.json",
         "artifacts/P7/red-team-report.json",
         "artifacts/P7/integration-manifest.json"
+      ],
+      "exit_criteria": [
+        "A rubrica fechada cobre os quatro pilares, todos os estados de maturidade e os estados ready, needs_evidence, blocked e rejected.",
+        "A avaliacao executada exige o SecureLoopRuntime exato, estado read-only inalterado e trilhas de auditoria exatas por caso.",
+        "Topologia, hashes, rede, processo e primitivas de filesystem fazem parte da atestacao fail-closed.",
+        "Red team independente aprova os gates nominais e as regressoes adversariais sem blockers.",
+        "P6 permanece selada e a fonte canonica permanece limpa."
       ]
     },
     {
       "id": "P8",
       "name": "Empacotamento e release interno",
-      "status": "pending",
+      "status": "completed",
       "deliverables": [
         "release/loop-marketing/SKILL.md",
         "release/loop-marketing/agents/openai.yaml",
         "release/loop-marketing/scripts/",
         "release/loop-marketing/references/",
+        "artifacts/P8/forward-test-report.json",
         "artifacts/P8/release-manifest.json",
-        "artifacts/P8/final-release-audit.json"
+        "artifacts/P8/final-release-audit.json",
+        "release/loop-marketing-internal-v2.0.0.tar.gz"
+      ],
+      "exit_criteria": [
+        "A skill passa o validador oficial e possui interface, referencias e wrapper portaveis.",
+        "Os 100 prompts e quatro indices sao empacotados integralmente, com hashes e agregado canonico preservados.",
+        "O runtime suportado exclui modulos legados de bypass e passa fluxo ponta a ponta, avaliacao e gates de seguranca.",
+        "Agentes novos aprovam analise sem estado, rota ready e recusa de segredo ou mutacao externa apos correcoes documentadas.",
+        "Auditoria final independente aprova higiene, documentacao, portabilidade e fonte preservada.",
+        "O arquivo interno e deterministico, reproduzivel e verificavel pelo manifesto de release."
       ]
     }
   ],
