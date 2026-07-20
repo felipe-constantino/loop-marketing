@@ -1,0 +1,23 @@
+{
+  "artifact_id": "loop-marketing-p6-validation-report",
+  "generated_at": "2026-07-20T15:40:36.477223Z",
+  "command": "python3 scripts/p6_validate.py",
+  "result": {
+    "status": "PASS",
+    "errors": [],
+    "counts": {
+      "full_suite_tests": 92,
+      "security_tests": 29,
+      "negative_scenarios": 15,
+      "canonical_prompts": 100,
+      "canonical_prompt_bytes": 1255819,
+      "packaged_security_modules": 5
+    },
+    "secure_entrypoint": true,
+    "source": {
+      "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+      "clean": true,
+      "preserved": true
+    }
+  }
+}

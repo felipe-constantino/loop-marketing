@@ -1,0 +1,104 @@
+{
+  "artifact_id": "loop-marketing-p5-runtime-fixtures",
+  "schema_version": "1.0",
+  "product_version": "2.0.0",
+  "status": "integrated",
+  "test_runner": "PYTHONPATH=candidate/loop-marketing-v2/src python3 -m unittest discover -s candidate/loop-marketing-v2/tests -v",
+  "expected_test_count": 50,
+  "suites": [
+    {
+      "suite_id": "catalog",
+      "test_file": "candidate/loop-marketing-v2/tests/test_catalog_router.py",
+      "expected_count": 8,
+      "contracts": [
+        "100 unique tactics with exact contained paths and SHA-256",
+        "zero prompt-body reads during metadata and selection",
+        "progressive verified loading of only selected bodies",
+        "unknown maturity uses zero tactics and the base method",
+        "zero, one, two or rejected-three cardinality",
+        "P2 ranking and execution-policy gates",
+        "confirmed relations are normative and proposed relations are audit-only"
+      ]
+    },
+    {
+      "suite_id": "router",
+      "test_file": "candidate/loop-marketing-v2/tests/test_catalog_router.py",
+      "expected_count": 8,
+      "contracts": [
+        "only provenance-complete facts score",
+        "outside-loop prerequisites and P2 bottleneck precedence",
+        "ambiguous evidence routes to minimum-viable Refinar",
+        "RTE-BOT-005 routes Refinar then Loop Planning then structural work",
+        "revision preservation, dependency order and safe parallel waves"
+      ]
+    },
+    {
+      "suite_id": "orchestrator_e2e",
+      "test_file": "candidate/loop-marketing-v2/tests/test_orchestrator_e2e.py",
+      "expected_count": 3,
+      "contracts": [
+        "12 invocations resolve identically on generic, Claude and Codex profiles",
+        "route and specialist preparation are read-only",
+        "handoff is bound to route role, write set, tactic selection and bottleneck",
+        "two events commit as one revision",
+        "exact replay is a byte-preserving noop",
+        "tampered replay and stale route are rejected before write"
+      ]
+    },
+    {
+      "suite_id": "state_store",
+      "test_file": "candidate/loop-marketing-v2/tests/test_state_store.py",
+      "expected_count": 17,
+      "contracts": [
+        "safe project and symlink boundaries",
+        "secure modes and immutable identity",
+        "double CAS and exclusive per-project lock",
+        "same-filesystem prefix-preserving atomic commit",
+        "event and transaction hash chains",
+        "exact idempotency and partial-batch conflict",
+        "crash behavior before and after commit point",
+        "exact rebuild from immutable identity plus authoritative ledger",
+        "quarantine and read-only degradation for ledger corruption"
+      ]
+    },
+    {
+      "suite_id": "validation_and_adapters",
+      "test_file": "candidate/loop-marketing-v2/tests/test_validation_adapters.py",
+      "expected_count": 14,
+      "contracts": [
+        "all bundled P4 state, event, transaction and handoff fixtures",
+        "closed schemas and deterministic violation precedence",
+        "authority, strict event/claim evidence binding, scope, maturity and external-mutation gates",
+        "host-neutral read-only adapter envelopes",
+        "canonical source repository preservation"
+      ]
+    }
+  ],
+  "negative_regression_scenarios": [
+    "catalog_hash_drift",
+    "catalog_three_tactics",
+    "unknown_maturity_tactic_request",
+    "unsourced_fact",
+    "parallel_write_collision",
+    "handoff_tactic_route_drift",
+    "handoff_bottleneck_route_drift",
+    "closed_handoff_extension",
+    "unauthorized_event",
+    "experiment_evidence_registry_bypass",
+    "fact_source_event_binding_bypass",
+    "tampered_nested_event",
+    "stale_cas",
+    "partial_batch_retry",
+    "tampered_exact_replay",
+    "symlink_state_boundary",
+    "crash_before_commit",
+    "crash_after_commit",
+    "abandoned_process_lock_recovery"
+  ],
+  "source_baseline": {
+    "repository": "/Users/enorm/Documents/Claude/loop-marketing",
+    "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  }
+}

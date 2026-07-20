@@ -1,0 +1,731 @@
+{
+  "artifact_id": "loop-marketing-p8-release-manifest",
+  "schema_version": "1.0",
+  "product_version": "2.0.0",
+  "status": "sealed",
+  "sealed_at": "2026-07-20T15:58:22.680106Z",
+  "distribution": "internal_restricted",
+  "skill_root": "release/loop-marketing",
+  "skill_files": [
+    {
+      "path": "release/loop-marketing/SKILL.md",
+      "sha256": "59bcbaa86751ebb91eb9d0af8a58696758d7a0abf5098c9a8623679b4da982a5",
+      "bytes": 4908
+    },
+    {
+      "path": "release/loop-marketing/agents/openai.yaml",
+      "sha256": "af3dd1b6e63eeeca6baf4e61346de48e7645e665bd6bce20baa3c8906a5ee086",
+      "bytes": 223
+    },
+    {
+      "path": "release/loop-marketing/references/data-contract.md",
+      "sha256": "9b22a000bf8955952171b02c811960cc03c8114fb33a6f0e38f554cdd64020c2",
+      "bytes": 7591
+    },
+    {
+      "path": "release/loop-marketing/references/evaluation-contract.md",
+      "sha256": "0a8de396adb9bbdbddf8b127ee10215afb967461e27124bbedf43eb4910e8991",
+      "bytes": 3182
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/INDEX.md",
+      "sha256": "f9e46e1e1ec0cb67ea60a7ad6d81fc27899856bae643e49cd8b541b57913b6c2",
+      "bytes": 4108
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+      "sha256": "37d2adfc40c4c4baff204b0e563d36222d13e14ab0494a72266e53aebc37156b",
+      "bytes": 3067
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/amplificador-de-conteudo-de-video.md",
+      "sha256": "5d85a73ec6b626917a0aa124729ad684e744b67fbf972eae051f474c34d61981",
+      "bytes": 16615
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+      "sha256": "69efeb0501a7beaa0307426904e1ab7328306b4b38e4b20422fecc2b00bc55c5",
+      "bytes": 18413
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+      "sha256": "85704f462364ef51024cd3786d5188de9457c23356d41b9cc0c238fe3e7addb1",
+      "bytes": 21394
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+      "sha256": "2c01285a922a744cf7d8655b3ec57c746e7e8ffe9741e9a38fbbdcace4da1ca2",
+      "bytes": 17408
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/amplificador-de-marketing-local-e-regional.md",
+      "sha256": "805223f79110362e422b0b2a1c95bf700e2ccfde06d51d5285fefc54d1151a86",
+      "bytes": 16090
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/construtor-de-rede-influenciadora.md",
+      "sha256": "ad69e335c9d8cbc969ab80012ef081e1f934e91cf42e6e55e0492e2a45b3d325",
+      "bytes": 3054
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/distribuicao-voltada-para-a-comunidade.md",
+      "sha256": "6181ffec54f2c883931fbe0be24e95f81fc7286afadcae9ce3f34c7dd06263ee",
+      "bytes": 17603
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+      "sha256": "3a037b4e8c5971aa4c9c9a66c5957f52a6bef366cbfe6305ba2f068e76d52d86",
+      "bytes": 16550
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+      "sha256": "6a4224482aa555ae5d133ce34aa85a078a6d881b0d788d6515dd843d2cc50156",
+      "bytes": 15963
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/estrategia-de-podcast-e-audio.md",
+      "sha256": "b9bb93903dd9e596177287971b37fd9a5b3755e4628701460736fee3a916ce88",
+      "bytes": 14242
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/estrategia-viral-em-todas-as-plataformas.md",
+      "sha256": "20059f12410067e5216a28f93097e20f836046f4eca54bf5720ebf3c7e9049fe",
+      "bytes": 3073
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+      "sha256": "782beb73b63a2326c4487afc6fde0083c1270e7392878155eb3f9785909275bd",
+      "bytes": 18343
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/estrategista-de-parceria-creator.md",
+      "sha256": "67d23843936b286fc7126e6f744eab97e659a40b23f433335379174cb6ffa1e7",
+      "bytes": 17380
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+      "sha256": "984b72ca165b607e4282be47fbaf29093d90a242ee351e2b34ab0b074476352a",
+      "bytes": 2996
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/identificador-de-parceiro-estrategico.md",
+      "sha256": "3126a78a69dd2ffeb3b1b20bdcb16b79bf5233595c589a22bb0b5944567b1e56",
+      "bytes": 15939
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+      "sha256": "4c29511b80313c6d93cc3a8bb6a5c4e48d92ba93044c51aad728e0c9cb54ec47",
+      "bytes": 17344
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/mecanismo-de-co-marketing-da-parceria.md",
+      "sha256": "c3ecdf0fd7b041ebf15a8d8b3c629f33830c9623991b7b1051558ae0432c2f39",
+      "bytes": 4758
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+      "sha256": "6a65f7da2acb23f23eb5ca2133362023b1b5edba7ad5b8feb06f47396dccc92d",
+      "bytes": 2769
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+      "sha256": "4a055d619de1dff5926f01db0ebc1ba9c2e054e43060e92926f066f061d90b94",
+      "bytes": 19009
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/orquestrador-de-experiencia-omnicanal.md",
+      "sha256": "331ceedd813ade5c42989cceaa7ac9339ddade8ddae3f12ffea2eec1e90f2111",
+      "bytes": 3148
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+      "sha256": "0040caf08361b20b99cd81dde58488d46bdd8d637696685c889f7408e83093da",
+      "bytes": 5816
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/otimizador-de-visibilidade-do-ai-search.md",
+      "sha256": "259a0c955417cd77e2976d9060cc5e25af7c0851e745ebc6a700f769582bdd24",
+      "bytes": 16391
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/premios-da-industria-e-amplificador-de-reconhecimento.md",
+      "sha256": "6dd429236c164a75a181946e25428ac953cd04266faf75621392560e44143f90",
+      "bytes": 4490
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+      "sha256": "1e2112ea58b4ae4e9625b51c3b61c73229060257bb662f6ae5acd7a5987d96d4",
+      "bytes": 4675
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/INDEX.md",
+      "sha256": "3627b3fb5eddcdf6e161317797a9d30227bdcb0d9ddad1c157f616cfdb42054f",
+      "bytes": 4433
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+      "sha256": "d5baf47dee333e852aa5c4cbd5741a6c2fa89b33ca1cc152f6294d46b294c604",
+      "bytes": 15908
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/estrategia-de-comunicacao-segmentada.md",
+      "sha256": "33e825fbdb0aed4113103537a34666f9d2d38ec6e99d4fce3685b175cbfce561",
+      "bytes": 14025
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/estrategista-de-enriquecimento-de-dados-do-cliente.md",
+      "sha256": "68c0097a82b6d4feed0f5908afcdb79dbcbc678afc7437d86bfb8c87c6b01a38",
+      "bytes": 16686
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+      "sha256": "a8763bd09a23bafbaaae0e7a4062e2d95267f9332df44026ea55e3975ce68ea0",
+      "bytes": 17956
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+      "sha256": "d5d290842add2c1f3f8d31041a4b00e34bcc41f706bb44ff8bb74f3419e5b17b",
+      "bytes": 19485
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+      "sha256": "acd9c2872f907186805e9cf188956244b69e0e477ef95437394e941c8d3fed7b",
+      "bytes": 23608
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/mecanismo-de-hiperpersonalizacao.md",
+      "sha256": "1b606d675e22dcef500438ba0e97a39d7a24806c70ff5100a404bbe70fddde57",
+      "bytes": 17940
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/mecanismo-de-personalizacao-redirecionamento.md",
+      "sha256": "fc825235324ad84aedb77388b40c0e326b372275e37cd608c5c94a1b85eaca5f",
+      "bytes": 16212
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/modelo-de-pontuacao-preditiva.md",
+      "sha256": "b2811b7ba969e3068be1cfb2a33a4f0807f458b2793da94390d4cb4ee99ab1ff",
+      "bytes": 27763
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/otimizador-de-caminho-de-conversao.md",
+      "sha256": "5a979d726edab63239fa7d3351f40467f74f0c979007cb2a8545cea14fedeef0",
+      "bytes": 14899
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/otimizador-de-conteudo-dinamico.md",
+      "sha256": "bdd7166104b4d9e7b517144d0ef9c112f9fb002cca240d594bd977342bc59f24",
+      "bytes": 12924
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/otimizador-de-personalizacao-de-email.md",
+      "sha256": "58793f873f2d06ff0630e9d02c4f24be5cecc55df784931e209d015e6599e28d",
+      "bytes": 17770
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizacao-baseada-em-conta.md",
+      "sha256": "b3209b69621fbcc857e5c90be3ef230d80ba44f8bad617fcabd8d346149c8120",
+      "bytes": 16472
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizacao-da-jornada-do-cliente.md",
+      "sha256": "2e9826bd8dda6da3fd26eb83a9b101bbbf2a89c4daa6191c76ae113a262d3e61",
+      "bytes": 17040
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizacao-de-email-de-ciclo-de-vida.md",
+      "sha256": "6c874e8a439a9424ffddc43def0cae34567bf5e021b7b8c263d1fd8aaf9eb29f",
+      "bytes": 14254
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizacao-orientada-por-comentarios.md",
+      "sha256": "2b36f836ec4ff82340229952cfa5519ed07af20b1e17c6a7b217909cc00c8ae3",
+      "bytes": 20074
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizador-da-experiencia-de-suporte.md",
+      "sha256": "61d140d7e290f1820420db8056ee43d20d0bbeaa9952ea6f0b8f077d8eb6ddf3",
+      "bytes": 13749
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizador-de-experiencia-da-onboarding.md",
+      "sha256": "8b91b2c4699e4141626cfcef7a09e39664833fe0160014643d32253ba598c589",
+      "bytes": 18437
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizador-de-landings-page.md",
+      "sha256": "51a5117655ee794a103cbbdaf3e3ff8934ff305f5e63ef20cc3c67130670fc81",
+      "bytes": 16422
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizador-de-prova-social.md",
+      "sha256": "9d4add03dc4a4580316a4c2914ab9d42a20dfb60e214e4f89a55b3d0a3e81767",
+      "bytes": 16186
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizador-de-renovacao-e-expansao.md",
+      "sha256": "d5ade892d930b350ebfbf8dfd206beb4e520f105bae85c3061f9cbe6a88640f1",
+      "bytes": 16338
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizador-de-tratamento-de-objecao.md",
+      "sha256": "f14ed4f7a4650c95d8ed9dcdd07e1b1f5dcdb249b0c5efce305e5b6cde5b992c",
+      "bytes": 14361
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/personalizador-de-viagens-baseado-em-persona.md",
+      "sha256": "762b64b0c183b501faf06287e21125eff36e38b1d84473e3f4686f4e5a273b19",
+      "bytes": 13856
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/sequencias-de-personalizacao-automatizada.md",
+      "sha256": "19bd418e4af483384a31863fbb32466906b730c7b6e5c36a5ae6b0e21ba24a79",
+      "bytes": 15643
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Orientar/sincronizacao-de-mensagens-entre-canais.md",
+      "sha256": "286c6439a67b25c2855ca57368c32729ecb21e25b2ac0848aa18448aa511bb04",
+      "bytes": 16916
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/INDEX.md",
+      "sha256": "3559cdee7daa300e653a55f935aeaafd03383f66a1370484ffa19c51d6c5e98f",
+      "bytes": 4414
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/acelerador-de-velocidade-de-marketing.md",
+      "sha256": "54b1d0ac369c7bd04dcbd5727a47dff4cd8d521fe2a68609b715d420d4ab1eb6",
+      "bytes": 17555
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/analisador-de-desempenho-de-coorte.md",
+      "sha256": "6df274669ed1d9a8f407ac8b19da67de3f4da1f4706aa7e60214bc4c1483d815",
+      "bytes": 15975
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/analise-competitiva-do-velocity.md",
+      "sha256": "a8544dcb815e747ef7eabc9ca024f99e986ee1968dd9e2b83d45c14f2539ea87",
+      "bytes": 5687
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/calculadora-de-otimizacao.md",
+      "sha256": "98072946c2da87fb9f325baf3e0c5aa05c16c7bacc7fd0583be5e1854623ebd7",
+      "bytes": 13487
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+      "sha256": "d4207b9bee18c8e03a08e73d72909ff1180db45d144cdd62152cd053338bb653",
+      "bytes": 5894
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+      "sha256": "d0496e2d444cbb0171a8a81ec7f01cb4a7b55eadfe3f0ead1a57e4401c163e7a",
+      "bytes": 14037
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+      "sha256": "384e0e5d305c707ed1f0e17d18bfbabadf9ecd0d80375ee4982e8ccca0d1453f",
+      "bytes": 5044
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/diagnostico-da-entrega-da-viagem-do-cliente.md",
+      "sha256": "308f1290bbe860ed78a457048a987a46d4fb230a3441f3150ae6ceac4c6bcdec",
+      "bytes": 4541
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+      "sha256": "eec9aa911b0e6138e576d4928e1f39c1e273029051ebc2d9214dfa5c8db28fa5",
+      "bytes": 19414
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/estrategista-de-teste-multi-variate.md",
+      "sha256": "a8f7833def8bc18b79db83936383c3a3e5b1039c0789fe52e94eff7ad663de37",
+      "bytes": 3056
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/gerador-de-relatorios-de-otimizacao-continua.md",
+      "sha256": "c8b3517a5c145b1a92a0ab0d9af9ca21c2478e4a9c4e19b6423e0e5c75bda90e",
+      "bytes": 5168
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+      "sha256": "9aca0cf5326e11714de6ce211b0bf8de04f7e94be076f2c77acc6ea917b0c9c5",
+      "bytes": 17093
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/mecanismo-de-experimentacao-rapida.md",
+      "sha256": "909ef0df43b186ac0164e6eb245e12cb9105ddb0d13d23a8897db9e4038baba6",
+      "bytes": 3321
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/mecanismo-de-otimizacao-em-tempo-real.md",
+      "sha256": "af92c70b43a8f9111db20ab6a985ab95c237e3f04efce4582b89e4bff3207f3a",
+      "bytes": 14107
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/mecanismo-de-previsao-de-desempenho.md",
+      "sha256": "f0e41015831963006c5239177a0ec31a52d4f88ee4a21da856dc43deb3c27c6c",
+      "bytes": 17641
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/modelador-de-combinacao-de-marketing.md",
+      "sha256": "24211a8f357f7d43292483986ae4b83c2cf3920eeb500f79bda9692ff4b9e805",
+      "bytes": 15809
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+      "sha256": "a2bf3d68b1c1afc404bbd7c46ca742dffd260118934b10f4c9a2ec911d382854",
+      "bytes": 15494
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+      "sha256": "557dc09cbd9de4177dea0129823efc7c0268ea40672047a4de9f4b96c7e369d9",
+      "bytes": 5340
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md",
+      "sha256": "24c8bba74dce870795566cf3c6fc5788927e074bc41de0856c7daeb9e2517158",
+      "bytes": 2454
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+      "sha256": "dad237af53a8e11d6a933e459af7c1100c3a1a804b3a5aebfad0276a62951ad5",
+      "bytes": 16706
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/otimizador-de-testes-sequenciais.md",
+      "sha256": "c16e645b0130c91e1ec3a72921c7161d01a4df2cc7b2c88bfb52185fea462ce9",
+      "bytes": 20627
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/otimizador-de-valor-do-ciclo-de-vida-do-cliente.md",
+      "sha256": "07de759efc23636163d9a75b631fc81011e3ade7547221cdc0bbcb9560f7c828",
+      "bytes": 16939
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+      "sha256": "c500944d35ff8e30ea81a7ed2a0a81ae6776e4485ee6e3fd823cf93b0be65dc4",
+      "bytes": 6619
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/sintese-de-aprendizado-multi-loop.md",
+      "sha256": "9fef25519e43b4f3c20841bc30965da9ae8ff244a270e7ee6a0287466c16b04a",
+      "bytes": 5339
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+      "sha256": "0db489b2b7b1717eaaf079187401d0882d9abff2cd9de0b5981ed470d5bb3ade",
+      "bytes": 19951
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/INDEX.md",
+      "sha256": "e1646cabef8708af1361a4011087638144337d4250b69b99172c21b55ee22e86",
+      "bytes": 4135
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+      "sha256": "7818ba7124e11ec18dcb881252d90e10fd1aa63aaf56cc38f6396124e72e7c8e",
+      "bytes": 2671
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/analisador-de-padroes-de-sucesso-do-cliente.md",
+      "sha256": "2250184819e963511bdd3309ba6127de4e715966394c29d4e96acae57a71c48b",
+      "bytes": 9965
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/analise-de-interruptores-do-setor.md",
+      "sha256": "af1fde3073921f4d1348ff1f8b50825d72f42c2f124985f98cbc434684a35227",
+      "bytes": 13843
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+      "sha256": "d1f1600f041687b1553a4c8642f90ac442e1bdafe194a2ff157f37fbb1c74e80",
+      "bytes": 10895
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/arquiteto-de-historias-de-marcas.md",
+      "sha256": "9f65a87f8b92badcfd2184b05f14d78b6d1fbfcf6ef33686ecdd66a0229a9b05",
+      "bytes": 10872
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+      "sha256": "76fe5b6f5556383fb31aa9cdd882f646312077802f2cf9f060a17d7b18c17b59",
+      "bytes": 12371
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/buyer-persona-validador.md",
+      "sha256": "95f7ff363cdd37e5aa84686fe9a6dfa754e22a6495015b09e20716f7546eceee",
+      "bytes": 7439
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+      "sha256": "c00d4b6ded5608e1408f5a10454718ac35c637bde10e94908329c6360946148e",
+      "bytes": 11789
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/criador-de-perfil-de-personalidade-da-marca.md",
+      "sha256": "4335945b84a642d26dc8cd7fd4a233c15c119419c4cebd80270d71f569616b89",
+      "bytes": 4948
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/decodificador-de-idioma-do-cliente.md",
+      "sha256": "f78cdbb6d9480328ac8d1d6946c0b7d2f7a862b5e1aa9f96b30ce94317c6f1da",
+      "bytes": 3806
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/definidor-de-categoria-de-mercado.md",
+      "sha256": "5c934184c4889946d0c24bdd5fa451deee598acaf79ae983579a5a1de5bc82cb",
+      "bytes": 10912
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/desenvolvedor-de-estrategia-sazonal.md",
+      "sha256": "20674c413d3fd56fc2d4694171b6e9bc8cc77c6faff448fc2d108cb5305ab920",
+      "bytes": 11837
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/esclarecimento-de-objetivo-e-missao.md",
+      "sha256": "42ed31881eb8dd7462929a1b2877e0f8d17dccbfd83de0e54a365062ec3e2d06",
+      "bytes": 3653
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+      "sha256": "76efba501dc90bfe2b8f64c8d066c4c86c4b1d49c6d71eb096795db8b977dfbb",
+      "bytes": 9411
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+      "sha256": "e14009f0530bc7fe87e933082e9709c226e0ba59ab567bc62701153bb05fc030",
+      "bytes": 7199
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/identificador-do-arquetipo-da-marca.md",
+      "sha256": "9715aa7f709a7133627a000587fba22dc4f377f2248d40a72bc294d41515ec58",
+      "bytes": 12560
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+      "sha256": "c841a794f1e7cc0ee790a9438b64c6bb356091c66dcb3bfa9db543675635845a",
+      "bytes": 3111
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/mapeador-da-jornada-do-cliente.md",
+      "sha256": "2222dde62185d4a963c0abeddbcfe4a4cf9c54f004e513889c40d4c3b7781504",
+      "bytes": 9183
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/otimizador-de-proposta-de-valor.md",
+      "sha256": "08b698eb9eb37f6ed30385c9935bebf944c406cb9ebab3628f16af1801fe5e05",
+      "bytes": 13000
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+      "sha256": "811d802018adaeca8346d9955ac89706a9278d0a04c1fcedbd056d0ec86b8de6",
+      "bytes": 4753
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md",
+      "sha256": "92c9805ef3b5500ed7bed657b3d0a18c9e6f896bd36082b6662a2379a89e6db9",
+      "bytes": 16477
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+      "sha256": "4cf90136d087759b4cbfc25a90c5ab9c876ed0effe25c4c298b027c0720510a6",
+      "bytes": 15135
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/posicionamento-da-parceria.md",
+      "sha256": "448b34e68c76692ada81c51422ba52ae4702454fc78e28463b2e22c4cb2541a0",
+      "bytes": 17092
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/roteiro-de-evolucao-das-marcas.md",
+      "sha256": "19656f394e0b00ad57fc01cf2053bd0f5b54bca9bb9167e4734be1eca38c50b4",
+      "bytes": 17037
+    },
+    {
+      "path": "release/loop-marketing/references/library/biblioteca/Verbalizar/voz-do-sintetizador-de-cliente.md",
+      "sha256": "44d276d89d444c74e24b0ac509efde60ab1660f0522bb0f344ddc86fbf993931",
+      "bytes": 7108
+    },
+    {
+      "path": "release/loop-marketing/references/operating-guide.md",
+      "sha256": "a162099f8c17ebc8c48034e7817533330050ff51818a7d5a872ac7d6b1a7c720",
+      "bytes": 6980
+    },
+    {
+      "path": "release/loop-marketing/references/runtime-data/contracts/event-schema.json",
+      "sha256": "6360b679f309ad25010d5d15b319e8e0101898b5a94102e3dc89d63b4c508646",
+      "bytes": 18075
+    },
+    {
+      "path": "release/loop-marketing/references/runtime-data/contracts/handoff-schema.json",
+      "sha256": "e8474ca8d0251b5b132563f72b36f893b311c3277e9dba838d1cdecf648e8f09",
+      "bytes": 18064
+    },
+    {
+      "path": "release/loop-marketing/references/runtime-data/contracts/state-schema.json",
+      "sha256": "6560e4a433a5bffc73267837f288c41b8960f9e33a4b47aaf3c00da5f95f59f0",
+      "bytes": 6592
+    },
+    {
+      "path": "release/loop-marketing/references/runtime-data/data/relationship-map.json",
+      "sha256": "b45e45ca9f06e7359f95a0cebd1e64f5675dd67b16cca84b063b3c66965e07f0",
+      "bytes": 66856
+    },
+    {
+      "path": "release/loop-marketing/references/runtime-data/data/role-matrix.json",
+      "sha256": "d4f88b90804dfadeed388401474b55e8df97875110dc10f90564e81f7a2caa82",
+      "bytes": 51168
+    },
+    {
+      "path": "release/loop-marketing/references/runtime-data/data/routing-contract.json",
+      "sha256": "bf2a240d511c88da11165c908d9e6e07fb312cc7329efca3ced7c6bac83707bb",
+      "bytes": 63209
+    },
+    {
+      "path": "release/loop-marketing/references/runtime-data/data/tactic-catalog.json",
+      "sha256": "efd3fba517f57417576dcd89fd1810e44524015a9c510dd48c07551d9fdf9019",
+      "bytes": 1031145
+    },
+    {
+      "path": "release/loop-marketing/references/security-model.md",
+      "sha256": "4a12bbf78ec39578a24aa4647bbf7abcb422481b2b0b273703d2d77f5a0fab5d",
+      "bytes": 3620
+    },
+    {
+      "path": "release/loop-marketing/scripts/loop_marketing.py",
+      "sha256": "2e43116e7b47d714c6e0495f6aaa21cd34d7a2ffd4a895698e4e28654421c636",
+      "bytes": 4696
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/__init__.py",
+      "sha256": "4710671ff572a963d7750fb50017f5b4fba3888dd5d7c7455b6d3a7df5125876",
+      "bytes": 592
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/catalog.py",
+      "sha256": "664dbc614b29e46993c10cd0ad7b72df336542e3b16708844ada31b0a248a486",
+      "bytes": 28093
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/errors.py",
+      "sha256": "ac8358d2530d62f63cb36b0af4b10fe1798ca1c42d38b2ac9c86eea49ca055b4",
+      "bytes": 933
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/evaluation.py",
+      "sha256": "b6451f9bfae75e57329ab0f23b3e26b37b6826aa47bb7b25ed04fe7b6712e2a1",
+      "bytes": 11687
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/models.py",
+      "sha256": "b75698743a07ea0a663d51be30936c4b138b488f95ec7763e8671b1770b08f85",
+      "bytes": 3935
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/observability.py",
+      "sha256": "0a7b7b75c0b71029f7364fcf3c62bfc8437b833e239c6122e8343e55a62a9753",
+      "bytes": 6303
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/orchestrator.py",
+      "sha256": "9d23b7553ee212dc4aa56244eb45106afe92b10489db202dcc4674c89d5675cf",
+      "bytes": 28385
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/router.py",
+      "sha256": "05f84369c24c09f9bd4516c2a2ad82b6ad9bd9a8946f0c27a7296e5b34b79287",
+      "bytes": 41506
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/secure_adapters.py",
+      "sha256": "e7b2ec79724498acbd0c86cc1db9b83cbed9ffca26e7d678ac7f3d70dfeb6400",
+      "bytes": 2980
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/secure_cli.py",
+      "sha256": "46a925c6300e9dcc798eb6c3f186e1e8a9a1b3c7108b8b52089c321cc7ee123e",
+      "bytes": 8135
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/secure_runtime.py",
+      "sha256": "81d692ddbbdf88fbfc4643c5d9145edfb8ed1016464097fa21460dc7de6b7688",
+      "bytes": 17154
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/security.py",
+      "sha256": "b4bcd25867383ecfdd1e128517dea5922275ceeacd8e965c143baa8b75aae857",
+      "bytes": 24835
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/state_store.py",
+      "sha256": "7022fc1525a474e7f17c4a72bffc164bd35b15ee50bc0e633b4f6dee9747be34",
+      "bytes": 52224
+    },
+    {
+      "path": "release/loop-marketing/scripts/runtime/loop_marketing_runtime/validation.py",
+      "sha256": "1f154cb353f54e72f5120fa94aa0042aad19035fc3939b8921a01383ffa3e301",
+      "bytes": 51724
+    }
+  ],
+  "skill_contents_sha256": "4640052772de3f07169be12d9950f17f58c3d12fadd63bda2c8561c4b4fd991b",
+  "archive": {
+    "path": "release/loop-marketing-internal-v2.0.0.tar.gz",
+    "sha256": "d6a2b9a2b889ea63c946cf39ea292dc6f0cd24dd9504cbf82d5dd9c488eb29a6",
+    "bytes": 555752
+  },
+  "release_scripts": [
+    {
+      "path": "scripts/p8_validate.py",
+      "sha256": "bd376006e5d04aab977710fe6b8ad006fb7252633c138ecbc7020f85bcfd2ee1",
+      "bytes": 12760
+    },
+    {
+      "path": "scripts/p8_seal.py",
+      "sha256": "af12988e011a22df6b6966b4d6ef0cf35f44d7459bc545dd070b3352822241a3",
+      "bytes": 9070
+    }
+  ],
+  "gate_reports": [
+    {
+      "path": "artifacts/P8/validation-report.json",
+      "sha256": "be16b29256467ae9c15fc4f8ebfa30f6c6b41da977ba73b4ec2e412e9d646317",
+      "bytes": 797
+    },
+    {
+      "path": "artifacts/P8/forward-test-report.json",
+      "sha256": "89a58cbdc1be4b6409bd7288683b25c6f6ce08a6b3439ee4f2c66b7859e14193",
+      "bytes": 3349
+    },
+    {
+      "path": "artifacts/P8/final-release-audit.json",
+      "sha256": "004f85fb680cb621e16fd90b2e6c9ef7c873e297ca5b33e3ea57546e28e871fa",
+      "bytes": 2138
+    }
+  ],
+  "gate_summary": {
+    "validator": "PASS",
+    "forward_tests": "PASS",
+    "final_audit": "PASS",
+    "p7_dependency_seal": true,
+    "official_skill_validator": true,
+    "documentation_contract": true,
+    "portable_path_hygiene": true,
+    "packaged_e2e_committed": true,
+    "evaluation_passed": true,
+    "sensitive_input_rejected": true,
+    "source_preserved": true
+  },
+  "counts": {
+    "skill_files": 132,
+    "canonical_prompts": 100,
+    "library_files": 104,
+    "runtime_modules": 14,
+    "command_invocations": 12
+  },
+  "baseline": {
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  }
+}

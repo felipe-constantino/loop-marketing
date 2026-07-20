@@ -1,0 +1,25 @@
+{
+  "artifact_id": "loop-marketing-p5-validation-report",
+  "generated_at": "2026-07-19T21:42:52.312487Z",
+  "command": "python3 scripts/p5_validate.py",
+  "result": {
+    "status": "PASS",
+    "errors": [],
+    "counts": {
+      "tests": 50,
+      "canonical_tactics": 100,
+      "confirmed_relations": 91,
+      "command_invocations": 12,
+      "handoff_top_level_fields": 22,
+      "runtime_modules": 10,
+      "packaged_assets": 8
+    },
+    "source": {
+      "commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+      "clean": true,
+      "preserved": true
+    },
+    "suite_returncode": 0,
+    "installed_cli": true
+  }
+}

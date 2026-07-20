@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "product_version": "2.0.0",
+  "runtime_package": "loop_marketing_runtime",
+  "state_namespace": ".loop-marketing/",
+  "operations": [
+    "resolve",
+    "build_envelope",
+    "invoke_read_only"
+  ],
+  "external_write_methods": [],
+  "commands": {
+    "/loop-planning": "loop.planning",
+    "/loop-planning-agent": "loop.planning",
+    "/verbalizar": "loop.verbalizar",
+    "/verbalizar-agent": "loop.verbalizar",
+    "/orientar": "loop.orientar",
+    "/orientar-agent": "loop.orientar",
+    "/ampliar": "loop.ampliar",
+    "/ampliar-agent": "loop.ampliar",
+    "/refinar": "loop.refinar",
+    "/refinar-agent": "loop.refinar",
+    "/projeto": "loop.projeto",
+    "/projeto-template": "loop.projeto"
+  },
+  "profiles": [
+    {
+      "host_id": "generic",
+      "presentation_only": true
+    },
+    {
+      "host_id": "claude",
+      "presentation_only": true
+    },
+    {
+      "host_id": "codex",
+      "presentation_only": true
+    }
+  ],
+  "invariants": [
+    "Every profile resolves the same invocation to the same command_id and canonical role.",
+    "Every profile uses the caller-supplied shared state root without a host namespace.",
+    "No profile can bypass the router, contract validator or project state store.",
+    "P5 profiles expose no external platform mutation method."
+  ]
+}

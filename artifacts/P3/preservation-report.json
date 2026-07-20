@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "phase": "P3",
+  "status": "proven",
+  "baseline": {
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  },
+  "catalog_coverage": {
+    "entries": 100,
+    "unique_paths": 100,
+    "unique_tactic_ids": 100,
+    "by_pillar": {
+      "Ampliar": 25,
+      "Orientar": 25,
+      "Refinar": 25,
+      "Verbalizar": 25
+    }
+  },
+  "metadata_coverage": {
+    "entries_with_all_required_fields": 100,
+    "entries_reviewed_full_source": 100,
+    "entries_with_input_requirements": 100,
+    "entries_with_output_contract": 100,
+    "entries_with_execution_policy": 100,
+    "entries_with_maturity_rationale": 100,
+    "entries_with_contraindications": 100,
+    "minimum_maturity_distribution": {
+      "avancado": 3,
+      "em_desenvolvimento": 55,
+      "maduro": 37,
+      "nascente": 5
+    },
+    "execution_mode_distribution": {
+      "base_method_only": 6,
+      "canonical_safe": 3,
+      "sidecar_constrained": 91
+    },
+    "automatic_selection_distribution": {
+      "allowed": 3,
+      "forbidden": 6,
+      "planner_review_required": 91
+    },
+    "canonical_scope_conflict_count": 323,
+    "mandatory_handoff_count": 278,
+    "input_sensitivity_distribution": {
+      "confidential": 36,
+      "customer_aggregate": 48,
+      "customer_level_pii": 35,
+      "internal": 175,
+      "public": 16
+    }
+  },
+  "relationship_summary": {
+    "total_relations": 91,
+    "by_type": {
+      "alternative_to": 3,
+      "collides_with": 1,
+      "complements": 63,
+      "overlaps": 24
+    },
+    "by_review_status": {
+      "confirmed": 91
+    },
+    "by_routing_effect": {
+      "allow_together": 63,
+      "inform_only": 1,
+      "never_auto_co_select": 2,
+      "prefer_more_specific": 25
+    },
+    "replayed_inputs": 106,
+    "rejected_inputs": 12,
+    "runtime_uses_only_confirmed": true
+  },
+  "quality_summary": {
+    "semantic_review_status": {
+      "needs_editorial_review": 41,
+      "reviewed_with_flags": 59
+    },
+    "translation_risk": {
+      "high": 54,
+      "medium": 46
+    },
+    "flag_occurrences": {
+      "ambiguous_instruction": 39,
+      "duplicate_like": 23,
+      "mixed_language": 62,
+      "pii_sensitive": 47,
+      "security_sensitive": 11,
+      "terminology_inconsistent": 81,
+      "unidiomatic_translation": 99,
+      "unverified_external_claim": 12
+    },
+    "flags_are_review_metadata_not_source_rewrites": true
+  },
+  "provenance_summary": {
+    "entries_with_conservative_provenance": 100,
+    "individual_source_verified": false,
+    "redistribution_review": "not_reviewed",
+    "redistribution_authorized_by_p3": false
+  },
+  "source_integrity": {
+    "head": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "worktree_clean": true,
+    "tracked_file_count": 117,
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "canonical_files_modified_by_p3": 0
+  },
+  "validation": {
+    "schema": "passed",
+    "workstreams": "passed",
+    "semantic_catalog_audit": "passed",
+    "negative_regression": "passed",
+    "relation_review": "passed",
+    "integration_invariants": "passed",
+    "final_validator_command": "python3 scripts/p3_validate.py final"
+  }
+}

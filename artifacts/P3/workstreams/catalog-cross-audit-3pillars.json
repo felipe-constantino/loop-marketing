@@ -1,0 +1,430 @@
+{
+  "audit_id": "P3-CATALOG-CROSS-AUDIT-3PILLARS-001",
+  "audit_type": "independent_semantic_red_team",
+  "status": "fail_blocking_findings",
+  "audited_at_utc": "2026-07-17T23:03:52Z",
+  "scope": {
+    "pillars": [
+      "Verbalizar",
+      "Orientar",
+      "Ampliar"
+    ],
+    "workstreams": [
+      "artifacts/P3/workstreams/verbalizar.json",
+      "artifacts/P3/workstreams/orientar.json",
+      "artifacts/P3/workstreams/ampliar.json"
+    ],
+    "contracts": [
+      "artifacts/P3/catalog-schema.json",
+      "artifacts/P2/role-matrix.json",
+      "artifacts/P2/routing-contract.json",
+      "SOURCE_INDEX.json"
+    ],
+    "source_repository": "/Users/enorm/Documents/Claude/loop-marketing",
+    "source_mode": "read_only",
+    "explicit_exclusions": [
+      "Refinar workstream",
+      "changes to canonical prompts",
+      "changes to existing P2 or P3 artifacts"
+    ]
+  },
+  "coverage": {
+    "tactic_entries_reviewed": 75,
+    "tactic_entries_expected": 75,
+    "intra_pillar_relations_reviewed": 58,
+    "intra_pillar_relations_expected": 58,
+    "cross_pillar_candidates_reviewed": 20,
+    "cross_pillar_candidates_expected": 20,
+    "pillar_entry_counts": {
+      "Verbalizar": 25,
+      "Orientar": 25,
+      "Ampliar": 25
+    },
+    "structural_validator_result": {
+      "command": "python3 scripts/p3_validate.py workstreams",
+      "status": "valid",
+      "errors": []
+    },
+    "semantic_checks": [
+      "minimum maturity versus prerequisites and source marker",
+      "need tag specificity and authority",
+      "P2 owner boundary",
+      "input sensitivity and PII exposure",
+      "output contract compatibility",
+      "use, do-not-use and contraindication consistency",
+      "editorial and translation flags",
+      "intra-pillar relation truthfulness",
+      "cross-pillar direction and symmetry",
+      "duplicate preservation without merge"
+    ],
+    "canonical_source_replay": "All 75 workstream entries and their review evidence were inspected. Canonical bodies were reopened where a semantic finding required primary evidence; no heuristic was treated as proof."
+  },
+  "summary": {
+    "finding_count": 13,
+    "blocking_p3": 8,
+    "nonblocking_p3": 4,
+    "release_constraint": 1,
+    "severity_counts": {
+      "critical": 1,
+      "high": 9,
+      "medium": 3,
+      "low": 0
+    },
+    "gate_recommendation": "Do not seal P3 until all blocking_p3 findings are resolved and replayed. Proposed relations remain audit-only and must not affect routing. Public redistribution remains blocked independently of internal P3 completion."
+  },
+  "findings": [
+    {
+      "finding_id": "P3-XA-001",
+      "classification": "blocking_p3",
+      "severity": "critical",
+      "title": "The schema cannot enforce a sidecar restriction when the immutable canonical prompt asks the model to cross an owner boundary",
+      "tactic_ids": [
+        "lm.verbalizar.perfil-do-cliente-ideal",
+        "lm.orientar.personalizacao-orientada-por-comentarios",
+        "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal"
+      ],
+      "canonical_paths": [
+        "biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+        "biblioteca/Orientar/personalizacao-orientada-por-comentarios.md",
+        "biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md"
+      ],
+      "evidence": [
+        "catalog-schema.json makes summary, output_contract and contraindications descriptive metadata but has no execution_policy, canonical_scope_conflicts, prohibited_decisions, authority_overlay or auto_selectable field.",
+        "perfil-do-cliente-ideal.md lines 24-29 explicitly order segmentation and lines 82-97 request channel, campaign, qualification and performance applications, while its sidecar tries to limit direct operational use.",
+        "personalizacao-orientada-por-comentarios.md lines 43-47 order testing, validation and continuous optimization and lines 213-239 order implementation, performance monitoring and impact validation.",
+        "otimizador-de-atribuicao-cruzada-de-canal.md lines 42-52 order model selection, custom model development, weighting, tracking implementation and model accuracy measurement; lines 59-69 request budget and performance decisions. Its sidecar instead contracts only a brief for Refinar.",
+        "The immutable bodies are intentionally preserved, so a runtime that loads the body without a machine-enforced authority overlay can follow the prohibited canonical instructions despite the sidecar prose."
+      ],
+      "impact": "A structurally valid tactic can still cause an owner violation at execution time. The current metadata records the intended reinterpretation but does not make it enforceable or testable.",
+      "recommended_fix": "Extend the P3 tactic schema with a mandatory execution policy for any canonical/sidecar scope divergence. At minimum record canonical_scope_conflicts with source line references, prohibited_decisions, destination_owner, allowed_output_sections, excluded_output_sections, runtime_overlay_required and an auto-selection state such as canonical_safe, sidecar_constrained or base_method_only. Default conflicted tactics to non-auto-selectable until P5 proves the overlay with adversarial tests. Preserve every canonical body unchanged.",
+      "validation_case": "Given a canonical body that requests any decision in the tactic role's P2 does_not_own set, P3 validation MUST fail unless the entry declares an enforceable scope-conflict policy. A later runtime test MUST load the full body and prove that prohibited sections are refused or handed off."
+    },
+    {
+      "finding_id": "P3-XA-002",
+      "classification": "blocking_p3",
+      "severity": "high",
+      "title": "The ICP tactic remains machine-routable as segmentation owned by Verbalizar",
+      "tactic_ids": [
+        "lm.verbalizar.perfil-do-cliente-ideal"
+      ],
+      "canonical_paths": [
+        "biblioteca/Verbalizar/perfil-do-cliente-ideal.md"
+      ],
+      "evidence": [
+        "The entry declares job_tags including segment, object_tags including segmentation, need_tags including segment:segmentation, output_type segmentation_model and decision_owner verbalizar.",
+        "P2 role-matrix says Verbalizar does_not_own segment_definition and Orientar owns segment_definition plus inclusion and exclusion rules.",
+        "The entry's own prerequisite orientar-validation-required and contraindication say the result cannot become segmentation or targeting without Orientar, which contradicts the machine-readable owner and need tags.",
+        "The canonical body lines 24-29 explicitly performs segmentation, so the conflict is substantive rather than inferred from the filename."
+      ],
+      "impact": "The router can select Verbalizar for a segmentation need and emit a segmentation_model even though the prose later asks for validation. That is a direct P2 authority breach.",
+      "recommended_fix": "Keep the tactic and canonical path intact, but contract the Verbalizar sidecar as an analysis or message-oriented profile hypothesis. Remove segment from job_tags, segment:segmentation from need_tags and segmentation_model from the Verbalizar-owned output. Preserve persona-icp and customer evidence tags, and make the Orientar handoff the only path to an accepted segment or eligibility decision.",
+      "validation_case": "Reject any Verbalizar entry whose need tags request segment:segmentation or whose output_type is segmentation_model. A fixture for this tactic must route an accepted segmentation decision to Orientar and allow Verbalizar only to emit message implications and an evidence package."
+    },
+    {
+      "finding_id": "P3-XA-003",
+      "classification": "blocking_p3",
+      "severity": "high",
+      "title": "The customer-journey tactic can misroute lifecycle mapping to Verbalizar",
+      "tactic_ids": [
+        "lm.verbalizar.mapeador-da-jornada-do-cliente"
+      ],
+      "canonical_paths": [
+        "biblioteca/Verbalizar/mapeador-da-jornada-do-cliente.md"
+      ],
+      "evidence": [
+        "The entry declares need_tags map:customer-journey and output_type journey_map with decision_owner verbalizar.",
+        "Its own summary and prerequisite orientar-stage-map-available say stages must already be supplied by Orientar and that Verbalizar only maps questions, emotions, objections and message needs onto those stages.",
+        "P2 assigns lifecycle stage model, entry/exit events, progression and semantic windows to Orientar; Verbalizar owns message adaptation by an already delimited stage."
+      ],
+      "impact": "A global need search for map:customer-journey can select the wrong owner even though the human-readable text attempts to narrow the scope.",
+      "recommended_fix": "Change the sidecar output type to analysis or message_system, retain journey only as context, and prioritize map:message plus analyze:customer-voice. If map:customer-journey remains as a discovery alias, mark it non-routing and require an accepted Orientar lifecycle reference before selection.",
+      "validation_case": "A request to define lifecycle stages or journey entry/exit MUST NOT select this tactic. A request to map language and objections onto an existing stage contract MAY select it and must return no lifecycle decision."
+    },
+    {
+      "finding_id": "P3-XA-004",
+      "classification": "blocking_p3",
+      "severity": "high",
+      "title": "Orientar is declared owner of a learning system that its own cross-pillar candidate assigns to Refinar",
+      "tactic_ids": [
+        "lm.orientar.personalizacao-orientada-por-comentarios"
+      ],
+      "canonical_paths": [
+        "biblioteca/Orientar/personalizacao-orientada-por-comentarios.md"
+      ],
+      "evidence": [
+        "The entry sets output_type learning_system, description 'Sistema de aprendizagem', required sections improvement-backlog, validation-handoff and learning-loop, and decision_owner orientar.",
+        "Its need tag optimize:optimization is generic and not bounded to context or eligibility.",
+        "The same workstream's xrel-orientar-feedback-refinar-aprendizado candidate says Refinar maintains the test contract, result reading and learning decision.",
+        "P2 gives Refinar experiment validation, result interpretation and learning_record; Orientar explicitly does_not_own experiment contract or performance diagnosis.",
+        "The canonical body lines 43-47 and 213-239 includes tests, performance monitoring and impact validation, so the boundary requires an enforceable split."
+      ],
+      "impact": "The output contract and cross-pillar boundary disagree. A downstream consumer cannot tell whether Orientar or Refinar owns validation, prioritization and recorded learning.",
+      "recommended_fix": "Limit the Orientar output to a feedback evidence map, context implications, representativeness risks and a backlog of unvalidated personalization hypotheses. Remove optimize:optimization, learning_system and learning-loop from the Orientar-owned contract. Create a required handoff to Refinar for experiment design, validation, result interpretation and learning record.",
+      "validation_case": "Reject any non-Refinar tactic that owns output_type learning_system or a learning-loop section without an explicit domain-only semantics rule. This fixture must prove that Orientar cannot mark a feedback-derived improvement validated or learned."
+    },
+    {
+      "finding_id": "P3-XA-005",
+      "classification": "blocking_p3",
+      "severity": "high",
+      "title": "Three Ampliar customer-program contracts under-model the PII demanded by their canonical bodies",
+      "tactic_ids": [
+        "lm.ampliar.amplificador-de-defesa-do-cliente",
+        "lm.ampliar.mecanismo-de-referencias-do-cliente",
+        "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario"
+      ],
+      "canonical_paths": [
+        "biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+        "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+        "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md"
+      ],
+      "evidence": [
+        "All three entries carry pii_sensitive but expose only customer_aggregate, confidential and internal input sensitivities; none declares a customer_level_pii input.",
+        "amplificador-de-defesa-do-cliente.md lines 12-39 asks for current advocates, named behavioral characteristics, satisfaction, success, relationship depth and professional-network signals; lines 45 and 56-64 order advocate identification and segmentation.",
+        "mecanismo-de-referencias-do-cliente.md lines 13, 19 and 24 asks which customers provide referrals, identifies successful customers and orders individual customer identification.",
+        "multiplicador-de-conteudo-gerado-pelo-usuario.md lines 12-33 asks for customer content, satisfaction, social activity, relationships, referrals, influence and willingness; lines 54-55 and 104 order creator segmentation and outreach.",
+        "The contraindications say to remain aggregate, which is a safer v2 mode but does not accurately model the canonical prompt's requested inputs unless that mode is enforceable."
+      ],
+      "impact": "A sensitivity gate can conclude that no customer-level PII is required while the selected canonical body explicitly invites identifiable customer data. Conversely, silently treating the tactic as aggregate-only changes its original operating scope without an execution-policy record.",
+      "recommended_fix": "Declare the canonical customer-level inputs as sensitive and blocked-by-default, then add an explicit aggregate-only safe mode that excludes individual identification and outreach sections. Alternatively mark these tactics base_method_only until P6 supplies a consented PII adapter. The pii_sensitive flag alone is not an input contract.",
+      "validation_case": "For each fixture, loading the full canonical body with only aggregate-approved inputs MUST either suppress every individual-identification section or reject selection with a PII/authorization error. A validator must detect pii_sensitive entries whose canonical required placeholders are individual while no customer_level_pii input or explicit safe-mode exclusion exists."
+    },
+    {
+      "finding_id": "P3-XA-006",
+      "classification": "blocking_p3",
+      "severity": "high",
+      "title": "Ampliar output section names still claim eligibility decisions owned by Orientar",
+      "tactic_ids": [
+        "lm.ampliar.amplificador-de-defesa-do-cliente",
+        "lm.ampliar.mecanismo-de-referencias-do-cliente",
+        "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario"
+      ],
+      "canonical_paths": [
+        "biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+        "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+        "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md"
+      ],
+      "evidence": [
+        "The Ampliar-owned required sections are eligibility-constraints, eligibility-and-suppression and creator-eligibility respectively.",
+        "The entries' own prerequisites say Orientar must already define eligibility, exclusions and suppression, and the cross-pillar candidate xrel-ampliar-customer-programs-orientar repeats that boundary.",
+        "P2 assigns segment definition, inclusion/exclusion, suppression and eligibility priority to Orientar, while Ampliar consumes them to decide channels, touchpoints and cadence."
+      ],
+      "impact": "Machine consumers see eligibility inside an Ampliar-owned output contract, while prose says it is an input. That ambiguity can reopen individual selection in the wrong role.",
+      "recommended_fix": "Rename the sections to accepted-eligibility-contract or eligibility-input-reference, require an Orientar decision reference, and add an explicit no-selection invariant. Keep Ampliar's owned sections limited to mechanics, channel/touchpoint roles, timing, recognition, rights, frequency and measurement requirements.",
+      "validation_case": "Reject an Ampliar output section containing eligibility, suppression, segment or audience-definition semantics unless it is syntactically marked as a consumed prior-decision reference."
+    },
+    {
+      "finding_id": "P3-XA-007",
+      "classification": "blocking_p3",
+      "severity": "high",
+      "title": "Confirmed Verbalizar dependencies confuse a required artifact with mandatory execution of a specific tactic",
+      "tactic_ids": [
+        "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+        "lm.verbalizar.otimizador-de-proposta-de-valor",
+        "lm.verbalizar.gerador-de-conceito-de-campanha",
+        "lm.verbalizar.gerador-de-tema-de-conteudo",
+        "lm.verbalizar.planejador-de-ativacao-de-marcas"
+      ],
+      "canonical_paths": [
+        "biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "biblioteca/Verbalizar/otimizador-de-proposta-de-valor.md",
+        "biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+        "biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md"
+      ],
+      "evidence": [
+        "Four relations are confirmed depends_on with routing_effect require_order: hierarchy->value-proposition optimizer, campaign->hierarchy, content themes->hierarchy and activation->hierarchy.",
+        "The first rationale explicitly admits that the optimizer is only 'uma forma' of supplying an accepted value proposition.",
+        "The entries' prerequisites require accepted artifacts such as value proposition, message hierarchy or brand contract; those artifacts can arrive through prior_decision without executing the named tactic in the current route node.",
+        "P2 caps a route node at two complementary tactics. False tactic dependencies can consume capacity or reject a valid route that already has the required artifact."
+      ],
+      "impact": "A valid route with pre-existing approved inputs can be rejected or forced to run an unnecessary tactic. Confirmed status makes this immediately normative in the relationship map.",
+      "recommended_fix": "Represent artifact prerequisites separately from tactic-to-tactic dependencies. Remove or downgrade these depends_on relations unless the target tactic itself, rather than any equivalent accepted artifact, is genuinely mandatory. If the schema remains tactic-only, use entry prerequisites plus prior-decision evidence and classify the tactic relation as complements or audit-only.",
+      "validation_case": "Provide an accepted value-proposition artifact without a tactic_ref to the optimizer. Hierarchy selection MUST remain valid. Repeat with an accepted message contract for campaign, content themes and activation. Any require_order dependency that fails these fixtures is semantically false."
+    },
+    {
+      "finding_id": "P3-XA-008",
+      "classification": "blocking_p3",
+      "severity": "high",
+      "title": "Cross-pillar relationship candidates disagree on thought-leadership relation type",
+      "tactic_ids": [
+        "lm.verbalizar.posicionador-de-lideranca-de-pensamento",
+        "lm.ampliar.amplificacao-da-lideranca-do-pensamento"
+      ],
+      "canonical_paths": [
+        "biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+        "biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md"
+      ],
+      "evidence": [
+        "Verbalizar candidate xrel-verbalizar-thought-leadership-to-ampliar classifies the pair as complements.",
+        "Ampliar candidate xrel-ampliar-thought-leadership-verbalizar classifies the same directional need as depends_on and targets the exact Verbalizar tactic.",
+        "The Ampliar input contract requires a validated thought-leadership contract, not proof that this exact producer tactic ran."
+      ],
+      "impact": "The independent reviewer cannot confirm both candidates. Confirming the exact-tactic dependency would repeat the artifact-versus-tactic error and can force unnecessary execution.",
+      "recommended_fix": "Normalize the pair before integration. Model the validated thesis/message contract as an artifact prerequisite. Keep a complements relation between the two tactics, or confirm depends_on only if P3 introduces a capability/artifact target rather than an exact mandatory producer tactic.",
+      "validation_case": "With a valid thought-leadership contract produced outside the catalog tactic, Ampliar amplification MUST be selectable. With no contract, it MUST be blocked or handed to Verbalizar. The final relation review must emit one non-contradictory result."
+    },
+    {
+      "finding_id": "P3-XA-009",
+      "classification": "nonblocking_p3",
+      "severity": "medium",
+      "title": "Attribution and paid-media relation candidates have direction and prerequisite ambiguity",
+      "tactic_ids": [
+        "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+        "lm.ampliar.diversificacao-de-midia-paga"
+      ],
+      "canonical_paths": [
+        "biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+        "biblioteca/Ampliar/diversificacao-de-midia-paga.md"
+      ],
+      "evidence": [
+        "The proposed intrapillar relation requires paid-media diversification to run the attribution-requirements tactic first, although the paid entry only requires tracking requirements as an artifact.",
+        "The proposed cross-pillar candidate says the Ampliar attribution brief depends_on a Refinar optimizer. The Ampliar output itself is a refinar-handoff with touchpoint and tracking requirements that Refinar consumes, so exact execution order is not established by this direction.",
+        "The proposed paid->Refinar candidate similarly treats formal test design as a prerequisite to a channel-candidate plan even though the plan is the input to test design."
+      ],
+      "impact": "If confirmed without replay, the map can create a cycle or reverse the intended handoff sequence. At present these relations are proposed and audit-only, so they are not yet a runtime defect.",
+      "recommended_fix": "During relation review, distinguish planning output from pilot execution. Model tracking requirements and experiment contracts as artifacts; use complements when the two tactics exchange inputs, and only use depends_on when a unique, one-way execution order is proven.",
+      "validation_case": "Replay two scenarios: planning a candidate channel before a test contract exists, and executing a pilot after the test contract is approved. The planning route must not be rejected; the execution route must require Refinar evidence."
+    },
+    {
+      "finding_id": "P3-XA-010",
+      "classification": "nonblocking_p3",
+      "severity": "medium",
+      "title": "Several need tags describe the original prompt's broad verb rather than the sidecar's bounded owner decision",
+      "tactic_ids": [
+        "lm.orientar.personalizacao-orientada-por-comentarios",
+        "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal"
+      ],
+      "canonical_paths": [
+        "biblioteca/Orientar/personalizacao-orientada-por-comentarios.md",
+        "biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md"
+      ],
+      "evidence": [
+        "optimize:optimization is tautological and does not distinguish Orientar's context work from Refinar's performance optimization.",
+        "design:attribution can match model design even though the sidecar says Ampliar only maps touchpoints and specifies requirements; Refinar owns model selection, validation and interpretation.",
+        "The current validator checks that tag components exist in job_tags and object_tags but does not cross-check a need tag against P2 owns and does_not_own semantics."
+      ],
+      "impact": "Need-based search can shortlist the right file for the wrong reason and bypass the owner split encoded in prose.",
+      "recommended_fix": "Make need tags role-aware or capability-specific. Replace optimize:optimization with a context/feedback tag that cannot mean performance optimization, and replace design:attribution with map:touchpoint plus a dedicated measurement-requirements capability. Add a validator rule against the P2 owner matrix.",
+      "validation_case": "A request to optimize measured performance or design an attribution model MUST route to Refinar, not either of these entries. A request to organize feedback context or specify touchpoint tracking requirements MAY route to Orientar or Ampliar respectively."
+    },
+    {
+      "finding_id": "P3-XA-011",
+      "classification": "nonblocking_p3",
+      "severity": "medium",
+      "title": "Editorial status is not deterministic for ambiguous canonical instructions",
+      "tactic_ids": [
+        "lm.verbalizar.posicionamento-da-parceria",
+        "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+        "lm.orientar.otimizador-de-caminho-de-conversao",
+        "lm.ampliar.estrategia-viral-em-todas-as-plataformas"
+      ],
+      "canonical_paths": [
+        "biblioteca/Verbalizar/posicionamento-da-parceria.md",
+        "biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "biblioteca/Orientar/otimizador-de-caminho-de-conversao.md",
+        "biblioteca/Ampliar/estrategia-viral-em-todas-as-plataformas.md"
+      ],
+      "evidence": [
+        "These four entries carry ambiguous_instruction but are classified reviewed_with_flags, while other entries with truncated or ambiguous instructions are needs_editorial_review.",
+        "For posicionamento-da-parceria the assessment note itself cites an incomplete heading. For mapeador-de-ciclos-de-vida the note cites fragments. The schema does not define when ambiguity escalates status or whether either status is auto-selectable."
+      ],
+      "impact": "Two reviewers can assign different selection implications to the same defect. A later router may treat reviewed_with_flags as safe even when the source is incomplete.",
+      "recommended_fix": "Define a deterministic editorial severity policy and a separate auto-selectability field. A truncated instruction that changes required input or output should require editorial review or a constrained sidecar mode; harmless wording ambiguity may remain reviewed_with_flags.",
+      "validation_case": "Feed fixtures for an incomplete required section, a mistranslated but recoverable term and a non-verifiable promise. The classifier must return a stable status and explicit selection effect for each."
+    },
+    {
+      "finding_id": "P3-XA-012",
+      "classification": "nonblocking_p3",
+      "severity": "high",
+      "title": "Referral and UGC are classified as alternatives even though they can coexist as distinct outputs",
+      "tactic_ids": [
+        "lm.ampliar.mecanismo-de-referencias-do-cliente",
+        "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario"
+      ],
+      "canonical_paths": [
+        "biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+        "biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md"
+      ],
+      "evidence": [
+        "The proposed relation rel-ampliar-referral-overlaps-ugc uses relation_type alternative_to and routing_effect prefer_more_specific.",
+        "Its own rationale distinguishes indication from customer-created content. Those are different deliverables that can coexist in separate route nodes or in one wider advocacy program; neither replaces the other.",
+        "The workstream correctly preserves both canonical prompts, so only the semantic relation type is at issue."
+      ],
+      "impact": "If confirmed, the router can suppress a legitimate second tactic by treating two complementary or merely overlapping deliverables as substitutes.",
+      "recommended_fix": "Keep the candidate proposed until relation review. Prefer overlaps with a precise selection note, complements when both outputs are requested, or no relation. Do not use alternative_to solely because the route must choose the more specific output for one node.",
+      "validation_case": "A route node requesting only referrals should select referral; one requesting only UGC should select UGC; a two-node plan requesting both distinct outputs must permit both without merge."
+    },
+    {
+      "finding_id": "P3-XA-013",
+      "classification": "release_constraint",
+      "severity": "high",
+      "title": "Individual provenance and redistribution rights are not verified for any audited tactic",
+      "tactic_ids": [
+        "all 75 audited tactic IDs"
+      ],
+      "canonical_paths": [
+        "biblioteca/Verbalizar/*.md",
+        "biblioteca/Orientar/*.md",
+        "biblioteca/Ampliar/*.md"
+      ],
+      "evidence": [
+        "Every audited entry sets individual_source_verified to false and redistribution_review to not_reviewed.",
+        "Verbalizar and Ampliar explicitly record public redistribution as a blocking unresolved question. Orientar omits the question, but its 25 provenance objects carry the same unreviewed state.",
+        "The collection reference supports the collection-level association only; it is not individual prompt provenance or a redistribution license."
+      ],
+      "impact": "Internal preservation and cataloging may continue, but the 75 individual prompt bodies cannot be represented as cleared for public or commercial redistribution.",
+      "recommended_fix": "Keep the provenance values unchanged until a documented legal/source review covers the intended distribution. Apply the release block uniformly to all pillars and ensure packaging can distribute metadata without bundling prompt bodies when clearance is absent.",
+      "validation_case": "Any public-release manifest containing a prompt with redistribution_review other than verified_for_intended_distribution MUST fail. Internal read-only catalog validation may still pass with an explicit release constraint."
+    }
+  ],
+  "confirmed_no_issue_checks": [
+    {
+      "check_id": "P3-XA-NI-001",
+      "result": "pass",
+      "statement": "All 75 entries preserve unique tactic IDs, canonical paths, hashes and canonical_immutable=true; the structural validator reported no errors."
+    },
+    {
+      "check_id": "P3-XA-NI-002",
+      "result": "pass",
+      "statement": "The explicit maturity markers in the Orientar INDEX are respected: content dynamic, hyperpersonalization, ABM and landing page are maduro; predictive scoring is avancado; automated sequences are em_desenvolvimento. No source marker was downgraded."
+    },
+    {
+      "check_id": "P3-XA-NI-003",
+      "result": "pass",
+      "statement": "No relation deletes, merges, renames or rewrites a canonical tactic. Duplicate-like prompts remain separate entries and are represented only by external metadata."
+    },
+    {
+      "check_id": "P3-XA-NI-004",
+      "result": "pass",
+      "statement": "The relationship-map schema explicitly makes only confirmed relations normative and proposed relations audit_only; the 44 proposed Orientar and Ampliar relations are therefore not current routing rules."
+    },
+    {
+      "check_id": "P3-XA-NI-005",
+      "result": "pass",
+      "statement": "All entries with a declared customer_level_pii input carry pii_sensitive. The findings concern the converse case where an immutable canonical body asks for individual data while the sidecar declares aggregate-only inputs."
+    },
+    {
+      "check_id": "P3-XA-NI-006",
+      "result": "pass",
+      "statement": "No direct logical contradiction was found between use_when and do_not_use_when within the 75 entries. Boundary conflicts reported above arise between machine-readable owner/output metadata and the immutable canonical instructions, not from an exact use/do-not-use inversion."
+    },
+    {
+      "check_id": "P3-XA-NI-007",
+      "result": "pass",
+      "statement": "The pervasive translation and terminology flags are supported by the reviewed canonical bodies; the audit found no basis to remove those flags merely because they are frequent. A deterministic status and selection policy is still needed."
+    },
+    {
+      "check_id": "P3-XA-NI-008",
+      "result": "pass",
+      "statement": "Minimum maturity and explicit prerequisites operate as independent gates, consistent with P2. No tactic was treated as eligible solely because its project maturity rank matched."
+    }
+  ],
+  "source_integrity": {
+    "repository": "/Users/enorm/Documents/Claude/loop-marketing",
+    "expected_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "observed_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "git_status_porcelain": "",
+    "clean": true,
+    "canonical_files_modified_by_audit": 0
+  }
+}

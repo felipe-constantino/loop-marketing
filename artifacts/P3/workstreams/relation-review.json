@@ -1,0 +1,2962 @@
+{
+  "workstream": "p3_relation_review",
+  "status": "completed",
+  "baseline": {
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+  },
+  "input_summary": {
+    "pillar_workstreams": 4,
+    "catalog_entries": 100,
+    "intrapillar_relations_reviewed": 78,
+    "cross_pillar_candidates_reviewed": 28,
+    "total_inputs_replayed": 106
+  },
+  "relations": [
+    {
+      "relation_id": "rel-alternative-to-35b7bc484667",
+      "relation_type": "alternative_to",
+      "from_tactic_id": "lm.ampliar.amplificador-de-eventos-e-conferencias",
+      "to_tactic_id": "lm.ampliar.amplificador-de-marketing-de-eventos",
+      "directional": false,
+      "rationale": "As táticas são alternativas condicionadas ao tipo de evento: participação em evento de terceiro versus promoção de evento próprio. Não há colisão semântica inevitável; prefer_more_specific seleciona pelo ownership do evento sem fundir os prompts.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-alternative-to-75e3b49eec3a",
+      "relation_type": "alternative_to",
+      "from_tactic_id": "lm.refinar.construtor-de-estrutura-de-experimentacao-rapida",
+      "to_tactic_id": "lm.refinar.mecanismo-de-experimentacao-rapida",
+      "directional": false,
+      "rationale": "Ambos cobrem experimentação rápida; o construtor detalha backlog e sprint, enquanto o mecanismo é um framework mínimo. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "never_auto_co_select",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-alternative-to-cdc90a68c2a0",
+      "relation_type": "alternative_to",
+      "from_tactic_id": "lm.ampliar.amplificador-de-eventos-e-conferencias",
+      "to_tactic_id": "lm.ampliar.evento-ao-vivo-e-amplificador-de-webinar",
+      "directional": false,
+      "rationale": "Participação em conferência de terceiro e webinar/evento próprio são alternativas para um único objetivo de evento, escolhidas pelo ownership e formato. A relação não impede planos distintos em route nodes separados.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-collides-with-3be2415bdd16",
+      "relation_type": "collides_with",
+      "from_tactic_id": "lm.refinar.analise-competitiva-do-velocity",
+      "to_tactic_id": "lm.refinar.otimizador-de-testes-sequenciais",
+      "directional": false,
+      "rationale": "Os corpos canônicos colidem semanticamente porque o arquivo nominal de testes sequenciais contém inteligência competitiva, já coberta pelo analisador competitivo. A relação é normativa apenas como bloqueio de coseleção; a tática divergente continua base_method_only e forbidden.",
+      "routing_effect": "never_auto_co_select",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-01771028101a",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.sintese-de-aprendizado-multi-loop",
+      "to_tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+      "directional": false,
+      "rationale": "A síntese produz meta-aprendizados; o sistema define captura, governança e reaplicação. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-036346b21ef9",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.estrategia-viral-em-todas-as-plataformas",
+      "to_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "directional": false,
+      "rationale": "Conceito e mensagem precedem a amplificação viral. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-0998066c8f32",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.amplificacao-da-lideranca-do-pensamento",
+      "to_tactic_id": "lm.verbalizar.posicionador-de-lideranca-de-pensamento",
+      "directional": false,
+      "rationale": "Verbalizar define a tese, a voz, os claims e a prova; Ampliar define a mecânica de distribuição e amplificação. Confirma-se uma única relação complements simétrica. Não há depends_on entre táticas específicas porque um contrato de tese aceito pode existir como prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-0ce2290bad3d",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.diversificacao-de-midia-paga",
+      "to_tactic_id": "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Diversificação paga requer requisitos mínimos de tracking antes de piloto; isso ordena briefs, não transfere a Refinar a decisão de canal e não funde prompts.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-0eb339b963c9",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.estrutura-de-mensagens-contextuais",
+      "to_tactic_id": "lm.orientar.otimizador-de-personalizacao-de-email",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. A personalização avançada de e-mail reutiliza variáveis, precedência e fallback contextuais.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-1290e10e6263",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.mecanismo-de-hiperpersonalizacao",
+      "to_tactic_id": "lm.orientar.personalizacao-da-jornada-do-cliente",
+      "directional": false,
+      "rationale": "O mecanismo fornece profundidade de contexto individual, e a jornada organiza sua aplicação ao longo dos estados e transições. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-1a17b8596e12",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.orquestrador-de-experiencia-omnicanal",
+      "to_tactic_id": "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+      "directional": false,
+      "rationale": "Coordenação operacional e requisitos de mensuração podem coexistir, mantendo modelo/performance com Refinar. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-231caf9adb19",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "to_tactic_id": "lm.verbalizar.otimizador-de-proposta-de-valor",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. A hierarquia precisa de uma proposta de valor aceita; a tática de otimização é uma forma de fornecê-la quando estiver ausente ou fraca.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-27ccdae391f9",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "to_tactic_id": "lm.verbalizar.planejador-de-ativacao-de-marcas",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. A ativação só pode comunicar uma marca cuja hierarquia e guardrails já estejam definidos.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-2ff954509f84",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.amplificador-de-marketing-local-e-regional",
+      "to_tactic_id": "lm.ampliar.distribuicao-voltada-para-a-comunidade",
+      "directional": false,
+      "rationale": "Comunidade pode ser um canal específico dentro de presença regional; co-seleção exige outputs distintos e capacidade. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-31cb737587d7",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.gerador-de-relatorios-de-otimizacao-continua",
+      "to_tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+      "directional": false,
+      "rationale": "Relatórios recorrentes fornecem registros que o sistema de aprendizagem valida, versiona e reaplica. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-325cab241404",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.otimizador-de-caminho-de-conversao",
+      "to_tactic_id": "lm.refinar.diagnostico-da-entrega-da-viagem-do-cliente",
+      "directional": false,
+      "rationale": "Diagnóstico de queda depende de etapas, elegibilidade e caminho definidos por Orientar. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-33a20ba6d79b",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.amplificador-de-conteudo-de-video",
+      "to_tactic_id": "lm.ampliar.evento-ao-vivo-e-amplificador-de-webinar",
+      "directional": false,
+      "rationale": "Webinar validado pode gerar formatos de vídeo distribuíveis; co-seleção exige outputs separados e direitos confirmados. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-37ea43790176",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "to_tactic_id": "lm.orientar.personalizador-de-viagens-baseado-em-persona",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Jornadas por persona especializam um modelo base de estágios e transições.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-385dafaf7f0d",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.modelador-de-combinacao-de-marketing",
+      "to_tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+      "directional": false,
+      "rationale": "Atribuição por jornada e MMM agregado oferecem lentes complementares que precisam de reconciliação, não equivalência. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-40126972e1fb",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.orquestrador-de-experiencia-omnicanal",
+      "to_tactic_id": "lm.refinar.modelador-de-combinacao-de-marketing",
+      "directional": false,
+      "rationale": "Modelagem de mix requer mapa real de canais, touchpoints e coordenação operacional. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-43afa924b054",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "to_tactic_id": "lm.verbalizar.gerador-de-tema-de-conteudo",
+      "directional": false,
+      "rationale": "Temas editoriais podem fornecer matéria-prima a conceitos de campanha, desde que os outputs permaneçam distintos. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-470ce8f6fc32",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.estrategista-de-enriquecimento-de-dados-do-cliente",
+      "to_tactic_id": "lm.orientar.identificador-de-sinal-de-intencao",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. A taxonomia e a pontuação de sinais dependem de cobertura, qualidade e linhagem dos dados usados.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-48046eccd7af",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.estrategia-de-conteudo-entre-plataformas",
+      "to_tactic_id": "lm.ampliar.mecanismo-de-amplificacao-de-conteudo",
+      "directional": false,
+      "rationale": "Um define adaptação de formato por plataforma e o outro o sistema de repurposing/distribuição; podem co-selecionar apenas para outputs distintos, sem merge. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-494b1574f699",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "to_tactic_id": "lm.orientar.estrategia-de-comunicacao-segmentada",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. A diferenciação de comunicação pressupõe segmentos com critérios observáveis e prioridades definidas.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-52b6090859d0",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "to_tactic_id": "lm.refinar.otimizador-de-valor-do-ciclo-de-vida-do-cliente",
+      "directional": false,
+      "rationale": "LTV por segmento consome uma segmentação governada pelo owner Orientar. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-60852fc665e1",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.estrategista-de-diversificacao-do-canal",
+      "to_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "directional": false,
+      "rationale": "Ampliar fornece candidatos, fit, capacidade e guardrails de canal; Refinar fornece contrato experimental e leitura de resultado. As hipóteses opostas consolidam-se em complements, sem require_order: planejamento pode anteceder o teste e execução do piloto exige o contrato aceito.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-61176e552ce0",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "to_tactic_id": "lm.orientar.sequencias-de-personalizacao-automatizada",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Gatilhos, entradas, saídas e conflitos de sequência precisam respeitar os estados de lifecycle.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-6472d8169dda",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.analisador-de-desempenho-de-coorte",
+      "to_tactic_id": "lm.refinar.interprete-de-analises-da-jornada-do-cliente",
+      "directional": false,
+      "rationale": "Coortes acrescentam dimensão longitudinal à análise de progressão e atrito da jornada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-673cf166385f",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "to_tactic_id": "lm.orientar.personalizacao-da-jornada-do-cliente",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. A jornada individual precisa de estados, eventos e regras de progressão já definidos.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-68204f476e8f",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.sintese-de-aprendizado-multi-loop",
+      "to_tactic_id": "lm.verbalizar.auditoria-e-estrategia-de-conteudo",
+      "directional": false,
+      "rationale": "Aprendizados recorrentes de conteúdo podem informar auditoria e evolução de mensagem. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-6ab0573db655",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.estrategista-de-enriquecimento-de-dados-do-cliente",
+      "to_tactic_id": "lm.orientar.mecanismo-de-hiperpersonalizacao",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Hiperpersonalização requer perfil unificado e lacunas de dados resolvidas ou explicitamente limitadas.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-6de64bfd8935",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "to_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "directional": false,
+      "rationale": "Achados de mensagem e CTA são evidência para Verbalizar, que continua owner da redação. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-7572d5ede03b",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.calculadora-de-otimizacao",
+      "to_tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Cálculo de retorno influenciado precisa primeiro de modelo e limites de atribuição documentados. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-7b6335a503de",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.identificador-de-parceiro-estrategico",
+      "to_tactic_id": "lm.ampliar.mecanismo-de-co-marketing-da-parceria",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Co-marketing pressupõe parceiro selecionado e validado; ambos os prompts permanecem canônicos e separados.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-7d42066e5aa3",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.otimizador-de-atribuicao-cruzada-de-canal",
+      "to_tactic_id": "lm.refinar.otimizador-de-atribuicao-de-marketing",
+      "directional": false,
+      "rationale": "Ampliar especifica o mapa e os requisitos operacionais de touchpoints; Refinar seleciona, valida e interpreta o modelo. As duas direções propostas consolidam-se em complements: os artefatos podem preexistir e nenhuma tática específica é pré-requisito universal da outra.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-7decd717360c",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.designer-de-estrutura-de-teste-sistematica",
+      "to_tactic_id": "lm.refinar.estrategista-de-teste-multi-variate",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. O desenho multivariado avançado pressupõe contrato sistemático de hipótese, controle, amostra e decisão. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-88e1ae2cd2ad",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "to_tactic_id": "lm.orientar.personalizador-da-experiencia-de-suporte",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Rotas de suporte personalizadas precisam de critérios consistentes de necessidade, valor e comportamento.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-8c8ba17cb519",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.analisador-de-desempenho-de-coorte",
+      "to_tactic_id": "lm.refinar.otimizador-de-valor-do-ciclo-de-vida-do-cliente",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Modelagem de LTV por segmento depende de coortes e horizontes longitudinais comparáveis. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-8e74470324fe",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "to_tactic_id": "lm.orientar.personalizacao-de-email-de-ciclo-de-vida",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Elegibilidade de e-mail por estágio depende do modelo e dos eventos de ciclo de vida.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-8f76f916ec30",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "to_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Conceitos de campanha devem respeitar mensagem central, suporte, prova e CTA definidos na hierarquia.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-904ee1b7d3ff",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.estrategia-de-conteudo-entre-plataformas",
+      "to_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "directional": false,
+      "rationale": "Adaptação de formato depende de invariantes de mensagem e CTA. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-9d59f1801d68",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "to_tactic_id": "lm.orientar.personalizador-de-prova-social",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. A correspondência de prova precisa de contexto de público estável e observável.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-9d90ef8fe74f",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "to_tactic_id": "lm.refinar.designer-de-estrutura-de-teste-sistematica",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Coordenação entre canais pressupõe contratos de teste válidos antes de resolver sobreposição e interação. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-9dd46d41a000",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "to_tactic_id": "lm.orientar.personalizador-de-landings-page",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Regras de página por público precisam de segmentos observáveis e ativáveis.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-a14aef5808e6",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.amplificacao-da-lideranca-do-pensamento",
+      "to_tactic_id": "lm.ampliar.premios-da-industria-e-amplificador-de-reconhecimento",
+      "directional": false,
+      "rationale": "Reconhecimento verificável pode ser um canal de amplificação de uma tese existente; não cria nem valida a tese. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-a2b304580d03",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.estrategista-de-enriquecimento-de-dados-do-cliente",
+      "to_tactic_id": "lm.orientar.modelo-de-pontuacao-preditiva",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. O modelo preditivo exige variáveis com cobertura, qualidade, linhagem e finalidade verificadas.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-a2dfeaf60e57",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.identificador-de-sinal-de-intencao",
+      "to_tactic_id": "lm.orientar.mecanismo-de-personalizacao-redirecionamento",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Públicos e janelas de retargeting precisam de sinais de intenção definidos e calibrados.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-a2f3393a5553",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.diversificacao-de-midia-paga",
+      "to_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "directional": false,
+      "rationale": "Pilotos pagos e critérios de decisão exigem desenho experimental de Refinar. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-a38189cee766",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real",
+      "to_tactic_id": "lm.refinar.resultados-previsiveis-da-campanha-antes-do-lancamento",
+      "directional": false,
+      "rationale": "Premissas do forecast pré-lançamento viram sinais antecipados a validar na primeira janela. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-a617a859d4b0",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.estrutura-de-mensagens-contextuais",
+      "to_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Estágio e transição são variáveis centrais do contexto e precisam existir antes das regras contextuais.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-ab6c168c93ed",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.estrategista-de-teste-multi-variate",
+      "to_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "directional": false,
+      "rationale": "Variantes de mensagem ou conceito precisam ser fornecidas pelo owner antes do teste. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-ad91c9db27af",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.mecanismo-de-otimizacao-em-tempo-real",
+      "to_tactic_id": "lm.refinar.monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Ajustes ao vivo exigem primeiro verificação de estabilidade, anomalias e suficiência das células. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-ae6eea10ff26",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.mecanismo-de-amplificacao-de-conteudo",
+      "to_tactic_id": "lm.ampliar.rede-de-distribuicao-de-conteudo",
+      "directional": false,
+      "rationale": "Repurposing e matriz owned-earned-paid são outputs distintos e complementares; nenhuma relação implica exclusão ou substituição. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-b6d2c82ca24a",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.orquestrador-de-experiencia-omnicanal",
+      "to_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "directional": false,
+      "rationale": "Coordenação de touchpoints depende de estágio, elegibilidade e supressão. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-b71248553051",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.coordenador-de-testes-entre-canais",
+      "to_tactic_id": "lm.refinar.estrategista-de-teste-multi-variate",
+      "directional": false,
+      "rationale": "Interações cross-channel podem requerer desenho multivariado explícito quando a serialização não é viável. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-b8577813f6f3",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.designer-de-estrutura-de-teste-sistematica",
+      "to_tactic_id": "lm.refinar.sistema-de-integracao-de-aprendizagem",
+      "directional": false,
+      "rationale": "O programa de testes precisa de captura e reaplicação de aprendizados para evitar repetição. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-bff193f73f18",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.verbalizar.construtor-de-hierarquia-de-mensagens",
+      "to_tactic_id": "lm.verbalizar.gerador-de-tema-de-conteudo",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Temas editoriais precisam derivar da hierarquia de mensagens para não criar um posicionamento paralelo.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-c27f8c3114b5",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "to_tactic_id": "lm.orientar.otimizador-de-conteudo-dinamico",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Regras de conteúdo dinâmico precisam de segmentos ou estados observáveis para seleção e fallback.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-c9a8b32d4ce9",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.ampliar.otimizador-de-visibilidade-do-ai-search",
+      "to_tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "directional": false,
+      "rationale": "Medição de visibilidade e impacto precisa de definição e validação de Refinar. Confirma-se complements entre as táticas específicas; qualquer artefato requerido pode vir de prior_decision, portanto nenhuma ordem de execução é normativa.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-d6d4dc425ecd",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "to_tactic_id": "lm.refinar.gerador-de-relatorios-de-otimizacao-continua",
+      "directional": false,
+      "rationale": "O diagnóstico produz evidência e hipóteses que o relatório pode sintetizar para liderança. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-d8068a08f51a",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "to_tactic_id": "lm.orientar.personalizador-de-tratamento-de-objecao",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Padrões de objeção por público exigem segmentos definidos antes da personalização da resposta.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-da1e2d28552b",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.estrategista-de-enriquecimento-de-dados-do-cliente",
+      "to_tactic_id": "lm.orientar.personalizacao-baseada-em-conta",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Personalização por conta requer inteligência de conta e stakeholders com qualidade e atualização controladas.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-dc9b52ba3c12",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "to_tactic_id": "lm.orientar.personalizador-de-experiencia-da-onboarding",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Caminhos e marcos de onboarding precisam se alinhar aos eventos de entrada, primeiro valor e progressão.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-dcd4dab2e35f",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "to_tactic_id": "lm.orientar.personalizador-de-renovacao-e-expansao",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Risco, renovação e expansão dependem de estágios, janelas e marcos de sucesso do ciclo de vida.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-ec040f14de83",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.orientar.mapeador-de-ciclos-de-vida-do-cliente",
+      "to_tactic_id": "lm.orientar.otimizador-de-caminho-de-conversao",
+      "directional": false,
+      "rationale": "Os outputs das duas táticas são complementares quando ambas são necessárias, mas o pré-requisito descrito é um artefato aceito que pode vir de prior_decision. Por isso a revisão remove require_order e não torna a execução da tática alvo obrigatória. Rotas de conversão precisam respeitar estados e transições já definidos no ciclo de vida.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-f2c2c636f167",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.verbalizar.desenvolvedor-de-estrategia-sazonal",
+      "to_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "directional": false,
+      "rationale": "A estratégia sazonal fornece contexto e eixo temporal; o gerador traduz um momento priorizado em conceito criativo específico. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-complements-ffbfe5b2e0ba",
+      "relation_type": "complements",
+      "from_tactic_id": "lm.refinar.diagnostico-de-desempenho-de-campanha",
+      "to_tactic_id": "lm.refinar.monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real",
+      "directional": false,
+      "rationale": "Sinais iniciais orientam ações reversíveis; o diagnóstico compara desempenho em janela mais consolidada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "allow_together",
+      "confidence": "high",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-17b3e7e4a5e1",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.amplificador-de-marketing-de-eventos",
+      "to_tactic_id": "lm.ampliar.evento-ao-vivo-e-amplificador-de-webinar",
+      "directional": false,
+      "rationale": "Ambos cobrem evento próprio; preferir webinar quando o formato ao vivo é específico e usar marketing de eventos para sistema mais amplo. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-17d4c1c3c44c",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.orientar.otimizador-de-personalizacao-de-email",
+      "to_tactic_id": "lm.orientar.personalizacao-de-email-de-ciclo-de-vida",
+      "directional": false,
+      "rationale": "As duas personalizam e-mail, mas a segunda é especificamente condicionada ao estágio e à transição de ciclo de vida. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-197ad2ddd76a",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.orientar.identificador-de-sinal-de-intencao",
+      "to_tactic_id": "lm.orientar.modelo-de-pontuacao-preditiva",
+      "directional": false,
+      "rationale": "Ambas pontuam prontidão, mas a primeira pode ser determinística e o modelo preditivo exige histórico rotulado e validação avançada. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-24a3bc723480",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.verbalizar.buyer-persona-validador",
+      "to_tactic_id": "lm.verbalizar.perfil-do-cliente-ideal",
+      "directional": false,
+      "rationale": "Os dois prompts investigam modelos de público, mas não são substitutos obrigatórios: um valida uma persona existente e o outro estrutura hipóteses de ICP. Confirma-se overlaps para orientar especificidade sem bloquear coexecução quando os outputs forem distintos.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-3086958c2398",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.construtor-de-rede-influenciadora",
+      "to_tactic_id": "lm.ampliar.estrategista-de-parceria-creator",
+      "directional": false,
+      "rationale": "Rede contínua e parceria específica compartilham avaliação de creator; preferir o escopo mais específico, sem merge. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-358c71b6b2df",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.refinar.acelerador-de-velocidade-de-marketing",
+      "to_tactic_id": "lm.refinar.otimizador-de-agilidade-de-marketing",
+      "directional": false,
+      "rationale": "Velocidade mede tempos de ciclo; agilidade trata capacidade adaptativa, mas seu corpo está incompleto. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-3a66b6d326ca",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.refinar.modelador-de-desempenho-previsivel",
+      "to_tactic_id": "lm.refinar.resultados-previsiveis-da-campanha-antes-do-lancamento",
+      "directional": false,
+      "rationale": "O forecast pré-lançamento é específico para campanha planejada; o modelador cria capacidade preditiva reutilizável. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-412438277ec7",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.orientar.estrutura-de-mensagens-contextuais",
+      "to_tactic_id": "lm.orientar.sincronizacao-de-mensagens-entre-canais",
+      "directional": false,
+      "rationale": "Ambas preservam contexto; a sincronização especializa identidade, preferências e handoffs entre canais. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-5d629531ace8",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.verbalizar.auditoria-e-estrategia-de-conteudo",
+      "to_tactic_id": "lm.verbalizar.gerador-de-conceito-de-campanha",
+      "directional": false,
+      "rationale": "A auditoria pode recomendar novas campanhas, mas o gerador é o artefato específico para conceitos criativos novos. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-672026146558",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.orientar.mecanismo-de-hiperpersonalizacao",
+      "to_tactic_id": "lm.orientar.otimizador-de-conteudo-dinamico",
+      "directional": false,
+      "rationale": "Hiperpersonalização cobre a experiência individual ampla, enquanto conteúdo dinâmico especializa seleção e composição de ativos. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-67d16e0cf9e0",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.amplificador-de-defesa-do-cliente",
+      "to_tactic_id": "lm.ampliar.mecanismo-de-referencias-do-cliente",
+      "directional": false,
+      "rationale": "Advocacy é programa amplo; referral é geração de indicação. Preferir o output mais específico e preservar ambos. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-6ec08abe881d",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.verbalizar.decodificador-de-idioma-do-cliente",
+      "to_tactic_id": "lm.verbalizar.voz-do-sintetizador-de-cliente",
+      "directional": false,
+      "rationale": "O decodificador aprofunda léxico e tom; o sintetizador cobre também necessidades, emoções, decisão, objeções e sucesso. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-7b5a54c19d5c",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.refinar.diagnostico-da-entrega-da-viagem-do-cliente",
+      "to_tactic_id": "lm.refinar.interprete-de-analises-da-jornada-do-cliente",
+      "directional": false,
+      "rationale": "O primeiro foca a maior queda e validação; o segundo cobre análise abrangente de atrito e trajetórias. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-81464da50d85",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.verbalizar.auditoria-e-estrategia-de-conteudo",
+      "to_tactic_id": "lm.verbalizar.gerador-de-tema-de-conteudo",
+      "directional": false,
+      "rationale": "A auditoria localiza lacunas no acervo; o gerador cria o sistema temático que pode preencher essas lacunas. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-849a6363a732",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.verbalizar.analisador-de-diferenciacao-de-marcas",
+      "to_tactic_id": "lm.verbalizar.localizador-de-lacunas-do-concorrente",
+      "directional": false,
+      "rationale": "Ambas produzem oportunidades de posicionamento; selecionar pela evidência dominante: diferenciais próprios versus lacunas externas. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-9350c3c363d1",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.orientar.otimizador-de-caminho-de-conversao",
+      "to_tactic_id": "lm.orientar.personalizador-de-landings-page",
+      "directional": false,
+      "rationale": "Landing pages são um ponto específico do caminho de conversão; uma tática é sistêmica e a outra especializada na página. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-a78cffb95f05",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.orientar.personalizacao-da-jornada-do-cliente",
+      "to_tactic_id": "lm.orientar.personalizador-de-viagens-baseado-em-persona",
+      "directional": false,
+      "rationale": "Ambas adaptam jornadas, mas uma opera no indivíduo e a outra em personas validadas e contextos multipersona. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-ad675f5b43d9",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.diversificacao-de-midia-paga",
+      "to_tactic_id": "lm.ampliar.estrategista-de-diversificacao-do-canal",
+      "directional": false,
+      "rationale": "Mídia paga é subconjunto do portfólio de canais; preferir a tática paga quando esse for o escopo exclusivo. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-b10e9e0f6162",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.verbalizar.analise-de-voz-competitiva",
+      "to_tactic_id": "lm.verbalizar.localizador-de-lacunas-do-concorrente",
+      "directional": false,
+      "rationale": "As duas analisam concorrentes; uma prioriza voz e tom, a outra temas, provas e espaços de posicionamento. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-b14b782cfed5",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.orientar.construtor-de-segmentacao-comportamental",
+      "to_tactic_id": "lm.orientar.identificador-de-sinal-de-intencao",
+      "directional": false,
+      "rationale": "Ambas usam comportamento observável, mas uma cria grupos acionáveis e a outra estima intensidade e prontidão. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-baa5041baffc",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.verbalizar.analisador-de-diferenciacao-de-marcas",
+      "to_tactic_id": "lm.verbalizar.analise-de-voz-competitiva",
+      "directional": false,
+      "rationale": "Ambas buscam diferenciação; a primeira parte de provas e resultados próprios, enquanto a segunda parte do corpus de voz dos concorrentes. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-bbc16eb8d925",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.refinar.mecanismo-de-previsao-de-desempenho",
+      "to_tactic_id": "lm.refinar.modelador-de-desempenho-previsivel",
+      "directional": false,
+      "rationale": "Ambos projetam desempenho, mas um organiza forecast e cenários e o outro exige modelagem preditiva avançada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "inform_only",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-cd9bd153e914",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.verbalizar.criador-de-perfil-de-personalidade-da-marca",
+      "to_tactic_id": "lm.verbalizar.identificador-do-arquetipo-da-marca",
+      "directional": false,
+      "rationale": "Ambas estruturam personalidade; o perfil deriva traços diretamente, enquanto o identificador usa a taxonomia dos doze arquétipos. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    },
+    {
+      "relation_id": "rel-overlaps-fd693fc454d4",
+      "relation_type": "overlaps",
+      "from_tactic_id": "lm.ampliar.amplificador-de-defesa-do-cliente",
+      "to_tactic_id": "lm.ampliar.multiplicador-de-conteudo-gerado-pelo-usuario",
+      "directional": false,
+      "rationale": "Advocacy pode incluir conteúdo, mas UGC possui direitos, submissão e curadoria próprios; não fundir. A confirmação informa seleção entre no máximo duas táticas e não substitui gates de maturidade, owner, evidência ou prior_decision.",
+      "routing_effect": "prefer_more_specific",
+      "confidence": "medium",
+      "review_status": "confirmed"
+    }
+  ],
+  "decisions": [
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-ai-search-refinar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-c9a8b32d4ce9"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A complementaridade não força coseleção e respeita o limite de duas táticas. Medição de visibilidade e impacto precisa de definição e validação de Refinar.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-ai-search-refinar",
+        "source:biblioteca/Ampliar/otimizador-de-visibilidade-do-ai-search.md",
+        "source:biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-attribution-refinar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-7d42066e5aa3"
+      ],
+      "rationale": "A direção depends_on é rejeitada, mas a relação específica é confirmada como complements e consolidada com o input inverso de Refinar. Requisitos operacionais e modelo validado são artefatos distintos.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-attribution-refinar",
+        "source:biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+        "source:biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-channel-diversity-refinar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-60852fc665e1"
+      ],
+      "rationale": "Confirmada como complements entre planejamento de portfólio de canais e coordenação experimental. A relação informa uma combinação possível de duas táticas sem obrigar coseleção ou ordem.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-channel-diversity-refinar",
+        "source:biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+        "source:biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-cross-platform-verbalizar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-904ee1b7d3ff"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A direção depends_on não é mantida porque o artefato necessário pode preexistir como prior_decision; a relação não obriga executar a tática alvo. Adaptação de formato depende de invariantes de mensagem e CTA.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-cross-platform-verbalizar",
+        "source:biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+        "source:biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-customer-programs-orientar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata customer_eligibility_consent_suppression pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-customer-programs-orientar",
+        "source:biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+        "source:biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+        "source:biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-omnichannel-orientar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-b6d2c82ca24a"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A direção depends_on não é mantida porque o artefato necessário pode preexistir como prior_decision; a relação não obriga executar a tática alvo. Coordenação de touchpoints depende de estágio, elegibilidade e supressão.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-omnichannel-orientar",
+        "source:biblioteca/Ampliar/orquestrador-de-experiencia-omnicanal.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-paid-refinar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-a2f3393a5553"
+      ],
+      "rationale": "Confirmada como complements. O plano de candidatos de mídia paga pode ser produzido antes do contrato experimental; a execução do piloto usa evidência de Refinar, mas isso não torna a tática específica um pré-requisito universal.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-paid-refinar",
+        "source:biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+        "source:biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-thought-leadership-verbalizar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-0998066c8f32"
+      ],
+      "rationale": "A hipótese depends_on é convertida para a mesma complements confirmada pelo input de Verbalizar. O contrato de tese pode vir de prior_decision; a tática de posicionamento não é execução obrigatória.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-thought-leadership-verbalizar",
+        "source:biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+        "source:biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Ampliar:xrel-ampliar-viral-verbalizar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-036346b21ef9"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A direção depends_on não é mantida porque o artefato necessário pode preexistir como prior_decision; a relação não obriga executar a tática alvo. Conceito e mensagem precedem a amplificação viral.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#cross_pillar_relation_candidates/xrel-ampliar-viral-verbalizar",
+        "source:biblioteca/Ampliar/estrategia-viral-em-todas-as-plataformas.md",
+        "source:biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Orientar:xrel-orientar-comunicacao-ampliar-canais",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Orientar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata selecao-de-canais-e-cadencia pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#cross_pillar_relation_candidates/xrel-orientar-comunicacao-ampliar-canais",
+        "source:biblioteca/Orientar/estrategia-de-comunicacao-segmentada.md",
+        "artifacts/P2/role-matrix.json#roles/orientar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Orientar:xrel-orientar-contexto-verbalizar-mensagem",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Orientar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata fundacao-de-mensagem-e-limites-de-adaptacao pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#cross_pillar_relation_candidates/xrel-orientar-contexto-verbalizar-mensagem",
+        "source:biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+        "artifacts/P2/role-matrix.json#roles/orientar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Orientar:xrel-orientar-dinamico-refinar-teste",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Orientar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata contrato-experimental-e-validacao pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#cross_pillar_relation_candidates/xrel-orientar-dinamico-refinar-teste",
+        "source:biblioteca/Orientar/otimizador-de-conteudo-dinamico.md",
+        "artifacts/P2/role-matrix.json#roles/orientar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Orientar:xrel-orientar-email-verbalizar-copy",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Orientar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata copy-e-variacoes-de-mensagem pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#cross_pillar_relation_candidates/xrel-orientar-email-verbalizar-copy",
+        "source:biblioteca/Orientar/otimizador-de-personalizacao-de-email.md",
+        "artifacts/P2/role-matrix.json#roles/orientar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Orientar:xrel-orientar-feedback-refinar-aprendizado",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Orientar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata validacao-de-melhorias-e-loop-de-aprendizado pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#cross_pillar_relation_candidates/xrel-orientar-feedback-refinar-aprendizado",
+        "source:biblioteca/Orientar/personalizacao-orientada-por-comentarios.md",
+        "artifacts/P2/role-matrix.json#roles/orientar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Orientar:xrel-orientar-retargeting-ampliar-ativacao",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Orientar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata ativacao-de-midia-e-frequencia pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#cross_pillar_relation_candidates/xrel-orientar-retargeting-ampliar-ativacao",
+        "source:biblioteca/Orientar/mecanismo-de-personalizacao-redirecionamento.md",
+        "artifacts/P2/role-matrix.json#roles/orientar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Orientar:xrel-orientar-sequencias-ampliar-cadencia",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Orientar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata cadencia-frequencia-e-coordenacao-operacional pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#cross_pillar_relation_candidates/xrel-orientar-sequencias-ampliar-cadencia",
+        "source:biblioteca/Orientar/sequencias-de-personalizacao-automatizada.md",
+        "artifacts/P2/role-matrix.json#roles/orientar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Refinar:xrel-refinar-attribution-ampliar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-7d42066e5aa3"
+      ],
+      "rationale": "A direção depends_on é convertida para a mesma complements do input inverso de Ampliar. O mapa de touchpoints pode ser um prior_decision e não exige executar uma tática específica na rota.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#cross_pillar_relation_candidates/xrel-refinar-attribution-ampliar",
+        "source:biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+        "source:biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Refinar:xrel-refinar-campaign-verbalizar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-6de64bfd8935"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A complementaridade não força coseleção e respeita o limite de duas táticas. Achados de mensagem e CTA são evidência para Verbalizar, que continua owner da redação.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#cross_pillar_relation_candidates/xrel-refinar-campaign-verbalizar",
+        "source:biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+        "source:biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Refinar:xrel-refinar-cross-channel-ampliar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-60852fc665e1"
+      ],
+      "rationale": "Consolidada na mesma complements do candidato inverso de Ampliar. Refinar consome artefatos de canal aceitos, que podem vir de prior_decision; portanto não se confirma depends_on entre táticas.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#cross_pillar_relation_candidates/xrel-refinar-cross-channel-ampliar",
+        "source:biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+        "source:biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Refinar:xrel-refinar-journey-orientar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-325cab241404"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A direção depends_on não é mantida porque o artefato necessário pode preexistir como prior_decision; a relação não obriga executar a tática alvo. Diagnóstico de queda depende de etapas, elegibilidade e caminho definidos por Orientar.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#cross_pillar_relation_candidates/xrel-refinar-journey-orientar",
+        "source:biblioteca/Refinar/diagnostico-da-entrega-da-viagem-do-cliente.md",
+        "source:biblioteca/Orientar/otimizador-de-caminho-de-conversao.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Refinar:xrel-refinar-learning-verbalizar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-68204f476e8f"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A complementaridade não força coseleção e respeita o limite de duas táticas. Aprendizados recorrentes de conteúdo podem informar auditoria e evolução de mensagem.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#cross_pillar_relation_candidates/xrel-refinar-learning-verbalizar",
+        "source:biblioteca/Refinar/sintese-de-aprendizado-multi-loop.md",
+        "source:biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Refinar:xrel-refinar-ltv-orientar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-52b6090859d0"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A direção depends_on não é mantida porque o artefato necessário pode preexistir como prior_decision; a relação não obriga executar a tática alvo. LTV por segmento consome uma segmentação governada pelo owner Orientar.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#cross_pillar_relation_candidates/xrel-refinar-ltv-orientar",
+        "source:biblioteca/Refinar/otimizador-de-valor-do-ciclo-de-vida-do-cliente.md",
+        "source:biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Refinar:xrel-refinar-mmm-ampliar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-40126972e1fb"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A direção depends_on não é mantida porque o artefato necessário pode preexistir como prior_decision; a relação não obriga executar a tática alvo. Modelagem de mix requer mapa real de canais, touchpoints e coordenação operacional.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#cross_pillar_relation_candidates/xrel-refinar-mmm-ampliar",
+        "source:biblioteca/Refinar/modelador-de-combinacao-de-marketing.md",
+        "source:biblioteca/Ampliar/orquestrador-de-experiencia-omnicanal.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Refinar:xrel-refinar-multivariate-verbalizar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-ab6c168c93ed"
+      ],
+      "rationale": "Confirmada como complements entre duas táticas específicas, com owners e outputs distintos. A direção depends_on não é mantida porque o artefato necessário pode preexistir como prior_decision; a relação não obriga executar a tática alvo. Variantes de mensagem ou conceito precisam ser fornecidas pelo owner antes do teste.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#cross_pillar_relation_candidates/xrel-refinar-multivariate-verbalizar",
+        "source:biblioteca/Refinar/estrategista-de-teste-multi-variate.md",
+        "source:biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "cross:Verbalizar:xrel-verbalizar-audience-models-to-orientar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Verbalizar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata segmentacao-lifecycle-elegibilidade-e-scoring pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#cross_pillar_relation_candidates/xrel-verbalizar-audience-models-to-orientar",
+        "source:biblioteca/Verbalizar/buyer-persona-validador.md",
+        "source:biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+        "source:biblioteca/Verbalizar/mapeador-da-jornada-do-cliente.md",
+        "source:biblioteca/Verbalizar/analisador-de-padroes-de-sucesso-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Verbalizar:xrel-verbalizar-distribution-plans-to-ampliar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Verbalizar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata selecao-de-canais-cadencia-e-distribuicao-operacional pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#cross_pillar_relation_candidates/xrel-verbalizar-distribution-plans-to-ampliar",
+        "source:biblioteca/Verbalizar/desenvolvedor-de-estrategia-sazonal.md",
+        "source:biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "source:biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+        "source:biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md",
+        "source:biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+        "source:biblioteca/Verbalizar/posicionamento-da-parceria.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Verbalizar:xrel-verbalizar-testing-to-refinar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Verbalizar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Rejeitado como relação entre táticas: a capability abstrata contrato-experimental-validacao-e-decisao-de-performance pode ser satisfeita por prior_decision ou por múltiplas táticas do owner. Não existe mapeamento único e seguro; expandi-la criaria relações artificiais e poderia ultrapassar a cardinalidade máxima de duas táticas. A fronteira de autoridade permanece válida no P2, mas não vira aresta do mapa P3.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#cross_pillar_relation_candidates/xrel-verbalizar-testing-to-refinar",
+        "source:biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "source:biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+        "source:biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "source:biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+        "source:biblioteca/Verbalizar/otimizador-de-proposta-de-valor.md",
+        "source:biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar",
+        "artifacts/P2/routing-contract.json#cardinality"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "fail"
+    },
+    {
+      "input_ref": "cross:Verbalizar:xrel-verbalizar-thought-leadership-to-ampliar",
+      "input_kind": "cross_pillar_candidate",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-0998066c8f32"
+      ],
+      "rationale": "Confirma a complementaridade entre tese/mensagem e amplificação. Esta decisão e a hipótese inversa de Ampliar apontam para uma única relação simétrica, resolvendo XA-008 sem impor execução do produtor.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#cross_pillar_relation_candidates/xrel-verbalizar-thought-leadership-to-ampliar",
+        "source:biblioteca/Verbalizar/posicionador-de-lideranca-de-pensamento.md",
+        "source:biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-advocacy-overlaps-referral",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-67d16e0cf9e0"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Advocacy é programa amplo; referral é geração de indicação. Preferir o output mais específico e preservar ambos.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-advocacy-overlaps-referral",
+        "source:biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+        "source:biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-advocacy-overlaps-ugc",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-fd693fc454d4"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Advocacy pode incluir conteúdo, mas UGC possui direitos, submissão e curadoria próprios; não fundir.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-advocacy-overlaps-ugc",
+        "source:biblioteca/Ampliar/amplificador-de-defesa-do-cliente.md",
+        "source:biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-awards-complements-thought-leadership",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-a14aef5808e6"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Reconhecimento verificável pode ser um canal de amplificação de uma tese existente; não cria nem valida a tese.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-awards-complements-thought-leadership",
+        "source:biblioteca/Ampliar/amplificacao-da-lideranca-do-pensamento.md",
+        "source:biblioteca/Ampliar/premios-da-industria-e-amplificador-de-reconhecimento.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-channel-diversification-overlaps-paid",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-ad675f5b43d9"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Mídia paga é subconjunto do portfólio de canais; preferir a tática paga quando esse for o escopo exclusivo.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-channel-diversification-overlaps-paid",
+        "source:biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+        "source:biblioteca/Ampliar/estrategista-de-diversificacao-do-canal.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-co-marketing-needs-partner",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-7b6335a503de"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Co-marketing pressupõe parceiro selecionado e validado; ambos os prompts permanecem canônicos e separados.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-co-marketing-needs-partner",
+        "source:biblioteca/Ampliar/mecanismo-de-co-marketing-da-parceria.md",
+        "source:biblioteca/Ampliar/identificador-de-parceiro-estrategico.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-community-complements-local",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-2ff954509f84"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Comunidade pode ser um canal específico dentro de presença regional; co-seleção exige outputs distintos e capacidade.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-community-complements-local",
+        "source:biblioteca/Ampliar/amplificador-de-marketing-local-e-regional.md",
+        "source:biblioteca/Ampliar/distribuicao-voltada-para-a-comunidade.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-conference-alternative-live-webinar",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-alternative-to-cdc90a68c2a0"
+      ],
+      "rationale": "Confirmada como alternative_to. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Participação em conferência de terceiro e webinar/evento próprio são alternativas para um único objetivo de evento, escolhidas pelo ownership e formato. A relação não impede planos distintos em route nodes separados.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-conference-alternative-live-webinar",
+        "source:biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+        "source:biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-conference-collides-event-marketing",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-alternative-to-35b7bc484667"
+      ],
+      "rationale": "Confirmada como alternative_to. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. As táticas são alternativas condicionadas ao tipo de evento: participação em evento de terceiro versus promoção de evento próprio. Não há colisão semântica inevitável; prefer_more_specific seleciona pelo ownership do evento sem fundir os prompts.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-conference-collides-event-marketing",
+        "source:biblioteca/Ampliar/amplificador-de-eventos-e-conferencias.md",
+        "source:biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-content-amplification-complements-network",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-ae6eea10ff26"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Repurposing e matriz owned-earned-paid são outputs distintos e complementares; nenhuma relação implica exclusão ou substituição.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-content-amplification-complements-network",
+        "source:biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+        "source:biblioteca/Ampliar/rede-de-distribuicao-de-conteudo.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-content-cross-platform-complements-amplification",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-48046eccd7af"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Um define adaptação de formato por plataforma e o outro o sistema de repurposing/distribuição; podem co-selecionar apenas para outputs distintos, sem merge.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-content-cross-platform-complements-amplification",
+        "source:biblioteca/Ampliar/estrategia-de-conteudo-entre-plataformas.md",
+        "source:biblioteca/Ampliar/mecanismo-de-amplificacao-de-conteudo.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-event-marketing-overlaps-live-webinar",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-17b3e7e4a5e1"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambos cobrem evento próprio; preferir webinar quando o formato ao vivo é específico e usar marketing de eventos para sistema mais amplo.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-event-marketing-overlaps-live-webinar",
+        "source:biblioteca/Ampliar/amplificador-de-marketing-de-eventos.md",
+        "source:biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-influencer-network-overlaps-creator",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-3086958c2398"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Rede contínua e parceria específica compartilham avaliação de creator; preferir o escopo mais específico, sem merge.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-influencer-network-overlaps-creator",
+        "source:biblioteca/Ampliar/construtor-de-rede-influenciadora.md",
+        "source:biblioteca/Ampliar/estrategista-de-parceria-creator.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-omnichannel-complements-attribution",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-1a17b8596e12"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Coordenação operacional e requisitos de mensuração podem coexistir, mantendo modelo/performance com Refinar.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-omnichannel-complements-attribution",
+        "source:biblioteca/Ampliar/orquestrador-de-experiencia-omnicanal.md",
+        "source:biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-paid-needs-attribution-requirements",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-0ce2290bad3d"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota.  Isso resolve a direção intrapilar de XA-009: planejamento pago e requisitos de mensuração podem ser produzidos em qualquer ordem conforme os artefatos já existentes.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-paid-needs-attribution-requirements",
+        "source:biblioteca/Ampliar/diversificacao-de-midia-paga.md",
+        "source:biblioteca/Ampliar/otimizador-de-atribuicao-cruzada-de-canal.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-referral-overlaps-ugc",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "reject",
+      "output_relation_ids": [],
+      "rationale": "Referral e UGC têm entregáveis independentes e podem coexistir: indicação não substitui conteúdo criado pelo cliente. A classificação alternative_to é semanticamente falsa e poderia suprimir uma segunda tática legítima; XA-012 fica resolvido por rejeição sem conversão.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-referral-overlaps-ugc",
+        "source:biblioteca/Ampliar/mecanismo-de-referencias-do-cliente.md",
+        "source:biblioteca/Ampliar/multiplicador-de-conteudo-gerado-pelo-usuario.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar",
+        "artifacts/P3/workstreams/catalog-final-audit.json#initial_findings_resolution/P3-XA-012"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Ampliar:rel-ampliar-video-complements-live-webinar",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Ampliar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-33a20ba6d79b"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Webinar validado pode gerar formatos de vídeo distribuíveis; co-seleção exige outputs separados e direitos confirmados.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/ampliar.json#relations/rel-ampliar-video-complements-live-webinar",
+        "source:biblioteca/Ampliar/amplificador-de-conteudo-de-video.md",
+        "source:biblioteca/Ampliar/evento-ao-vivo-e-amplificador-de-webinar.md",
+        "artifacts/P2/role-matrix.json#roles/ampliar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-abm-depende-enriquecimento",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-da1e2d28552b"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Personalização por conta requer inteligência de conta e stakeholders com qualidade e atualização controladas.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-abm-depende-enriquecimento",
+        "source:biblioteca/Orientar/personalizacao-baseada-em-conta.md",
+        "source:biblioteca/Orientar/estrategista-de-enriquecimento-de-dados-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-comunicacao-depende-segmentacao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-494b1574f699"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. A diferenciação de comunicação pressupõe segmentos com critérios observáveis e prioridades definidas.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-comunicacao-depende-segmentacao",
+        "source:biblioteca/Orientar/estrategia-de-comunicacao-segmentada.md",
+        "source:biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-contexto-depende-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-a617a859d4b0"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Estágio e transição são variáveis centrais do contexto e precisam existir antes das regras contextuais.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-contexto-depende-lifecycle",
+        "source:biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-contexto-overlaps-sincronizacao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-412438277ec7"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambas preservam contexto; a sincronização especializa identidade, preferências e handoffs entre canais.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-contexto-overlaps-sincronizacao",
+        "source:biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+        "source:biblioteca/Orientar/sincronizacao-de-mensagens-entre-canais.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-conversao-depende-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-ec040f14de83"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Rotas de conversão precisam respeitar estados e transições já definidos no ciclo de vida.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-conversao-depende-lifecycle",
+        "source:biblioteca/Orientar/otimizador-de-caminho-de-conversao.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-conversao-overlaps-landing",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-9350c3c363d1"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Landing pages são um ponto específico do caminho de conversão; uma tática é sistêmica e a outra especializada na página.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-conversao-overlaps-landing",
+        "source:biblioteca/Orientar/otimizador-de-caminho-de-conversao.md",
+        "source:biblioteca/Orientar/personalizador-de-landings-page.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-dinamico-depende-segmentacao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-c27f8c3114b5"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Regras de conteúdo dinâmico precisam de segmentos ou estados observáveis para seleção e fallback.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-dinamico-depende-segmentacao",
+        "source:biblioteca/Orientar/otimizador-de-conteudo-dinamico.md",
+        "source:biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-email-depende-contexto",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-0eb339b963c9"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. A personalização avançada de e-mail reutiliza variáveis, precedência e fallback contextuais.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-email-depende-contexto",
+        "source:biblioteca/Orientar/otimizador-de-personalizacao-de-email.md",
+        "source:biblioteca/Orientar/estrutura-de-mensagens-contextuais.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-email-lifecycle-depende-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-8e74470324fe"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Elegibilidade de e-mail por estágio depende do modelo e dos eventos de ciclo de vida.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-email-lifecycle-depende-lifecycle",
+        "source:biblioteca/Orientar/personalizacao-de-email-de-ciclo-de-vida.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-email-overlaps-email-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-17d4c1c3c44c"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. As duas personalizam e-mail, mas a segunda é especificamente condicionada ao estágio e à transição de ciclo de vida.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-email-overlaps-email-lifecycle",
+        "source:biblioteca/Orientar/otimizador-de-personalizacao-de-email.md",
+        "source:biblioteca/Orientar/personalizacao-de-email-de-ciclo-de-vida.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-hiper-complements-jornada",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-1290e10e6263"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. O mecanismo fornece profundidade de contexto individual, e a jornada organiza sua aplicação ao longo dos estados e transições.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-hiper-complements-jornada",
+        "source:biblioteca/Orientar/mecanismo-de-hiperpersonalizacao.md",
+        "source:biblioteca/Orientar/personalizacao-da-jornada-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-hiper-depende-enriquecimento",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-6ab0573db655"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Hiperpersonalização requer perfil unificado e lacunas de dados resolvidas ou explicitamente limitadas.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-hiper-depende-enriquecimento",
+        "source:biblioteca/Orientar/mecanismo-de-hiperpersonalizacao.md",
+        "source:biblioteca/Orientar/estrategista-de-enriquecimento-de-dados-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-hiper-overlaps-dinamico",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-672026146558"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Hiperpersonalização cobre a experiência individual ampla, enquanto conteúdo dinâmico especializa seleção e composição de ativos.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-hiper-overlaps-dinamico",
+        "source:biblioteca/Orientar/mecanismo-de-hiperpersonalizacao.md",
+        "source:biblioteca/Orientar/otimizador-de-conteudo-dinamico.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-intencao-depende-enriquecimento",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-470ce8f6fc32"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. A taxonomia e a pontuação de sinais dependem de cobertura, qualidade e linhagem dos dados usados.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-intencao-depende-enriquecimento",
+        "source:biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+        "source:biblioteca/Orientar/estrategista-de-enriquecimento-de-dados-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-intencao-overlaps-preditivo",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-197ad2ddd76a"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambas pontuam prontidão, mas a primeira pode ser determinística e o modelo preditivo exige histórico rotulado e validação avançada.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-intencao-overlaps-preditivo",
+        "source:biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+        "source:biblioteca/Orientar/modelo-de-pontuacao-preditiva.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-jornada-depende-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-673cf166385f"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. A jornada individual precisa de estados, eventos e regras de progressão já definidos.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-jornada-depende-lifecycle",
+        "source:biblioteca/Orientar/personalizacao-da-jornada-do-cliente.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-jornada-overlaps-persona",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-a78cffb95f05"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambas adaptam jornadas, mas uma opera no indivíduo e a outra em personas validadas e contextos multipersona.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-jornada-overlaps-persona",
+        "source:biblioteca/Orientar/personalizacao-da-jornada-do-cliente.md",
+        "source:biblioteca/Orientar/personalizador-de-viagens-baseado-em-persona.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-landing-depende-segmentacao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-9dd46d41a000"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Regras de página por público precisam de segmentos observáveis e ativáveis.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-landing-depende-segmentacao",
+        "source:biblioteca/Orientar/personalizador-de-landings-page.md",
+        "source:biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-objecao-depende-segmentacao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-d8068a08f51a"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Padrões de objeção por público exigem segmentos definidos antes da personalização da resposta.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-objecao-depende-segmentacao",
+        "source:biblioteca/Orientar/personalizador-de-tratamento-de-objecao.md",
+        "source:biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-onboarding-depende-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-dc9b52ba3c12"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Caminhos e marcos de onboarding precisam se alinhar aos eventos de entrada, primeiro valor e progressão.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-onboarding-depende-lifecycle",
+        "source:biblioteca/Orientar/personalizador-de-experiencia-da-onboarding.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-persona-depende-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-37ea43790176"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Jornadas por persona especializam um modelo base de estágios e transições.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-persona-depende-lifecycle",
+        "source:biblioteca/Orientar/personalizador-de-viagens-baseado-em-persona.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-preditivo-depende-enriquecimento",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-a2b304580d03"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. O modelo preditivo exige variáveis com cobertura, qualidade, linhagem e finalidade verificadas.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-preditivo-depende-enriquecimento",
+        "source:biblioteca/Orientar/modelo-de-pontuacao-preditiva.md",
+        "source:biblioteca/Orientar/estrategista-de-enriquecimento-de-dados-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-prova-depende-segmentacao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-9d59f1801d68"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. A correspondência de prova precisa de contexto de público estável e observável.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-prova-depende-segmentacao",
+        "source:biblioteca/Orientar/personalizador-de-prova-social.md",
+        "source:biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-renovacao-depende-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-dcd4dab2e35f"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Risco, renovação e expansão dependem de estágios, janelas e marcos de sucesso do ciclo de vida.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-renovacao-depende-lifecycle",
+        "source:biblioteca/Orientar/personalizador-de-renovacao-e-expansao.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-retargeting-depende-intencao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-a2dfeaf60e57"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Públicos e janelas de retargeting precisam de sinais de intenção definidos e calibrados.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-retargeting-depende-intencao",
+        "source:biblioteca/Orientar/mecanismo-de-personalizacao-redirecionamento.md",
+        "source:biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-segmentacao-overlaps-intencao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-b14b782cfed5"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambas usam comportamento observável, mas uma cria grupos acionáveis e a outra estima intensidade e prontidão.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-segmentacao-overlaps-intencao",
+        "source:biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "source:biblioteca/Orientar/identificador-de-sinal-de-intencao.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-sequencias-depende-lifecycle",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-61176e552ce0"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Gatilhos, entradas, saídas e conflitos de sequência precisam respeitar os estados de lifecycle.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-sequencias-depende-lifecycle",
+        "source:biblioteca/Orientar/sequencias-de-personalizacao-automatizada.md",
+        "source:biblioteca/Orientar/mapeador-de-ciclos-de-vida-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Orientar:rel-orientar-suporte-depende-segmentacao",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Orientar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-88e1ae2cd2ad"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Rotas de suporte personalizadas precisam de critérios consistentes de necessidade, valor e comportamento.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/orientar.json#relations/rel-orientar-suporte-depende-segmentacao",
+        "source:biblioteca/Orientar/personalizador-da-experiencia-de-suporte.md",
+        "source:biblioteca/Orientar/construtor-de-segmentacao-comportamental.md",
+        "artifacts/P2/role-matrix.json#roles/orientar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-attribution-complements-mmm",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-385dafaf7f0d"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Atribuição por jornada e MMM agregado oferecem lentes complementares que precisam de reconciliação, não equivalência. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-attribution-complements-mmm",
+        "source:biblioteca/Refinar/modelador-de-combinacao-de-marketing.md",
+        "source:biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-calculator-depends-attribution",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-7572d5ede03b"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Cálculo de retorno influenciado precisa primeiro de modelo e limites de atribuição documentados. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-calculator-depends-attribution",
+        "source:biblioteca/Refinar/calculadora-de-otimizacao.md",
+        "source:biblioteca/Refinar/otimizador-de-atribuicao-de-marketing.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-campaign-diagnostic-complements-report",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-d6d4dc425ecd"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. O diagnóstico produz evidência e hipóteses que o relatório pode sintetizar para liderança. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-campaign-diagnostic-complements-report",
+        "source:biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+        "source:biblioteca/Refinar/gerador-de-relatorios-de-otimizacao-continua.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-cohort-complements-journey-analysis",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-6472d8169dda"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Coortes acrescentam dimensão longitudinal à análise de progressão e atrito da jornada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-cohort-complements-journey-analysis",
+        "source:biblioteca/Refinar/analisador-de-desempenho-de-coorte.md",
+        "source:biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-competitive-prompts-collide",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-collides-with-3be2415bdd16"
+      ],
+      "rationale": "Confirmada como collides_with. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Os corpos canônicos colidem semanticamente porque o arquivo nominal de testes sequenciais contém inteligência competitiva, já coberta pelo analisador competitivo. A relação é normativa apenas como bloqueio de coseleção; a tática divergente continua base_method_only e forbidden.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-competitive-prompts-collide",
+        "source:biblioteca/Refinar/analise-competitiva-do-velocity.md",
+        "source:biblioteca/Refinar/otimizador-de-testes-sequenciais.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-cross-channel-complements-multivariate",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-b71248553051"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Interações cross-channel podem requerer desenho multivariado explícito quando a serialização não é viável. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-cross-channel-complements-multivariate",
+        "source:biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+        "source:biblioteca/Refinar/estrategista-de-teste-multi-variate.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-cross-channel-depends-systematic-design",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-9d90ef8fe74f"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Coordenação entre canais pressupõe contratos de teste válidos antes de resolver sobreposição e interação. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-cross-channel-depends-systematic-design",
+        "source:biblioteca/Refinar/coordenador-de-testes-entre-canais.md",
+        "source:biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-early-signals-complements-campaign-diagnostic",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-ffbfe5b2e0ba"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Sinais iniciais orientam ações reversíveis; o diagnóstico compara desempenho em janela mais consolidada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-early-signals-complements-campaign-diagnostic",
+        "source:biblioteca/Refinar/diagnostico-de-desempenho-de-campanha.md",
+        "source:biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-forecast-models-overlap",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-bbc16eb8d925"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambos projetam desempenho, mas um organiza forecast e cenários e o outro exige modelagem preditiva avançada. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-forecast-models-overlap",
+        "source:biblioteca/Refinar/mecanismo-de-previsao-de-desempenho.md",
+        "source:biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-journey-diagnostics-overlap",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-7b5a54c19d5c"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. O primeiro foca a maior queda e validação; o segundo cobre análise abrangente de atrito e trajetórias. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-journey-diagnostics-overlap",
+        "source:biblioteca/Refinar/diagnostico-da-entrega-da-viagem-do-cliente.md",
+        "source:biblioteca/Refinar/interprete-de-analises-da-jornada-do-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-learning-synthesis-complements-system",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-01771028101a"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. A síntese produz meta-aprendizados; o sistema define captura, governança e reaplicação. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-learning-synthesis-complements-system",
+        "source:biblioteca/Refinar/sintese-de-aprendizado-multi-loop.md",
+        "source:biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-ltv-depends-cohort-analysis",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-8c8ba17cb519"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Modelagem de LTV por segmento depende de coortes e horizontes longitudinais comparáveis. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-ltv-depends-cohort-analysis",
+        "source:biblioteca/Refinar/otimizador-de-valor-do-ciclo-de-vida-do-cliente.md",
+        "source:biblioteca/Refinar/analisador-de-desempenho-de-coorte.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-multivariate-depends-systematic-design",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-7decd717360c"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. O desenho multivariado avançado pressupõe contrato sistemático de hipótese, controle, amostra e decisão. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-multivariate-depends-systematic-design",
+        "source:biblioteca/Refinar/estrategista-de-teste-multi-variate.md",
+        "source:biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-optimization-report-complements-learning-system",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-31cb737587d7"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Relatórios recorrentes fornecem registros que o sistema de aprendizagem valida, versiona e reaplica. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-optimization-report-complements-learning-system",
+        "source:biblioteca/Refinar/gerador-de-relatorios-de-otimizacao-continua.md",
+        "source:biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-prelaunch-complements-early-signals",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-a38189cee766"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Premissas do forecast pré-lançamento viram sinais antecipados a validar na primeira janela. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-prelaunch-complements-early-signals",
+        "source:biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+        "source:biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-prelaunch-overlaps-predictive-model",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-3a66b6d326ca"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. O forecast pré-lançamento é específico para campanha planejada; o modelador cria capacidade preditiva reutilizável. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-prelaunch-overlaps-predictive-model",
+        "source:biblioteca/Refinar/modelador-de-desempenho-previsivel.md",
+        "source:biblioteca/Refinar/resultados-previsiveis-da-campanha-antes-do-lancamento.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-rapid-builder-alternative-rapid-engine",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-alternative-to-75e3b49eec3a"
+      ],
+      "rationale": "Confirmada como alternative_to. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambos cobrem experimentação rápida; o construtor detalha backlog e sprint, enquanto o mecanismo é um framework mínimo. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-rapid-builder-alternative-rapid-engine",
+        "source:biblioteca/Refinar/construtor-de-estrutura-de-experimentacao-rapida.md",
+        "source:biblioteca/Refinar/mecanismo-de-experimentacao-rapida.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-realtime-depends-early-signal-monitoring",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-ad91c9db27af"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota. Ajustes ao vivo exigem primeiro verificação de estabilidade, anomalias e suficiência das células. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-realtime-depends-early-signal-monitoring",
+        "source:biblioteca/Refinar/mecanismo-de-otimizacao-em-tempo-real.md",
+        "source:biblioteca/Refinar/monitoramento-antecipado-de-sinais-e-otimizacao-em-tempo-real.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-systematic-design-complements-learning-system",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-b8577813f6f3"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. O programa de testes precisa de captura e reaplicação de aprendizados para evitar repetição. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-systematic-design-complements-learning-system",
+        "source:biblioteca/Refinar/designer-de-estrutura-de-teste-sistematica.md",
+        "source:biblioteca/Refinar/sistema-de-integracao-de-aprendizagem.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Refinar:rel-refinar-velocity-overlaps-agility",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Refinar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-358c71b6b2df"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Velocidade mede tempos de ciclo; agilidade trata capacidade adaptativa, mas seu corpo está incompleto. Mantém ambos os prompts canônicos separados; não autoriza fusão, remoção ou reescrita.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/refinar.json#relations/rel-refinar-velocity-overlaps-agility",
+        "source:biblioteca/Refinar/acelerador-de-velocidade-de-marketing.md",
+        "source:biblioteca/Refinar/otimizador-de-agilidade-de-marketing.md",
+        "artifacts/P2/role-matrix.json#roles/refinar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-activation-depends-message-hierarchy",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-27ccdae391f9"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota.  Isso resolve XA-007 sem perder a complementaridade semântica.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-activation-depends-message-hierarchy",
+        "source:biblioteca/Verbalizar/planejador-de-ativacao-de-marcas.md",
+        "source:biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-buyer-persona-icp",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-24a3bc723480"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Os dois prompts investigam modelos de público, mas não são substitutos obrigatórios: um valida uma persona existente e o outro estrutura hipóteses de ICP. Confirma-se overlaps para orientar especificidade sem bloquear coexecução quando os outputs forem distintos.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-buyer-persona-icp",
+        "source:biblioteca/Verbalizar/buyer-persona-validador.md",
+        "source:biblioteca/Verbalizar/perfil-do-cliente-ideal.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-campaign-concept-content-themes",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-43afa924b054"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Temas editoriais podem fornecer matéria-prima a conceitos de campanha, desde que os outputs permaneçam distintos.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-campaign-concept-content-themes",
+        "source:biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "source:biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-campaign-depends-message-hierarchy",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-8f76f916ec30"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota.  Isso resolve XA-007 sem perder a complementaridade semântica.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-campaign-depends-message-hierarchy",
+        "source:biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "source:biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-competitive-voice-competitor-gaps",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-b10e9e0f6162"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. As duas analisam concorrentes; uma prioriza voz e tom, a outra temas, provas e espaços de posicionamento.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-competitive-voice-competitor-gaps",
+        "source:biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+        "source:biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-content-audit-campaign-concept",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-5d629531ace8"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. A auditoria pode recomendar novas campanhas, mas o gerador é o artefato específico para conceitos criativos novos.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-content-audit-campaign-concept",
+        "source:biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+        "source:biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-content-audit-content-themes",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-81464da50d85"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. A auditoria localiza lacunas no acervo; o gerador cria o sistema temático que pode preencher essas lacunas.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-content-audit-content-themes",
+        "source:biblioteca/Verbalizar/auditoria-e-estrategia-de-conteudo.md",
+        "source:biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-content-themes-depend-message-hierarchy",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-bff193f73f18"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota.  Isso resolve XA-007 sem perder a complementaridade semântica.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-content-themes-depend-message-hierarchy",
+        "source:biblioteca/Verbalizar/gerador-de-tema-de-conteudo.md",
+        "source:biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-customer-language-customer-synthesis",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-6ec08abe881d"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. O decodificador aprofunda léxico e tom; o sintetizador cobre também necessidades, emoções, decisão, objeções e sucesso.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-customer-language-customer-synthesis",
+        "source:biblioteca/Verbalizar/decodificador-de-idioma-do-cliente.md",
+        "source:biblioteca/Verbalizar/voz-do-sintetizador-de-cliente.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-differentiation-competitive-voice",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-baa5041baffc"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambas buscam diferenciação; a primeira parte de provas e resultados próprios, enquanto a segunda parte do corpus de voz dos concorrentes.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-differentiation-competitive-voice",
+        "source:biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+        "source:biblioteca/Verbalizar/analise-de-voz-competitiva.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-differentiation-competitor-gaps",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-849a6363a732"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambas produzem oportunidades de posicionamento; selecionar pela evidência dominante: diferenciais próprios versus lacunas externas.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-differentiation-competitor-gaps",
+        "source:biblioteca/Verbalizar/analisador-de-diferenciacao-de-marcas.md",
+        "source:biblioteca/Verbalizar/localizador-de-lacunas-do-concorrente.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-message-hierarchy-depends-value-proposition",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-231caf9adb19"
+      ],
+      "rationale": "Confirmada como complements. A relação original depends_on foi convertida porque o insumo necessário é um artefato, não prova de que a tática alvo precise executar nesta rota.  Isso resolve XA-007 sem perder a complementaridade semântica.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-message-hierarchy-depends-value-proposition",
+        "source:biblioteca/Verbalizar/construtor-de-hierarquia-de-mensagens.md",
+        "source:biblioteca/Verbalizar/otimizador-de-proposta-de-valor.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-personality-archetype",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-overlaps-cd9bd153e914"
+      ],
+      "rationale": "Confirmada como overlaps. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. Ambas estruturam personalidade; o perfil deriva traços diretamente, enquanto o identificador usa a taxonomia dos doze arquétipos.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-personality-archetype",
+        "source:biblioteca/Verbalizar/criador-de-perfil-de-personalidade-da-marca.md",
+        "source:biblioteca/Verbalizar/identificador-do-arquetipo-da-marca.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    },
+    {
+      "input_ref": "intra:Verbalizar:rel-verbalizar-seasonal-campaign",
+      "input_kind": "intrapillar_relation",
+      "source_pillar": "Verbalizar",
+      "decision": "confirm",
+      "output_relation_ids": [
+        "rel-complements-f2c2c636f167"
+      ],
+      "rationale": "Confirmada como complements. A relação liga duas táticas específicas com escopos distintos e efeito compatível com o limite de route node. A estratégia sazonal fornece contexto e eixo temporal; o gerador traduz um momento priorizado em conceito criativo específico.",
+      "evidence_refs": [
+        "artifacts/P3/workstreams/verbalizar.json#relations/rel-verbalizar-seasonal-campaign",
+        "source:biblioteca/Verbalizar/desenvolvedor-de-estrategia-sazonal.md",
+        "source:biblioteca/Verbalizar/gerador-de-conceito-de-campanha.md",
+        "artifacts/P2/role-matrix.json#roles/verbalizar"
+      ],
+      "owner_boundary_check": "pass",
+      "cardinality_check": "pass"
+    }
+  ],
+  "review_summary": {
+    "verdict": "PASS",
+    "blocking_findings": 0,
+    "decision_counts": {
+      "confirm": 94,
+      "retain_proposed": 0,
+      "reject": 12
+    },
+    "final_relation_counts": {
+      "total": 91,
+      "confirmed": 91,
+      "proposed": 0,
+      "by_type": {
+        "alternative_to": 3,
+        "collides_with": 1,
+        "complements": 63,
+        "overlaps": 24
+      }
+    },
+    "input_resolution": {
+      "intrapillar_inputs": 78,
+      "cross_pillar_inputs": 28,
+      "accepted_inputs": 94,
+      "rejected_inputs": 12,
+      "consolidated_cross_hypothesis_pairs": 3
+    },
+    "explicit_prior_finding_resolution": {
+      "P3-XA-007": "Four Verbalizar exact-tactic dependencies converted to confirmed complements; accepted artifacts may come from prior_decision.",
+      "P3-XA-008": "Two contradictory thought-leadership hypotheses consolidated into one confirmed symmetric complements relation.",
+      "P3-XA-009": "Paid/attribution and cross-channel directions no longer create exact-tactic dependencies; valid specific pairs are complements.",
+      "P3-XA-012": "Referral-versus-UGC alternative relation rejected with no replacement because the deliverables can coexist."
+    },
+    "abstract_capability_policy": "All 11 candidates targeting non-unique capabilities were rejected as tactic relations; their owner boundaries remain in P2.",
+    "cardinality_notes": {
+      "zero_tactics": "A relation never creates a route node when no tactic is otherwise eligible; maturity, owner, evidence and prior-decision gates still apply.",
+      "one_tactic": "A relation never forces a second tactic. An accepted prior_decision may satisfy the artifact need without executing another catalog tactic.",
+      "two_tactics": "Confirmed complements, overlaps, alternatives and collisions only govern a pair already eligible for the same node; no relation overrides the hard maximum of two tactics."
+    },
+    "normative_effect": "Only the 91 confirmed relations are normative. No proposed relation remains; rejected inputs emit no relation."
+  },
+  "unresolved_questions": []
+}

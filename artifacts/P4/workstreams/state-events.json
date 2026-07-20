@@ -1,0 +1,3656 @@
+{
+  "artifact_id": "P4-STATE-EVENTS-WORKSTREAM-001",
+  "title": "Proposed canonical state and append-only event contracts for Loop Marketing v2",
+  "phase": "P4",
+  "workstream": "state-and-events",
+  "status": "proposed_for_integration_review",
+  "schema_version": "0.1.0",
+  "product_version": "2.0.0",
+  "generated_at_utc": "2026-07-18T00:07:06Z",
+  "source_contracts": [
+    {
+      "path": "artifacts/P2/role-matrix.json",
+      "sha256": "ea027c0e09196c61df645fed41b9268deece6059d646601efb1be3785ced17fd",
+      "read_scope": "integral",
+      "status": "integrated",
+      "semantic_anchors": [
+        "RA-I001..RA-I008",
+        "RA-R001..RA-R008",
+        "handoff_contract",
+        "state_event_authority",
+        "temporal_authority_model"
+      ]
+    },
+    {
+      "path": "artifacts/P2/routing-contract.json",
+      "sha256": "cbc3de9af7e526e32ec172dbf2a8f7c016e484c20e8d3a443c7128121e794bf8",
+      "read_scope": "integral",
+      "status": "integrated",
+      "semantic_anchors": [
+        "INV-001..INV-009",
+        "RTE-NORM-003",
+        "RTE-EXP-001..RTE-EXP-007",
+        "RTE-XVAL-001..RTE-XVAL-008",
+        "rejection_codes",
+        "UQ-005"
+      ]
+    },
+    {
+      "path": "artifacts/P2/compatibility-policy.md",
+      "sha256": "7b09538ef50328179328575f3c0b1c94f1e7dea4ce2e0b7123146d040f2820c0",
+      "read_scope": "integral",
+      "status": "integrated",
+      "semantic_anchors": [
+        "canonical identity",
+        "canonical state layout",
+        "project_id containment",
+        "copy-and-verify",
+        "rollback",
+        "schema versioning"
+      ]
+    }
+  ],
+  "baseline": {
+    "source_repo": "/Users/enorm/Documents/Claude/loop-marketing",
+    "source_commit": "3cbf0cf84a038f2cd570883b70988889f037c28e",
+    "canonical_prompt_count": 100,
+    "canonical_library_aggregate_sha256": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1",
+    "source_mode": "read_only"
+  },
+  "normative_interpretation": {
+    "preserved_invariants": [
+      "Cada decisão de domínio tem exatamente um owner; outro papel só propõe, restringe ou fornece evidência.",
+      "Somente Loop Planning aceita gargalo global, sequência, integração cross-role e supersession global.",
+      "Especialistas produzem outputs imutáveis e propostas de evento contra state_revision; não atualizam estado global diretamente.",
+      "Refinar é owner do contrato, evidência e interpretação experimental; aprovação e mutação externa nunca são inferidas.",
+      "Claims factuais exigem evidence_refs; hipóteses permanecem hipóteses com rationale e confidence.",
+      "Eventos são append-only e toda mudança derivada exige evento válido, CAS e cross-validation.",
+      "Reinício, nova invocação, reroute ou narrativa não avançam estado.",
+      "A biblioteca canônica permanece byte-for-byte fora deste estado; o estado guarda somente refs e hashes."
+    ],
+    "non_authority_note": "Campos P4 de persistência, lock, hash e reducer implementam integridade; não criam owner decisório nem aprovador externo."
+  },
+  "canonical_layout": {
+    "root": ".loop-marketing/",
+    "durable_tree": [
+      ".loop-marketing/manifest.json",
+      ".loop-marketing/state/active-project.json",
+      ".loop-marketing/state/projects/<project_id>/project.json",
+      ".loop-marketing/state/projects/<project_id>/events.jsonl",
+      ".loop-marketing/state/projects/<project_id>/snapshots/latest.json",
+      ".loop-marketing/migrations/transactions/",
+      ".loop-marketing/migrations/reports/",
+      ".loop-marketing/quarantine/"
+    ],
+    "transient_siblings": [
+      ".loop-marketing/state/projects/<project_id>/.write.lock",
+      ".loop-marketing/state/projects/<project_id>/events.jsonl.tmp.<transaction_id>",
+      ".loop-marketing/state/projects/<project_id>/project.json.tmp.<transaction_id>",
+      ".loop-marketing/state/projects/<project_id>/snapshots/latest.json.tmp.<transaction_id>"
+    ],
+    "path_rules": {
+      "project_id_pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+      "display_name_not_in_path": true,
+      "realpath_containment_root": ".loop-marketing/state/projects/",
+      "symlink_policy": "Rejeitar symlink em qualquer componente do caminho de escrita; nunca seguir destino fora da raiz.",
+      "file_mode_default": "0600",
+      "directory_mode_default": "0700",
+      "vcs_default": "ignored",
+      "collaboration_export": "Somente operação separada, explícita e sanitizada."
+    },
+    "manifest_contract": {
+      "required_fields": [
+        "product_id",
+        "product_version",
+        "state_schema_version",
+        "event_schema_version",
+        "created_at",
+        "last_migration_id"
+      ],
+      "product_id": "loop-marketing",
+      "supported_product_version": "2.0.0",
+      "unknown_future_schema_behavior": "reject; nunca tentar interpretar"
+    },
+    "active_project_contract": {
+      "required_fields": [
+        "schema_version",
+        "project_id",
+        "state_revision",
+        "project_path",
+        "updated_at"
+      ],
+      "rule": "Ponteiro é cache de descoberta. Deve validar schema, project_id, contenção realpath e revisão; nunca troca projeto ativo silenciosamente."
+    },
+    "snapshot_contract": {
+      "required_fields": [
+        "schema_version",
+        "project_id",
+        "derived_from_revision",
+        "last_event_sequence",
+        "last_event_hash",
+        "last_record_hash",
+        "reducer_version",
+        "state",
+        "created_at"
+      ],
+      "authority": "cache verificável para acelerar replay; events.jsonl é o histórico autoritativo.",
+      "mismatch_behavior": "ignorar snapshot, replay completo, marcar degraded_read_only até validação e regravar cache apenas por transação de recovery autorizada."
+    }
+  },
+  "state_schema_design": {
+    "status": "proposed",
+    "storage_file": "project.json",
+    "revision_semantics": {
+      "type": "non-negative integer",
+      "genesis": 0,
+      "increment": "Exatamente +1 por transaction record comprometido, independentemente do número de eventos no batch.",
+      "expected_revision_field": "transaction.expected_state_revision e event.state_revision",
+      "resulting_revision_field": "transaction.result_state_revision e event.result_state_revision",
+      "no_aba": "Revisão nunca diminui nem é reutilizada; expected_head_event_hash adiciona proteção contra head divergente.",
+      "specialist_parallelism": "Outputs paralelos leem a mesma revisão e ficam staged; Loop Planning integra uma única transação CAS ou rejeita write-set/owner collision."
+    },
+    "json_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://loop-marketing.local/schemas/project-state/2.0-proposed",
+      "title": "Loop Marketing materialized project state",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "product_version",
+        "project_id",
+        "display_name",
+        "state_revision",
+        "reducer_version",
+        "created_at",
+        "updated_at",
+        "route_status",
+        "active_cycle_id",
+        "maturity",
+        "primary_bottleneck",
+        "accepted_decisions",
+        "experiments",
+        "learnings",
+        "staged_outputs",
+        "handoffs",
+        "evidence_registry",
+        "last_committed_transaction_id",
+        "last_event_sequence",
+        "last_event_hash",
+        "last_record_hash",
+        "integrity"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "2.0"
+        },
+        "product_version": {
+          "const": "2.0.0"
+        },
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,62}$"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "state_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reducer_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "route_status": {
+          "type": "string",
+          "enum": [
+            "ready",
+            "needs_evidence",
+            "blocked",
+            "rejected"
+          ]
+        },
+        "active_cycle_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z0-9][a-z0-9-]{0,126}$"
+        },
+        "maturity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "accepted_by",
+            "accepted_event_id",
+            "evidence_refs"
+          ],
+          "properties": {
+            "value": {
+              "type": "string",
+              "enum": [
+                "nascente",
+                "em_desenvolvimento",
+                "maduro",
+                "avancado",
+                "unknown"
+              ]
+            },
+            "accepted_by": {
+              "const": "loop_planning"
+            },
+            "accepted_event_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "evidence_refs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "evidence_id",
+                  "source_kind",
+                  "source_ref",
+                  "sha256",
+                  "observed_at",
+                  "redaction_status"
+                ],
+                "properties": {
+                  "evidence_id": {
+                    "type": "string",
+                    "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+                  },
+                  "source_kind": {
+                    "type": "string",
+                    "enum": [
+                      "first_party_record",
+                      "analytics_record",
+                      "experiment_record",
+                      "authorization_record",
+                      "instrumentation_record",
+                      "launch_record",
+                      "completion_record",
+                      "cancellation_record",
+                      "invalidation_record",
+                      "market_source",
+                      "user_assertion",
+                      "migration_record"
+                    ]
+                  },
+                  "source_ref": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2048
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "observed_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "redaction_status": {
+                    "type": "string",
+                    "enum": [
+                      "not_required",
+                      "redacted",
+                      "contains_sensitive_reference_only"
+                    ]
+                  },
+                  "supports_claim_ids": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "primary_bottleneck": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "pillar",
+                "accepted_by",
+                "accepted_event_id",
+                "selection_rule_id",
+                "evidence_refs"
+              ],
+              "properties": {
+                "pillar": {
+                  "type": "string",
+                  "enum": [
+                    "verbalizar",
+                    "orientar",
+                    "ampliar",
+                    "refinar"
+                  ]
+                },
+                "accepted_by": {
+                  "const": "loop_planning"
+                },
+                "accepted_event_id": {
+                  "type": "string",
+                  "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "selection_rule_id": {
+                  "type": "string",
+                  "pattern": "^RTE-BOT-[0-9]{3}$"
+                },
+                "evidence_refs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "evidence_id",
+                      "source_kind",
+                      "source_ref",
+                      "sha256",
+                      "observed_at",
+                      "redaction_status"
+                    ],
+                    "properties": {
+                      "evidence_id": {
+                        "type": "string",
+                        "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+                      },
+                      "source_kind": {
+                        "type": "string",
+                        "enum": [
+                          "first_party_record",
+                          "analytics_record",
+                          "experiment_record",
+                          "authorization_record",
+                          "instrumentation_record",
+                          "launch_record",
+                          "completion_record",
+                          "cancellation_record",
+                          "invalidation_record",
+                          "market_source",
+                          "user_assertion",
+                          "migration_record"
+                        ]
+                      },
+                      "source_ref": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 2048
+                      },
+                      "sha256": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                      },
+                      "observed_at": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "redaction_status": {
+                        "type": "string",
+                        "enum": [
+                          "not_required",
+                          "redacted",
+                          "contains_sensitive_reference_only"
+                        ]
+                      },
+                      "supports_claim_ids": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "accepted_decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "decision_id",
+              "decision_domain",
+              "owner_role",
+              "status",
+              "value_ref",
+              "accepted_event_id",
+              "based_on_state_revision",
+              "evidence_refs"
+            ],
+            "properties": {
+              "decision_id": {
+                "type": "string",
+                "pattern": "^dec_[a-z0-9][a-z0-9_-]{0,126}$"
+              },
+              "decision_domain": {
+                "type": "string",
+                "enum": [
+                  "global_bottleneck_and_role_sequence",
+                  "lifecycle_stages_segments_eligibility_and_lifecycle_events",
+                  "maturity_classification_and_cross_role_integration",
+                  "message_value_proposition_voice_tone_and_cta",
+                  "operational_timing_frequency_contact_pressure_and_cross_channel_cadence",
+                  "performance_diagnosis_experiment_contract_success_metric_and_learning"
+                ]
+              },
+              "owner_role": {
+                "type": "string",
+                "enum": [
+                  "loop_planning",
+                  "verbalizar",
+                  "orientar",
+                  "ampliar",
+                  "refinar"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "active",
+                  "superseded"
+                ]
+              },
+              "value_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "accepted_event_id": {
+                "type": "string",
+                "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              },
+              "based_on_state_revision": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidence_id",
+                    "source_kind",
+                    "source_ref",
+                    "sha256",
+                    "observed_at",
+                    "redaction_status"
+                  ],
+                  "properties": {
+                    "evidence_id": {
+                      "type": "string",
+                      "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+                    },
+                    "source_kind": {
+                      "type": "string",
+                      "enum": [
+                        "first_party_record",
+                        "analytics_record",
+                        "experiment_record",
+                        "authorization_record",
+                        "instrumentation_record",
+                        "launch_record",
+                        "completion_record",
+                        "cancellation_record",
+                        "invalidation_record",
+                        "market_source",
+                        "user_assertion",
+                        "migration_record"
+                      ]
+                    },
+                    "source_ref": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    },
+                    "observed_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "redaction_status": {
+                      "type": "string",
+                      "enum": [
+                        "not_required",
+                        "redacted",
+                        "contains_sensitive_reference_only"
+                      ]
+                    },
+                    "supports_claim_ids": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "superseded_by_decision_id": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "experiments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "experiment_id",
+              "state",
+              "contract_ref",
+              "design_owner",
+              "state_entered_by_event_id",
+              "evidence_refs",
+              "derived_from"
+            ],
+            "properties": {
+              "experiment_id": {
+                "type": "string",
+                "pattern": "^exp_[a-z0-9][a-z0-9_-]{0,126}$"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "proposed",
+                  "approved",
+                  "instrumented",
+                  "running",
+                  "completed",
+                  "cancelled",
+                  "invalidated"
+                ]
+              },
+              "contract_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "design_owner": {
+                "const": "refinar"
+              },
+              "state_entered_by_event_id": {
+                "type": "string",
+                "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidence_id",
+                    "source_kind",
+                    "source_ref",
+                    "sha256",
+                    "observed_at",
+                    "redaction_status"
+                  ],
+                  "properties": {
+                    "evidence_id": {
+                      "type": "string",
+                      "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+                    },
+                    "source_kind": {
+                      "type": "string",
+                      "enum": [
+                        "first_party_record",
+                        "analytics_record",
+                        "experiment_record",
+                        "authorization_record",
+                        "instrumentation_record",
+                        "launch_record",
+                        "completion_record",
+                        "cancellation_record",
+                        "invalidation_record",
+                        "market_source",
+                        "user_assertion",
+                        "migration_record"
+                      ]
+                    },
+                    "source_ref": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    },
+                    "observed_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "redaction_status": {
+                      "type": "string",
+                      "enum": [
+                        "not_required",
+                        "redacted",
+                        "contains_sensitive_reference_only"
+                      ]
+                    },
+                    "supports_claim_ids": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "authority_refs": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "derived_from": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^exp_[a-z0-9][a-z0-9_-]{0,126}$"
+              }
+            }
+          }
+        },
+        "learnings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "learning_id",
+              "recorded_by",
+              "source_experiment_ref",
+              "claim_kind",
+              "evidence_refs",
+              "learning_ref",
+              "recorded_event_id"
+            ],
+            "properties": {
+              "learning_id": {
+                "type": "string",
+                "pattern": "^lrn_[a-z0-9][a-z0-9_-]{0,126}$"
+              },
+              "recorded_by": {
+                "const": "refinar"
+              },
+              "source_experiment_ref": {
+                "type": "string"
+              },
+              "claim_kind": {
+                "type": "string",
+                "enum": [
+                  "fact",
+                  "user_interpretation",
+                  "symptom",
+                  "hypothesis"
+                ]
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidence_id",
+                    "source_kind",
+                    "source_ref",
+                    "sha256",
+                    "observed_at",
+                    "redaction_status"
+                  ],
+                  "properties": {
+                    "evidence_id": {
+                      "type": "string",
+                      "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+                    },
+                    "source_kind": {
+                      "type": "string",
+                      "enum": [
+                        "first_party_record",
+                        "analytics_record",
+                        "experiment_record",
+                        "authorization_record",
+                        "instrumentation_record",
+                        "launch_record",
+                        "completion_record",
+                        "cancellation_record",
+                        "invalidation_record",
+                        "market_source",
+                        "user_assertion",
+                        "migration_record"
+                      ]
+                    },
+                    "source_ref": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    },
+                    "observed_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "redaction_status": {
+                      "type": "string",
+                      "enum": [
+                        "not_required",
+                        "redacted",
+                        "contains_sensitive_reference_only"
+                      ]
+                    },
+                    "supports_claim_ids": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "learning_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "recorded_event_id": {
+                "type": "string",
+                "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              }
+            }
+          }
+        },
+        "staged_outputs": {
+          "type": "array",
+          "description": "Outputs imutáveis de especialistas; não são decisões aceitas até integração válida.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "output_id",
+              "role_id",
+              "based_on_state_revision",
+              "write_set",
+              "status",
+              "event_id",
+              "evidence_refs"
+            ],
+            "properties": {
+              "output_id": {
+                "type": "string"
+              },
+              "role_id": {
+                "type": "string",
+                "enum": [
+                  "verbalizar",
+                  "orientar",
+                  "ampliar",
+                  "refinar"
+                ]
+              },
+              "based_on_state_revision": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "write_set": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "staged",
+                  "integrated",
+                  "rejected",
+                  "stale"
+                ]
+              },
+              "event_id": {
+                "type": "string",
+                "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidence_id",
+                    "source_kind",
+                    "source_ref",
+                    "sha256",
+                    "observed_at",
+                    "redaction_status"
+                  ],
+                  "properties": {
+                    "evidence_id": {
+                      "type": "string",
+                      "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+                    },
+                    "source_kind": {
+                      "type": "string",
+                      "enum": [
+                        "first_party_record",
+                        "analytics_record",
+                        "experiment_record",
+                        "authorization_record",
+                        "instrumentation_record",
+                        "launch_record",
+                        "completion_record",
+                        "cancellation_record",
+                        "invalidation_record",
+                        "market_source",
+                        "user_assertion",
+                        "migration_record"
+                      ]
+                    },
+                    "source_ref": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    },
+                    "observed_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "redaction_status": {
+                      "type": "string",
+                      "enum": [
+                        "not_required",
+                        "redacted",
+                        "contains_sensitive_reference_only"
+                      ]
+                    },
+                    "supports_claim_ids": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "handoffs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "handoff_id",
+              "contract_version",
+              "from_role",
+              "to_role",
+              "state_revision",
+              "status",
+              "handoff_ref",
+              "event_id"
+            ],
+            "properties": {
+              "handoff_id": {
+                "type": "string"
+              },
+              "contract_version": {
+                "const": "1.0"
+              },
+              "from_role": {
+                "type": "string",
+                "enum": [
+                  "loop_planning",
+                  "verbalizar",
+                  "orientar",
+                  "ampliar",
+                  "refinar"
+                ]
+              },
+              "to_role": {
+                "type": "string",
+                "enum": [
+                  "loop_planning",
+                  "verbalizar",
+                  "orientar",
+                  "ampliar",
+                  "refinar"
+                ]
+              },
+              "state_revision": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "issued",
+                  "validated",
+                  "rejected",
+                  "stale",
+                  "consumed"
+                ]
+              },
+              "handoff_ref": {
+                "type": "string"
+              },
+              "event_id": {
+                "type": "string",
+                "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              }
+            }
+          }
+        },
+        "evidence_registry": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "evidence_id",
+              "source_kind",
+              "source_ref",
+              "sha256",
+              "observed_at",
+              "redaction_status"
+            ],
+            "properties": {
+              "evidence_id": {
+                "type": "string",
+                "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+              },
+              "source_kind": {
+                "type": "string",
+                "enum": [
+                  "first_party_record",
+                  "analytics_record",
+                  "experiment_record",
+                  "authorization_record",
+                  "instrumentation_record",
+                  "launch_record",
+                  "completion_record",
+                  "cancellation_record",
+                  "invalidation_record",
+                  "market_source",
+                  "user_assertion",
+                  "migration_record"
+                ]
+              },
+              "source_ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "observed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "redaction_status": {
+                "type": "string",
+                "enum": [
+                  "not_required",
+                  "redacted",
+                  "contains_sensitive_reference_only"
+                ]
+              },
+              "supports_claim_ids": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "last_committed_transaction_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "last_event_sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "last_event_hash": {
+          "oneOf": [
+            {
+              "const": "GENESIS"
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          ]
+        },
+        "last_record_hash": {
+          "oneOf": [
+            {
+              "const": "GENESIS"
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          ]
+        },
+        "integrity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "canonical_library_aggregate_sha256",
+            "event_chain_verified_through",
+            "snapshot_derived_from_revision",
+            "recovery_status"
+          ],
+          "properties": {
+            "canonical_library_aggregate_sha256": {
+              "const": "0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1"
+            },
+            "event_chain_verified_through": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "snapshot_derived_from_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "recovery_status": {
+              "type": "string",
+              "enum": [
+                "clean",
+                "replayed",
+                "degraded_read_only",
+                "quarantined"
+              ]
+            }
+          }
+        }
+      },
+      "cross_field_invariants": [
+        "route_status=ready exige primary_bottleneck não nulo; needs_evidence, blocked ou rejected exigem primary_bottleneck nulo.",
+        "Cada decisão aceita tem exatamente o owner definido em role-matrix.decision_ownership.",
+        "Uma decisão nova contraditória não remove a anterior; cria supersession explícita do owner e integração de Loop Planning.",
+        "state_revision, last event/record hashes e sequência devem coincidir com o último transaction record reduzido.",
+        "Snapshot é cache verificável, nunca fonte de autoridade superior ao events.jsonl."
+      ]
+    }
+  },
+  "event_schema_design": {
+    "status": "proposed",
+    "storage_format": "events.jsonl contém um transaction record JSON canônico e completo por linha; cada record contém 1..N domain events.",
+    "event_json_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://loop-marketing.local/schemas/event/2.0-proposed",
+      "title": "Loop Marketing proposed domain event",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "event_id",
+        "event_type",
+        "project_ref",
+        "cycle_id",
+        "actor_role",
+        "occurred_at",
+        "state_revision",
+        "result_state_revision",
+        "event_sequence",
+        "transaction_id",
+        "idempotency_key",
+        "effect",
+        "evidence_refs",
+        "payload",
+        "prev_event_hash",
+        "event_hash"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "2.0"
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "amplification_plan_proposed",
+            "bottleneck_accepted",
+            "bottleneck_observation_emitted",
+            "bottleneck_rejected",
+            "cadence_plan_proposed",
+            "channel_plan_proposed",
+            "cross_pillar_implication_issued",
+            "cross_validation_completed",
+            "cross_validation_requested",
+            "cycle_close_recommended",
+            "data_gap_reported",
+            "eligibility_rule_proposed",
+            "experiment_created_as_proposed",
+            "experiment_result_interpreted",
+            "experiment_transition_evidence_validated",
+            "experiment_transition_rejected",
+            "frequency_cap_proposed",
+            "handoff_issued",
+            "learning_recorded",
+            "lifecycle_event_rule_proposed",
+            "lifecycle_model_proposed",
+            "maturity_classified",
+            "message_contract_published",
+            "message_decision_proposed",
+            "operational_timing_rule_proposed",
+            "performance_diagnosis_recorded",
+            "personalization_rule_proposed",
+            "pillar_scores_recorded",
+            "route_plan_issued",
+            "scope_violation_reported",
+            "segment_definition_proposed",
+            "test_opportunity_proposed",
+            "touchpoint_rule_proposed"
+          ]
+        },
+        "project_ref": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,62}$"
+        },
+        "cycle_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z0-9][a-z0-9-]{0,126}$"
+        },
+        "actor_role": {
+          "type": "string",
+          "enum": [
+            "loop_planning",
+            "verbalizar",
+            "orientar",
+            "ampliar",
+            "refinar"
+          ]
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "state_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Revisão imutável lida pelo emissor e usada como expected revision do CAS."
+        },
+        "result_state_revision": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Revisão produzida pela transação; deve ser state_revision + 1."
+        },
+        "event_sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "transaction_id": {
+          "type": "string",
+          "pattern": "^tx_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "idempotency_key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "effect": {
+          "type": "string",
+          "enum": [
+            "observation",
+            "proposal",
+            "transition_validation",
+            "integration",
+            "audit"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "evidence_id",
+              "source_kind",
+              "source_ref",
+              "sha256",
+              "observed_at",
+              "redaction_status"
+            ],
+            "properties": {
+              "evidence_id": {
+                "type": "string",
+                "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+              },
+              "source_kind": {
+                "type": "string",
+                "enum": [
+                  "first_party_record",
+                  "analytics_record",
+                  "experiment_record",
+                  "authorization_record",
+                  "instrumentation_record",
+                  "launch_record",
+                  "completion_record",
+                  "cancellation_record",
+                  "invalidation_record",
+                  "market_source",
+                  "user_assertion",
+                  "migration_record"
+                ]
+              },
+              "source_ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "observed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "redaction_status": {
+                "type": "string",
+                "enum": [
+                  "not_required",
+                  "redacted",
+                  "contains_sensitive_reference_only"
+                ]
+              },
+              "supports_claim_ids": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "required": [
+            "claim_kind",
+            "data"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "claim_kind": {
+              "type": "string",
+              "enum": [
+                "fact",
+                "user_interpretation",
+                "symptom",
+                "hypothesis"
+              ]
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 1
+            },
+            "authority_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "external_actor_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "data": {}
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "claim_kind": {
+                    "const": "hypothesis"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "claim_kind",
+                  "rationale",
+                  "confidence",
+                  "data"
+                ]
+              }
+            }
+          ]
+        },
+        "prev_event_hash": {
+          "oneOf": [
+            {
+              "const": "GENESIS"
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          ]
+        },
+        "event_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "semantic_constraints": [
+        "event_hash = SHA-256(RFC8785(event sem event_hash)); prev_event_hash participa do hash.",
+        "actor_role identifica o owner analítico que emitiu/validou o evento; nunca substitui approver identity, authorization_ref ou external_actor_ref.",
+        "event_type deve pertencer à allowed_event_types de actor_role.",
+        "Fato exige evidence_refs não vazio; hipótese exige rationale e confidence e não avança decisão aceita.",
+        "Todo evento de uma transação compartilha state_revision, result_state_revision e transaction_id.",
+        "result_state_revision deve ser exatamente state_revision + 1."
+      ]
+    },
+    "transaction_record_json_schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://loop-marketing.local/schemas/event-transaction/2.0-proposed",
+      "title": "One committed events.jsonl record",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "schema_version",
+        "transaction_id",
+        "project_ref",
+        "idempotency_key",
+        "expected_state_revision",
+        "result_state_revision",
+        "expected_head_event_hash",
+        "first_event_sequence",
+        "last_event_sequence",
+        "integrated_by_role",
+        "committed_at",
+        "events",
+        "prev_record_hash",
+        "record_hash",
+        "reducer_version"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "state_transaction"
+        },
+        "schema_version": {
+          "const": "2.0"
+        },
+        "transaction_id": {
+          "type": "string",
+          "pattern": "^tx_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "project_ref": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,62}$"
+        },
+        "idempotency_key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_state_revision": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "result_state_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expected_head_event_hash": {
+          "oneOf": [
+            {
+              "const": "GENESIS"
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          ]
+        },
+        "first_event_sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "last_event_sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "integrated_by_role": {
+          "const": "loop_planning"
+        },
+        "committed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "events": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$id": "https://loop-marketing.local/schemas/event/2.0-proposed",
+            "title": "Loop Marketing proposed domain event",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "schema_version",
+              "event_id",
+              "event_type",
+              "project_ref",
+              "cycle_id",
+              "actor_role",
+              "occurred_at",
+              "state_revision",
+              "result_state_revision",
+              "event_sequence",
+              "transaction_id",
+              "idempotency_key",
+              "effect",
+              "evidence_refs",
+              "payload",
+              "prev_event_hash",
+              "event_hash"
+            ],
+            "properties": {
+              "schema_version": {
+                "const": "2.0"
+              },
+              "event_id": {
+                "type": "string",
+                "pattern": "^evt_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              },
+              "event_type": {
+                "type": "string",
+                "enum": [
+                  "amplification_plan_proposed",
+                  "bottleneck_accepted",
+                  "bottleneck_observation_emitted",
+                  "bottleneck_rejected",
+                  "cadence_plan_proposed",
+                  "channel_plan_proposed",
+                  "cross_pillar_implication_issued",
+                  "cross_validation_completed",
+                  "cross_validation_requested",
+                  "cycle_close_recommended",
+                  "data_gap_reported",
+                  "eligibility_rule_proposed",
+                  "experiment_created_as_proposed",
+                  "experiment_result_interpreted",
+                  "experiment_transition_evidence_validated",
+                  "experiment_transition_rejected",
+                  "frequency_cap_proposed",
+                  "handoff_issued",
+                  "learning_recorded",
+                  "lifecycle_event_rule_proposed",
+                  "lifecycle_model_proposed",
+                  "maturity_classified",
+                  "message_contract_published",
+                  "message_decision_proposed",
+                  "operational_timing_rule_proposed",
+                  "performance_diagnosis_recorded",
+                  "personalization_rule_proposed",
+                  "pillar_scores_recorded",
+                  "route_plan_issued",
+                  "scope_violation_reported",
+                  "segment_definition_proposed",
+                  "test_opportunity_proposed",
+                  "touchpoint_rule_proposed"
+                ]
+              },
+              "project_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,62}$"
+              },
+              "cycle_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-z0-9][a-z0-9-]{0,126}$"
+              },
+              "actor_role": {
+                "type": "string",
+                "enum": [
+                  "loop_planning",
+                  "verbalizar",
+                  "orientar",
+                  "ampliar",
+                  "refinar"
+                ]
+              },
+              "occurred_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "state_revision": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Revisão imutável lida pelo emissor e usada como expected revision do CAS."
+              },
+              "result_state_revision": {
+                "type": "integer",
+                "minimum": 1,
+                "description": "Revisão produzida pela transação; deve ser state_revision + 1."
+              },
+              "event_sequence": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "transaction_id": {
+                "type": "string",
+                "pattern": "^tx_[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              },
+              "idempotency_key": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "effect": {
+                "type": "string",
+                "enum": [
+                  "observation",
+                  "proposal",
+                  "transition_validation",
+                  "integration",
+                  "audit"
+                ]
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "evidence_id",
+                    "source_kind",
+                    "source_ref",
+                    "sha256",
+                    "observed_at",
+                    "redaction_status"
+                  ],
+                  "properties": {
+                    "evidence_id": {
+                      "type": "string",
+                      "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+                    },
+                    "source_kind": {
+                      "type": "string",
+                      "enum": [
+                        "first_party_record",
+                        "analytics_record",
+                        "experiment_record",
+                        "authorization_record",
+                        "instrumentation_record",
+                        "launch_record",
+                        "completion_record",
+                        "cancellation_record",
+                        "invalidation_record",
+                        "market_source",
+                        "user_assertion",
+                        "migration_record"
+                      ]
+                    },
+                    "source_ref": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 2048
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    },
+                    "observed_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "redaction_status": {
+                      "type": "string",
+                      "enum": [
+                        "not_required",
+                        "redacted",
+                        "contains_sensitive_reference_only"
+                      ]
+                    },
+                    "supports_claim_ids": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "payload": {
+                "type": "object",
+                "required": [
+                  "claim_kind",
+                  "data"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                  "claim_kind": {
+                    "type": "string",
+                    "enum": [
+                      "fact",
+                      "user_interpretation",
+                      "symptom",
+                      "hypothesis"
+                    ]
+                  },
+                  "confidence": {
+                    "type": "string",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ]
+                  },
+                  "rationale": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "authority_ref": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "external_actor_ref": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "data": {}
+                },
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "claim_kind": {
+                          "const": "hypothesis"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": [
+                        "claim_kind",
+                        "rationale",
+                        "confidence",
+                        "data"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "prev_event_hash": {
+                "oneOf": [
+                  {
+                    "const": "GENESIS"
+                  },
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  }
+                ]
+              },
+              "event_hash": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            },
+            "semantic_constraints": [
+              "event_hash = SHA-256(RFC8785(event sem event_hash)); prev_event_hash participa do hash.",
+              "actor_role identifica o owner analítico que emitiu/validou o evento; nunca substitui approver identity, authorization_ref ou external_actor_ref.",
+              "event_type deve pertencer à allowed_event_types de actor_role.",
+              "Fato exige evidence_refs não vazio; hipótese exige rationale e confidence e não avança decisão aceita.",
+              "Todo evento de uma transação compartilha state_revision, result_state_revision e transaction_id.",
+              "result_state_revision deve ser exatamente state_revision + 1."
+            ]
+          }
+        },
+        "prev_record_hash": {
+          "oneOf": [
+            {
+              "const": "GENESIS"
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          ]
+        },
+        "record_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "reducer_version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      },
+      "semantic_constraints": [
+        "Cada linha completa de events.jsonl é uma transação comprometida; não existem linhas prepared.",
+        "result_state_revision = expected_state_revision + 1.",
+        "Eventos têm sequência contígua e preservam a ordem do array.",
+        "record_hash = SHA-256(RFC8785(record sem record_hash)); prev_record_hash ancora a cadeia de transações.",
+        "integrated_by_role é o integrador CAS, não o owner das decisões contidas; cada evento continua limitado por actor_role e owner matrix."
+      ]
+    },
+    "event_id": {
+      "format": "evt_ + UUIDv7 lowercase",
+      "generation": "Gerado uma vez antes do primeiro write; retry reutiliza exatamente o mesmo event_id e idempotency_key.",
+      "uniqueness_scope": "project_id por toda a história, inclusive eventos invalidados/cancelados e quarantine manifests.",
+      "ordering": "event_sequence, não timestamp nem UUID, é a ordem normativa."
+    },
+    "idempotency_and_dedupe": {
+      "scope": "project_id",
+      "primary_key": "idempotency_key",
+      "secondary_key": "event_id",
+      "exact_retry": "Mesmo idempotency_key, mesmos event_ids e mesmos hashes retorna a transaction/result revision já comprometida, sem nova linha ou revisão.",
+      "key_reuse_with_different_content": "ERR_IDEMPOTENCY_CONFLICT",
+      "event_id_reuse_with_different_content": "ERR_EVENT_ID_COLLISION",
+      "dedupe_index": "Reconstruído por replay; cache opcional nunca é autoritativo.",
+      "batch_rule": "Retry parcial de batch é proibido; o batch inteiro é idempotente."
+    },
+    "hash_chain": {
+      "canonicalization": "RFC 8785 JSON Canonicalization Scheme; strings UTF-8; uma newline LF após cada transaction record.",
+      "event_hash": "SHA-256 do evento canônico sem event_hash, incluindo prev_event_hash.",
+      "event_link": "Primeiro evento usa head anterior; eventos seguintes usam hash do evento anterior.",
+      "record_hash": "SHA-256 do transaction record canônico sem record_hash, incluindo prev_record_hash e hashes de todos os eventos.",
+      "genesis_values": {
+        "prev_event_hash": "GENESIS",
+        "prev_record_hash": "GENESIS",
+        "last_event_sequence": 0,
+        "state_revision": 0
+      },
+      "security_limit": "Detecta corrupção/tamper acidental, mas sem assinatura externa não prova autoria contra atacante com escrita total."
+    },
+    "append_only_rules": [
+      "Nunca editar, apagar, reordenar ou reutilizar event_id de transaction record comprometido.",
+      "Cancelamento, invalidação, correção e supersession são novos eventos; história anterior permanece.",
+      "A promoção de events.jsonl.tmp pode substituir o inode, mas o conteúdo comprometido anterior deve permanecer prefixo byte-for-byte e somente uma linha canônica é anexada.",
+      "Antes da promoção, validar hash do prefixo, tamanho anterior, head hash, expected revision e sequência.",
+      "Compaction nunca remove o log canônico; snapshot é cache e exportação/arquivamento depende de decisão futura explícita.",
+      "Narrativa de agente, reboot, retry, reroute ou alteração de active-project não cria evento de domínio nem avança estado."
+    ]
+  },
+  "optimistic_concurrency_and_atomic_commit": {
+    "cas_preconditions": [
+      "Lock exclusivo válido para o project_id resolvido.",
+      "expected_state_revision igual à revisão obtida por replay do log, não apenas project.json.",
+      "expected_head_event_hash igual ao head verificado.",
+      "Todos os eventos do batch foram produzidos contra a mesma expected revision.",
+      "Write sets não colidem e toda integração staged foi aceita por Loop Planning.",
+      "Idempotency e event IDs não colidem.",
+      "Schemas, owner/event authority, evidence, handoff e experiment transition passam."
+    ],
+    "lock_protocol": {
+      "acquire": "Criar .write.lock com O_CREAT|O_EXCL, mode 0600, contendo lock_id, pid/process_ref, acquired_at, project_id e expected revision; fsync do arquivo e diretório.",
+      "contention": "Lock vivo retorna ERR_LOCK_HELD; não esperar indefinidamente.",
+      "stale_lock": "Só remover após provar processo morto/lease vencido no mesmo host e registrar recovery report; se não for possível provar, ERR_LOCK_STALE_UNVERIFIED.",
+      "release": "Remover apenas o lock_id adquirido por esta operação, após fsync final; nunca remover lock alheio por idade isolada."
+    },
+    "protocol": [
+      {
+        "step": 1,
+        "name": "resolve_and_validate",
+        "action": "Resolver realpaths, validar project_id/contenção, rejeitar symlinks, schema futuro e modo de arquivo inseguro."
+      },
+      {
+        "step": 2,
+        "name": "lock",
+        "action": "Adquirir lock exclusivo do projeto e fsync do diretório."
+      },
+      {
+        "step": 3,
+        "name": "rehydrate",
+        "action": "Verificar cadeia completa ou snapshot ancorado + cauda, reconstruir dedupe e reducer state; comparar project.json."
+      },
+      {
+        "step": 4,
+        "name": "cas_and_validate",
+        "action": "Comparar revisão/head esperados; validar roles, event types, evidence, handoffs, write sets, experiment transitions e external authority refs."
+      },
+      {
+        "step": 5,
+        "name": "build",
+        "action": "Gerar transaction record canônico, hashes, sequência e estado reduzido candidato; result revision = expected + 1."
+      },
+      {
+        "step": 6,
+        "name": "write_event_temp",
+        "action": "Criar events.jsonl.tmp exclusivo no mesmo diretório; copiar prefixo comprometido byte-for-byte, anexar uma linha transaction, fsync file."
+      },
+      {
+        "step": 7,
+        "name": "write_materialized_temps",
+        "action": "Escrever project.json.tmp e snapshots/latest.json.tmp no mesmo filesystem, validar JSON/schema/hash e fsync de cada arquivo."
+      },
+      {
+        "step": 8,
+        "name": "commit_point",
+        "action": "rename atômico events.jsonl.tmp -> events.jsonl e fsync do diretório do projeto. Esse rename é o único commit point lógico."
+      },
+      {
+        "step": 9,
+        "name": "publish_caches",
+        "action": "rename atômico project.json.tmp -> project.json, fsync; rename latest.json.tmp -> latest.json, fsync do diretório snapshots e do projeto."
+      },
+      {
+        "step": 10,
+        "name": "release_and_return",
+        "action": "Liberar somente o lock próprio; retornar transaction_id, result revision e event hashes. Retry idêntico retorna o mesmo resultado."
+      }
+    ],
+    "crash_semantics": {
+      "before_step_8": "Nenhum evento foi comprometido; apagar apenas temps validados da própria transação e retornar falha.",
+      "after_step_8_before_step_9": "Log já é autoridade; project/snapshot podem estar atrasados. Próxima abertura faz replay e republica caches sem duplicar a transação.",
+      "during_step_9": "Cada rename é atômico; qualquer divergência de cache é reparável por replay do log comprometido.",
+      "after_step_9_before_lock_release": "Transação está comprometida; retry idempotente retorna resultado existente e lock stale segue protocolo restrito."
+    },
+    "fs_requirements": [
+      "Temps e targets devem estar no mesmo filesystem para rename atômico.",
+      "fsync de arquivo antes do rename e fsync do diretório depois do rename são obrigatórios.",
+      "Se a plataforma não fornece atomic rename + durable directory fsync com a semântica requerida, runtime permanece read-only e retorna ERR_ATOMIC_COMMIT_FAILED."
+    ]
+  },
+  "reducer_replay_recovery": {
+    "reducer_properties": [
+      "Determinístico, puro para (prior_state, ordered_events, reducer_version).",
+      "Nunca usa relógio atual, ordem de arquivos, alias textual ou rede para decidir estado.",
+      "Valida owner matrix, state machine e provenance antes de aplicar cada efeito.",
+      "Evento proposal/observation pode ser registrado sem virar decisão aceita.",
+      "Integração de output staged exige Loop Planning, mesma revisão, cross-validation e write sets não sobrepostos.",
+      "Reducer desconhecido ou schema futuro falha fechado."
+    ],
+    "replay_algorithm": [
+      "Validar manifest, project_id, containment e versões.",
+      "Selecionar snapshot somente se revision, sequence, event hash, record hash e reducer_version ancorarem exatamente no log.",
+      "Ler apenas linhas completas; validar transaction schema, record hash, prev_record_hash e revisão +1.",
+      "Para cada evento, validar sequência contígua, prev_event_hash, event_hash, actor_role/event_type, evidence_refs e idempotency.",
+      "Aplicar eventos na ordem event_sequence; timestamps são informativos.",
+      "Validar experiment transition table, owner scope, accepted-decision supersession e bottleneck cardinality.",
+      "Comparar estado reduzido com project.json e active-project cache.",
+      "Se coincidir, marcar clean; se caches estiverem atrasados, republicá-los por recovery transaction/caminho autorizado; se log divergir, entrar degraded_read_only."
+    ],
+    "recovery_rules": [
+      "Linha final parcial, hash quebrado, sequência ausente, revisão saltada ou schema desconhecido nunca é truncado silenciosamente.",
+      "Copiar o artefato problemático para quarantine com hash e relatório sanitizado; preservar original.",
+      "Reduzir somente o maior prefixo integral e válido para diagnóstico, em degraded_read_only.",
+      "Reparo exige decisão explícita, mantém o log corrompido em quarantine e acrescenta evento de audit/recovery; nunca reescreve a história como se não tivesse ocorrido.",
+      "Snapshot divergente é descartável; log divergente é bloqueante.",
+      "Rollback de importação é bloqueado se eventos novos alteraram hashes desde a operação, conforme compatibility-policy."
+    ],
+    "derived_cache_policy": {
+      "project_json": "Materialização atual; deve poder ser reconstruída integralmente.",
+      "latest_snapshot": "Checkpoint de performance; contém derived_from_revision e heads.",
+      "active_project": "Ponteiro de descoberta; não decide estado nem projeto ativo silenciosamente.",
+      "dedupe_index": "Cache reconstruível do log; perda não afeta correção."
+    }
+  },
+  "evidence_contract": {
+    "evidence_ref_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_kind",
+        "source_ref",
+        "sha256",
+        "observed_at",
+        "redaction_status"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^evr_[a-z0-9][a-z0-9_-]{0,126}$"
+        },
+        "source_kind": {
+          "type": "string",
+          "enum": [
+            "first_party_record",
+            "analytics_record",
+            "experiment_record",
+            "authorization_record",
+            "instrumentation_record",
+            "launch_record",
+            "completion_record",
+            "cancellation_record",
+            "invalidation_record",
+            "market_source",
+            "user_assertion",
+            "migration_record"
+          ]
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "redaction_status": {
+          "type": "string",
+          "enum": [
+            "not_required",
+            "redacted",
+            "contains_sensitive_reference_only"
+          ]
+        },
+        "supports_claim_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "rules": [
+      "Todo fato e toda transição que muda estado exige evidence_refs resolvíveis e íntegros.",
+      "Hipótese pode ter evidence_refs vazio apenas com rationale e confidence; não pode aceitar decisão nem avançar experimento.",
+      "Refs guardam URI/record ref e hash, não corpus, token, segredo ou PII desnecessária.",
+      "Authorization ref não é substituída por actor_role, mensagem de aprovação ou plano.",
+      "Instrumentation plan não é instrumentation evidence; launch plan não é launch event.",
+      "Evidence observed_at não ordena o log; event_sequence ordena."
+    ],
+    "p2_evidence_anchors": [
+      "RA-I003",
+      "RA-I007",
+      "RA-I008",
+      "RA-R004",
+      "RA-R005",
+      "RA-R006",
+      "RA-R007",
+      "INV-005",
+      "INV-006",
+      "INV-007",
+      "RTE-NORM-001",
+      "RTE-NORM-002",
+      "RTE-NORM-003",
+      "EV-EXPERIMENT-001",
+      "EV-EXPERIMENT-002",
+      "EV-ROUTE-006"
+    ]
+  },
+  "experiment_state_machine": {
+    "owner_semantics": {
+      "contract_design_metric_and_interpretation_owner": "refinar",
+      "transition_evidence_validator": "refinar",
+      "state_integration_role": "loop_planning (CAS integrator only; does not become experiment owner)",
+      "approval_instrumentation_launch_and_mutation_authority": "external authority/evidence references; identity verifier deferred to P6",
+      "fail_closed_rule": "Sem evidence/authority requerido, emitir experiment_transition_rejected e manter o estado atual."
+    },
+    "states": [
+      "proposed",
+      "approved",
+      "instrumented",
+      "running",
+      "completed",
+      "cancelled",
+      "invalidated"
+    ],
+    "adjacency": {
+      "genesis": [
+        "proposed"
+      ],
+      "proposed": [
+        "approved",
+        "cancelled"
+      ],
+      "approved": [
+        "instrumented",
+        "cancelled"
+      ],
+      "instrumented": [
+        "running",
+        "cancelled",
+        "invalidated"
+      ],
+      "running": [
+        "completed",
+        "cancelled",
+        "invalidated"
+      ],
+      "completed": [
+        "invalidated"
+      ],
+      "cancelled": [],
+      "invalidated": []
+    },
+    "complete_transition_table": [
+      {
+        "id": "RTE-EXP-001",
+        "from": null,
+        "to": "proposed",
+        "event_type": "experiment_created_as_proposed",
+        "validator_role": "refinar",
+        "external_authority": "none",
+        "required_evidence": [
+          "hypothesis with specific change and measurable expected result",
+          "one isolated variable or explicit multivariate design",
+          "control definition",
+          "numeric success metric and target set before launch",
+          "minimum sample rule",
+          "minimum duration and early-stop rule",
+          "post-test decision thresholds",
+          "owner and creation timestamp"
+        ]
+      },
+      {
+        "id": "RTE-EXP-002",
+        "from": "proposed",
+        "to": "approved",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "authorization_ref required; approver identity is external and is not actor_role authority",
+        "required_evidence": [
+          "approval event ID",
+          "approver identity",
+          "approved scope",
+          "approval timestamp"
+        ]
+      },
+      {
+        "id": "RTE-EXP-003",
+        "from": "approved",
+        "to": "instrumented",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "instrumentation evidence and responsible external actor reference required",
+        "required_evidence": [
+          "instrumentation record ID",
+          "event or metric schema",
+          "assignment mechanism",
+          "QA result",
+          "sample plan"
+        ]
+      },
+      {
+        "id": "RTE-EXP-004",
+        "from": "instrumented",
+        "to": "running",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "launch evidence plus operation-specific authorization_ref required",
+        "required_evidence": [
+          "launch event ID",
+          "confirmed start timestamp",
+          "live treatment and control identifiers",
+          "audience allocation"
+        ]
+      },
+      {
+        "id": "RTE-EXP-005",
+        "from": "running",
+        "to": "completed",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "completion/result evidence and responsible external actor reference required",
+        "required_evidence": [
+          "completion event ID",
+          "observation window or predeclared early-stop trigger",
+          "result dataset reference",
+          "actual sample",
+          "metric result",
+          "quality checks"
+        ]
+      },
+      {
+        "id": "RTE-EXP-006-1",
+        "source_rule_id": "RTE-EXP-006",
+        "from": "proposed",
+        "to": "cancelled",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "cancellation actor reference required",
+        "required_evidence": [
+          "cancellation event ID",
+          "actor",
+          "reason",
+          "timestamp",
+          "impact on already collected data"
+        ]
+      },
+      {
+        "id": "RTE-EXP-006-2",
+        "source_rule_id": "RTE-EXP-006",
+        "from": "approved",
+        "to": "cancelled",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "cancellation actor reference required",
+        "required_evidence": [
+          "cancellation event ID",
+          "actor",
+          "reason",
+          "timestamp",
+          "impact on already collected data"
+        ]
+      },
+      {
+        "id": "RTE-EXP-006-3",
+        "source_rule_id": "RTE-EXP-006",
+        "from": "instrumented",
+        "to": "cancelled",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "cancellation actor reference required",
+        "required_evidence": [
+          "cancellation event ID",
+          "actor",
+          "reason",
+          "timestamp",
+          "impact on already collected data"
+        ]
+      },
+      {
+        "id": "RTE-EXP-006-4",
+        "source_rule_id": "RTE-EXP-006",
+        "from": "running",
+        "to": "cancelled",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "cancellation actor reference required",
+        "required_evidence": [
+          "cancellation event ID",
+          "actor",
+          "reason",
+          "timestamp",
+          "impact on already collected data"
+        ]
+      },
+      {
+        "id": "RTE-EXP-007-1",
+        "source_rule_id": "RTE-EXP-007",
+        "from": "instrumented",
+        "to": "invalidated",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "invalidation actor and remediation/replacement reference required",
+        "required_evidence": [
+          "invalidation event ID",
+          "integrity defect",
+          "affected data",
+          "actor",
+          "timestamp",
+          "remediation or replacement experiment reference"
+        ]
+      },
+      {
+        "id": "RTE-EXP-007-2",
+        "source_rule_id": "RTE-EXP-007",
+        "from": "running",
+        "to": "invalidated",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "invalidation actor and remediation/replacement reference required",
+        "required_evidence": [
+          "invalidation event ID",
+          "integrity defect",
+          "affected data",
+          "actor",
+          "timestamp",
+          "remediation or replacement experiment reference"
+        ]
+      },
+      {
+        "id": "RTE-EXP-007-3",
+        "source_rule_id": "RTE-EXP-007",
+        "from": "completed",
+        "to": "invalidated",
+        "event_type": "experiment_transition_evidence_validated",
+        "validator_role": "refinar",
+        "external_authority": "invalidation actor and remediation/replacement reference required",
+        "required_evidence": [
+          "invalidation event ID",
+          "integrity defect",
+          "affected data",
+          "actor",
+          "timestamp",
+          "remediation or replacement experiment reference"
+        ]
+      }
+    ],
+    "transition_invariants": [
+      "No forward state may be skipped.",
+      "Restarting or rerouting the loop never changes experiment state.",
+      "Approval text without actor, scope and timestamp is not an approval event.",
+      "Instrumentation plans are not instrumentation evidence.",
+      "A planned launch is not a launch event.",
+      "A completed state requires evidence that the experiment actually ran; cancellation is not completion.",
+      "Backward mutation is forbidden; corrections append an invalidation or create a new experiment with derived_from.",
+      "Every transition is an append-only event with event_id, experiment_id, from, to, actor, occurred_at and evidence_refs.",
+      "Only Refinar owns experiment design and success metrics; external execution still requires its own explicit authorization."
+    ],
+    "explicit_forbidden": [
+      "Qualquer salto entre estados forward.",
+      "Qualquer transição backward.",
+      "Qualquer saída de cancelled ou invalidated.",
+      "completed para qualquer estado exceto invalidated.",
+      "approved sem approval event ID, approver identity, approved scope e timestamp.",
+      "instrumented com plano de instrumentação sem record, schema, assignment, QA e sample plan.",
+      "running com plano de launch sem launch event e live treatment/control.",
+      "completed sem experimento realmente running, janela/early-stop, dataset, amostra, métrica e quality checks.",
+      "Refinar, Loop Planning ou alias de comando usados como authorization_ref externo."
+    ]
+  },
+  "role_authority": {
+    "canonical_decision_ownership": {
+      "global_bottleneck_and_role_sequence": "loop_planning",
+      "lifecycle_stages_segments_eligibility_and_lifecycle_events": "orientar",
+      "maturity_classification_and_cross_role_integration": "loop_planning",
+      "message_value_proposition_voice_tone_and_cta": "verbalizar",
+      "operational_timing_frequency_contact_pressure_and_cross_channel_cadence": "ampliar",
+      "performance_diagnosis_experiment_contract_success_metric_and_learning": "refinar"
+    },
+    "canonical_role_event_matrix": [
+      {
+        "role_id": "loop_planning",
+        "role_type": "orchestrator_and_integrator",
+        "owns": [
+          "maturity_classification",
+          "cross_pillar_scoring",
+          "global_bottleneck_acceptance",
+          "role_sequence_and_dependencies",
+          "specialist_mode_selection",
+          "parallel_output_integration",
+          "cross_validation_gate",
+          "cycle_close_recommendation"
+        ],
+        "does_not_own": [
+          "message_or_copy",
+          "segment_or_eligibility_definition",
+          "channel_or_contact_cadence",
+          "experiment_design_or_result_interpretation",
+          "external_execution_authorization"
+        ],
+        "allowed_event_types": [
+          "maturity_classified",
+          "pillar_scores_recorded",
+          "bottleneck_accepted",
+          "bottleneck_rejected",
+          "route_plan_issued",
+          "handoff_issued",
+          "cross_validation_requested",
+          "cross_validation_completed",
+          "scope_violation_reported",
+          "cycle_close_recommended"
+        ],
+        "event_effect_limit": "Pode integrar outputs staged e aceitar somente decisões que já pertencem a Loop Planning; não ganha autoridade sobre mensagem, lifecycle, canal/cadência, experimento ou execução externa.",
+        "source_resolution_refs": [
+          "RA-R005",
+          "RA-R006",
+          "RA-R007"
+        ]
+      },
+      {
+        "role_id": "verbalizar",
+        "role_type": "message_specialist",
+        "owns": [
+          "value_proposition",
+          "message_hierarchy",
+          "customer_language_and_voice",
+          "pain_desire_objection_framing",
+          "tone_and_proof",
+          "message_adaptation_by_lifecycle_stage",
+          "message_cta"
+        ],
+        "does_not_own": [
+          "segment_definition",
+          "lifecycle_eligibility",
+          "operational_timing_frequency_or_cadence",
+          "channel_selection",
+          "experiment_contract_or_success_metric",
+          "performance_classification",
+          "global_bottleneck"
+        ],
+        "allowed_event_types": [
+          "message_decision_proposed",
+          "message_contract_published",
+          "test_opportunity_proposed",
+          "bottleneck_observation_emitted",
+          "data_gap_reported",
+          "handoff_issued"
+        ],
+        "event_effect_limit": "Emite output imutável, observação ou proposta de evento contra state_revision; não integra estado global nem confirma decisão de outro owner.",
+        "source_resolution_refs": [
+          "RA-R003",
+          "RA-R004",
+          "RA-R005",
+          "RA-R006",
+          "RA-R008"
+        ]
+      },
+      {
+        "role_id": "orientar",
+        "role_type": "lifecycle_and_eligibility_specialist",
+        "owns": [
+          "lifecycle_stage_model",
+          "segment_definition",
+          "inclusion_and_exclusion_rules",
+          "suppression_and_eligibility_priority",
+          "lifecycle_entry_and_exit_events",
+          "semantic_eligibility_windows",
+          "personalization_context_and_variables",
+          "progression_stagnation_and_regression_rules"
+        ],
+        "does_not_own": [
+          "message_voice_tone_or_cta",
+          "channel_selection",
+          "send_time_wait_retry_frequency_contact_pressure_or_cross_channel_cadence",
+          "experiment_contract_or_success_metric",
+          "performance_diagnosis",
+          "global_bottleneck"
+        ],
+        "allowed_event_types": [
+          "lifecycle_model_proposed",
+          "segment_definition_proposed",
+          "eligibility_rule_proposed",
+          "lifecycle_event_rule_proposed",
+          "personalization_rule_proposed",
+          "test_opportunity_proposed",
+          "bottleneck_observation_emitted",
+          "data_gap_reported",
+          "handoff_issued"
+        ],
+        "event_effect_limit": "Emite output imutável, observação ou proposta de evento contra state_revision; não integra estado global nem confirma decisão de outro owner.",
+        "source_resolution_refs": [
+          "RA-R001",
+          "RA-R002",
+          "RA-R004",
+          "RA-R005",
+          "RA-R006",
+          "RA-R008"
+        ]
+      },
+      {
+        "role_id": "ampliar",
+        "role_type": "channel_and_cadence_specialist",
+        "owns": [
+          "channel_role_and_selection",
+          "touchpoint_inventory_and_coordination",
+          "operational_send_timing",
+          "wait_retry_and_fallback",
+          "per_channel_frequency",
+          "global_contact_pressure_cap",
+          "cross_channel_cadence_and_non_conflict",
+          "channel_allocation_and_amplification_plan",
+          "cross_channel_attribution_requirements"
+        ],
+        "does_not_own": [
+          "message_voice_tone_or_cta",
+          "segment_definition",
+          "lifecycle_stage_or_eligibility",
+          "experiment_contract_success_metric_or_result",
+          "global_bottleneck",
+          "external_campaign_execution_authorization"
+        ],
+        "allowed_event_types": [
+          "channel_plan_proposed",
+          "touchpoint_rule_proposed",
+          "operational_timing_rule_proposed",
+          "frequency_cap_proposed",
+          "cadence_plan_proposed",
+          "amplification_plan_proposed",
+          "test_opportunity_proposed",
+          "bottleneck_observation_emitted",
+          "data_gap_reported",
+          "handoff_issued"
+        ],
+        "event_effect_limit": "Emite output imutável, observação ou proposta de evento contra state_revision; não integra estado global nem confirma decisão de outro owner.",
+        "source_resolution_refs": [
+          "RA-R001",
+          "RA-R002",
+          "RA-R004",
+          "RA-R005",
+          "RA-R006",
+          "RA-R008"
+        ]
+      },
+      {
+        "role_id": "refinar",
+        "role_type": "performance_experiment_and_learning_specialist",
+        "owns": [
+          "performance_diagnosis",
+          "benchmark_selection_and_documentation",
+          "testable_hypothesis",
+          "formal_experiment_contract",
+          "experiment_variable_control_sample_duration_and_success_metric",
+          "experiment_evidence_validation",
+          "performance_action_classification",
+          "result_interpretation",
+          "learning_record",
+          "cross_pillar_implications"
+        ],
+        "does_not_own": [
+          "message_creation",
+          "segment_lifecycle_or_eligibility_definition",
+          "channel_or_contact_cadence",
+          "global_bottleneck",
+          "business_approval_or_external_launch_authorization"
+        ],
+        "allowed_event_types": [
+          "performance_diagnosis_recorded",
+          "experiment_created_as_proposed",
+          "experiment_transition_evidence_validated",
+          "experiment_transition_rejected",
+          "experiment_result_interpreted",
+          "learning_recorded",
+          "cross_pillar_implication_issued",
+          "bottleneck_observation_emitted",
+          "data_gap_reported",
+          "handoff_issued"
+        ],
+        "event_effect_limit": "Emite output imutável, observação ou proposta de evento contra state_revision; não integra estado global nem confirma decisão de outro owner.",
+        "source_resolution_refs": [
+          "RA-R004",
+          "RA-R005",
+          "RA-R006",
+          "RA-R007",
+          "RA-R008"
+        ]
+      }
+    ],
+    "temporal_authority_model": {
+      "ampliar_owns": [
+        "Data e hora operacional de envio ou exibicao.",
+        "Espera entre touchpoints, ordem de canais, retry e fallback.",
+        "Limite numerico de frequencia por canal e limite global de pressao de contato.",
+        "Cadencia, intensidade operacional e regras de nao conflito cross-channel."
+      ],
+      "conflict_rule": "Quando uma restricao de elegibilidade de Orientar colidir com uma cadencia de Ampliar, a inelegibilidade ou supressao prevalece. Ampliar deve recalcular a cadencia sem alterar o criterio de elegibilidade.",
+      "loop_planning_owns": [
+        "Ordem e dependencia entre papeis no ciclo; isso nao concede autoridade sobre timing de lifecycle ou de touchpoint."
+      ],
+      "orientar_owns": [
+        "Eventos ou condicoes observaveis de entrada e saida de estagio.",
+        "Criterios de inclusao, exclusao, supressao e prioridade de elegibilidade.",
+        "Janelas semanticas de elegibilidade delimitadas por evento ou condicao de lifecycle.",
+        "Thresholds de progressao, estagnacao e regressao como significado de lifecycle."
+      ],
+      "refinar_owns": [
+        "Duracao, janela de observacao, amostra e criterio temporal de um experimento; isso nao concede autoridade sobre a cadencia do contato."
+      ],
+      "verbalizar_owns": [
+        "Adaptacao da mensagem por estagio e CTA; isso nao concede autoridade para decidir quando ou quantas vezes entregar."
+      ]
+    },
+    "integration_rules": [
+      "actor_role deve estar na matriz e event_type deve constar em allowed_event_types.",
+      "Loop Planning integra e aceita apenas seus domínios; para outros domínios preserva owner_role e evento do owner.",
+      "Especialista nunca emite bottleneck_accepted, route_plan_issued ou cycle_closed.",
+      "Somente Refinar formaliza experimento, valida evidência de transição, interpreta resultado e registra aprendizado.",
+      "Nenhum evento concede autorização de mutação externa; authorization_ref é operação-específica e verificável.",
+      "Alias resolve para command_id canônico e nunca muda actor_role, event_type, autorização ou estado."
+    ],
+    "handoff_contract": {
+      "contract_version": "1.0",
+      "required_fields": [
+        "handoff_id",
+        "contract_version",
+        "project_ref",
+        "cycle_id",
+        "state_revision",
+        "from_role",
+        "to_role",
+        "created_at",
+        "objective",
+        "mode",
+        "maturity",
+        "bottleneck_ref",
+        "input_refs",
+        "tactic_refs",
+        "decisions_to_respect",
+        "scope_boundary_next_does_not_decide",
+        "evidence_refs",
+        "assumptions",
+        "known_gaps",
+        "requested_output",
+        "cross_validation_required",
+        "escalation_conditions"
+      ],
+      "acceptance_rules": [
+        "to_role MUST existir neste artefato.",
+        "scope_boundary_next_does_not_decide MUST ser compativel com canonical_authority_map.",
+        "Um handoff com state_revision obsoleto MUST ser revalidado antes da integracao.",
+        "requested_output MUST_NOT atribuir ao receptor uma decisao pertencente a outro owner.",
+        "Claims sem evidence_refs MUST permanecer assumptions e MUST_NOT avancar estado."
+      ],
+      "stale_behavior": "Handoff baseado em revisão obsoleta vira stale; revalidar/regenerar, nunca replay silencioso."
+    }
+  },
+  "rejection_codes": {
+    "inherited_from_p2": [
+      {
+        "code": "ERR_INPUT_REQUIRED",
+        "meaning": "required route input is missing",
+        "remedy": "supply the named field",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_CLAIM_PROVENANCE_MISSING",
+        "meaning": "fact lacks source or hypothesis lacks rationale",
+        "remedy": "attach provenance or relabel as hypothesis",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_DIAGNOSIS_USES_UNPROVEN_CLAIM",
+        "meaning": "score or bottleneck relies on interpretation or hypothesis as fact",
+        "remedy": "obtain evidence or remove the score contribution",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_STATE_REVISION_STALE",
+        "meaning": "route or write is based on an obsolete project revision",
+        "remedy": "rehydrate and rerun validation",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_OUTSIDE_LOOP_PREREQUISITE",
+        "meaning": "required RevOps or data foundation is absent",
+        "remedy": "record and satisfy the prerequisite outside the pillar route",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_BOTTLENECK_AMBIGUOUS",
+        "meaning": "available evidence cannot select one bottleneck",
+        "remedy": "run Refinar minimum-viable data audit or collect discriminating evidence",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_BOTTLENECK_OWNER_VIOLATION",
+        "meaning": "a specialist attempted to accept a bottleneck change",
+        "remedy": "convert the change to a proposal for loop_planning",
+        "retryable": false,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_PRIMARY_BOTTLENECK_CARDINALITY",
+        "meaning": "ready route has zero or multiple accepted bottlenecks",
+        "remedy": "apply bottleneck precedence or mark needs_evidence",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_ORCHESTRATOR_AUTHORITY",
+        "meaning": "a non-orchestrator accepted sequence, integration or supersession",
+        "remedy": "revert the acceptance and submit a proposal to loop_planning",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_MATURITY_GATE",
+        "meaning": "method or tactic exceeds evidenced maturity or prerequisites",
+        "remedy": "select a viable alternative or satisfy prerequisites",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_TACTIC_METADATA_MISSING",
+        "meaning": "tactic lacks required external catalog metadata",
+        "remedy": "use the base method or complete P3 metadata without editing the prompt",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_TACTIC_CARDINALITY",
+        "meaning": "more than two tactics were selected for one specialist route_node",
+        "remedy": "retain at most two eligible complementary tactics or decompose the objective into another route node",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_CANONICAL_LIBRARY_DRIFT",
+        "meaning": "canonical prompt count, path or content changed",
+        "remedy": "restore the anchored 100-prompt baseline before routing",
+        "retryable": false,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_SEQUENCE_DEPENDENCY",
+        "meaning": "consumer started before a required validated producer handoff",
+        "remedy": "complete and validate the dependency",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_PARALLELISM_UNSAFE",
+        "meaning": "parallel tasks share ownership, dependencies or write sets",
+        "remedy": "serialize or isolate the work",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_PARALLEL_WRITE_COLLISION",
+        "meaning": "parallel outputs target the same state field",
+        "remedy": "return both proposals to loop_planning for owner-based resolution",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_COLLISION_UNRESOLVED",
+        "meaning": "decision table cannot resolve equally supported conflict",
+        "remedy": "collect discriminating evidence or design a Refinar test",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_OWNER_SCOPE_VIOLATION",
+        "meaning": "role decided a field owned by another role",
+        "remedy": "revert the field and issue a proposal to its owner",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_HANDOFF_FIELD_MISSING",
+        "meaning": "handoff lacks a required field",
+        "remedy": "complete the handoff contract",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_HANDOFF_STALE_REVISION",
+        "meaning": "handoff targets an obsolete revision",
+        "remedy": "regenerate or revalidate against current state",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_HANDOFF_SCOPE_BOUNDARY",
+        "meaning": "handoff omits required next-role non-decisions",
+        "remedy": "populate scope boundary from the owner matrix",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_HANDOFF_OWNER_SCOPE",
+        "meaning": "handoff objective asks target to decide outside its ownership",
+        "remedy": "split or reroute the objective",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_HANDOFF_PROVENANCE",
+        "meaning": "handoff contains unsourced fact or unmarked hypothesis",
+        "remedy": "attach provenance or relabel",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_CROSS_VALIDATION_BLOCKED",
+        "meaning": "one or more required cross-validation checks failed",
+        "remedy": "perform each check's required action and rerun",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_BENCHMARK_CLASSIFICATION_INVALID",
+        "meaning": "Refinar classification lacks comparable benchmark, complete interval or required evidence",
+        "remedy": "apply precedence table or classify TESTAR",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_EXPERIMENT_EVIDENCE_MISSING",
+        "meaning": "experiment transition lacks required event evidence",
+        "remedy": "retain current state until the event is proven",
+        "retryable": true,
+        "severity": "block",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_EXPERIMENT_TRANSITION_INVALID",
+        "meaning": "transition skips, reverses or leaves the state machine",
+        "remedy": "use the next allowed transition or append invalidation/new experiment",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_STATE_FABRICATION",
+        "meaning": "state was advanced by narration rather than event evidence",
+        "remedy": "restore the last evidenced state and append an audit correction",
+        "retryable": false,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_EXTERNAL_MUTATION_UNAUTHORIZED",
+        "meaning": "route was treated as permission for external mutation",
+        "remedy": "obtain operation-specific authorization or remain read-only",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      },
+      {
+        "code": "ERR_HYPOTHESIS_USED_AS_RULE",
+        "meaning": "non-normative hypothesis altered a route",
+        "remedy": "remove it from execution or promote it through a recorded decision",
+        "retryable": true,
+        "severity": "reject",
+        "source": "artifacts/P2/routing-contract.json#rejection_codes"
+      }
+    ],
+    "proposed_p4": [
+      {
+        "code": "ERR_EVENT_SCHEMA_INVALID",
+        "meaning": "Evento ou transaction record não satisfaz o schema 2.0 proposto",
+        "severity": "reject",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_EVENT_TYPE_ROLE_MISMATCH",
+        "meaning": "actor_role não pode emitir esse event_type",
+        "severity": "reject",
+        "retryable": false,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_EVENT_ID_COLLISION",
+        "meaning": "event_id já existe com hash ou conteúdo diferente",
+        "severity": "reject",
+        "retryable": false,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_IDEMPOTENCY_CONFLICT",
+        "meaning": "idempotency_key já existe para operação semanticamente diferente",
+        "severity": "reject",
+        "retryable": false,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_EVENT_HASH_MISMATCH",
+        "meaning": "event_hash não corresponde ao JSON canônico",
+        "severity": "reject",
+        "retryable": false,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_EVENT_CHAIN_BROKEN",
+        "meaning": "prev_event_hash ou prev_record_hash não corresponde ao head anterior",
+        "severity": "reject",
+        "retryable": false,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_EVENT_SEQUENCE_GAP",
+        "meaning": "event_sequence não é monotônica e contígua",
+        "severity": "reject",
+        "retryable": false,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_TRANSACTION_REVISION_INVALID",
+        "meaning": "result revision não é expected revision + 1 ou eventos não compartilham a revisão",
+        "severity": "reject",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_PROJECT_HEAD_MISMATCH",
+        "meaning": "expected_head_event_hash difere do head reidratado",
+        "severity": "block",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_LOCK_HELD",
+        "meaning": "outro escritor possui lock válido do projeto",
+        "severity": "block",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_LOCK_STALE_UNVERIFIED",
+        "meaning": "lock parece obsoleto, mas ownership/liveness não pôde ser provado",
+        "severity": "block",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_ATOMIC_COMMIT_FAILED",
+        "meaning": "fsync ou rename falhou antes/depois do commit point",
+        "severity": "block",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_STATE_SNAPSHOT_DIVERGED",
+        "meaning": "project.json ou latest snapshot diverge do replay do log",
+        "severity": "block",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_RECOVERY_REQUIRED",
+        "meaning": "log contém record incompleto, schema futuro ou quebra de cadeia",
+        "severity": "block",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_EVIDENCE_REF_UNRESOLVED",
+        "meaning": "evidence_ref obrigatório não resolve ou falha integridade",
+        "severity": "block",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_AUTHORITY_REF_UNVERIFIED",
+        "meaning": "authority_ref externo não pode ser verificado pela política vigente",
+        "severity": "block",
+        "retryable": true,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_UNKNOWN_SCHEMA_VERSION",
+        "meaning": "schema não é atual nem coberto por migrador explícito",
+        "severity": "reject",
+        "retryable": false,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      },
+      {
+        "code": "ERR_PROJECT_PATH_INVALID",
+        "meaning": "project_id/path viola slug, contenção realpath ou política de symlink",
+        "severity": "reject",
+        "retryable": false,
+        "status": "proposed_p4",
+        "remedy": "Falhar fechado, preservar o log original e seguir o protocolo específico de validação ou recovery."
+      }
+    ],
+    "compatibility_codes_reused": [
+      {
+        "code": "LM-COMPAT-PATH-ESCAPE",
+        "use": "path traversal ou symlink fora da raiz"
+      },
+      {
+        "code": "LM-COMPAT-FUTURE-SCHEMA",
+        "use": "schema futuro não suportado"
+      },
+      {
+        "code": "LM-COMPAT-SECRET-DETECTED",
+        "use": "segredo detectado em importação/estado"
+      },
+      {
+        "code": "LM-COMPAT-DANGLING-ACTIVE",
+        "use": "active-project aponta para alvo ausente"
+      },
+      {
+        "code": "LM-COMPAT-ID-COLLISION",
+        "use": "IDs/eventos duplicados com conteúdo diferente"
+      },
+      {
+        "code": "LM-COMPAT-NAMESPACE-CONFLICT",
+        "use": "fontes legadas divergentes"
+      }
+    ]
+  },
+  "positive_fixtures": [
+    {
+      "fixture_id": "P4-SE-POS-001",
+      "name": "genesis project",
+      "given": {
+        "project_id": "acme-br",
+        "events": [],
+        "state_revision": 0
+      },
+      "when": "Criar o primeiro batch válido com event sequence 1 e prev hashes GENESIS.",
+      "expect": {
+        "result_state_revision": 1,
+        "chain_valid": true,
+        "project_id_path_contained": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-POS-002",
+      "name": "idempotent exact retry",
+      "given": {
+        "committed_idempotency_key": "req-42:integrate-1",
+        "event_hashes": [
+          "same"
+        ]
+      },
+      "when": "Reenviar o mesmo batch byte-semanticamente idêntico.",
+      "expect": {
+        "new_record_appended": false,
+        "state_revision_unchanged": true,
+        "returns_original_transaction": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-POS-003",
+      "name": "parallel staged outputs single CAS",
+      "given": {
+        "base_revision": 7,
+        "outputs": [
+          {
+            "role": "verbalizar",
+            "write_set": [
+              "message"
+            ]
+          },
+          {
+            "role": "orientar",
+            "write_set": [
+              "lifecycle"
+            ]
+          }
+        ],
+        "dependencies_satisfied": true
+      },
+      "when": "Loop Planning cross-validar e integrar ambos em uma transação.",
+      "expect": {
+        "result_revision": 8,
+        "one_transaction": true,
+        "owners_preserved": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-POS-004",
+      "name": "full experiment progression",
+      "given": {
+        "state": "proposed",
+        "approval_evidence": true,
+        "instrumentation_evidence": true,
+        "launch_evidence": true,
+        "completion_evidence": true
+      },
+      "when": "Aplicar RTE-EXP-002,003,004,005 em quatro transações CAS válidas.",
+      "expect": {
+        "final_state": "completed",
+        "no_skipped_state": true,
+        "design_owner": "refinar",
+        "external_authority_not_inferred": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-POS-005",
+      "name": "cancel approved experiment",
+      "given": {
+        "state": "approved",
+        "cancellation_event_id": "evr_cancel",
+        "actor_ref": "operator-opaque",
+        "reason": "capacity",
+        "timestamp_present": true,
+        "impact_recorded": true
+      },
+      "when": "Refinar validar evidência e Loop Planning integrar a transição.",
+      "expect": {
+        "final_state": "cancelled",
+        "prior_events_preserved": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-POS-006",
+      "name": "invalidate completed experiment",
+      "given": {
+        "state": "completed",
+        "integrity_defect": "assignment contamination",
+        "affected_data_ref": "evr_badset",
+        "replacement_experiment_ref": "exp_replacement"
+      },
+      "when": "Aplicar RTE-EXP-007-3.",
+      "expect": {
+        "final_state": "invalidated",
+        "completed_event_preserved": true,
+        "history_not_rewritten": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-POS-007",
+      "name": "crash after log commit",
+      "given": {
+        "events_log_revision": 12,
+        "project_json_revision": 11,
+        "snapshot_revision": 11,
+        "chains_valid": true
+      },
+      "when": "Abrir o projeto.",
+      "expect": {
+        "action": "replay committed log and republish caches",
+        "semantic_revision": 12,
+        "no_duplicate_event": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-POS-008",
+      "name": "legacy alias equivalence",
+      "given": {
+        "invocations": [
+          "/orientar",
+          "/orientar-agent"
+        ],
+        "command_id": "loop.orientar"
+      },
+      "when": "Produzir o mesmo evento autorizado.",
+      "expect": {
+        "recorded_command_id": "loop.orientar",
+        "actor_role": "orientar",
+        "same_state_semantics": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-POS-009",
+      "name": "suppression precedes cadence",
+      "given": {
+        "orientar_suppression": true,
+        "refinar_assignment": true,
+        "ampliar_touchpoints": 2
+      },
+      "when": "Reducer aplicar owner collision rule RTE-COL-003.",
+      "expect": {
+        "deliveries": 0,
+        "suppression_preserved": true
+      }
+    }
+  ],
+  "negative_fixtures": [
+    {
+      "fixture_id": "P4-SE-NEG-001",
+      "name": "stale CAS",
+      "given": {
+        "expected_revision": 7,
+        "actual_revision": 8
+      },
+      "expect": {
+        "code": "ERR_STATE_REVISION_STALE",
+        "state_advanced": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-002",
+      "name": "head mismatch with same request",
+      "given": {
+        "expected_head": "aaa",
+        "actual_head": "bbb"
+      },
+      "expect": {
+        "code": "ERR_PROJECT_HEAD_MISMATCH",
+        "state_advanced": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-003",
+      "name": "event ID collision",
+      "given": {
+        "event_id": "existing",
+        "old_hash": "aaa",
+        "new_hash": "bbb"
+      },
+      "expect": {
+        "code": "ERR_EVENT_ID_COLLISION",
+        "append": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-004",
+      "name": "idempotency conflict",
+      "given": {
+        "idempotency_key": "same",
+        "old_operation": "A",
+        "new_operation": "B"
+      },
+      "expect": {
+        "code": "ERR_IDEMPOTENCY_CONFLICT",
+        "append": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-005",
+      "name": "broken hash chain",
+      "given": {
+        "prev_event_hash": "not-head"
+      },
+      "expect": {
+        "code": "ERR_EVENT_CHAIN_BROKEN",
+        "mode": "degraded_read_only"
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-006",
+      "name": "specialist accepts bottleneck",
+      "given": {
+        "actor_role": "verbalizar",
+        "event_type": "bottleneck_accepted"
+      },
+      "expect": {
+        "code": "ERR_EVENT_TYPE_ROLE_MISMATCH",
+        "accepted_bottleneck_unchanged": true
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-007",
+      "name": "skip experiment state",
+      "given": {
+        "from": "proposed",
+        "to": "running"
+      },
+      "expect": {
+        "code": "ERR_EXPERIMENT_TRANSITION_INVALID",
+        "state": "proposed"
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-008",
+      "name": "narrated approval",
+      "given": {
+        "from": "proposed",
+        "to": "approved",
+        "approval_text": true,
+        "approver_identity": null,
+        "authorization_ref": null
+      },
+      "expect": {
+        "code": "ERR_EXPERIMENT_EVIDENCE_MISSING",
+        "state": "proposed"
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-009",
+      "name": "instrumentation plan only",
+      "given": {
+        "from": "approved",
+        "to": "instrumented",
+        "instrumentation_plan": true,
+        "instrumentation_record": null
+      },
+      "expect": {
+        "code": "ERR_EXPERIMENT_EVIDENCE_MISSING",
+        "state": "approved"
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-010",
+      "name": "planned launch",
+      "given": {
+        "from": "instrumented",
+        "to": "running",
+        "launch_plan": true,
+        "launch_event_id": null
+      },
+      "expect": {
+        "code": "ERR_EXPERIMENT_EVIDENCE_MISSING",
+        "state": "instrumented"
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-011",
+      "name": "false completion",
+      "given": {
+        "from": "running",
+        "to": "completed",
+        "result_dataset": null,
+        "actual_sample": null
+      },
+      "expect": {
+        "code": "ERR_EXPERIMENT_EVIDENCE_MISSING",
+        "state": "running"
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-012",
+      "name": "external mutation inferred",
+      "given": {
+        "route_ready": true,
+        "authorization_ref": null,
+        "requested_action": "write_campaign"
+      },
+      "expect": {
+        "code": "ERR_EXTERNAL_MUTATION_UNAUTHORIZED",
+        "mutation": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-013",
+      "name": "parallel write collision",
+      "given": {
+        "outputs": [
+          {
+            "role": "verbalizar",
+            "write_set": [
+              "same"
+            ]
+          },
+          {
+            "role": "orientar",
+            "write_set": [
+              "same"
+            ]
+          }
+        ]
+      },
+      "expect": {
+        "code": "ERR_PARALLEL_WRITE_COLLISION",
+        "integration": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-014",
+      "name": "path escape",
+      "given": {
+        "display_name": "../../other",
+        "project_id": "../../other"
+      },
+      "expect": {
+        "code": "LM-COMPAT-PATH-ESCAPE",
+        "write": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-015",
+      "name": "partial final JSONL line",
+      "given": {
+        "last_line_complete": false
+      },
+      "expect": {
+        "code": "ERR_RECOVERY_REQUIRED",
+        "truncate_silently": false,
+        "mode": "degraded_read_only"
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-016",
+      "name": "future schema",
+      "given": {
+        "schema_version": "3.0"
+      },
+      "expect": {
+        "code": "ERR_UNKNOWN_SCHEMA_VERSION",
+        "interpret": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-017",
+      "name": "fact without evidence",
+      "given": {
+        "claim_kind": "fact",
+        "evidence_refs": []
+      },
+      "expect": {
+        "code": "ERR_CLAIM_PROVENANCE_MISSING",
+        "apply": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-018",
+      "name": "handoff without scope boundary",
+      "given": {
+        "scope_boundary_next_does_not_decide": []
+      },
+      "expect": {
+        "code": "ERR_HANDOFF_SCOPE_BOUNDARY",
+        "consume": false
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-019",
+      "name": "completed to running",
+      "given": {
+        "from": "completed",
+        "to": "running"
+      },
+      "expect": {
+        "code": "ERR_EXPERIMENT_TRANSITION_INVALID",
+        "state": "completed"
+      }
+    },
+    {
+      "fixture_id": "P4-SE-NEG-020",
+      "name": "clock rollback does not reorder",
+      "given": {
+        "event_sequence": [
+          9,
+          10
+        ],
+        "occurred_at": [
+          "later",
+          "earlier"
+        ]
+      },
+      "expect": {
+        "order_source": "event_sequence",
+        "timestamp_reorder": false
+      }
+    }
+  ],
+  "threat_and_failure_analysis": [
+    {
+      "id": "THR-001",
+      "threat": "concurrent writers/lost update",
+      "control": "exclusive project lock + replay-derived CAS revision + expected head hash",
+      "residual": "lock semantics on network filesystems unresolved",
+      "failure_code": "ERR_STATE_REVISION_STALE"
+    },
+    {
+      "id": "THR-002",
+      "threat": "process crash/torn multi-file state",
+      "control": "events log atomic rename is commit point; project/snapshot are replayable caches",
+      "residual": "platform must provide durable rename/fsync",
+      "failure_code": "ERR_ATOMIC_COMMIT_FAILED"
+    },
+    {
+      "id": "THR-003",
+      "threat": "disk full or fsync failure",
+      "control": "abort before commit; after commit replay log and republish caches",
+      "residual": "operator must restore capacity",
+      "failure_code": "ERR_ATOMIC_COMMIT_FAILED"
+    },
+    {
+      "id": "THR-004",
+      "threat": "event duplication/retry storm",
+      "control": "project-scoped idempotency key + event ID/hash dedupe",
+      "residual": "unbounded dedupe memory avoided by replay/cache",
+      "failure_code": "ERR_IDEMPOTENCY_CONFLICT"
+    },
+    {
+      "id": "THR-005",
+      "threat": "event tampering, deletion or reordering",
+      "control": "event and record SHA-256 chains, monotonic sequence/revision, quarantine",
+      "residual": "unsigned chain cannot prove authorship against full writer compromise",
+      "failure_code": "ERR_EVENT_CHAIN_BROKEN"
+    },
+    {
+      "id": "THR-006",
+      "threat": "path traversal/symlink escape",
+      "control": "strict project slug, realpath containment, no symlink writes, same-filesystem temps",
+      "residual": "TOCTOU requires descriptor-relative operations in implementation",
+      "failure_code": "LM-COMPAT-PATH-ESCAPE"
+    },
+    {
+      "id": "THR-007",
+      "threat": "secret or PII leakage in state/evidence",
+      "control": "opaque refs, redaction status, mode 0600/0700, no inline corpus",
+      "residual": "full P6 data classification/encryption policy pending",
+      "failure_code": "LM-COMPAT-SECRET-DETECTED"
+    },
+    {
+      "id": "THR-008",
+      "threat": "spoofed approver/operator",
+      "control": "authority_ref never inferred; fail closed unless verifier accepts operation scope",
+      "residual": "canonical external identity and verifier deferred to P6",
+      "failure_code": "ERR_AUTHORITY_REF_UNVERIFIED"
+    },
+    {
+      "id": "THR-009",
+      "threat": "stale or malicious lock removal",
+      "control": "lock_id ownership and liveness proof; age alone insufficient",
+      "residual": "cross-host liveness unresolved",
+      "failure_code": "ERR_LOCK_STALE_UNVERIFIED"
+    },
+    {
+      "id": "THR-010",
+      "threat": "snapshot or project cache divergence",
+      "control": "log-authoritative replay with anchored heads and reducer version",
+      "residual": "large logs may make full replay expensive",
+      "failure_code": "ERR_STATE_SNAPSHOT_DIVERGED"
+    },
+    {
+      "id": "THR-011",
+      "threat": "unknown schema/reducer drift",
+      "control": "explicit supported versions/migrators; fail closed",
+      "residual": "migration registry belongs to later P4 integration",
+      "failure_code": "ERR_UNKNOWN_SCHEMA_VERSION"
+    },
+    {
+      "id": "THR-012",
+      "threat": "malicious legacy Markdown as instruction",
+      "control": "compat import parses as untrusted data, copy-and-verify, no tool authority",
+      "residual": "P6 secret/PII scanner policy pending",
+      "failure_code": "LM-COMPAT-SECRET-DETECTED"
+    },
+    {
+      "id": "THR-013",
+      "threat": "parallel owner collision",
+      "control": "staged immutable outputs, non-overlapping write sets, Loop Planning integration",
+      "residual": "semantic collision still requires cross-validation",
+      "failure_code": "ERR_PARALLEL_WRITE_COLLISION"
+    },
+    {
+      "id": "THR-014",
+      "threat": "clock skew or rollback",
+      "control": "sequence/revision/hash determine order; timestamps only evidence metadata",
+      "residual": "external evidence timestamp trust depends on source",
+      "failure_code": "ERR_EVENT_SEQUENCE_GAP"
+    },
+    {
+      "id": "THR-015",
+      "threat": "replay denial via oversized/corrupt log",
+      "control": "streaming validation, bounded record size to be defined, degraded read-only and quarantine",
+      "residual": "record/event size limits are open",
+      "failure_code": "ERR_RECOVERY_REQUIRED"
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "P4-SE-Q001",
+      "source_refs": [
+        "RA-Q001"
+      ],
+      "question": "Qual identidade/verificador canônico representa aprovador e operador externo para approved, instrumented, running, completed e mutações?",
+      "owner_phase": "P6 authorization policy",
+      "safe_default": "ERR_AUTHORITY_REF_UNVERIFIED; manter estado atual e read-only para a operação."
+    },
+    {
+      "id": "P4-SE-Q002",
+      "source_refs": [
+        "RA-Q003",
+        "UQ-005"
+      ],
+      "question": "Este schema/reducer, batch JSONL e commit point serão aceitos como contrato executável final?",
+      "owner_phase": "P4 integration",
+      "safe_default": "manter outputs staged e uma única integração CAS de Loop Planning."
+    },
+    {
+      "id": "P4-SE-Q003",
+      "source_refs": [
+        "compatibility-policy section 10"
+      ],
+      "question": "Quais versões anteriores de state/event schema terão migradores explícitos e qual registry assina essa cobertura?",
+      "owner_phase": "P4/P7",
+      "safe_default": "ler somente 2.0 atual; rejeitar schema futuro/desconhecido."
+    },
+    {
+      "id": "P4-SE-Q004",
+      "source_refs": [
+        "P6 deferred"
+      ],
+      "question": "Quais classes de evidência exigem criptografia, retenção, redaction e segregação de acesso?",
+      "owner_phase": "P6",
+      "safe_default": "guardar somente refs opacas minimizadas; bloquear segredo e PII desnecessária."
+    },
+    {
+      "id": "P4-SE-Q005",
+      "source_refs": [
+        "hash-chain residual"
+      ],
+      "question": "A cadeia precisa de assinatura/HMAC ou âncora externa para provar autoria contra escritor comprometido?",
+      "owner_phase": "P6",
+      "safe_default": "tratar SHA-256 chain apenas como integridade, não autenticidade."
+    },
+    {
+      "id": "P4-SE-Q006",
+      "source_refs": [
+        "filesystem portability"
+      ],
+      "question": "Quais hosts/filesystems garantem O_EXCL, atomic rename e durable directory fsync?",
+      "owner_phase": "P5 runtime",
+      "safe_default": "runtime read-only quando não puder provar as garantias."
+    },
+    {
+      "id": "P4-SE-Q007",
+      "source_refs": [
+        "replay performance"
+      ],
+      "question": "Qual cadence de snapshot, limite de tamanho por record/event e política de archive sem compaction destrutiva?",
+      "owner_phase": "P5/P7",
+      "safe_default": "snapshot após cada commit; nenhum log removido; bloquear record excessivo segundo limite ainda a aprovar."
+    },
+    {
+      "id": "P4-SE-Q008",
+      "source_refs": [
+        "role-matrix state_event_authority"
+      ],
+      "question": "O evento cycle_closed será criado? P2 permite cycle_close_recommended, mas proíbe especialista emitir cycle_closed e não define um event_type canônico de fechamento.",
+      "owner_phase": "P4 integration",
+      "safe_default": "não inventar cycle_closed; persistir apenas cycle_close_recommended e cross_validation_completed."
+    },
+    {
+      "id": "P4-SE-Q009",
+      "source_refs": [
+        "compatibility-policy rollback"
+      ],
+      "question": "Qual evento/audit record canônico documenta recovery e rollback sem ampliar allowed_state_events dos papéis?",
+      "owner_phase": "P4 integration",
+      "safe_default": "relatório em quarantine/migrations e nenhum domain event novo até decisão explícita."
+    }
+  ],
+  "verdict": {
+    "result": "conditionally_ready_for_p4_integration_review",
+    "p2_semantics_preserved": true,
+    "invented_domain_authority": false,
+    "source_files_modified": false,
+    "strengths": [
+      "CAS monotônico com head hash e integração única de outputs paralelos.",
+      "Commit point único no log, materializações reconstruíveis e recovery fail-closed.",
+      "Event/idempotency/hash chain e experimento completo preservam evidência e história.",
+      "Role/event matrix e handoffs derivam literalmente de P2."
+    ],
+    "blockers_before_runtime_write_enablement": [
+      "Aprovar schema/reducer e semântica do transaction-record JSONL.",
+      "Definir e implementar verificação de authority_ref externo em P6.",
+      "Provar atomic rename/fsync/lock na plataforma alvo.",
+      "Definir evento/audit de recovery e limites de tamanho/retention."
+    ],
+    "safe_operation_until_blockers_close": "Read-only para estado existente; outputs especialistas permanecem staged. Nenhuma transição externa ou mutação é inferida."
+  }
+}

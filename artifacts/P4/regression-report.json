@@ -1,0 +1,114 @@
+{
+  "artifact_id": "loop-marketing-p4-regression-report",
+  "generated_at": "2026-07-18T00:36:59.631124Z",
+  "command": "python3 scripts/p4_regression.py",
+  "result": {
+    "status": "PASS",
+    "baseline": "PASS",
+    "scenario_count": 20,
+    "passed": 20,
+    "failed": 0,
+    "results": [
+      {
+        "name": "state_namespace_drift",
+        "status": "PASS",
+        "expected_text": "canonical state namespace drift"
+      },
+      {
+        "name": "state_schema_open",
+        "status": "PASS",
+        "expected_text": "state/event schema is not closed"
+      },
+      {
+        "name": "state_revision_rule_reverts_to_event",
+        "status": "PASS",
+        "expected_text": "state revision rule is inconsistent with transaction batches"
+      },
+      {
+        "name": "handoff_required_field_removed",
+        "status": "PASS",
+        "expected_text": "handoff required fields drift from P2"
+      },
+      {
+        "name": "handoff_schema_open",
+        "status": "PASS",
+        "expected_text": "handoff schema is not closed"
+      },
+      {
+        "name": "handoff_property_extra",
+        "status": "PASS",
+        "expected_text": "handoff properties drift from P2"
+      },
+      {
+        "name": "invented_event_authority",
+        "status": "PASS",
+        "expected_text": "event authority/types drift from the 33 P2 event types"
+      },
+      {
+        "name": "event_authority_owner_swap",
+        "status": "PASS",
+        "expected_text": "event role authority map drift"
+      },
+      {
+        "name": "experiment_transition_removed",
+        "status": "PASS",
+        "expected_text": "experiment transition rules drift from P2"
+      },
+      {
+        "name": "negative_coverage_removed",
+        "status": "PASS",
+        "expected_text": "negative fixture coverage missing"
+      },
+      {
+        "name": "transaction_replay_coverage_removed",
+        "status": "PASS",
+        "expected_text": "transaction replay/idempotency sequence coverage is missing"
+      },
+      {
+        "name": "claimed_hash_cannot_hide_tampered_replay",
+        "status": "PASS",
+        "expected_text": "TXSEQ-POS-IDEMPOTENT-REPLAY"
+      },
+      {
+        "name": "claimed_event_hash_cannot_bypass_replay",
+        "status": "PASS",
+        "expected_text": "SEQ-POS-IDEMPOTENT-REPLAY"
+      },
+      {
+        "name": "alias_semantics_drift",
+        "status": "PASS",
+        "expected_text": "alias drift"
+      },
+      {
+        "name": "accepted_transaction_tampered",
+        "status": "PASS",
+        "expected_text": "TX-POS-SINGLE"
+      },
+      {
+        "name": "migration_confirmation_not_bound",
+        "status": "PASS",
+        "expected_text": "MIG-POS-CONFIRMED-PROMOTION"
+      },
+      {
+        "name": "migration_rollback_contract_removed",
+        "status": "PASS",
+        "expected_text": "missing marker: Rollback"
+      },
+      {
+        "name": "canonical_catalog_incomplete",
+        "status": "PASS",
+        "expected_text": "P3 catalog no longer contains exactly 100 unique tactics"
+      },
+      {
+        "name": "handoff_domain_owner_drift",
+        "status": "PASS",
+        "expected_text": "HO-POS-001"
+      },
+      {
+        "name": "manifest_detects_unsealed_change",
+        "status": "PASS",
+        "expected_text": "manifest hash drift"
+      }
+    ]
+  }
+}
