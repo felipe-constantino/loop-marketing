@@ -2,8 +2,8 @@
   "schema_version": "1.0",
   "project_id": "loop-marketing-v2",
   "created_at": "2026-07-17",
-  "checkpoint_id": "CP-0014",
-  "status": "p5_completed_p6_pending",
+  "checkpoint_id": "CP-0015",
+  "status": "p6_security_in_progress",
   "authorization": {
     "implementation_start_received": true,
     "received_at": "2026-07-17",
@@ -21,6 +21,11 @@
     "baseline_library_hash_algorithm": "sha256 of sorted relative_path + NUL + sha256(file) records joined by newline"
   },
   "control_workspace": "/Users/enorm/Documents/Claude/loop-marketing-v2-control",
+  "distribution": {
+    "scope": "internal_restricted",
+    "audience": "owner_leaders_and_team_members",
+    "public_release": false
+  },
   "recovery": {
     "local_git": "/Users/enorm/Documents/Claude/loop-marketing-v2-control/.git",
     "offline_bundle": "/Users/enorm/Documents/Claude/loop-marketing-v2-control-backup.bundle",
@@ -151,9 +156,51 @@
         "Testes positivos, negativos, concorrentes e de retomada passam sem alterar a fonte canonica."
       ]
     },
-    {"id": "P6", "name": "Seguranca e autorizacao", "status": "pending"},
-    {"id": "P7", "name": "Avaliacoes, observabilidade e red team", "status": "pending"},
-    {"id": "P8", "name": "Empacotamento e release", "status": "pending"}
+    {
+      "id": "P6",
+      "name": "Seguranca e permissoes operacionais",
+      "status": "in_progress",
+      "deliverables": [
+        "artifacts/P6/security-contract.json",
+        "artifacts/P6/security-fixtures.json",
+        "candidate/loop-marketing-v2/src/loop_marketing_runtime/security.py",
+        "candidate/loop-marketing-v2/tests/test_security.py",
+        "artifacts/P6/integration-manifest.json",
+        "artifacts/P6/final-independent-audit.json"
+      ],
+      "exit_criteria": [
+        "Entradas, saidas, erros e telemetria aplicam limites e redaction deterministas sem gravar segredos ou PII sensivel.",
+        "Permissoes operacionais distinguem preparacao read-only, estado local e mutacao externa; nenhuma mutacao externa e exposta no release interno.",
+        "Paths, symlinks, payloads recursivos, tipos hostis e conteudo de prompt nao atravessam fronteiras confiaveis.",
+        "Falhas de seguranca sao fail-closed, auditaveis e nao revelam traceback, token, credencial ou payload integral.",
+        "Testes positivos, negativos e concorrentes de seguranca passam sem alterar a fonte canonica."
+      ]
+    },
+    {
+      "id": "P7",
+      "name": "Avaliacoes, observabilidade e red team",
+      "status": "pending",
+      "deliverables": [
+        "artifacts/P7/evaluation-contract.json",
+        "artifacts/P7/evaluation-cases.json",
+        "artifacts/P7/evaluation-report.json",
+        "artifacts/P7/red-team-report.json",
+        "artifacts/P7/integration-manifest.json"
+      ]
+    },
+    {
+      "id": "P8",
+      "name": "Empacotamento e release interno",
+      "status": "pending",
+      "deliverables": [
+        "release/loop-marketing/SKILL.md",
+        "release/loop-marketing/agents/openai.yaml",
+        "release/loop-marketing/scripts/",
+        "release/loop-marketing/references/",
+        "artifacts/P8/release-manifest.json",
+        "artifacts/P8/final-release-audit.json"
+      ]
+    }
   ],
   "acceptance_criteria": [
     "Os 100 prompts originais permanecem presentes, identificaveis e rastreaveis.",

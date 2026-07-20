@@ -1,10 +1,10 @@
-# Checkpoint CP-0014
+# Checkpoint CP-0015
 
 Atualizado em: 2026-07-19
 
 ## Objetivo
 
-Fechar P5 com runtime host-neutral integrado, gate independente, selo verificável e continuidade pronta para P6.
+Implementar P6 sobre o runtime P5 selado: segurança técnica, privacidade, redaction e permissões operacionais.
 
 ## Estado atual
 
@@ -14,7 +14,8 @@ Fechar P5 com runtime host-neutral integrado, gate independente, selo verificáv
 - Worktree no baseline: limpo
 - Biblioteca canônica: 100 prompts
 - Autorização do usuário: recebida em 2026-07-17 (`pode iniciar`)
-- Implementação v2: P1, P2, P3, P4 e P5 concluídas; P6 pendente
+- Implementação v2: P1, P2, P3, P4 e P5 concluídas; P6 em andamento
+- Distribuição final: interna e restrita ao usuário, seus líderes e liderados
 - Validação determinística: aprovada, sem erros
 - Teste de retomada sem histórico: aprovado; fragilidades encontradas foram corrigidas
 - Hash canônico da biblioteca: `0ef879b760619509adda24a7d928098f77cd2d4c392f53a3be7f530f14d549b1`
@@ -66,7 +67,7 @@ Fechar P5 com runtime host-neutral integrado, gate independente, selo verificáv
 - P5: dois blockers independentes de evidência foram corrigidos e preservados como regressão
 - P5: 50/50 testes, 19/19 regressões negativas, QA independente PASS e selo verificável
 - P5: fonte canônica limpa no baseline e 100/100 prompts preservados
-- Gate atual: `G7 — P5 selada; preparar contrato de segurança e autorização P6`
+- Gate atual: `G7 — implementar e validar segurança e permissões operacionais P6`
 
 ## Decisões vigentes
 
@@ -91,6 +92,8 @@ Fechar P5 com runtime host-neutral integrado, gate independente, selo verificáv
 - Derivar maturidade de dimensões completas vinculadas a fatos; ignorar classificação crua não comprovada.
 - Exigir que toda factual claim resolva no evidence registry e pertença a `event.evidence_refs` no caminho estrito.
 - Vincular cada transaction record ao receipt e fingerprint produzidos pelo orquestrador; somente retry idêntico já persistido sobrevive a reinício.
+- Usar "permissão" em P6 apenas no sentido técnico-operacional; certificados, parceria e justificativa jurídica ficam fora do produto.
+- Empacotar P8 somente para distribuição interna restrita, sem release público.
 
 ## Artefatos de continuidade
 
@@ -200,7 +203,7 @@ P1 foi concluída em modo read-only. Os 117 arquivos estão classificados; os ac
 
 ## Próxima ação única
 
-Definir o contrato P6 de segurança, autorização e redaction sobre o runtime P5 selado, sem abrir superfície de escrita externa.
+Integrar threat model, redaction, resource limits e permission guard P6 em módulos e testes não sobrepostos.
 
 ## Proibido durante P6
 
