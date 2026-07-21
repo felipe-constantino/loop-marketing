@@ -326,9 +326,14 @@ class SecureLoopRuntime:
         self,
         route_plan: Mapping[str, Any],
         route_node_id: str,
+        approved_handoff: Mapping[str, Any],
     ) -> Dict[str, Any]:
         value = self._input(
-            {"route_plan": route_plan, "route_node_id": route_node_id},
+            {
+                "route_plan": route_plan,
+                "route_node_id": route_node_id,
+                "approved_handoff": approved_handoff,
+            },
             "specialist_request",
             "specialist.prepare",
             "read_only",
@@ -337,7 +342,9 @@ class SecureLoopRuntime:
             "specialist.prepare",
             "read_only",
             lambda: self._orchestrator.prepare_specialist(
-                value["route_plan"], value["route_node_id"]
+                value["route_plan"],
+                value["route_node_id"],
+                value["approved_handoff"],
             ),
         )
         prompt_total = 0

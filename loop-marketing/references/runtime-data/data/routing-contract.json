@@ -1197,7 +1197,7 @@
     "SHOULD": "default that may be overridden only by a recorded decision with evidence"
   },
   "phase": "P2",
-  "product_version": "2.0.0",
+  "product_version": "2.1.0",
   "rejection_codes": [
     {
       "code": "ERR_INPUT_REQUIRED",

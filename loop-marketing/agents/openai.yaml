@@ -1,4 +1,4 @@
 interface:
   display_name: "Loop Marketing"
-  short_description: "Orquestra ciclos internos de Loop Marketing"
-  default_prompt: "Use $loop-marketing para planejar e validar um ciclo de marketing orientado por evidencias."
+  short_description: "Conduz um ciclo conversacional de marketing"
+  default_prompt: "Use $loop-marketing para discutir este desafio por agentes, pedir minha aprovação em cada handoff e fechar um plano de execução com métricas para o próximo ciclo."

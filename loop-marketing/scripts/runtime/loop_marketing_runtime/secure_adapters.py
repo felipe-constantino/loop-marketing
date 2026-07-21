@@ -48,7 +48,7 @@ class SecureHostAdapter:
         if resolution["command_id"] in _PLANNING_COMMANDS:
             result = self._runtime.prepare_route(copied)
         else:
-            if set(copied) != {"route_plan", "route_node_id"}:
+            if set(copied) != {"route_plan", "route_node_id", "approved_handoff"}:
                 raise LoopRuntimeError(
                     "ERR_INPUT_REQUIRED",
                     "A specialist adapter request has invalid fields.",
@@ -63,7 +63,11 @@ class SecureHostAdapter:
                     "ERR_OWNER_SCOPE_VIOLATION",
                     "The specialist command does not own the selected route node.",
                 )
-            result = self._runtime.prepare_specialist(copied["route_plan"], copied["route_node_id"])
+            result = self._runtime.prepare_specialist(
+                copied["route_plan"],
+                copied["route_node_id"],
+                copied["approved_handoff"],
+            )
         return {
             "envelope_version": "2.0",
             "host_id": self._host_id,

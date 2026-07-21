@@ -182,7 +182,12 @@ class LoopOrchestrator:
             requires_planner_review=value.get("requires_planner_review", False),
         )
 
-    def prepare_specialist(self, route_plan: Dict[str, Any], route_node_id: str) -> Dict[str, Any]:
+    def prepare_specialist(
+        self,
+        route_plan: Dict[str, Any],
+        route_node_id: str,
+        approved_handoff: Dict[str, Any],
+    ) -> Dict[str, Any]:
         self._assert_route_plan(route_plan)
         nodes = {item["route_node_id"]: item for item in route_plan.get("nodes", [])}
         require(route_node_id in nodes, "ERR_INPUT_REQUIRED", "Unknown route_node_id.", route_node_id=route_node_id)
@@ -191,6 +196,48 @@ class LoopOrchestrator:
             node["state_revision"] == route_plan["state_revision"],
             "ERR_STATE_REVISION_STALE",
             "Route node does not preserve the immutable plan revision.",
+            retryable=True,
+        )
+        routing_input = route_plan.get("routing_input", {})
+        input_registry = routing_input.get("input_registry", {})
+        evidence_registry = routing_input.get("evidence_registry", {})
+        if isinstance(evidence_registry, (list, tuple, set)):
+            evidence_registry = {item: True for item in evidence_registry}
+        elif not isinstance(evidence_registry, dict):
+            evidence_registry = {}
+        for reference in route_plan.get("evidence_refs", []):
+            evidence_registry[reference] = True
+        context = {
+            "current_revision": route_plan["state_revision"],
+            "target_read_revision": route_plan["state_revision"],
+            "project_ref": route_plan["project_ref"],
+            "cycle_id": route_plan["cycle_id"],
+            "input_registry": input_registry,
+            "evidence_registry": evidence_registry,
+        }
+        primary = route_plan.get("primary_bottleneck")
+        bottleneck_ref = primary.get("bottleneck_ref") if isinstance(primary, dict) else None
+        if bottleneck_ref:
+            context["bottleneck_registry"] = {bottleneck_ref: {"owner": "loop_planning"}}
+        validation = self.validator.validate_handoff(approved_handoff, context)
+        require(
+            validation.ok,
+            validation.primary_code or "ERR_USER_APPROVAL_REQUIRED",
+            "The specialist handoff did not pass the approval and contract gates.",
+            retryable=True,
+            violations=list(validation.violations),
+        )
+        require(
+            approved_handoff.get("to_role") == node["role_id"],
+            "ERR_SEQUENCE_DEPENDENCY",
+            "The approved handoff does not target this route node.",
+            retryable=True,
+        )
+        requested = approved_handoff.get("requested_output", {})
+        require(
+            set(requested.get("write_set", [])) == set(node.get("write_set", [])),
+            "ERR_SEQUENCE_DEPENDENCY",
+            "The approved handoff write set does not match this route node.",
             retryable=True,
         )
         selection_value = node.get("selection") or {
@@ -219,6 +266,8 @@ class LoopOrchestrator:
                 "outputs": role["outputs"],
             },
             "handoff_required_fields": [item["name"] for item in self.role_matrix["handoff_contract"]["fields"]],
+            "approved_handoff_id": approved_handoff["handoff_id"],
+            "user_approval": approved_handoff["user_approval"],
             "prompt_documents": prompt_documents,
             "read_only": True,
             "external_write_authorized": False,

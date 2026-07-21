@@ -319,9 +319,10 @@
       "scope_boundary_next_does_not_decide MUST ser compativel com canonical_authority_map.",
       "Um handoff com state_revision obsoleto MUST ser revalidado antes da integracao.",
       "requested_output MUST_NOT atribuir ao receptor uma decisao pertencente a outro owner.",
-      "Claims sem evidence_refs MUST permanecer assumptions e MUST_NOT avancar estado."
+      "Claims sem evidence_refs MUST permanecer assumptions e MUST_NOT avancar estado.",
+      "Nenhum handoff pode ativar o proximo papel sem aprovacao explicita do lead_or_user; silencio ou contexto narrativo nao constituem consentimento."
     ],
-    "contract_version": "1.0",
+    "contract_version": "1.1",
     "fields": [
       {
         "constraint": "Identificador unico e estavel.",
@@ -432,6 +433,11 @@
         "constraint": "Condicoes que impedem conclusao silenciosa pelo receptor.",
         "name": "escalation_conditions",
         "required": true
+      },
+      {
+        "constraint": "Aprovacao explicita do lead_or_user, vinculada ao turno e ao escopo aprovado; pode ser provisoria somente com assumptions declaradas.",
+        "name": "user_approval",
+        "required": true
       }
     ]
   },
@@ -467,7 +473,7 @@
     ]
   },
   "phase": "P2",
-  "product_version": "2.0.0",
+  "product_version": "2.1.0",
   "resolved_during_integration": [
     {
       "question_id": "RA-Q002",
@@ -509,7 +515,7 @@
         "Sempre que uma recomendacao exceder a maturidade vigente.",
         "Sempre antes de recomendar fechamento do ciclo, mesmo com um unico especialista."
       ],
-      "display_name": "Loop Planning",
+      "display_name": "Loop Agent",
       "does_not_own": [
         "message_or_copy",
         "segment_or_eligibility_definition",
@@ -578,7 +584,8 @@
         "known_gaps",
         "requested_output",
         "cross_validation_required",
-        "escalation_conditions"
+        "escalation_conditions",
+        "user_approval"
       ],
       "outputs": [
         "diagnostic_summary",
@@ -675,7 +682,7 @@
         "Evidencia de Refinar contradiz a hierarquia, prova ou CTA propostos.",
         "Mais de metade da linguagem e inferida ou faltam provas materiais."
       ],
-      "display_name": "Verbalizar",
+      "display_name": "Express · Verbalizar",
       "does_not_own": [
         "segment_definition",
         "lifecycle_eligibility",
@@ -756,7 +763,8 @@
         "known_gaps",
         "requested_output",
         "cross_validation_required",
-        "escalation_conditions"
+        "escalation_conditions",
+        "user_approval"
       ],
       "outputs": [
         "customer_language_glossary",
@@ -862,7 +870,7 @@
         "Dados de Refinar contradizem a utilidade ou mensurabilidade do segmento.",
         "Segmentacao, personalizacao ou numero de estagios excedem maturidade ou capacidade tecnica."
       ],
-      "display_name": "Orientar",
+      "display_name": "Tailor · Orientar",
       "does_not_own": [
         "message_voice_tone_or_cta",
         "channel_selection",
@@ -942,7 +950,8 @@
         "known_gaps",
         "requested_output",
         "cross_validation_required",
-        "escalation_conditions"
+        "escalation_conditions",
+        "user_approval"
       ],
       "outputs": [
         "lifecycle_map_with_measurable_entry_and_exit",
@@ -1054,7 +1063,7 @@
         "Limite por canal nao cabe no limite global de pressao de contato.",
         "Novo canal e adicionado sem realocacao de recurso ou capacidade operacional."
       ],
-      "display_name": "Ampliar",
+      "display_name": "Amplify · Ampliar",
       "does_not_own": [
         "message_voice_tone_or_cta",
         "segment_definition",
@@ -1139,7 +1148,8 @@
         "known_gaps",
         "requested_output",
         "cross_validation_required",
-        "escalation_conditions"
+        "escalation_conditions",
+        "user_approval"
       ],
       "outputs": [
         "touchpoint_inventory_and_overlap_map",
@@ -1258,7 +1268,7 @@
         "Benchmark, tendencia, custo e significancia sustentam classificacoes conflitantes.",
         "Qualquer evidencia sugere mudanca do gargalo global."
       ],
-      "display_name": "Refinar",
+      "display_name": "Evolve · Refinar",
       "does_not_own": [
         "message_creation",
         "segment_lifecycle_or_eligibility_definition",
@@ -1347,7 +1357,8 @@
         "known_gaps",
         "requested_output",
         "cross_validation_required",
-        "escalation_conditions"
+        "escalation_conditions",
+        "user_approval"
       ],
       "outputs": [
         "unbiased_data_readout_and_gaps",

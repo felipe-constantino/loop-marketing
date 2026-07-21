@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://loop-marketing.local/schemas/handoff-1.0.json",
-  "title": "Loop Marketing v2 canonical handoff",
+  "$id": "https://loop-marketing.local/schemas/handoff-1.1.json",
+  "title": "Loop Marketing v2.1 user-approved canonical handoff",
   "type": "object",
   "additionalProperties": false,
-  "minProperties": 22,
-  "maxProperties": 22,
+  "minProperties": 23,
+  "maxProperties": 23,
   "required": [
     "handoff_id",
     "contract_version",
@@ -28,7 +28,8 @@
     "known_gaps",
     "requested_output",
     "cross_validation_required",
-    "escalation_conditions"
+    "escalation_conditions",
+    "user_approval"
   ],
   "properties": {
     "handoff_id": {
@@ -37,7 +38,7 @@
     },
     "contract_version": {
       "type": "string",
-      "const": "1.0"
+      "const": "1.1"
     },
     "project_ref": {
       "type": "string",
@@ -154,6 +155,9 @@
       "items": {
         "$ref": "#/$defs/escalationCondition"
       }
+    },
+    "user_approval": {
+      "$ref": "#/$defs/userApproval"
     }
   },
   "allOf": [
@@ -286,8 +290,81 @@
         "ERR_PARALLEL_WRITE_COLLISION",
         "ERR_OWNER_SCOPE_VIOLATION",
         "ERR_EXTERNAL_MUTATION_UNAUTHORIZED",
-        "ERR_CROSS_VALIDATION_BLOCKED"
+        "ERR_CROSS_VALIDATION_BLOCKED",
+        "ERR_USER_APPROVAL_REQUIRED"
       ]
+    },
+    "userApproval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approval_ref",
+        "status",
+        "approved_by",
+        "approved_at",
+        "source_turn_ref",
+        "scope_summary"
+      ],
+      "properties": {
+        "approval_ref": {
+          "type": "string",
+          "pattern": "^approval:[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "approved",
+            "provisional_approved"
+          ]
+        },
+        "approved_by": {
+          "type": "string",
+          "const": "lead_or_user"
+        },
+        "approved_at": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "source_turn_ref": {
+          "type": "string",
+          "pattern": "^turn:[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+        },
+        "scope_summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^\\S(?:[^\\r\\n]*\\S)?$"
+        },
+        "risk_summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^\\S(?:[^\\r\\n]*\\S)?$"
+        },
+        "review_condition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "^\\S(?:[^\\r\\n]*\\S)?$"
+        }
+      },
+      "if": {
+        "properties": {
+          "status": {
+            "const": "provisional_approved"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "risk_summary",
+          "review_condition"
+        ]
+      }
     },
     "inputRef": {
       "type": "object",
@@ -733,7 +810,7 @@
   },
   "x-loop-contract": {
     "canonical_source": "artifacts/P2/role-matrix.json#handoff_contract",
-    "field_count": 22,
+    "field_count": 23,
     "decision_domain_owner": {
       "global_orchestration": "loop_planning",
       "message_and_copy": "verbalizar",
@@ -759,7 +836,8 @@
       "ERR_PARALLEL_WRITE_COLLISION",
       "ERR_OWNER_SCOPE_VIOLATION",
       "ERR_EXTERNAL_MUTATION_UNAUTHORIZED",
-      "ERR_CROSS_VALIDATION_BLOCKED"
+      "ERR_CROSS_VALIDATION_BLOCKED",
+      "ERR_USER_APPROVAL_REQUIRED"
     ]
   }
 }

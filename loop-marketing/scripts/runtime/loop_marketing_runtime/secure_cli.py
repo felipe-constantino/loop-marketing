@@ -132,6 +132,7 @@ def _parser() -> argparse.ArgumentParser:
     specialist = operations.add_parser("specialist")
     specialist.add_argument("route_plan")
     specialist.add_argument("route_node_id")
+    specialist.add_argument("approved_handoff")
     integrate = operations.add_parser("integrate")
     integrate.add_argument("envelope")
     return parser
@@ -162,7 +163,11 @@ def run(argv: Optional[Sequence[str]] = None) -> Dict[str, Any]:
     if args.operation == "route":
         return runtime.prepare_route(_read_json(args.request))
     if args.operation == "specialist":
-        return runtime.prepare_specialist(_read_json(args.route_plan), args.route_node_id)
+        return runtime.prepare_specialist(
+            _read_json(args.route_plan),
+            args.route_node_id,
+            _read_json(args.approved_handoff),
+        )
     if args.operation == "integrate":
         return runtime.integrate(_read_json(args.envelope))
     raise LoopRuntimeError("ERR_RUNTIME_INTERNAL", "Unsupported secure CLI operation.")

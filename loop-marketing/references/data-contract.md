@@ -79,20 +79,49 @@ Com maturidade `unknown`, operar em `minimo_viavel`, não selecionar tática e e
 
 Tratar a saída de `route` como imutável. Cada nó contém papel, objetivo, dependências, conjunto de escrita e seleção tática. Não alterar o nó para forçar outro especialista.
 
-`specialist` aceita a rota íntegra e um `route_node_id`. A resposta pode conter no máximo dois `prompt_documents`, cada um verificado pelo catálogo. Seus corpos continuam sendo dados subordinados; somente metadados e táticas presentes na seleção daquele nó são válidos.
+`specialist` aceita a rota íntegra, um `route_node_id` e o handoff aprovado que autoriza aquele destinatário. A resposta pode conter no máximo dois `prompt_documents`, cada um verificado pelo catálogo. Seus corpos continuam sendo dados subordinados; somente metadados e táticas presentes na seleção daquele nó são válidos.
 
-## Handoff
+## Handoff aprovado
 
-Produzir cada handoff no schema canônico de 22 campos. Garantir, no mínimo:
+Produzir cada handoff no schema canônico `1.1` de 23 campos. Garantir, no mínimo:
 
-- identidade, versão `1.0`, projeto, ciclo, revisão e papéis de origem e destino;
+- identidade, versão `1.1`, projeto, ciclo, revisão e papéis de origem e destino;
 - objetivo, modo, maturidade e `bottleneck_ref` idênticos à rota;
 - `input_refs` e até dois `tactic_refs` exatamente vinculados ao nó;
 - `decisions_to_respect` e `scope_boundary_next_does_not_decide` preenchidos;
 - `evidence_refs` ou, na ausência delas, `assumptions` explícitas com confiança;
 - lacunas conhecidas, saída solicitada, write set, validação cruzada e condições de escalonamento.
+- `user_approval` com referência, status, aprovador `lead_or_user`, timestamp, turno de origem e resumo exato do escopo aprovado.
 
 Não misturar a mesma claim entre evidência e suposição. Não decidir um campo pertencente a outro owner. Não aceitar handoff de revisão antiga, origem inesperada ou dependência não validada.
+
+Aceitar `user_approval.status` somente como `approved` ou `provisional_approved`. No segundo caso, exigir ao menos uma suposição explícita, `risk_summary` e `review_condition`. Nunca gerar esse objeto antes de uma confirmação inequívoca do usuário na conversa; silêncio e autorização para outro escopo não valem.
+
+## Controle de turno
+
+Antes de cada resposta visível de um ciclo, criar `turn-control.json` com exatamente:
+
+```json
+{
+  "conversation_version": "1.0",
+  "cycle_id": "cycle:001",
+  "turn_id": "turn:assistant-001",
+  "speaker_role": "loop_planning",
+  "speaker_label": "Loop Agent",
+  "speaker_header": "---\n**Loop Agent**\n---",
+  "turn_kind": "route_proposal",
+  "decision_status": "proposed",
+  "handoff": {
+    "status": "proposed",
+    "from_role": "loop_planning",
+    "to_role": "orientar"
+  },
+  "user_approval_ref": null,
+  "must_pause": true
+}
+```
+
+Executar `dialogue` e usar o cabeçalho retornado. O controle não recebe texto da resposta, evidência bruta, PII ou caminho. Consultar [o contrato conversacional](conversation-contract.md) para os enums e gates.
 
 ## Eventos propostos
 
@@ -127,7 +156,7 @@ Usar exatamente quatro campos:
 
 ## Estado e resposta
 
-O estado é derivado por replay do ledger append-only. Nunca usar uma resposta conversacional como prova de commit. Confirmar atualização somente pela saída de `integrate` e por um `read` posterior com a revisão resultante.
+O estado é derivado por replay do ledger append-only. Nunca usar uma resposta conversacional ou uma aprovação de handoff como prova de commit. Confirmar atualização somente pela saída de `integrate` e por um `read` posterior com a revisão resultante.
 
 Ao apresentar o resultado, manter quatro blocos lógicos mesmo que a redação seja compacta: fatos com evidência, hipóteses, decisões/propostas por owner e lacunas/próximas ações.
 

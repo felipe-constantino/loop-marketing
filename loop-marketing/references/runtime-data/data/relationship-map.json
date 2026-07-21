@@ -1,7 +1,7 @@
 {
   "artifact_type": "relationship_map",
   "schema_version": "1.0",
-  "product_version": "2.0.0",
+  "product_version": "2.1.0",
   "status": "integrated",
   "routing_policy": {
     "normative_review_status": "confirmed",

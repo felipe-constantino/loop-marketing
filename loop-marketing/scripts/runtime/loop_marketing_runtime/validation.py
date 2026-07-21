@@ -252,6 +252,7 @@ _TRANSACTION_PRECEDENCE = (
 
 # Frozen by artifacts/P4/workstreams/handoff.json#validator_contract.
 _HANDOFF_PRECEDENCE = (
+    "ERR_USER_APPROVAL_REQUIRED",
     "ERR_HANDOFF_FIELD_MISSING",
     "ERR_HANDOFF_STALE_REVISION",
     "ERR_HANDOFF_OWNER_SCOPE",
@@ -794,6 +795,23 @@ class ContractValidator:
         missing_fields = [field for field in required_fields if field not in handoff]
         extra_fields = [field for field in actual_fields if field not in required_fields]
         tactic_refs = handoff.get("tactic_refs")
+        approval = handoff.get("user_approval")
+        if not isinstance(approval, dict) or approval.get("approved_by") != "lead_or_user":
+            violations.append(_violation(
+                "ERR_USER_APPROVAL_REQUIRED",
+                "A specialist handoff requires explicit approval from the lead or user.",
+            ))
+        elif approval.get("status") == "provisional_approved":
+            if not handoff.get("assumptions"):
+                violations.append(_violation(
+                    "ERR_USER_APPROVAL_REQUIRED",
+                    "A provisional approval requires at least one explicit assumption.",
+                ))
+            if not approval.get("risk_summary") or not approval.get("review_condition"):
+                violations.append(_violation(
+                    "ERR_USER_APPROVAL_REQUIRED",
+                    "A provisional approval requires a risk summary and review condition.",
+                ))
         if isinstance(tactic_refs, list) and len(tactic_refs) > 2:
             violations.append(_violation(
                 "ERR_TACTIC_CARDINALITY",
@@ -805,13 +823,15 @@ class ContractValidator:
                 "ERR_HANDOFF_PROVENANCE",
                 "Handoff must contain evidence or explicitly marked assumptions.",
             ))
-        if missing_fields or extra_fields or len(actual_fields) != 22:
+        expected_field_count = len(required_fields)
+        if missing_fields or extra_fields or len(actual_fields) != expected_field_count:
             violations.append(_violation(
                 "ERR_HANDOFF_FIELD_MISSING",
-                "Handoff must contain exactly the 22 frozen P2 top-level fields.",
+                "Handoff must contain exactly the required top-level fields.",
                 missing_fields=missing_fields,
                 extra_fields=extra_fields,
                 field_count=len(actual_fields),
+                expected_field_count=expected_field_count,
             ))
         if structural:
             ignored = []

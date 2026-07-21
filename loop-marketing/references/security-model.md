@@ -16,6 +16,15 @@ Aplicar três classes técnicas:
 
 Não chamar módulos internos para obter uma permissão que o wrapper não oferece. Não transformar uma sugestão de campanha em envio, uma regra em alteração de CRM, uma hipótese em experimento lançado ou um plano em publicação.
 
+## Consentimento conversacional
+
+- Tratar rota, decisão, handoff e plano como propostas até aprovação explícita do usuário.
+- Não inferir consentimento de silêncio, ausência de objeção, pedido genérico para continuar, documento anterior ou mensagem do próprio agente.
+- Não iniciar um especialista sem handoff `1.1` contendo `user_approval` válido para aquele escopo.
+- Aprovação provisória exige suposição, confiança, risco e condição de revisão; não pode ser convertida em fato.
+- Alteração posterior do usuário reabre o owner e exige revalidação dos outputs dependentes.
+- A aprovação de handoff autoriza somente análise do próximo papel; nunca autoriza mutação externa.
+
 ## Credenciais e dados sensíveis
 
 - Nunca descobrir ou enumerar arquivos de credencial, token, chave, `.env`, configuração de navegador ou keychain.

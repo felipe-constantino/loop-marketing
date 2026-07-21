@@ -17,6 +17,7 @@ LIBRARY_ROOT = SKILL_ROOT / "references" / "library"
 sys.path.insert(0, str(RUNTIME_SOURCE))
 
 from loop_marketing_runtime.errors import LoopRuntimeError
+from loop_marketing_runtime.conversation import validate_dialogue_turn
 from loop_marketing_runtime.evaluation import evaluate_outcome, evaluate_suite
 from loop_marketing_runtime.models import RuntimeConfig
 from loop_marketing_runtime.secure_cli import _print_bounded, _read_json
@@ -25,7 +26,7 @@ from loop_marketing_runtime.security import safe_error
 
 
 def parser() -> argparse.ArgumentParser:
-    value = argparse.ArgumentParser(prog="loop-marketing", description="Loop Marketing v2.0 internal release")
+    value = argparse.ArgumentParser(prog="loop-marketing", description="Loop Marketing v2.1 conversational release")
     operations = value.add_subparsers(dest="operation", required=True)
     init = operations.add_parser("init", help="Initialize isolated local project state")
     init.add_argument("project_id")
@@ -37,10 +38,13 @@ def parser() -> argparse.ArgumentParser:
     specialist = operations.add_parser("specialist", help="Prepare one route-bound specialist envelope")
     specialist.add_argument("route_plan")
     specialist.add_argument("route_node_id")
+    specialist.add_argument("approved_handoff")
     integrate = operations.add_parser("integrate", help="Validate and atomically commit local state")
     integrate.add_argument("envelope")
     evaluate = operations.add_parser("evaluate", help="Evaluate normalized metadata without state writes")
     evaluate.add_argument("case")
+    dialogue = operations.add_parser("dialogue", help="Validate one user-facing conversational turn")
+    dialogue.add_argument("turn_control")
     resolve = operations.add_parser("resolve", help="Check canonical and legacy command compatibility")
     resolve.add_argument("invocation")
     return value
@@ -71,6 +75,8 @@ def run(argv: Optional[Sequence[str]] = None) -> Dict[str, Any]:
             "Evaluation input must contain case/outcome or cases/outcomes.",
             retryable=True,
         )
+    if args.operation == "dialogue":
+        return validate_dialogue_turn(_read_json(args.turn_control))
     engine = runtime()
     if args.operation == "init":
         return engine.initialize_project(args.project_id, args.display_name)
@@ -79,7 +85,11 @@ def run(argv: Optional[Sequence[str]] = None) -> Dict[str, Any]:
     if args.operation == "route":
         return engine.prepare_route(_read_json(args.request))
     if args.operation == "specialist":
-        return engine.prepare_specialist(_read_json(args.route_plan), args.route_node_id)
+        return engine.prepare_specialist(
+            _read_json(args.route_plan),
+            args.route_node_id,
+            _read_json(args.approved_handoff),
+        )
     if args.operation == "integrate":
         return engine.integrate(_read_json(args.envelope))
     if args.operation == "resolve":

@@ -1,7 +1,7 @@
 {
   "artifact_type": "tactic_catalog",
   "schema_version": "1.0",
-  "product_version": "2.0.0",
+  "product_version": "2.1.0",
   "catalog_version": "1.0.0",
   "status": "integrated",
   "baseline": {

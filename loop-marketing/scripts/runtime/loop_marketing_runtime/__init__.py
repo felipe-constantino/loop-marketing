@@ -1,4 +1,4 @@
-"""Loop Marketing v2 host-neutral runtime."""
+"""Loop Marketing v2.1 host-neutral runtime."""
 
 from .errors import LoopRuntimeError
 from .secure_adapters import SecureHostAdapter
@@ -26,4 +26,4 @@ __all__ = [
     "SecureLoopRuntime",
 ]
 
-__version__ = "2.0.0.dev0"
+__version__ = "2.1.0"
